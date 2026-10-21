@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Formulário do motorista</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#F4F1E8;--card:#FFFFFF;--ink:#14261B;--mute:#3C4F43;--line:#C9D3CC;--g:#1E5A36;--o:#B25E09;--k:#14261B;--b:#1B4F7A;--l:#6B3F8F;--gold:#FFD27A;--err:#B3261E}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#0D1712;--card:#16241C;--ink:#E8F0EA;--mute:#A9BBB0;--line:#2C4234;--g:#2E7D4B;--o:#C7701A;--k:#32503D;--b:#2A6AA0;--l:#7E52A3;--err:#F2B8B5}}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+.wrap{max-width:520px;margin:0 auto;padding:0 0 32px}
+header{background:#1E5A36;color:#fff;padding:22px 20px 16px}
+header small{color:var(--gold);font-weight:700;letter-spacing:1px;font-size:12px}
+header h1{margin:4px 0 0;font-size:22px}
+#conn{margin:0;padding:8px 20px;font-size:13px;font-weight:700;background:var(--card);border-bottom:1px solid var(--line);color:var(--mute)}
+#conn.ok{color:var(--g)}#conn.warn{color:var(--o)}#conn.bad{color:var(--err)}
+.sec{padding:14px 20px 0}
+label{display:block;font-size:13px;color:var(--mute);margin:0 0 4px}
+select,input{width:100%;box-sizing:border-box;font:inherit;font-size:17px;padding:12px;border:2px solid var(--g);border-radius:10px;background:var(--card);color:var(--ink)}
+.row{display:flex;gap:10px}.row>div{flex:1}
+#sug{display:none;margin-top:6px;max-height:280px;overflow:auto;border:2px solid var(--g);border-radius:10px;background:var(--card)}
+#sug button{display:block;width:100%;text-align:left;padding:14px;font:inherit;font-size:17px;border:0;border-bottom:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+.btns{display:grid;gap:10px;padding:14px 20px 0}
+.btns button{height:78px;border:0;border-radius:14px;color:#fff;font:inherit;font-size:20px;font-weight:700;text-align:left;padding:0 20px;cursor:pointer}
+.btns button:disabled{opacity:.55}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pair button{height:70px;font-size:17px;padding:0 14px}
+.b1{background:var(--g)}.b2{background:var(--o)}.b3{background:var(--k)}.b4{background:var(--b)}.b5{background:var(--l)}
+#msg{min-height:22px;padding:8px 20px 0;font-size:14px;color:var(--o);font-weight:700}
+h2{font-size:15px;margin:22px 20px 8px}
+.log{margin:0 20px;border:1px solid var(--line);border-radius:10px;overflow-x:auto;background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{padding:7px 8px;text-align:left;white-space:nowrap;border-bottom:1px solid var(--line)}
+th{color:var(--mute);font-weight:600}
+.s-ok{color:var(--g);font-weight:700}.s-p{color:var(--o);font-weight:700}.s-err{color:var(--err);font-weight:700}
+textarea{width:calc(100% - 40px);margin:0 20px;box-sizing:border-box;height:110px;font:12px/1.4 ui-monospace,Consolas,monospace;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink)}
+details{margin:18px 20px 0}summary{cursor:pointer;font-size:14px;font-weight:700}
+.act{display:flex;gap:10px;padding:10px 0 0;flex-wrap:wrap}
+.act button{flex:1;min-width:140px;height:48px;border-radius:10px;border:2px solid var(--g);background:var(--card);color:var(--ink);font:inherit;font-weight:700;cursor:pointer}
+.note{padding:10px 20px 0;font-size:13px;color:var(--mute);line-height:1.45}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><small>FRUTOS DA GRACIOSA</small><h1>Registro de rota</h1></header>
+<p id="conn" role="status"></p>
+<div class="sec"><div class="row">
+<div><label for="placa">Caminhão</label><select id="placa"></select></div>
+<div><label for="ent">Entregas (só ao sair do mercado)</label><input id="ent" type="number" inputmode="numeric" min="0" placeholder="ex.: 12"></div>
+</div></div>
+<div class="sec"><label for="merc">Mercado (ao chegar)</label><input id="merc" placeholder="Toque aqui e escolha, ou digite parte do nome" autocomplete="off"><div id="sug" role="listbox"></div><div id="cnt" class="note" style="padding:6px 0 0"></div></div>
+<div class="btns">
+<button class="b1" data-ev="SAIDA_CD">1 · Saí do CD</button>
+<button class="b2" data-ev="CHEGADA_MERCADO">2 · Cheguei no mercado</button>
+<button class="b3" data-ev="SAIDA_MERCADO">3 · Saí do mercado</button>
+<div class="pair">
+<button class="b5" data-ev="INICIO_ALMOCO">Saí para o almoço</button>
+<button class="b5" data-ev="FIM_ALMOCO">Voltei do almoço</button>
+</div>
+<button class="b4" data-ev="CHEGADA_CD">4 · Cheguei no CD</button>
+</div>
+<div id="msg" role="status"></div>
+<h2>O que você registrou neste aparelho</h2>
+<div class="log"><table><thead><tr><th>Data e hora</th><th>Placa</th><th>Evento</th><th>Mercado</th><th>Entregas</th><th>Planilha</th></tr></thead><tbody id="tb"></tbody></table></div>
+<div class="act" style="padding:10px 20px 0"><button id="undo">Desfazer a última (se ainda não enviou)</button></div>
+<details><summary>Plano B: copiar linhas para colar na planilha</summary>
+<div style="padding-top:8px"><textarea id="out" readonly aria-label="Linhas para colar na planilha"></textarea></div>
+<div class="act"><button id="copy">Copiar linhas</button><button id="clear">Limpar a lista deste aparelho</button></div></details>
+<div class="note">Cada toque grava a hora do seu aparelho e envia direto para o Controle de Frota. Sem internet, o registro fica guardado e é enviado sozinho quando o sinal voltar. Marcou errado? Avise o escritório para corrigir na planilha.</div>
+</div>
+<script>
+/* >>> COLE AQUI o endereço do Apps Script (termina em /exec). Em branco = modo teste, nada é enviado. <<< */
+var API_URL="https://script.google.com/macros/s/AKfycbwKekWdgtFNfnHvCatLQliUPCkRMUgpQmGB1OWoi5cvkZK8HXJcIWFR2euLkOLErRDlgw/exec";
+
+var PL_PADRAO=[{"p": "ACG6973", "m": ""}, {"p": "LZP9D09", "m": ""}, {"p": "AJE1D39", "m": "Alisson Dos Santos"}, {"p": "MAH2476", "m": "Rafael Carvalho"}, {"p": "ATJ1A35", "m": "Jorge Davi Mariotto"}, {"p": "QIS8418", "m": "Jesus Velasquez"}, {"p": "MKU3107", "m": "Elizeu Souza"}, {"p": "AZJ1581", "m": "Cristian"}, {"p": "OMT2E65", "m": "Edemar Bento"}, {"p": "BCE7406", "m": ""}];
+var MERC_PADRAO=["Muffato jardim das americas", "Muffato XV de novembro", "Muffato São josé dos pinhas XV", "Max Atacadista Campo Largo", "Max Atacadista João Bettega", "Max Atacadista Torres", "Max Atacadista Pinhais", "Max São José dos Pinhais", "Condor CD", "Atacadão-Bairro dos Estados", "Atacadão-Conradinho", "Armazem Da Maria", "Zamprogna Fazendinha", "Cia do Alimento"];
+var EVT={SAIDA_CD:"Saí do CD",CHEGADA_MERCADO:"Cheguei no mercado",SAIDA_MERCADO:"Saí do mercado",INICIO_ALMOCO:"Saí para o almoço",FIM_ALMOCO:"Voltei do almoço",CHEGADA_CD:"Cheguei no CD"};
+var KEY="frota_v2",LK="frota_listas",PK="frota_placa";
+function ld(k,d){try{var s=localStorage.getItem(k);return s?JSON.parse(s):d;}catch(e){return d;}}
+function sv(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+var log=ld(KEY,[]),salva=ld(LK,null),listas=salva||{placas:PL_PADRAO,clientes:MERC_PADRAO};
+var origem=salva?"salva":"padrao",falha=false;
+function p(n){return (n<10?"0":"")+n;}
+function norm(s){var t=String(s==null?"":s).toLowerCase();try{t=t.normalize("NFD").replace(/[\u0300-\u036f]/g,"");}catch(e){}return t;}
+function limpa(a){var v={},o=[];(a||[]).forEach(function(c){c=String(c==null?"":c).trim();var k=norm(c);if(c&&!v[k]){v[k]=1;o.push(c);}});return o;}
+function uid(){try{if(window.crypto&&crypto.randomUUID)return crypto.randomUUID();}catch(e){}return Date.now().toString(36)+Math.random().toString(36).slice(2,10);}
+var sel=document.getElementById("placa"),msg=document.getElementById("msg"),conn=document.getElementById("conn");
+var inp=document.getElementById("merc"),sug=document.getElementById("sug"),cnt=document.getElementById("cnt");
+function textoCnt(){
+ var n=listas.clientes.length,t=n+" mercados na lista";
+ if(origem==="planilha")t+=" (lida da planilha agora)";
+ else if(origem==="salva")t+=" (última lista salva neste aparelho)";
+ else t+=" (lista padrão: ainda não consegui ler a planilha)";
+ if(falha)t+=" ⚠ sem conexão para atualizar";
+ return t;
+}
+function fillLists(){
+ listas.clientes=limpa(listas.clientes);
+ var cur=sel.value||ld(PK,"");while(sel.firstChild)sel.removeChild(sel.firstChild);
+ listas.placas.forEach(function(x){var o=document.createElement("option");o.value=x.p;o.textContent=x.m?x.p+" · "+x.m:x.p;sel.appendChild(o);});
+ if(cur)sel.value=cur;
+ if(!sel.value&&sel.options.length)sel.selectedIndex=0;
+ cnt.textContent=textoCnt();
+}
+function showSug(){
+ var q=norm(inp.value.trim()),lista=listas.clientes.filter(function(c){return !q||norm(c).indexOf(q)>=0;});
+ while(sug.firstChild)sug.removeChild(sug.firstChild);
+ if(!lista.length){sug.style.display="none";return;}
+ lista.forEach(function(c){var b=document.createElement("button");b.type="button";b.textContent=c;b.addEventListener("click",function(){inp.value=c;sug.style.display="none";});sug.appendChild(b);});
+ sug.style.display="block";
+}
+inp.addEventListener("input",showSug);inp.addEventListener("focus",showSug);
+document.addEventListener("click",function(e){if(e.target!==inp&&!sug.contains(e.target))sug.style.display="none";});
+sel.addEventListener("change",function(){sv(PK,sel.value);});
+function loadLists(){
+ if(!API_URL)return;
+ fetch(API_URL+(API_URL.indexOf("?")<0?"?":"&")+"acao=listas").then(function(r){return r.json();}).then(function(j){
+  if(j&&j.placas&&j.placas.length&&j.clientes&&j.clientes.length){listas={placas:j.placas,clientes:j.clientes};sv(LK,listas);origem="planilha";falha=false;}
+  else{falha=true;}
+  fillLists();
+ }).catch(function(){falha=true;fillLists();});
+}
+function banner(){
+ var pend=log.filter(function(r){return r.s==="p";}).length,err=log.filter(function(r){return r.s==="err";}).length;
+ conn.className="";
+ if(!API_URL){conn.textContent="Modo teste: nada é enviado para a planilha.";conn.className="warn";}
+ else if(err){conn.textContent=err+" registro(s) recusado(s) pela planilha. Avise o escritório.";conn.className="bad";}
+ else if(pend){conn.textContent=pend+" registro(s) aguardando sinal para enviar.";conn.className="warn";}
+ else{conn.textContent="Conectado ao Controle de Frota ✓";conn.className="ok";}
+}
+function render(){
+ var tb=document.getElementById("tb");while(tb.firstChild)tb.removeChild(tb.firstChild);
+ log.slice().reverse().forEach(function(r){var tr=document.createElement("tr");
+  var st=r.s==="ok"?["✓ enviado","s-ok"]:r.s==="err"?["⚠ "+(r.x||"recusado"),"s-err"]:[API_URL?"⏳ pendente":"teste","s-p"];
+  [r.d+" "+r.h,r.p,EVT[r.k],r.m,r.n].forEach(function(v){var td=document.createElement("td");td.textContent=v==null?"":v;tr.appendChild(td);});
+  var td=document.createElement("td");td.textContent=st[0];td.className=st[1];tr.appendChild(td);tb.appendChild(tr);});
+ document.getElementById("out").value=log.map(function(r){return [r.d,r.h,r.p,EVT[r.k],r.m||"",r.n==null?"":r.n].join("\t");}).join("\n");
+ banner();
+}
+var sending=false,timer=null;
+function flush(){
+ if(!API_URL||sending)return;
+ var nx=log.filter(function(r){return r.s==="p";})[0];
+ if(!nx){banner();return;}
+ sending=true;
+ fetch(API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({id:nx.id,data:nx.d,hora:nx.h,placa:nx.p,evento:nx.k,mercado:nx.m,entregas:nx.n})})
+ .then(function(r){return r.json();})
+ .then(function(j){
+  if(j&&j.ok){nx.s="ok";}else if(j&&j.retry){throw new Error("retry");}else{nx.s="err";nx.x=(j&&j.error)||"recusado";}
+  sv(KEY,log);render();sending=false;flush();
+ }).catch(function(){sending=false;render();if(!timer)timer=setTimeout(function(){timer=null;flush();},15000);});
+}
+window.addEventListener("online",flush);
+function lastArrival(pl){for(var i=log.length-1;i>=0;i--){if(log[i].p===pl&&log[i].k==="CHEGADA_MERCADO")return log[i].m;}return "";}
+function hasToday(pl,k,d){return log.some(function(r){return r.p===pl&&r.k===k&&r.d===d;});}
+document.querySelectorAll(".btns button").forEach(function(b){b.addEventListener("click",function(){
+ var k=b.getAttribute("data-ev"),pl=sel.value,m=inp.value.trim(),n=document.getElementById("ent").value;
+ msg.style.color="var(--o)";msg.textContent="";
+ if(!pl){msg.textContent="Escolha o caminhão.";return;}
+ if(k==="CHEGADA_MERCADO"&&!m){msg.textContent="Escolha ou digite o mercado antes de tocar em Cheguei.";return;}
+ if(k==="SAIDA_MERCADO"&&!m)m=lastArrival(pl);
+ if(k!=="CHEGADA_MERCADO"&&k!=="SAIDA_MERCADO")m="";
+ var now=new Date(),d=p(now.getDate())+"/"+p(now.getMonth()+1)+"/"+now.getFullYear(),h=p(now.getHours())+":"+p(now.getMinutes())+":"+p(now.getSeconds());
+ var warn="";
+ if(k==="FIM_ALMOCO"&&!hasToday(pl,"INICIO_ALMOCO",d))warn=" (você não marcou a saída para o almoço)";
+ if(k==="CHEGADA_MERCADO"&&listas.clientes.length&&listas.clientes.map(function(c){return c.toLowerCase();}).indexOf(m.toLowerCase())<0)warn=" (mercado fora da lista: será lançado como digitado)";
+ var rec={id:uid(),d:d,h:h,p:pl,k:k,m:m,n:(k==="SAIDA_MERCADO"&&n!==""&&isFinite(n))?Number(n):null,s:"p"};
+ log.push(rec);sv(KEY,log);render();
+ document.getElementById("ent").value="";
+ sug.style.display="none";
+ b.disabled=true;setTimeout(function(){b.disabled=false;},700);
+ msg.style.color="var(--g)";msg.textContent="Registrado: "+EVT[k]+" às "+h.slice(0,5)+warn;
+ flush();
+});});
+document.getElementById("undo").addEventListener("click",function(){
+ var l=log[log.length-1];
+ if(!l){return;}
+ if(l.s!=="p"){msg.style.color="var(--o)";msg.textContent="Esse registro já foi enviado. Avise o escritório para corrigir.";return;}
+ if(sending){msg.style.color="var(--o)";msg.textContent="Enviando agora, tente de novo em instantes.";return;}
+ log.pop();sv(KEY,log);render();msg.textContent="";
+});
+document.getElementById("clear").addEventListener("click",function(){
+ if(log.some(function(r){return r.s==="p"&&API_URL;})&&!confirm("Há registros ainda não enviados. Apagar mesmo assim?"))return;
+ log=[];sv(KEY,log);render();msg.textContent="";
+});
+document.getElementById("copy").addEventListener("click",function(){
+ var ta=document.getElementById("out");ta.focus();ta.select();var ok=false;
+ try{ok=document.execCommand("copy");}catch(e){}
+ msg.style.color=ok?"var(--g)":"var(--o)";
+ msg.textContent=ok?"Copiado.":"Selecione o texto da caixa e copie.";
+});
+fillLists();render();loadLists();flush();
+</script>
+</body>
+</html>
