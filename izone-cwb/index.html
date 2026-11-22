@@ -1,0 +1,1036 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Izone CWB</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Izone CWB — iPhone novo e seminovo, Apple Watch, iPad, Mac e acessórios em Curitiba. Black Friday, Pix com desconto, até 12x sem juros e seu usado na troca.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: vitrine em faixas — barra de contagem, hero com etiqueta de preço, faixa Black Friday escura, loja em abas, prova social, checkout em duas colunas, rodapé institucional */
+:root{
+  --bg:#ECEEF1;          /* alumínio frio */
+  --surface:#FFFFFF;
+  --well:#E2E6EB;        /* fundo da vitrine de cada produto */
+  --ink:#11151B;
+  --mute:#5A6472;
+  --line:#D3D9E0;
+  --accent:#E2591B;      /* laranja-cósmico */
+  --accent-ink:#FFFFFF;
+  --accent-soft:#FBE3D6;
+  --night:#0C0F14;       /* faixas escuras (Black Friday, rodapé) */
+  --night-2:#161B23;
+  --night-ink:#F1F3F6;
+  --night-mute:#9AA4B3;
+  --night-line:#262D38;
+  --ok:#1F8A4C;
+  --wa:#1FAF5A;
+  --hdr:rgba(236,238,241,.86);
+  --shadow:0 18px 40px -18px rgba(17,21,27,.28);
+  --f-display:"Unbounded","Arial Black",system-ui,sans-serif;
+  --f-body:"Manrope",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+  --r:14px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0F1217;--surface:#171B22;--well:#1F252E;--ink:#EEF1F5;--mute:#9AA4B2;--line:#2A313C;
+  --accent:#FF7533;--accent-ink:#1A0B03;--accent-soft:#3A2115;
+  --night:#07090C;--night-2:#12161D;--night-ink:#F1F3F6;--night-mute:#9AA4B3;--night-line:#232A34;
+  --ok:#3CC377;--wa:#25C266;--hdr:rgba(15,18,23,.86);--shadow:0 18px 40px -18px rgba(0,0,0,.7);color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F1217;--surface:#171B22;--well:#1F252E;--ink:#EEF1F5;--mute:#9AA4B2;--line:#2A313C;
+  --accent:#FF7533;--accent-ink:#1A0B03;--accent-soft:#3A2115;
+  --night:#07090C;--night-2:#12161D;--night-ink:#F1F3F6;--night-mute:#9AA4B3;--night-line:#232A34;
+  --ok:#3CC377;--wa:#25C266;--hdr:rgba(15,18,23,.86);--shadow:0 18px 40px -18px rgba(0,0,0,.7);color-scheme:dark}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 120px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--hdr)}
+img,svg{max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
+.wrap{max-width:1220px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;letter-spacing:-.01em}
+h2{font-size:clamp(1.6rem,3.4vw,2.5rem);line-height:1.1;font-weight:700}
+.sec{padding-block:72px}
+.sec-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 32px;margin-bottom:32px}
+.sec-head p{margin:8px 0 0;color:var(--mute);max-width:56ch}
+
+/* Barra de contagem */
+.bf-bar{background:var(--night);color:var(--night-ink);font-size:13px}
+.bf-bar .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 18px;padding-block:9px;text-align:center}
+.bf-bar b{color:var(--accent)}
+.bf-bar .mono{letter-spacing:.04em}
+.bf-bar a{color:var(--night-ink);font-weight:700;text-underline-offset:3px}
+
+/* Cabeçalho */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--hdr);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--line)}
+.top-row{display:flex;align-items:center;gap:20px;padding-block:12px}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none;flex-shrink:0}
+.logo-mark{width:34px;height:34px;border-radius:10px;background:var(--ink);color:var(--bg);display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:17px}
+.logo-word{font-family:var(--f-display);font-weight:800;font-size:19px;letter-spacing:-.02em}
+.logo-tag{font-family:var(--f-mono);font-size:10px;font-weight:700;background:var(--accent);color:var(--accent-ink);padding:2px 6px;border-radius:5px;letter-spacing:.08em}
+nav.main{display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none;min-width:0}
+nav.main::-webkit-scrollbar{display:none}
+nav.main a{text-decoration:none;font-weight:600;font-size:14px;padding:8px 12px;border-radius:999px;white-space:nowrap;color:var(--mute)}
+nav.main a:hover{color:var(--ink);background:var(--well)}
+nav.main a.hot{color:var(--accent)}
+.cart-btn{position:relative;display:flex;align-items:center;gap:8px;border:0;background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:999px;font-weight:700;font-size:14px;cursor:pointer;flex-shrink:0}
+.cart-btn .count{min-width:22px;height:22px;border-radius:999px;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-size:12px;font-family:var(--f-mono);padding:0 6px}
+@media (max-width:860px){
+  .top-row{flex-wrap:wrap;gap:10px}
+  nav.main{order:3;width:100%;margin-left:0;padding-bottom:2px}
+  .cart-btn{margin-left:auto}
+}
+
+/* Hero */
+.hero{padding-block:48px 56px;position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(2.2rem,5.4vw,4.4rem);line-height:1.02;font-weight:800;margin-top:14px}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero .lead{font-size:18px;color:var(--mute);max-width:46ch;margin:20px 0 28px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;padding:14px 24px;font-weight:800;font-size:15px;text-decoration:none;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn-accent{background:var(--accent);color:var(--accent-ink);box-shadow:0 10px 24px -10px var(--accent)}
+.btn-ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+.btn-wa{background:var(--wa);color:#fff}
+.trust{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 20px;margin-top:34px;padding:0;list-style:none;max-width:520px}
+.trust li{display:flex;gap:10px;align-items:flex-start;font-size:14px;font-weight:600}
+.trust svg{flex-shrink:0;width:20px;height:20px;color:var(--ok);margin-top:1px}
+.hero-stage{position:relative;aspect-ratio:1/1;max-width:520px;width:100%;justify-self:center}
+.hero-stage .disc{position:absolute;inset:6%;border-radius:50%;background:radial-gradient(circle at 50% 40%,var(--accent-soft),transparent 68%)}
+.hero-stage .ring{position:absolute;inset:0;border-radius:50%;border:1px dashed var(--line)}
+.hero-stage .phone{position:absolute;inset:4% 14%;filter:drop-shadow(0 40px 40px rgba(0,0,0,.25))}
+.hero-stage .phone svg{width:100%;height:100%}
+.tag{position:absolute;right:2%;bottom:12%;background:var(--surface);color:var(--ink);border-radius:12px;padding:14px 18px 14px 26px;box-shadow:var(--shadow);transform:rotate(-6deg);min-width:210px}
+.tag::before{content:"";position:absolute;left:10px;top:50%;width:8px;height:8px;margin-top:-4px;border-radius:50%;background:var(--bg);box-shadow:inset 0 0 0 2px var(--line)}
+.tag small{display:block;font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;color:var(--mute)}
+.tag .t-name{font-weight:800;font-size:14px;margin-top:2px}
+.tag .t-old{font-size:13px;color:var(--mute);text-decoration:line-through}
+.tag .t-price{font-family:var(--f-display);font-weight:800;font-size:26px;line-height:1.1;color:var(--accent)}
+.tag .t-pix{font-size:12px;font-weight:700;color:var(--ok)}
+.swatch-row{position:absolute;left:4%;top:12%;display:flex;flex-direction:column;gap:8px;background:var(--surface);padding:10px;border-radius:999px;box-shadow:var(--shadow)}
+.swatch-row button{width:22px;height:22px;border-radius:50%;border:0;cursor:pointer;box-shadow:inset 0 0 0 1px rgba(0,0,0,.18)}
+.swatch-row button[aria-pressed="true"]{outline:2px solid var(--ink);outline-offset:2px}
+@media (max-width:860px){
+  .hero .wrap{grid-template-columns:1fr}
+  .hero-stage{max-width:400px}
+  .tag{min-width:0;right:0;padding:10px 14px 10px 22px}
+  .tag .t-price{font-size:22px}
+}
+@media (max-width:420px){.trust{grid-template-columns:1fr}}
+
+/* Black Friday */
+.bf{background:var(--night);color:var(--night-ink);position:relative;overflow:hidden}
+.bf::before{content:"BLACK FRIDAY";position:absolute;left:50%;top:18px;transform:translateX(-50%);font-family:var(--f-display);font-weight:800;font-size:clamp(4rem,14vw,12rem);line-height:1;white-space:nowrap;color:transparent;-webkit-text-stroke:1px var(--night-line);pointer-events:none}
+.bf .wrap{position:relative}
+.bf .sec-head p{color:var(--night-mute)}
+.bf h2 span{color:var(--accent)}
+.clock{display:flex;gap:10px}
+.clock div{background:var(--night-2);border:1px solid var(--night-line);border-radius:12px;padding:10px 12px;min-width:68px;text-align:center}
+.clock b{display:block;font-family:var(--f-display);font-size:28px;line-height:1.1;font-variant-numeric:tabular-nums}
+.clock small{font-family:var(--f-mono);font-size:10px;letter-spacing:.12em;color:var(--night-mute);text-transform:uppercase}
+.clock-label{font-family:var(--f-mono);font-size:12px;color:var(--night-mute);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.deals{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.deal{background:var(--night-2);border:1px solid var(--night-line);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:10px;position:relative}
+.deal .off{position:absolute;top:14px;left:14px;background:var(--accent);color:var(--accent-ink);font-family:var(--f-display);font-weight:800;font-size:14px;padding:5px 10px;border-radius:8px}
+.deal .pic{height:170px;display:grid;place-items:center}
+.deal .pic svg{height:100%;width:auto}
+.deal h3{font-family:var(--f-body);font-size:17px;font-weight:800}
+.deal .spec{font-family:var(--f-mono);font-size:12px;color:var(--night-mute)}
+.deal .old{color:var(--night-mute);text-decoration:line-through;font-size:14px}
+.deal .price{font-family:var(--f-display);font-weight:800;font-size:26px;line-height:1}
+.deal .pix{font-size:13px;color:var(--ok);font-weight:700}
+.stock{font-size:12px;font-weight:700;color:var(--accent);display:flex;flex-direction:column;gap:6px;margin-top:auto}
+.stock i{display:block;height:6px;border-radius:9px;background:var(--night-line);overflow:hidden}
+.stock i::after{content:"";display:block;height:100%;width:var(--w,30%);background:var(--accent);border-radius:9px}
+.deal .btn{width:100%;padding:12px}
+
+/* Loja */
+.tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:6px;background:var(--surface);border:1px solid var(--line);border-radius:999px;margin-bottom:16px}
+.tabs::-webkit-scrollbar{display:none}
+.tab{border:0;background:transparent;padding:10px 18px;border-radius:999px;font-weight:700;font-size:14px;cursor:pointer;white-space:nowrap;color:var(--mute)}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+.tab .n{font-family:var(--f-mono);font-size:11px;opacity:.7;margin-left:4px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.chip{border:1px solid var(--line);background:var(--surface);padding:7px 14px;border-radius:999px;font-size:13px;font-weight:700;cursor:pointer;color:var(--mute)}
+.chip[aria-pressed="true"]{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.tab-note{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:14px;color:var(--mute);margin-bottom:20px}
+.tab-note b{color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .2s ease,transform .2s ease}
+.card:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+.card .pic{background:var(--well);height:220px;display:grid;place-items:center;position:relative;padding:16px}
+.card .pic svg{height:100%;width:auto;transition:transform .3s ease}
+.card:hover .pic svg{transform:scale(1.04)}
+.badge{position:absolute;top:12px;left:12px;font-family:var(--f-mono);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 8px;border-radius:6px;background:var(--surface);color:var(--ink)}
+.badge.hot{background:var(--accent);color:var(--accent-ink)}
+.badge.r{left:auto;right:12px}
+.card .body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:10px;flex:1}
+.card h3{font-family:var(--f-body);font-weight:800;font-size:18px;line-height:1.25}
+.card .spec{font-family:var(--f-mono);font-size:12px;color:var(--mute)}
+.opts{display:flex;flex-wrap:wrap;gap:6px}
+.opt{border:1px solid var(--line);background:transparent;border-radius:8px;padding:5px 10px;font-size:12px;font-weight:700;font-family:var(--f-mono);cursor:pointer;color:var(--mute)}
+.opt[aria-pressed="true"]{border-color:var(--ink);color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.dots{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.dot{width:20px;height:20px;border-radius:50%;border:0;cursor:pointer;box-shadow:inset 0 0 0 1px rgba(0,0,0,.2)}
+.dot[aria-pressed="true"]{outline:2px solid var(--ink);outline-offset:2px}
+.dots .cname{font-size:12px;color:var(--mute);margin-left:4px}
+.semi{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.semi div{background:var(--well);border-radius:10px;padding:8px 10px}
+.semi small{display:block;font-size:10px;font-family:var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.semi b{font-family:var(--f-mono);font-size:15px}
+.batt{display:flex;align-items:center;gap:6px}
+.batt i{width:26px;height:12px;border:2px solid currentColor;border-radius:3px;position:relative;display:inline-block}
+.batt i::after{content:"";position:absolute;left:1px;top:1px;bottom:1px;width:calc(var(--b) * .88%);background:var(--ok);border-radius:1px}
+.pricebox{margin-top:auto;padding-top:6px;border-top:1px dashed var(--line)}
+.pricebox .old{font-size:13px;color:var(--mute);text-decoration:line-through}
+.pricebox .price{font-family:var(--f-display);font-weight:800;font-size:24px;line-height:1.15}
+.pricebox .inst{font-size:13px;color:var(--mute)}
+.pricebox .pix{font-size:13px;font-weight:700;color:var(--ok)}
+.card-actions{display:flex;gap:8px}
+.card-actions .btn{flex:1;padding:12px 14px;font-size:14px}
+.ask{width:46px;flex:0 0 46px;border-radius:999px;display:grid;place-items:center;background:var(--well);color:var(--wa);text-decoration:none}
+.ask svg{width:22px;height:22px}
+
+/* Troca */
+.trade{background:var(--surface);border:1px solid var(--line);border-radius:24px;display:grid;grid-template-columns:1.2fr 1fr;gap:28px;padding:32px;align-items:center}
+.trade h2{font-size:clamp(1.4rem,3vw,2.1rem)}
+.trade p{color:var(--mute);margin:12px 0 20px}
+.trade-calc{background:var(--well);border-radius:18px;padding:20px;display:grid;gap:10px}
+.trade-calc label{font-size:13px;font-weight:700}
+.trade-calc output{font-family:var(--f-display);font-weight:800;font-size:22px;color:var(--accent)}
+@media (max-width:760px){.trade{grid-template-columns:1fr;padding:22px}}
+
+/* Depoimentos */
+.reviews{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px}
+.review{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:14px}
+.stars{color:var(--accent);letter-spacing:2px;font-size:15px}
+.review blockquote{margin:0;font-size:15.5px;line-height:1.6}
+.who{display:flex;align-items:center;gap:12px;margin-top:auto}
+.avatar{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-family:var(--f-display);font-size:14px;background:var(--well)}
+.who b{display:block;font-size:14px}
+.who small{color:var(--mute);font-size:12.5px}
+.bought{font-family:var(--f-mono);font-size:11px;color:var(--mute);background:var(--well);padding:4px 8px;border-radius:6px;align-self:flex-start}
+.score{display:flex;align-items:center;gap:14px}
+.score b{font-family:var(--f-display);font-size:44px;line-height:1}
+.score small{display:block;color:var(--mute);font-size:13px}
+.sample-note{font-size:12px;color:var(--mute);margin-top:14px}
+
+/* Pagamento */
+.pay{display:grid;grid-template-columns:1.25fr .9fr;gap:24px;align-items:start}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:26px}
+.panel h3{font-family:var(--f-body);font-size:17px;font-weight:800;margin:0 0 14px;display:flex;align-items:center;gap:10px}
+.panel h3 .step{font-family:var(--f-mono);font-size:11px;width:24px;height:24px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center}
+.fset{border:0;padding:0;margin:0 0 26px}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.field.full{grid-column:1/-1}
+.field label{font-size:13px;font-weight:700}
+.field input,.field select{font:inherit;font-size:15px;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--ink);width:100%}
+.field input:focus,.field select:focus{outline:2px solid var(--accent);outline-offset:0;border-color:transparent}
+.radios{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.radio{position:relative}
+.radio input{position:absolute;opacity:0;pointer-events:none}
+.radio label{display:flex;flex-direction:column;gap:2px;border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;height:100%;background:var(--bg)}
+.radio label b{font-size:14px}
+.radio label small{font-size:12px;color:var(--mute)}
+.radio label .ic{font-family:var(--f-mono);font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+.radio input:checked+label{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent);background:var(--accent-soft)}
+.radio input:focus-visible+label{outline:3px solid var(--accent);outline-offset:2px}
+.pix-box{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;background:var(--well);border-radius:14px;padding:14px;margin-top:12px}
+.pix-box canvas{width:96px;height:96px;border-radius:8px;background:#fff;image-rendering:pixelated}
+.pix-box code{font-family:var(--f-mono);font-size:13px;word-break:break-all;display:block;margin:4px 0 8px}
+.copy{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer}
+.sum-items{display:flex;flex-direction:column;gap:12px;margin-bottom:16px}
+.sum-item{display:grid;grid-template-columns:52px 1fr auto;gap:12px;align-items:center}
+.sum-item .mini{width:52px;height:52px;border-radius:12px;background:var(--well);display:grid;place-items:center;padding:4px}
+.sum-item .mini svg{height:100%;width:auto}
+.sum-item b{font-size:14px;display:block;line-height:1.3}
+.sum-item small{font-size:12px;color:var(--mute)}
+.sum-item .mono{font-size:13px;font-weight:700;white-space:nowrap}
+.qty{display:inline-flex;align-items:center;gap:6px;margin-top:4px}
+.qty button{width:24px;height:24px;border-radius:7px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-weight:800;line-height:1}
+.qty span{font-family:var(--f-mono);font-size:12px;min-width:14px;text-align:center}
+.rm{border:0;background:none;color:var(--mute);font-size:12px;text-decoration:underline;cursor:pointer;padding:0;margin-left:6px}
+.totals{border-top:1px solid var(--line);padding-top:14px;display:grid;gap:8px;font-size:14px}
+.totals div{display:flex;justify-content:space-between;gap:12px}
+.totals .grand{font-size:15px;font-weight:800;padding-top:6px}
+.totals .grand span:last-child{font-family:var(--f-display);font-size:24px}
+.totals .save{color:var(--ok);font-weight:700}
+.empty{text-align:center;padding:24px 10px;color:var(--mute)}
+.empty b{display:block;color:var(--ink);font-size:16px;margin-bottom:6px}
+.methods{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px}
+.methods span{font-family:var(--f-mono);font-size:11px;font-weight:700;border:1px solid var(--line);border-radius:6px;padding:5px 8px;color:var(--mute)}
+.secure{display:flex;gap:8px;align-items:center;font-size:12.5px;color:var(--mute);margin-top:14px}
+.secure svg{width:16px;height:16px;color:var(--ok);flex-shrink:0}
+.done{border:2px solid var(--wa);border-radius:16px;padding:18px;margin-top:16px;background:var(--surface)}
+.done b{display:block;margin-bottom:6px}
+.err{color:#C2361B;font-size:13px;font-weight:700;margin-top:10px;min-height:1em}
+@media (max-width:900px){.pay{grid-template-columns:1fr}.pay .panel.summary{order:-1}}
+@media (max-width:520px){.fields{grid-template-columns:1fr}.panel{padding:18px}}
+
+/* FAQ */
+.faq{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.faq details{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px 20px}
+.faq summary{font-weight:800;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::after{content:"+";font-family:var(--f-mono);color:var(--accent);font-size:18px;line-height:1}
+.faq details[open] summary::after{content:"–"}
+.faq p{margin:10px 0 0;color:var(--mute);font-size:15px}
+@media (max-width:760px){.faq{grid-template-columns:1fr}}
+
+/* Rodapé */
+footer.foot{background:var(--night);color:var(--night-ink);padding-block:56px 28px;margin-top:40px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:32px}
+.foot h4{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--night-mute);margin:0 0 14px}
+.foot ul{list-style:none;padding:0;margin:0;display:grid;gap:9px;font-size:14px}
+.foot a{text-decoration:none;color:var(--night-ink)}
+.foot a:hover{color:var(--accent)}
+.foot p{color:var(--night-mute);font-size:14px;margin:12px 0 0;max-width:36ch}
+.foot .logo-mark{background:var(--night-ink);color:var(--night)}
+.foot-bottom{border-top:1px solid var(--night-line);margin-top:40px;padding-top:20px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:12px;color:var(--night-mute)}
+.foot .methods span{border-color:var(--night-line);color:var(--night-mute)}
+@media (max-width:900px){.foot-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.foot-grid{grid-template-columns:1fr}}
+
+/* WhatsApp flutuante */
+.wa-float{position:fixed;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:70;display:flex;align-items:center;gap:10px;text-decoration:none}
+.wa-float .bubble{background:var(--surface);color:var(--ink);font-size:13px;font-weight:700;padding:9px 14px;border-radius:999px;box-shadow:var(--shadow);white-space:nowrap}
+.wa-float .ico{width:60px;height:60px;border-radius:50%;background:var(--wa);display:grid;place-items:center;color:#fff;box-shadow:0 12px 28px -8px rgba(31,175,90,.7);position:relative}
+.wa-float .ico::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--wa);animation:pulse 2.2s ease-out infinite}
+.wa-float .ico svg{width:30px;height:30px}
+@keyframes pulse{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.6);opacity:0}}
+@media (max-width:520px){.wa-float .bubble{display:none}}
+
+/* Carrinho lateral */
+.overlay{position:fixed;inset:0;background:rgba(5,7,10,.5);z-index:80;opacity:0;pointer-events:none;transition:opacity .2s}
+.overlay.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:var(--surface);z-index:90;transform:translateX(100%);transition:transform .28s ease;display:flex;flex-direction:column;padding:calc(20px + env(safe-area-inset-top,0px)) calc(20px + env(safe-area-inset-right,0px)) calc(20px + env(safe-area-inset-bottom,0px)) 20px}
+.drawer.on{transform:none}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.drawer-head h3{font-size:18px}
+.x{border:0;background:var(--well);width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:18px}
+.drawer .sum-items{overflow:auto;flex:1}
+.drawer .btn{width:100%;margin-top:14px}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--ink);color:var(--bg);padding:12px 18px;border-radius:999px;font-weight:700;font-size:14px;z-index:95;opacity:0;transition:all .25s;pointer-events:none;max-width:calc(100% - 32px);text-align:center}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+
+<div class="bf-bar" role="region" aria-label="Contagem da Black Friday">
+  <div class="wrap">
+    <span><b id="barLabel">Esquenta Black Friday</b> · preços já liberados</span>
+    <span class="mono" id="barClock">--d --h --m --s</span>
+    <a href="#promocoes">Ver ofertas</a>
+  </div>
+</div>
+
+<header class="top">
+  <div class="wrap top-row">
+    <a class="logo" href="#inicio" aria-label="Izone CWB, início">
+      <span class="logo-mark">i</span>
+      <span class="logo-word">IZONE</span>
+      <span class="logo-tag">CWB</span>
+    </a>
+    <nav class="main" aria-label="Seções">
+      <a href="#promocoes" class="hot">Black Friday</a>
+      <a href="#loja" data-go="novos">iPhone novo</a>
+      <a href="#loja" data-go="seminovos">Seminovos</a>
+      <a href="#loja" data-go="watch">Apple Watch</a>
+      <a href="#loja" data-go="ipad">iPad</a>
+      <a href="#loja" data-go="mac">Mac</a>
+      <a href="#loja" data-go="acessorios">Acessórios</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <a href="#pagamento">Pagamento</a>
+    </nav>
+    <button class="cart-btn" id="openCart" type="button" aria-label="Abrir carrinho">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+      Sacola <span class="count" id="cartCount">0</span>
+    </button>
+  </div>
+</header>
+
+<main id="inicio">
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Revenda Apple em Curitiba</span>
+      <h1>O iPhone que você quer, com preço de <em>Black Friday</em>.</h1>
+      <p class="lead">Aparelhos lacrados com nota fiscal, seminovos testados em 40 pontos e acessórios originais. Pix com 5% de desconto, até 12x sem juros e seu usado entra na troca.</p>
+      <div class="cta-row">
+        <a class="btn btn-accent" href="#promocoes">Ver ofertas da semana</a>
+        <a class="btn btn-ghost" href="#loja" data-go="seminovos">Seminovos a partir de R$ 2.199</a>
+      </div>
+      <ul class="trust">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Lacrado com nota fiscal e 1 ano de garantia Apple</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Entrega por motoboy em Curitiba no mesmo dia</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Seminovo com bateria acima de 85% e 90 dias de garantia</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Avaliamos seu iPhone usado na hora</li>
+      </ul>
+    </div>
+    <div class="hero-stage" aria-label="iPhone 17 Pro Max em destaque">
+      <div class="disc"></div><div class="ring"></div>
+      <div class="phone" id="heroPhone"></div>
+      <div class="swatch-row" id="heroSwatches" aria-label="Cores"></div>
+      <div class="tag">
+        <small>IZ-17PM-256 · LACRADO</small>
+        <div class="t-name">iPhone 17 Pro Max 256 GB</div>
+        <div class="t-old" id="heroOld"></div>
+        <div class="t-price mono" id="heroPrice"></div>
+        <div class="t-pix" id="heroPix"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bf sec" id="promocoes">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">Ofertas com estoque limitado</span>
+        <h2 style="margin-top:10px">Black Friday <span>Izone</span></h2>
+        <p>Preço válido enquanto durar o lote. Quando a barra zera, o produto volta ao preço normal.</p>
+      </div>
+      <div>
+        <div class="clock-label" id="clockLabel">Black Friday começa em</div>
+        <div class="clock" aria-live="off">
+          <div><b id="cd-d">00</b><small>dias</small></div>
+          <div><b id="cd-h">00</b><small>horas</small></div>
+          <div><b id="cd-m">00</b><small>min</small></div>
+          <div><b id="cd-s">00</b><small>seg</small></div>
+        </div>
+      </div>
+    </div>
+    <div class="deals" id="deals"></div>
+  </div>
+</section>
+
+<section class="sec" id="loja">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">Loja</span>
+        <h2 style="margin-top:10px">Escolha o seu Apple</h2>
+        <p>Preço à vista no Pix já com desconto. No cartão, até 12x sem juros. Escolha armazenamento e cor direto no card.</p>
+      </div>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Categorias" id="tabs"></div>
+    <div class="tab-note" id="tabNote"></div>
+    <div class="chips" id="chips" hidden></div>
+    <div class="grid" id="grid" role="tabpanel" aria-labelledby="tab-novos"></div>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="trade">
+      <div>
+        <span class="eyebrow">Troca</span>
+        <h2 style="margin-top:10px">Seu iPhone antigo paga parte do novo</h2>
+        <p>Traga seu aparelho, a gente avalia na hora e desconta o valor. Simule uma estimativa e envie as fotos pelo WhatsApp para a avaliação final.</p>
+        <a class="btn btn-wa" id="tradeWa" href="#" target="_blank" rel="noopener">Avaliar meu iPhone no WhatsApp</a>
+      </div>
+      <div class="trade-calc">
+        <label for="tradeModel">Modelo do seu iPhone</label>
+        <div class="field"><select id="tradeModel"></select></div>
+        <label for="tradeState">Estado</label>
+        <div class="field"><select id="tradeState">
+          <option value="1">Perfeito, sem marcas</option>
+          <option value="0.85" selected>Marcas leves de uso</option>
+          <option value="0.65">Tela ou traseira trincada</option>
+        </select></div>
+        <span style="font-size:13px;color:var(--mute)">Estimativa de abatimento</span>
+        <output id="tradeOut" class="mono">R$ 0</output>
+        <span style="font-size:12px;color:var(--mute)">Valor sujeito à avaliação presencial do aparelho.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="depoimentos" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">Quem comprou</span>
+        <h2 style="margin-top:10px">Clientes que voltaram para contar</h2>
+      </div>
+      <div class="score">
+        <b class="mono">4,9</b>
+        <div><span class="stars" aria-label="5 estrelas">★★★★★</span><small>média das avaliações dos clientes</small></div>
+      </div>
+    </div>
+    <div class="reviews" id="reviews"></div>
+    <p class="sample-note">Depoimentos de exemplo para o layout. Substitua pelos depoimentos reais dos seus clientes no arquivo.</p>
+  </div>
+</section>
+
+<section class="sec" id="pagamento" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">Pagamento</span>
+        <h2 style="margin-top:10px">Finalize sua compra</h2>
+        <p>Preencha os dados, escolha como pagar e envie o pedido. Um consultor confirma estoque e envia a chave Pix ou o link seguro de pagamento no cartão.</p>
+      </div>
+    </div>
+    <div class="pay">
+      <form class="panel" id="checkout" novalidate>
+        <fieldset class="fset">
+          <h3><span class="step">1</span>Seus dados</h3>
+          <div class="fields">
+            <div class="field full"><label for="f-nome">Nome completo</label><input id="f-nome" name="nome" autocomplete="name" placeholder="Ex.: Mariana Souza" required></div>
+            <div class="field"><label for="f-tel">WhatsApp</label><input id="f-tel" name="tel" type="tel" autocomplete="tel" inputmode="tel" placeholder="(41) 99999-0000" required></div>
+            <div class="field"><label for="f-cpf">CPF (para a nota fiscal)</label><input id="f-cpf" name="cpf" inputmode="numeric" placeholder="000.000.000-00"></div>
+          </div>
+        </fieldset>
+
+        <fieldset class="fset">
+          <h3><span class="step">2</span>Entrega</h3>
+          <div class="radios">
+            <div class="radio"><input type="radio" name="entrega" id="e-retira" value="Retirada na loja" checked><label for="e-retira"><span class="ic">GRÁTIS</span><b>Retirar na loja</b><small>Pronto em 1 hora</small></label></div>
+            <div class="radio"><input type="radio" name="entrega" id="e-moto" value="Motoboy Curitiba e RMC"><label for="e-moto"><span class="ic">HOJE</span><b>Motoboy</b><small>Curitiba e região</small></label></div>
+            <div class="radio"><input type="radio" name="entrega" id="e-brasil" value="Envio para todo o Brasil"><label for="e-brasil"><span class="ic">SEDEX</span><b>Envio Brasil</b><small>Com seguro e rastreio</small></label></div>
+          </div>
+          <div class="fields" id="addr" hidden style="margin-top:12px">
+            <div class="field"><label for="f-cep">CEP</label><input id="f-cep" name="cep" inputmode="numeric" placeholder="80000-000"></div>
+            <div class="field"><label for="f-bairro">Bairro / cidade</label><input id="f-bairro" name="bairro" placeholder="Batel, Curitiba"></div>
+            <div class="field full"><label for="f-end">Endereço</label><input id="f-end" name="end" autocomplete="street-address" placeholder="Rua, número, complemento"></div>
+          </div>
+        </fieldset>
+
+        <fieldset class="fset">
+          <h3><span class="step">3</span>Forma de pagamento</h3>
+          <div class="radios">
+            <div class="radio"><input type="radio" name="pag" id="p-pix" value="pix" checked><label for="p-pix"><span class="ic">−5%</span><b>Pix</b><small>Aprovação na hora</small></label></div>
+            <div class="radio"><input type="radio" name="pag" id="p-cc" value="credito"><label for="p-cc"><span class="ic">12x</span><b>Cartão de crédito</b><small>Sem juros, por link seguro</small></label></div>
+            <div class="radio"><input type="radio" name="pag" id="p-deb" value="debito"><label for="p-deb"><span class="ic">LOJA</span><b>Débito ou dinheiro</b><small>Na retirada</small></label></div>
+          </div>
+
+          <div id="pixInfo" class="pix-box">
+            <canvas id="pixQr" width="29" height="29" aria-label="Código ilustrativo do Pix"></canvas>
+            <div style="min-width:0">
+              <small style="font-size:12px;color:var(--mute)">Chave Pix (CNPJ)</small>
+              <code id="pixKey"></code>
+              <button type="button" class="copy" id="copyPix">Copiar chave</button>
+              <div style="font-size:12px;color:var(--mute);margin-top:6px">O QR Code com o valor exato chega no WhatsApp após a confirmação do estoque.</div>
+            </div>
+          </div>
+
+          <div id="ccInfo" class="fields" hidden style="margin-top:12px">
+            <div class="field full"><label for="f-parc">Parcelamento</label><select id="f-parc" name="parcelas"></select></div>
+            <p class="full" style="grid-column:1/-1;margin:0;font-size:13px;color:var(--mute)">Você recebe um link de pagamento da maquininha. Os dados do cartão nunca são digitados neste site.</p>
+          </div>
+
+          <div class="field full" style="margin-top:14px">
+            <label style="display:flex;gap:10px;align-items:center;font-weight:700;cursor:pointer"><input type="checkbox" id="f-troca" style="width:18px;height:18px;accent-color:var(--accent)"> Quero dar meu iPhone usado como parte do pagamento</label>
+          </div>
+          <div class="field full" id="trocaWrap" hidden style="margin-top:8px"><label for="f-trocamodelo">Qual modelo e estado?</label><input id="f-trocamodelo" name="troca" placeholder="Ex.: iPhone 13 128 GB, bateria 84%, sem marcas"></div>
+        </fieldset>
+
+        <button class="btn btn-accent" type="submit" style="width:100%;padding:16px">Enviar pedido pelo WhatsApp</button>
+        <div class="err" id="formErr" role="alert"></div>
+        <div class="done" id="done" hidden>
+          <b>Pedido pronto para enviar.</b>
+          <span style="font-size:14px;color:var(--mute)">Se o WhatsApp não abriu sozinho, toque no botão abaixo. A mensagem já vai com os produtos, a entrega e a forma de pagamento.</span>
+          <div style="margin-top:12px"><a class="btn btn-wa" id="doneLink" href="#" target="_blank" rel="noopener">Abrir WhatsApp com meu pedido</a></div>
+        </div>
+        <div class="secure"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Nota fiscal em todas as compras. Seus dados são usados só para emitir a nota e entregar o pedido.</div>
+      </form>
+
+      <aside class="panel summary" aria-label="Resumo do pedido">
+        <h3>Resumo do pedido</h3>
+        <div id="summary"></div>
+        <div class="methods" aria-label="Formas de pagamento aceitas">
+          <span>PIX</span><span>VISA</span><span>MASTERCARD</span><span>ELO</span><span>AMEX</span><span>HIPERCARD</span><span>DÉBITO</span><span>DINHEIRO</span>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Dúvidas frequentes</span><h2 style="margin-top:10px">Antes de comprar</h2></div></div>
+    <div class="faq">
+      <details><summary>Os iPhones novos são originais e lacrados?</summary><p>Sim. Todos os novos saem lacrados, com nota fiscal e 1 ano de garantia Apple, válida em qualquer assistência autorizada do Brasil.</p></details>
+      <details><summary>Como vocês testam os seminovos?</summary><p>Cada aparelho passa por 40 testes: Face ID, câmeras, alto-falantes, tela, sensores e saúde da bateria. Todos têm 90 dias de garantia Izone e nota fiscal.</p></details>
+      <details><summary>Em quanto tempo recebo em Curitiba?</summary><p>Pedidos confirmados até as 16h saem por motoboy no mesmo dia para Curitiba e região metropolitana. Para o restante do Brasil, enviamos com seguro e rastreio.</p></details>
+      <details><summary>Posso parcelar e ainda usar meu usado na troca?</summary><p>Pode. O valor do seu aparelho é abatido e a diferença pode ser paga no Pix ou em até 12x sem juros no cartão.</p></details>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="logo" href="#inicio"><span class="logo-mark">i</span><span class="logo-word">IZONE</span><span class="logo-tag">CWB</span></a>
+        <p>Revenda especializada em produtos Apple em Curitiba. iPhone novo e seminovo, Apple Watch, iPad, Mac e acessórios, com nota fiscal e garantia.</p>
+        <div class="methods"><span>PIX</span><span>VISA</span><span>MASTER</span><span>ELO</span><span>AMEX</span><span>12x</span></div>
+      </div>
+      <div>
+        <h4>Loja</h4>
+        <ul>
+          <li><a href="#loja" data-go="novos">iPhone novo</a></li>
+          <li><a href="#loja" data-go="seminovos">iPhone seminovo</a></li>
+          <li><a href="#loja" data-go="watch">Apple Watch</a></li>
+          <li><a href="#loja" data-go="ipad">iPad</a></li>
+          <li><a href="#loja" data-go="mac">Mac</a></li>
+          <li><a href="#loja" data-go="acessorios">Acessórios</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Atendimento</h4>
+        <ul>
+          <li><a id="footWa" href="#" target="_blank" rel="noopener">WhatsApp <span class="mono" id="footWaNum"></span></a></li>
+          <li><a id="footIg" href="#" target="_blank" rel="noopener">Instagram <span id="footIgUser"></span></a></li>
+          <li><span id="footMail"></span></li>
+          <li><a href="#pagamento">Formas de pagamento</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Endereço e horário</h4>
+        <ul>
+          <li id="footAddr"></li>
+          <li id="footHours"></li>
+          <li><span class="mono" id="footCnpj"></span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Izone CWB. Todos os direitos reservados.</span>
+      <span>Apple, iPhone, iPad, Apple Watch, Mac e AirPods são marcas da Apple Inc. A Izone CWB é uma revenda independente.</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" id="waFloat" href="#" target="_blank" rel="noopener" aria-label="Tirar dúvidas no WhatsApp">
+  <span class="bubble">Dúvidas? Chama no WhatsApp</span>
+  <span class="ico"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3Zm0 23.6c-2 0-4-.5-5.7-1.6l-.4-.2-3.9 1 1-3.8-.2-.4A10.6 10.6 0 1 1 16 26.6Zm5.8-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.4.2-.7.1a8.7 8.7 0 0 1-4.3-3.8c-.3-.5.3-.5 1-1.6.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.7s1.2 3.2 1.3 3.4c.2.2 2.3 3.5 5.6 4.9 2.1.9 2.9 1 4 .8.6-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5l-.6-.4Z"/></svg></span>
+</a>
+
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer" aria-label="Sacola de compras" aria-hidden="true">
+  <div class="drawer-head"><h3>Sua sacola</h3><button class="x" id="closeCart" type="button" aria-label="Fechar sacola">×</button></div>
+  <div id="drawerBody" style="display:flex;flex-direction:column;flex:1;min-height:0"></div>
+</aside>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* ==========================================================
+   CONFIGURAÇÃO DA LOJA — edite aqui os dados da Izone CWB
+   ========================================================== */
+const LOJA = {
+  whatsapp: "5541999999999",          // DDI + DDD + número, só dígitos
+  whatsappExibir: "(41) 99999-9999",
+  instagram: "izonecwb",
+  email: "contato@izonecwb.com.br",
+  endereco: "Rua Exemplo, 123, Batel, Curitiba - PR",
+  horario: "Seg a sex 9h às 19h · Sáb 9h às 14h",
+  cnpj: "00.000.000/0001-00",
+  chavePix: "00.000.000/0001-00",
+  descontoPix: 0.05,                  // 5% no Pix
+  parcelasSemJuros: 12,
+  inicioBlackFriday: "2026-11-27T00:00:00-03:00",
+  fimBlackFriday: "2026-11-30T23:59:59-03:00"
+};
+
+/* Produtos: preço por armazenamento; "bf" = oferta Black Friday (de, estoque restante, estoque total) */
+const PRODUTOS = [
+  // iPhone novos
+  {id:"17pm",cat:"novos",nome:"iPhone 17 Pro Max",modelo:"pro17",spec:"Tela 6,9\" · A19 Pro · 48 MP x3",tag:"Mais vendido",
+   cores:[["Laranja-cósmico","#D9642A"],["Azul-profundo","#2E3A55"],["Prata","#DADBDE"]],
+   arm:[["256 GB",9499],["512 GB",10999],["1 TB",12499]],bf:{de:10999,resta:4,total:20}},
+  {id:"17p",cat:"novos",nome:"iPhone 17 Pro",modelo:"pro17",spec:"Tela 6,3\" · A19 Pro · 48 MP x3",
+   cores:[["Azul-profundo","#2E3A55"],["Laranja-cósmico","#D9642A"],["Prata","#DADBDE"]],
+   arm:[["256 GB",8499],["512 GB",9999],["1 TB",11499]],bf:{de:9799,resta:6,total:20}},
+  {id:"air",cat:"novos",nome:"iPhone Air",modelo:"air",spec:"Tela 6,5\" · 5,6 mm · A19 Pro",tag:"Mais fino",
+   cores:[["Azul-céu","#C6D9E8"],["Dourado-claro","#E8D9BE"],["Branco-nuvem","#F1F1EE"],["Preto-espacial","#2A2A2C"]],
+   arm:[["256 GB",7799],["512 GB",9299]]},
+  {id:"17",cat:"novos",nome:"iPhone 17",modelo:"std",spec:"Tela 6,3\" ProMotion · A19 · 48 MP",
+   cores:[["Lavanda","#CBBDDF"],["Sálvia","#B6C7AE"],["Azul-névoa","#A7BED4"],["Branco","#F2F2F0"],["Preto","#2B2B2D"]],
+   arm:[["256 GB",6499],["512 GB",7999]],bf:{de:7299,resta:9,total:25}},
+  {id:"16",cat:"novos",nome:"iPhone 16",modelo:"std",spec:"Tela 6,1\" · A18 · 48 MP",
+   cores:[["Ultramarino","#5B6FD3"],["Verde-acinzentado","#9DC2B6"],["Rosa","#EFB5C6"],["Branco","#F2F2F0"],["Preto","#2B2B2D"]],
+   arm:[["128 GB",4799],["256 GB",5499]]},
+  {id:"16e",cat:"novos",nome:"iPhone 16e",modelo:"single",spec:"Tela 6,1\" · A18 · 48 MP",
+   cores:[["Branco","#F2F2F0"],["Preto","#2B2B2D"]],arm:[["128 GB",3999],["256 GB",4699]]},
+
+  // Seminovos
+  {id:"s16pm",cat:"seminovos",nome:"iPhone 16 Pro Max",modelo:"pro",spec:"256 GB · Titânio-deserto",bat:94,grade:"A+",
+   cores:[["Titânio-deserto","#BFA48C"]],arm:[["256 GB",6999]],bf:{de:7599,resta:2,total:8}},
+  {id:"s16p",cat:"seminovos",nome:"iPhone 16 Pro",modelo:"pro",spec:"128 GB · Titânio-natural",bat:91,grade:"A",
+   cores:[["Titânio-natural","#B8B3AB"]],arm:[["128 GB",5799]]},
+  {id:"s15pm",cat:"seminovos",nome:"iPhone 15 Pro Max",modelo:"pro",spec:"256 GB · Titânio-azul",bat:88,grade:"A",
+   cores:[["Titânio-azul","#414B5B"]],arm:[["256 GB",5199]],bf:{de:5699,resta:3,total:10}},
+  {id:"s15",cat:"seminovos",nome:"iPhone 15",modelo:"diag",spec:"128 GB · Rosa",bat:90,grade:"A+",
+   cores:[["Rosa","#F1D3D6"]],arm:[["128 GB",3499]]},
+  {id:"s14p",cat:"seminovos",nome:"iPhone 14 Pro",modelo:"pro",spec:"128 GB · Roxo-profundo",bat:86,grade:"A",
+   cores:[["Roxo-profundo","#5E5469"]],arm:[["128 GB",3299]]},
+  {id:"s13",cat:"seminovos",nome:"iPhone 13",modelo:"diag",spec:"128 GB · Meia-noite",bat:87,grade:"B+",
+   cores:[["Meia-noite","#232A31"]],arm:[["128 GB",2199]]},
+
+  // Apple Watch
+  {id:"w11",cat:"watch",nome:"Apple Watch Series 11",modelo:"watch",spec:"GPS · Alumínio · Pulseira esportiva",
+   cores:[["Prateado","#D5D6D8"],["Ouro-rosa","#E4C1B1"],["Cinza-espacial","#3A3B3E"]],arm:[["42 mm",3299],["46 mm",3599]],bf:{de:3799,resta:5,total:15}},
+  {id:"wu3",cat:"watch",nome:"Apple Watch Ultra 3",modelo:"ultra",spec:"GPS + Celular · Titânio 49 mm",tag:"Aventura",
+   cores:[["Titânio-natural","#B9B5AE"],["Titânio-preto","#2C2C2E"]],arm:[["49 mm",6999]]},
+  {id:"wse",cat:"watch",nome:"Apple Watch SE 3",modelo:"watch",spec:"GPS · Alumínio",
+   cores:[["Meia-noite","#2A2E36"],["Estelar","#E8E1D6"]],arm:[["40 mm",2299],["44 mm",2499]]},
+
+  // iPad
+  {id:"ipp",cat:"ipad",nome:"iPad Pro M5",modelo:"ipad",spec:"Tela Ultra Retina XDR · Wi-Fi",
+   cores:[["Preto-espacial","#2E2F32"],["Prateado","#D8D9DB"]],arm:[["11\" 256 GB",11999],["13\" 256 GB",15999]]},
+  {id:"ipa",cat:"ipad",nome:"iPad Air M3",modelo:"ipad",spec:"Tela Liquid Retina · Wi-Fi",
+   cores:[["Azul","#A9BED6"],["Roxo","#C7B9DA"],["Estelar","#E6DFD3"],["Cinza-espacial","#55575C"]],arm:[["11\" 128 GB",5999],["13\" 128 GB",7999]]},
+  {id:"ip",cat:"ipad",nome:"iPad A16",modelo:"ipad",spec:"Tela 11\" · Wi-Fi · 128 GB",
+   cores:[["Azul","#8FB4DA"],["Rosa","#EDB9C4"],["Amarelo","#F0D97A"],["Prateado","#D8D9DB"]],arm:[["128 GB",3599],["256 GB",4299]]},
+  {id:"ipm",cat:"ipad",nome:"iPad mini",modelo:"ipad",spec:"Tela 8,3\" · A17 Pro · Wi-Fi",
+   cores:[["Cinza-espacial","#55575C"],["Roxo","#C7B9DA"],["Estelar","#E6DFD3"]],arm:[["128 GB",4999]]},
+
+  // Mac
+  {id:"mba13",cat:"mac",nome:"MacBook Air 13\" M4",modelo:"mac",spec:"16 GB · 256 GB SSD",
+   cores:[["Azul-céu","#AFC6D9"],["Prateado","#D8D9DB"],["Estelar","#E6DFD3"],["Meia-noite","#2A2F38"]],arm:[["256 GB",8499],["512 GB",9999]],bf:{de:9299,resta:3,total:10}},
+  {id:"mba15",cat:"mac",nome:"MacBook Air 15\" M4",modelo:"mac",spec:"16 GB · 256 GB SSD",
+   cores:[["Meia-noite","#2A2F38"],["Prateado","#D8D9DB"],["Azul-céu","#AFC6D9"]],arm:[["256 GB",10499],["512 GB",11999]]},
+  {id:"mbp14",cat:"mac",nome:"MacBook Pro 14\" M5",modelo:"mac",spec:"16 GB · 512 GB SSD",tag:"Pro",
+   cores:[["Preto-espacial","#2E2F32"],["Prateado","#D8D9DB"]],arm:[["512 GB",14999],["1 TB",16999]]},
+
+  // Acessórios
+  {id:"capsil",cat:"acessorios",sub:"Capinhas",nome:"Capa de silicone com MagSafe",modelo:"case",spec:"Para iPhone 13 ao 17",
+   cores:[["Laranja","#E26A32"],["Azul-marinho","#2D3B57"],["Rosa-claro","#F0C6CF"],["Preto","#26272A"]],arm:[["Única",299]]},
+  {id:"captr",cat:"acessorios",sub:"Capinhas",nome:"Capa transparente com MagSafe",modelo:"case",spec:"Não amarela · Bordas elevadas",
+   cores:[["Transparente","#DCE3EA"]],arm:[["Única",249]]},
+  {id:"capac",cat:"acessorios",sub:"Capinhas",nome:"Capa antichoque Izone",modelo:"case",spec:"Proteção de quinas · 2 m de queda",
+   cores:[["Grafite","#3B3E44"],["Verde","#7F9C86"],["Lilás","#B9A9D4"]],arm:[["Única",129]]},
+  {id:"app3",cat:"acessorios",sub:"Fones",nome:"AirPods Pro 3",modelo:"airpods",spec:"Cancelamento de ruído · Estojo USB-C",tag:"Lacrado",
+   cores:[["Branco","#F4F4F2"]],arm:[["Única",2299]],bf:{de:2599,resta:7,total:20}},
+  {id:"ap4",cat:"acessorios",sub:"Fones",nome:"AirPods 4 com cancelamento de ruído",modelo:"airpods",spec:"Estojo USB-C",
+   cores:[["Branco","#F4F4F2"]],arm:[["Única",1399]]},
+  {id:"ear",cat:"acessorios",sub:"Fones",nome:"EarPods USB-C",modelo:"earpods",spec:"Com microfone e controle",
+   cores:[["Branco","#F4F4F2"]],arm:[["Única",199]]},
+  {id:"c20",cat:"acessorios",sub:"Carregadores",nome:"Carregador USB-C 20W",modelo:"charger",spec:"Carga rápida · Original Apple",
+   cores:[["Branco","#F4F4F2"]],arm:[["Única",199]]},
+  {id:"c35",cat:"acessorios",sub:"Carregadores",nome:"Carregador duplo 35W",modelo:"charger2",spec:"Duas portas USB-C",
+   cores:[["Branco","#F4F4F2"]],arm:[["Única",449]]},
+  {id:"cmag",cat:"acessorios",sub:"Carregadores",nome:"Carregador MagSafe",modelo:"magsafe",spec:"Até 25W · Cabo 1 m",
+   cores:[["Branco","#F4F4F2"]],arm:[["Única",449]]},
+  {id:"cabo",cat:"acessorios",sub:"Outros",nome:"Cabo USB-C trançado",modelo:"cable",spec:"1 m · 60W",
+   cores:[["Branco","#F4F4F2"]],arm:[["1 m",149],["2 m",199]]},
+  {id:"tag",cat:"acessorios",sub:"Outros",nome:"AirTag",modelo:"airtag",spec:"Localize chaves, malas e bolsas",
+   cores:[["Branco","#F4F4F2"]],arm:[["1 unidade",349],["Kit com 4",1199]]},
+  {id:"pel",cat:"acessorios",sub:"Outros",nome:"Película de vidro 3D",modelo:"film",spec:"Aplicação grátis na loja",
+   cores:[["Transparente","#DCE3EA"]],arm:[["Única",79]]}
+];
+
+const CATS = [
+  ["novos","iPhone novo","Lacrados com nota fiscal e <b>1 ano de garantia Apple</b>."],
+  ["seminovos","iPhone seminovo","Testados em 40 pontos, <b>90 dias de garantia Izone</b>, bateria e grade informadas em cada aparelho."],
+  ["watch","Apple Watch","Lacrados, com <b>pulseira de brinde</b> na Black Friday."],
+  ["ipad","iPad","Lacrados com nota fiscal. <b>Película grátis</b> em qualquer iPad."],
+  ["mac","Mac","Lacrados com nota fiscal e <b>1 ano de garantia Apple</b>."],
+  ["acessorios","Acessórios","Capinhas, fones e carregadores. <b>Leve 3, pague 2</b> em capinhas e películas."]
+];
+
+const DEPOIMENTOS = [
+  {nome:"Camila R.",bairro:"Água Verde",prod:"iPhone 17 Pro · 256 GB",txt:"Comprei no Pix e o motoboy entregou no mesmo dia, lacrado e com nota. Atendimento pelo WhatsApp respondeu tudo antes de eu fechar."},
+  {nome:"Rafael M.",bairro:"Batel",prod:"Troca 13 → 16 Pro",txt:"Dei meu iPhone 13 na troca e paguei a diferença em 10x. Avaliaram na hora, sem enrolação. Valor justo."},
+  {nome:"Juliana T.",bairro:"Portão",prod:"iPhone 15 seminovo",txt:"Tinha medo de seminovo, mas veio com bateria em 90% e garantia. Parece novo. Já indiquei para minha irmã."},
+  {nome:"Lucas P.",bairro:"Centro Cívico",prod:"MacBook Air M4",txt:"Preço melhor do que nas grandes lojas e consegui parcelar sem juros. Retirei na loja em menos de uma hora."},
+  {nome:"Fernanda A.",bairro:"São José dos Pinhais",prod:"Apple Watch Series 11",txt:"Presente de aniversário pro meu marido. Ajudaram a escolher o tamanho e ainda ganhei uma pulseira extra."},
+  {nome:"Gustavo L.",bairro:"Bigorrilho",prod:"AirPods Pro 3 + capinha",txt:"Original, lacrado, chegou rápido. Voltei depois para comprar a capinha MagSafe e o carregador."}
+];
+
+const TROCA = [["iPhone 16 Pro Max",4800],["iPhone 16 Pro",4100],["iPhone 16",3100],["iPhone 15 Pro Max",3900],["iPhone 15 Pro",3300],["iPhone 15",2400],["iPhone 14 Pro Max",2900],["iPhone 14 Pro",2500],["iPhone 14",1800],["iPhone 13 Pro",1900],["iPhone 13",1400],["iPhone 12",900],["iPhone 11",650]];
+
+/* ========================================================== */
+const brl = v => v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+const brl0 = v => v.toLocaleString("pt-BR",{style:"currency",currency:"BRL",maximumFractionDigits:0,minimumFractionDigits:0});
+const pix = v => Math.round(v*(1-LOJA.descontoPix)*100)/100;
+const wa = msg => `https://wa.me/${LOJA.whatsapp}?text=${encodeURIComponent(msg)}`;
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+/* ---------- Desenho dos aparelhos (SVG) ---------- */
+let gid = 0;
+function shade(hex,amt){const n=parseInt(hex.slice(1),16);let r=n>>16,g=n>>8&255,b=n&255;const f=c=>Math.max(0,Math.min(255,Math.round(c+(amt<0?c*amt:(255-c)*amt))));return "#"+((1<<24)|(f(r)<<16)|(f(g)<<8)|f(b)).toString(16).slice(1)}
+function lens(x,y,r){return `<circle cx="${x}" cy="${y}" r="${r+2.5}" fill="#1b1c1f"/><circle cx="${x}" cy="${y}" r="${r}" fill="#0a0b0d"/><circle cx="${x}" cy="${y}" r="${r*.45}" fill="#1f2a3d"/><circle cx="${x-r*.3}" cy="${y-r*.3}" r="${r*.18}" fill="#8fa3c2" opacity=".8"/>`}
+function device(m,c){
+  const id="g"+(++gid), d=shade(c,-.22), l=shade(c,.25);
+  const grad=`<defs><linearGradient id="${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${l}"/><stop offset=".55" stop-color="${c}"/><stop offset="1" stop-color="${d}"/></linearGradient></defs>`;
+  const phoneBody=`<rect x="52" y="10" width="96" height="180" rx="20" fill="url(#${id})"/><rect x="52.5" y="10.5" width="95" height="179" rx="19.5" fill="none" stroke="${d}" stroke-width="1.2"/><circle cx="100" cy="112" r="20" fill="none" stroke="${d}" stroke-opacity=".35" stroke-width="1"/>`;
+  const S=s=>`<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">${grad}${s}</svg>`;
+  switch(m){
+    case "pro17": return S(phoneBody+`<path d="M52 30a20 20 0 0 1 20-20h56a20 20 0 0 1 20 20v34H52Z" fill="${d}" opacity=".55"/>`+lens(73,30,8.5)+lens(73,52,8.5)+lens(94,41,8.5)+`<circle cx="124" cy="30" r="4" fill="#f3e9cf"/><circle cx="124" cy="50" r="2.6" fill="#111"/>`);
+    case "air": return S(phoneBody+`<rect x="58" y="20" width="84" height="24" rx="12" fill="${d}" opacity=".6"/>`+lens(72,32,7.5)+`<circle cx="92" cy="32" r="3.5" fill="#111"/><circle cx="104" cy="32" r="3" fill="#f3e9cf"/>`);
+    case "std": return S(phoneBody+`<rect x="62" y="20" width="28" height="52" rx="14" fill="${d}" opacity=".5"/>`+lens(76,34,8)+lens(76,58,8)+`<circle cx="98" cy="28" r="3" fill="#f3e9cf"/>`);
+    case "single": return S(phoneBody+lens(74,32,9)+`<circle cx="92" cy="26" r="3" fill="#f3e9cf"/>`);
+    case "pro": return S(phoneBody+`<rect x="60" y="18" width="52" height="52" rx="14" fill="${d}" opacity=".55"/>`+lens(74,32,8.5)+lens(74,56,8.5)+lens(97,44,8.5)+`<circle cx="98" cy="26" r="3" fill="#f3e9cf"/><circle cx="98" cy="62" r="2.4" fill="#111"/>`);
+    case "diag": return S(phoneBody+`<rect x="60" y="18" width="46" height="46" rx="13" fill="${d}" opacity=".5"/>`+lens(73,31,8)+lens(93,51,8)+`<circle cx="94" cy="29" r="3" fill="#f3e9cf"/>`);
+    case "watch": case "ultra": {
+      const u=m==="ultra";
+      return S(`<rect x="72" y="0" width="56" height="200" rx="10" fill="${u?"#E26A32":d}" opacity="${u?.9:.85}"/>`+
+        `<rect x="${u?50:55}" y="${u?46:50}" width="${u?100:90}" height="${u?108:100}" rx="${u?22:26}" fill="url(#${id})"/>`+
+        `<rect x="${u?60:63}" y="${u?56:58}" width="${u?80:74}" height="${u?88:84}" rx="${u?14:20}" fill="#050607"/>`+
+        `<circle cx="100" cy="100" r="26" fill="none" stroke="#E2591B" stroke-width="5" stroke-dasharray="120 200" transform="rotate(-90 100 100)" stroke-linecap="round"/>`+
+        `<circle cx="100" cy="100" r="18" fill="none" stroke="#7BD88F" stroke-width="5" stroke-dasharray="80 200" transform="rotate(-90 100 100)" stroke-linecap="round"/>`+
+        `<text x="100" y="${u?78:80}" text-anchor="middle" font-family="Manrope,Arial" font-weight="800" font-size="11" fill="#fff">10:09</text>`+
+        `<rect x="${u?150:145}" y="82" width="6" height="20" rx="3" fill="${d}"/>${u?`<rect x="44" y="90" width="6" height="22" rx="3" fill="#E26A32"/>`:""}`);
+    }
+    case "ipad": return S(`<rect x="18" y="38" width="164" height="124" rx="14" fill="url(#${id})"/><rect x="25" y="45" width="150" height="110" rx="8" fill="#0b0d10"/><rect x="25" y="45" width="150" height="110" rx="8" fill="${c}" opacity=".35"/><circle cx="70" cy="100" r="40" fill="${l}" opacity=".35"/><circle cx="140" cy="80" r="28" fill="${d}" opacity=".45"/><circle cx="100" cy="41.5" r="1.6" fill="#222"/>`);
+    case "mac": return S(`<rect x="30" y="34" width="140" height="94" rx="8" fill="#111317"/><rect x="35" y="39" width="130" height="84" rx="4" fill="${c}" opacity=".55"/><circle cx="80" cy="90" r="34" fill="${l}" opacity=".5"/><circle cx="135" cy="70" r="24" fill="${d}" opacity=".6"/><path d="M14 130h172l-8 14a8 8 0 0 1-7 4H29a8 8 0 0 1-7-4Z" fill="url(#${id})"/><rect x="85" y="130" width="30" height="4" rx="2" fill="${d}"/>`);
+    case "case": return S(`<rect x="52" y="10" width="96" height="180" rx="22" fill="url(#${id})"/><rect x="60" y="18" width="80" height="164" rx="16" fill="${d}" opacity=".25"/><rect x="62" y="20" width="50" height="50" rx="14" fill="${shade(c,-.5)}" opacity=".55"/><circle cx="100" cy="115" r="24" fill="none" stroke="${l}" stroke-width="3" opacity=".8"/><rect x="146" y="60" width="4" height="26" rx="2" fill="${d}"/>`);
+    case "airpods": return S(`<rect x="45" y="58" width="110" height="94" rx="34" fill="url(#${id})"/><path d="M45 92h110" stroke="#c9cbcf" stroke-width="1.4"/><circle cx="100" cy="106" r="2.6" fill="#7BD88F"/><rect x="92" y="146" width="16" height="4" rx="2" fill="#bfc2c6"/>`);
+    case "earpods": return S(`<path d="M70 70c0 50 10 70 30 100M130 70c0 50-10 70-30 100" stroke="#e7e8ea" stroke-width="4" fill="none"/><ellipse cx="68" cy="58" rx="18" ry="16" fill="url(#${id})"/><ellipse cx="132" cy="58" rx="18" ry="16" fill="url(#${id})"/><rect x="96" y="150" width="8" height="24" rx="3" fill="#cfd1d4"/><rect x="97" y="174" width="6" height="12" rx="1" fill="#9a9da2"/>`);
+    case "charger": case "charger2": return S(`<rect x="58" y="52" width="84" height="96" rx="16" fill="url(#${id})"/><rect x="58.5" y="52.5" width="83" height="95" rx="15.5" fill="none" stroke="#c9cbcf"/><rect x="80" y="28" width="8" height="26" rx="2" fill="#b9bcc0"/><rect x="112" y="28" width="8" height="26" rx="2" fill="#b9bcc0"/><rect x="88" y="${m==="charger2"?110:118}" width="24" height="8" rx="4" fill="#2a2b2e"/>${m==="charger2"?`<rect x="88" y="126" width="24" height="8" rx="4" fill="#2a2b2e"/>`:""}`);
+    case "magsafe": return S(`<path d="M100 132c0 30-40 30-40 60" stroke="#e7e8ea" stroke-width="6" fill="none" stroke-linecap="round"/><circle cx="100" cy="84" r="56" fill="url(#${id})"/><circle cx="100" cy="84" r="56" fill="none" stroke="#c9cbcf"/><circle cx="100" cy="84" r="34" fill="none" stroke="#d5d7da" stroke-width="2"/>`);
+    case "cable": return S(`<path d="M40 40c80 0 120 40 60 70s-40 60 60 60" stroke="url(#${id})" stroke-width="9" fill="none" stroke-linecap="round"/><path d="M40 40c80 0 120 40 60 70s-40 60 60 60" stroke="#c9cbcf" stroke-width="9" fill="none" stroke-dasharray="2 6" opacity=".7"/><rect x="18" y="32" width="28" height="16" rx="6" fill="#e3e4e6"/><rect x="154" y="162" width="28" height="16" rx="6" fill="#e3e4e6"/>`);
+    case "airtag": return S(`<circle cx="100" cy="100" r="60" fill="#c9ccd0"/><circle cx="100" cy="100" r="54" fill="url(#${id})"/><circle cx="100" cy="100" r="54" fill="none" stroke="#dfe1e4"/><circle cx="82" cy="82" r="14" fill="#fff" opacity=".6"/>`);
+    case "film": return S(`<rect x="52" y="10" width="96" height="180" rx="20" fill="#11151b"/><rect x="56" y="14" width="88" height="172" rx="17" fill="${c}" opacity=".35"/><rect x="85" y="20" width="30" height="9" rx="4.5" fill="#000"/><path d="M60 120 140 40v40l-80 80Z" fill="#fff" opacity=".18"/>`);
+  }
+  return S("");
+}
+
+/* ---------- Estado ---------- */
+const state = {tab:"novos",sub:"Todos",sel:{}};
+PRODUTOS.forEach(p=>state.sel[p.id]={a:0,c:0});
+let cart = [];
+try{cart = JSON.parse(localStorage.getItem("izone-cart")||"[]")||[]}catch(e){cart=[]}
+const save=()=>{try{localStorage.setItem("izone-cart",JSON.stringify(cart))}catch(e){}};
+const byId = id => PRODUTOS.find(p=>p.id===id);
+const priceOf = (p,a) => p.arm[a][1];
+
+/* ---------- Hero ---------- */
+function hero(){
+  const p=byId("17pm"); let ci=0;
+  const draw=()=>{$("#heroPhone").innerHTML=device("pro17",p.cores[ci][1]);
+    $("#heroSwatches").querySelectorAll("button").forEach((b,i)=>b.setAttribute("aria-pressed",i===ci))};
+  $("#heroSwatches").innerHTML=p.cores.map(([n,h])=>`<button type="button" style="background:${h}" aria-label="${n}" title="${n}"></button>`).join("");
+  $("#heroSwatches").querySelectorAll("button").forEach((b,i)=>b.onclick=()=>{ci=i;draw()});
+  $("#heroOld").textContent="de "+brl0(p.bf.de);
+  $("#heroPrice").textContent=brl0(p.arm[0][1]);
+  $("#heroPix").textContent=brl(pix(p.arm[0][1]))+" no Pix";
+  draw();
+}
+
+/* ---------- Black Friday ---------- */
+function deals(){
+  $("#deals").innerHTML=PRODUTOS.filter(p=>p.bf).map(p=>{
+    const v=p.arm[0][1], off=Math.round((1-v/p.bf.de)*100), w=Math.max(8,Math.round(p.bf.resta/p.bf.total*100));
+    return `<article class="deal">
+      <span class="off">−${off}%</span>
+      <div class="pic">${device(p.modelo,p.cores[0][1])}</div>
+      <div><h3>${esc(p.nome)}</h3><div class="spec">${esc(p.arm[0][0])}${p.cat==="seminovos"?" · seminovo "+p.grade:""}</div></div>
+      <div><div class="old">de ${brl0(p.bf.de)}</div><div class="price">${brl0(v)}</div><div class="pix">${brl(pix(v))} no Pix</div></div>
+      <div class="stock">Restam ${p.bf.resta} unidades<i style="--w:${w}%"></i></div>
+      <button class="btn btn-accent" type="button" data-add="${p.id}">Garantir o meu</button>
+    </article>`}).join("");
+}
+function clock(){
+  const now=Date.now(), ini=Date.parse(LOJA.inicioBlackFriday), fim=Date.parse(LOJA.fimBlackFriday);
+  let target, label, bar;
+  if(now<ini){target=ini;label="Black Friday começa em";bar="Esquenta Black Friday"}
+  else if(now<fim){target=fim;label="Black Friday termina em";bar="Black Friday no ar"}
+  else{target=now;label="Black Friday encerrada";bar="Ofertas de fim de ano"}
+  let t=Math.max(0,Math.floor((target-now)/1000));
+  const d=Math.floor(t/86400);t%=86400;const h=Math.floor(t/3600);t%=3600;const m=Math.floor(t/60),s=t%60;
+  const p=n=>String(n).padStart(2,"0");
+  $("#cd-d").textContent=p(d);$("#cd-h").textContent=p(h);$("#cd-m").textContent=p(m);$("#cd-s").textContent=p(s);
+  $("#clockLabel").textContent=label;$("#barLabel").textContent=bar;
+  $("#barClock").textContent=`${p(d)}d ${p(h)}h ${p(m)}m ${p(s)}s`;
+}
+
+/* ---------- Loja ---------- */
+function tabs(){
+  $("#tabs").innerHTML=CATS.map(([k,n])=>`<button class="tab" role="tab" id="tab-${k}" data-tab="${k}" aria-selected="${state.tab===k}">${n}<span class="n">${PRODUTOS.filter(p=>p.cat===k).length}</span></button>`).join("");
+  $("#tabs").querySelectorAll(".tab").forEach(b=>b.onclick=()=>setTab(b.dataset.tab));
+}
+function setTab(k){
+  state.tab=k;state.sub="Todos";
+  $("#tabs").querySelectorAll(".tab").forEach(b=>b.setAttribute("aria-selected",b.dataset.tab===k));
+  $("#grid").setAttribute("aria-labelledby","tab-"+k);
+  $("#tabNote").innerHTML=CATS.find(c=>c[0]===k)[2];
+  const chips=$("#chips");
+  if(k==="acessorios"){
+    chips.hidden=false;
+    chips.innerHTML=["Todos","Capinhas","Fones","Carregadores","Outros"].map(s=>`<button class="chip" type="button" data-sub="${s}" aria-pressed="${s===state.sub}">${s}</button>`).join("");
+    chips.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{state.sub=b.dataset.sub;chips.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",x===b));grid()});
+  } else chips.hidden=true;
+  grid();
+}
+function cardHTML(p){
+  const s=state.sel[p.id], v=priceOf(p,s.a), semi=p.cat==="seminovos";
+  const n=LOJA.parcelasSemJuros;
+  const badge = semi?`<span class="badge">Seminovo · Grade ${p.grade}</span>`:`<span class="badge">${p.cat==="acessorios"?"Original":"Novo lacrado"}</span>`;
+  const hot = p.bf?`<span class="badge hot r">Black Friday</span>`:(p.tag?`<span class="badge r">${esc(p.tag)}</span>`:"");
+  return `<article class="card" data-id="${p.id}">
+    <div class="pic">${badge}${hot}${device(p.modelo,p.cores[s.c][1])}</div>
+    <div class="body">
+      <div><h3>${esc(p.nome)}</h3><div class="spec">${esc(p.spec)}</div></div>
+      ${semi?`<div class="semi"><div><small>Bateria</small><b class="batt"><i style="--b:${p.bat}"></i>${p.bat}%</b></div><div><small>Garantia</small><b>90 dias</b></div></div>`:""}
+      ${p.arm.length>1?`<div class="opts" role="group" aria-label="Opções">${p.arm.map(([l],i)=>`<button type="button" class="opt" data-a="${i}" aria-pressed="${i===s.a}">${esc(l)}</button>`).join("")}</div>`:""}
+      ${p.cores.length>1?`<div class="dots" role="group" aria-label="Cores">${p.cores.map(([cn,h],i)=>`<button type="button" class="dot" data-c="${i}" style="background:${h}" aria-label="${esc(cn)}" title="${esc(cn)}" aria-pressed="${i===s.c}"></button>`).join("")}<span class="cname">${esc(p.cores[s.c][0])}</span></div>`:""}
+      <div class="pricebox">
+        ${p.bf&&s.a===0?`<div class="old">de ${brl0(p.bf.de)}</div>`:""}
+        <div class="price mono">${brl0(v)}</div>
+        <div class="inst">ou ${n}x de ${brl(v/n)} sem juros</div>
+        <div class="pix">${brl(pix(v))} no Pix (−${Math.round(LOJA.descontoPix*100)}%)</div>
+      </div>
+      <div class="card-actions">
+        <button class="btn btn-accent" type="button" data-add="${p.id}">Adicionar à sacola</button>
+        <a class="ask" href="${wa(`Olá, Izone CWB! Tenho uma dúvida sobre o ${p.nome} ${p.arm[s.a][0]} (${p.cores[s.c][0]}).`)}" target="_blank" rel="noopener" aria-label="Tirar dúvida sobre ${esc(p.nome)} no WhatsApp" title="Tirar dúvida no WhatsApp">${waIcon}</a>
+      </div>
+    </div>
+  </article>`;
+}
+function grid(){
+  const list=PRODUTOS.filter(p=>p.cat===state.tab&&(state.sub==="Todos"||p.sub===state.sub));
+  $("#grid").innerHTML=list.map(cardHTML).join("");
+}
+$("#grid").addEventListener("click",e=>{
+  const card=e.target.closest(".card"); if(!card) return;
+  const id=card.dataset.id, s=state.sel[id];
+  const o=e.target.closest(".opt"), d=e.target.closest(".dot");
+  if(o){s.a=+o.dataset.a}else if(d){s.c=+d.dataset.c}else return;
+  card.outerHTML=cardHTML(byId(id));
+});
+document.addEventListener("click",e=>{
+  const add=e.target.closest("[data-add]"); if(add){addToCart(add.dataset.add);return}
+  const go=e.target.closest("[data-go]"); if(go){setTab(go.dataset.go)}
+});
+
+/* ---------- Sacola ---------- */
+function addToCart(id){
+  const p=byId(id), s=state.sel[id], key=`${id}|${s.a}|${s.c}`;
+  const it=cart.find(x=>x.key===key);
+  if(it) it.q++; else cart.push({key,id,a:s.a,c:s.c,q:1});
+  save();renderCart();
+  toast(`${p.nome} ${p.arm[s.a][0]} adicionado à sacola`);
+}
+function itemsHTML(){
+  return cart.map(it=>{const p=byId(it.id); if(!p) return "";
+    return `<div class="sum-item"><div class="mini">${device(p.modelo,p.cores[it.c][1])}</div>
+    <div><b>${esc(p.nome)}</b><small>${esc(p.arm[it.a][0])} · ${esc(p.cores[it.c][0])}</small>
+      <div class="qty"><button type="button" data-q="${it.key}" data-d="-1" aria-label="Diminuir">−</button><span>${it.q}</span><button type="button" data-q="${it.key}" data-d="1" aria-label="Aumentar">+</button><button type="button" class="rm" data-rm="${it.key}">remover</button></div></div>
+    <span class="mono">${brl0(p.arm[it.a][1]*it.q)}</span></div>`}).join("");
+}
+const subtotal=()=>cart.reduce((t,it)=>{const p=byId(it.id);return t+(p?p.arm[it.a][1]*it.q:0)},0);
+function totalsHTML(){
+  const st=subtotal(), method=(document.querySelector('input[name="pag"]:checked')||{}).value||"pix";
+  const n=+($("#f-parc")?.value||LOJA.parcelasSemJuros);
+  let rows=`<div><span>Subtotal</span><span class="mono">${brl(st)}</span></div>`;
+  if(method==="pix") rows+=`<div class="save"><span>Desconto Pix (${Math.round(LOJA.descontoPix*100)}%)</span><span class="mono">−${brl(st-pix(st))}</span></div>`;
+  rows+=`<div><span>Entrega</span><span>${(document.querySelector('input[name="entrega"]:checked')||{}).value==="Envio para todo o Brasil"?"a calcular":"grátis"}</span></div>`;
+  const total=method==="pix"?pix(st):st;
+  rows+=`<div class="grand"><span>Total</span><span class="mono">${brl(total)}</span></div>`;
+  if(method==="credito") rows+=`<div><span></span><span>${n}x de ${brl(st/n)} sem juros</span></div>`;
+  return `<div class="totals">${rows}</div>`;
+}
+function renderCart(){
+  const n=cart.reduce((t,i)=>t+i.q,0);
+  $("#cartCount").textContent=n;
+  const empty=`<div class="empty"><b>Sua sacola está vazia</b>Escolha um produto na <a href="#loja">loja</a> ou nas <a href="#promocoes">ofertas da Black Friday</a>.</div>`;
+  $("#summary").innerHTML=cart.length?`<div class="sum-items">${itemsHTML()}</div>${totalsHTML()}`:empty;
+  $("#drawerBody").innerHTML=cart.length?`<div class="sum-items">${itemsHTML()}</div>${totalsHTML()}<a class="btn btn-accent" href="#pagamento" id="goPay">Ir para o pagamento</a>`:empty;
+  const g=$("#goPay"); if(g) g.onclick=closeCart;
+  $("#drawerBody").querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener("click",closeCart));
+  fillParcelas();
+}
+document.addEventListener("click",e=>{
+  const q=e.target.closest("[data-q]"), r=e.target.closest("[data-rm]");
+  if(q){const it=cart.find(x=>x.key===q.dataset.q); if(it){it.q+=+q.dataset.d; if(it.q<1) cart=cart.filter(x=>x!==it)} save();renderCart()}
+  if(r){cart=cart.filter(x=>x.key!==r.dataset.rm);save();renderCart()}
+});
+function openCart(){$("#drawer").classList.add("on");$("#overlay").classList.add("on");$("#drawer").setAttribute("aria-hidden","false");$("#closeCart").focus()}
+function closeCart(){$("#drawer").classList.remove("on");$("#overlay").classList.remove("on");$("#drawer").setAttribute("aria-hidden","true")}
+$("#openCart").onclick=openCart;$("#closeCart").onclick=closeCart;$("#overlay").onclick=closeCart;
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeCart()});
+let tt;function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("on"),2200)}
+
+/* ---------- Pagamento ---------- */
+function fillParcelas(){
+  const sel=$("#f-parc"), st=subtotal()||0, cur=sel.value;
+  sel.innerHTML=Array.from({length:LOJA.parcelasSemJuros},(_,i)=>i+1).map(n=>`<option value="${n}">${n}x de ${brl(st/n)} sem juros${n===1?" (à vista)":""}</option>`).join("");
+  sel.value=cur||String(LOJA.parcelasSemJuros);
+}
+function payUI(){
+  const m=document.querySelector('input[name="pag"]:checked').value;
+  $("#pixInfo").hidden=m!=="pix";$("#ccInfo").hidden=m!=="credito";
+  const ent=document.querySelector('input[name="entrega"]:checked').value;
+  $("#addr").hidden=ent==="Retirada na loja";
+  $("#trocaWrap").hidden=!$("#f-troca").checked;
+  renderCart();
+}
+document.querySelectorAll('input[name="pag"],input[name="entrega"],#f-troca').forEach(i=>i.addEventListener("change",payUI));
+$("#f-parc").addEventListener("change",renderCart);
+$("#pixKey").textContent=LOJA.chavePix;
+$("#copyPix").onclick=()=>{const b=$("#copyPix");
+  (navigator.clipboard?navigator.clipboard.writeText(LOJA.chavePix):Promise.reject()).then(()=>{b.textContent="Chave copiada"},()=>{const r=document.createRange();r.selectNodeContents($("#pixKey"));const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent="Selecionada, copie com Ctrl+C"});
+  setTimeout(()=>b.textContent="Copiar chave",2500)};
+(function qr(){ // padrão ilustrativo (o QR real com valor é enviado no WhatsApp)
+  const cv=$("#pixQr"),x=cv.getContext("2d"),N=29;x.fillStyle="#fff";x.fillRect(0,0,N,N);x.fillStyle="#111";
+  let seed=0;for(const ch of LOJA.chavePix)seed=(seed*31+ch.charCodeAt(0))>>>0;
+  const rnd=()=>(seed=(seed*1664525+1013904223)>>>0)/4294967296;
+  for(let i=0;i<N;i++)for(let j=0;j<N;j++)if(rnd()>.52)x.fillRect(i,j,1,1);
+  const eye=(a,b)=>{x.fillStyle="#111";x.fillRect(a,b,7,7);x.fillStyle="#fff";x.fillRect(a+1,b+1,5,5);x.fillStyle="#111";x.fillRect(a+2,b+2,3,3)};
+  x.fillStyle="#fff";x.fillRect(0,0,8,8);x.fillRect(N-8,0,8,8);x.fillRect(0,N-8,8,8);eye(0,0);eye(N-7,0);eye(0,N-7);
+})();
+$("#checkout").addEventListener("submit",e=>{
+  e.preventDefault();
+  const err=$("#formErr");err.textContent="";
+  const nome=$("#f-nome").value.trim(), tel=$("#f-tel").value.trim();
+  if(!cart.length){err.textContent="Sua sacola está vazia. Adicione um produto da loja para finalizar.";return}
+  if(!nome){err.textContent="Informe seu nome para continuarmos.";$("#f-nome").focus();return}
+  if(tel.replace(/\D/g,"").length<10){err.textContent="Informe um WhatsApp com DDD, por exemplo (41) 99999-0000.";$("#f-tel").focus();return}
+  const ent=document.querySelector('input[name="entrega"]:checked').value;
+  if(ent!=="Retirada na loja"&&!$("#f-end").value.trim()){err.textContent="Informe o endereço de entrega.";$("#f-end").focus();return}
+  const m=document.querySelector('input[name="pag"]:checked').value, st=subtotal(), n=+$("#f-parc").value;
+  const linhas=cart.map(it=>{const p=byId(it.id);return `• ${it.q}x ${p.nome} ${p.arm[it.a][0]} (${p.cores[it.c][0]}) — ${brl(p.arm[it.a][1]*it.q)}`}).join("\n");
+  const pag=m==="pix"?`Pix — total ${brl(pix(st))} (com ${Math.round(LOJA.descontoPix*100)}% de desconto)`:m==="credito"?`Cartão de crédito — ${n}x de ${brl(st/n)} sem juros (total ${brl(st)})`:`Débito ou dinheiro na retirada — total ${brl(st)}`;
+  let msg=`Olá, Izone CWB! Quero finalizar meu pedido:\n\n${linhas}\n\nPagamento: ${pag}\nEntrega: ${ent}`;
+  if(ent!=="Retirada na loja") msg+=`\nEndereço: ${$("#f-end").value.trim()}, ${$("#f-bairro").value.trim()} ${$("#f-cep").value.trim()}`;
+  if($("#f-troca").checked) msg+=`\nTroca: ${$("#f-trocamodelo").value.trim()||"quero avaliar meu usado"}`;
+  msg+=`\n\nNome: ${nome}\nWhatsApp: ${tel}`;
+  if($("#f-cpf").value.trim()) msg+=`\nCPF: ${$("#f-cpf").value.trim()}`;
+  const url=wa(msg);
+  $("#doneLink").href=url;$("#done").hidden=false;
+  try{window.open(url,"_blank","noopener")}catch(_){}
+});
+
+/* ---------- Troca ---------- */
+$("#tradeModel").innerHTML=TROCA.map(([n,v],i)=>`<option value="${i}">${n}</option>`).join("");
+function trade(){const [n,v]=TROCA[+$("#tradeModel").value], f=+$("#tradeState").value;
+  $("#tradeOut").textContent="até "+brl0(Math.round(v*f/50)*50);
+  $("#tradeWa").href=wa(`Olá, Izone CWB! Quero avaliar meu ${n} para usar na troca. Estado: ${$("#tradeState").selectedOptions[0].text}.`)}
+$("#tradeModel").onchange=trade;$("#tradeState").onchange=trade;
+
+/* ---------- Depoimentos ---------- */
+$("#reviews").innerHTML=DEPOIMENTOS.map(d=>`<article class="review"><span class="stars" aria-label="5 estrelas">★★★★★</span><blockquote>“${esc(d.txt)}”</blockquote><span class="bought">${esc(d.prod)}</span><div class="who"><span class="avatar">${esc(d.nome.split(" ").map(w=>w[0]).join(""))}</span><div><b>${esc(d.nome)}</b><small>${esc(d.bairro)}, PR</small></div></div></article>`).join("");
+
+/* ---------- Rodapé e WhatsApp ---------- */
+const waIcon=`<svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3Zm0 23.6c-2 0-4-.5-5.7-1.6l-.4-.2-3.9 1 1-3.8-.2-.4A10.6 10.6 0 1 1 16 26.6Zm5.8-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.4.2-.7.1a8.7 8.7 0 0 1-4.3-3.8c-.3-.5.3-.5 1-1.6.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.7s1.2 3.2 1.3 3.4c.2.2 2.3 3.5 5.6 4.9 2.1.9 2.9 1 4 .8.6-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5l-.6-.4Z"/></svg>`;
+const hello=wa("Olá, Izone CWB! Vim pelo site e queria tirar uma dúvida.");
+$("#waFloat").href=hello;$("#footWa").href=hello;$("#footWaNum").textContent=LOJA.whatsappExibir;
+$("#footIg").href="https://instagram.com/"+LOJA.instagram;$("#footIgUser").textContent="@"+LOJA.instagram;
+$("#footMail").textContent=LOJA.email;$("#footAddr").textContent=LOJA.endereco;$("#footHours").textContent=LOJA.horario;$("#footCnpj").textContent="CNPJ "+LOJA.cnpj;
+
+/* ---------- Início ---------- */
+hero();deals();tabs();setTab("novos");trade();renderCart();payUI();clock();setInterval(clock,1000);
+</script>
+</body>
+</html>
