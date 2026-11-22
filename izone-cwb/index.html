@@ -365,6 +365,19 @@ footer.foot{background:var(--night);color:var(--night-ink);padding-block:56px 28
 body.pv-open{overflow:hidden}
 body.pv-open .wa-float{z-index:86;bottom:calc(96px + env(safe-area-inset-bottom,0px))}
 body.pv-open .wa-float .bubble{display:none}
+nav.main a[aria-current="page"]{color:var(--ink);background:var(--well)}
+nav.main a.hot[aria-current="page"]{color:var(--accent)}
+main > [data-page]{min-height:60vh}
+.cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.cat{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:10px;text-decoration:none;transition:box-shadow .2s,transform .2s}
+.cat:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+.cat-pic{position:relative;flex:0 0 84px;height:84px;border-radius:12px;overflow:hidden;background:var(--well);display:grid;place-items:center}
+.cat-pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cat-pic svg{height:80%;width:auto}
+.cat-txt{display:grid;gap:2px;min-width:0}
+.cat-txt b{font-size:16px}
+.cat-txt small{color:var(--mute);font-size:13px}
+.atalhos{padding-top:0}
 .inc{font-size:12.5px;font-weight:600;color:var(--ok);margin-top:4px}
 @media (max-width:760px){.trade.manut{grid-template-columns:1fr}}
 </style>
@@ -387,18 +400,21 @@ body.pv-open .wa-float .bubble{display:none}
       <span class="logo-tag">CWB</span>
     </a>
     <nav class="main" aria-label="Seções">
+      <a href="#inicio">Início</a>
       <a href="#promocoes" class="hot">Black Friday</a>
-      <a href="#loja" data-go="novos">iPhone novo</a>
-      <a href="#loja" data-go="seminovos">Seminovos</a>
-      <a href="#loja" data-go="watch">Apple Watch</a>
-      <a href="#loja" data-go="ipad">iPad</a>
-      <a href="#loja" data-go="mac">Mac</a>
-      <a href="#loja" data-go="audio">AirPods e som</a>
-      <a href="#loja" data-go="acessorios">Acessórios</a>
-      <a href="#loja" data-go="casa">Casa e games</a>
+      <a href="#loja-novos" data-go="novos">iPhone novo</a>
+      <a href="#loja-seminovos" data-go="seminovos">Seminovos</a>
+      <a href="#loja-watch" data-go="watch">Apple Watch</a>
+      <a href="#loja-ipad" data-go="ipad">iPad</a>
+      <a href="#loja-mac" data-go="mac">Mac</a>
+      <a href="#loja-audio" data-go="audio">AirPods e som</a>
+      <a href="#loja-acessorios" data-go="acessorios">Acessórios</a>
+      <a href="#loja-casa" data-go="casa">Casa e games</a>
+      <a href="#troca">Troca</a>
       <a href="#manutencao">Manutenção</a>
       <a href="#depoimentos">Depoimentos</a>
       <a href="#pagamento">Pagamento</a>
+      <a href="#duvidas">Dúvidas</a>
     </nav>
     <button class="cart-btn" id="openCart" type="button" aria-label="Abrir carrinho">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
@@ -407,8 +423,9 @@ body.pv-open .wa-float .bubble{display:none}
   </div>
 </header>
 
-<main id="inicio">
+<main id="conteudo">
 
+<div data-page="inicio">
 <section class="hero">
   <div class="wrap">
     <div>
@@ -417,7 +434,7 @@ body.pv-open .wa-float .bubble{display:none}
       <p class="lead">iPhone novo lacrado e seminovo revisado com garantia, Apple Watch, MacBook, iPad, AirPods e acessórios. Pague à vista no Pix ou em até 24x no cartão, e use seu usado na troca.</p>
       <div class="cta-row">
         <a class="btn btn-accent" href="#promocoes">Ver ofertas da semana</a>
-        <a class="btn btn-ghost" href="#loja" data-go="seminovos">Seminovos a partir de R$ 1.290</a>
+        <a class="btn btn-ghost" href="#loja-seminovos" data-go="seminovos">Seminovos a partir de R$ 1.290</a>
       </div>
       <ul class="trust">
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Lacrado com nota fiscal e 1 ano de garantia Apple</li>
@@ -441,7 +458,15 @@ body.pv-open .wa-float .bubble{display:none}
   </div>
 </section>
 
-<section class="bf sec" id="promocoes">
+<section class="sec atalhos">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Categorias</span><h2 style="margin-top:10px">O que você procura?</h2></div></div>
+    <div class="cats" id="cats"></div>
+  </div>
+</section>
+</div>
+
+<section class="bf sec" id="promocoes" data-page="promocoes">
   <div class="wrap">
     <div class="sec-head">
       <div>
@@ -463,7 +488,7 @@ body.pv-open .wa-float .bubble{display:none}
   </div>
 </section>
 
-<section class="sec" id="loja">
+<section class="sec" id="loja" data-page="loja">
   <div class="wrap">
     <div class="sec-head">
       <div>
@@ -479,7 +504,7 @@ body.pv-open .wa-float .bubble{display:none}
   </div>
 </section>
 
-<section class="sec" style="padding-top:0">
+<section class="sec" id="troca" data-page="troca">
   <div class="wrap">
     <div class="trade">
       <div>
@@ -505,7 +530,7 @@ body.pv-open .wa-float .bubble{display:none}
   </div>
 </section>
 
-<section class="sec" id="manutencao" style="padding-top:0">
+<section class="sec" id="manutencao" data-page="manutencao">
   <div class="wrap">
     <div class="trade manut">
       <div>
@@ -518,7 +543,7 @@ body.pv-open .wa-float .bubble{display:none}
   </div>
 </section>
 
-<section class="sec" id="depoimentos" style="padding-top:0">
+<section class="sec" id="depoimentos" data-page="depoimentos">
   <div class="wrap">
     <div class="sec-head">
       <div>
@@ -535,7 +560,7 @@ body.pv-open .wa-float .bubble{display:none}
   </div>
 </section>
 
-<section class="sec" id="pagamento" style="padding-top:0">
+<section class="sec" id="pagamento" data-page="pagamento">
   <div class="wrap">
     <div class="sec-head">
       <div>
@@ -618,7 +643,7 @@ body.pv-open .wa-float .bubble{display:none}
   </div>
 </section>
 
-<section class="sec" style="padding-top:0">
+<section class="sec" id="duvidas" data-page="duvidas">
   <div class="wrap">
     <div class="sec-head"><div><span class="eyebrow">Dúvidas frequentes</span><h2 style="margin-top:10px">Antes de comprar</h2></div></div>
     <div class="faq">
@@ -643,12 +668,12 @@ body.pv-open .wa-float .bubble{display:none}
       <div>
         <h4>Loja</h4>
         <ul>
-          <li><a href="#loja" data-go="novos">iPhone novo</a></li>
-          <li><a href="#loja" data-go="seminovos">iPhone seminovo</a></li>
-          <li><a href="#loja" data-go="watch">Apple Watch</a></li>
-          <li><a href="#loja" data-go="ipad">iPad</a></li>
-          <li><a href="#loja" data-go="mac">Mac</a></li>
-          <li><a href="#loja" data-go="acessorios">Acessórios</a></li>
+          <li><a href="#loja-novos" data-go="novos">iPhone novo</a></li>
+          <li><a href="#loja-seminovos" data-go="seminovos">iPhone seminovo</a></li>
+          <li><a href="#loja-watch" data-go="watch">Apple Watch</a></li>
+          <li><a href="#loja-ipad" data-go="ipad">iPad</a></li>
+          <li><a href="#loja-mac" data-go="mac">Mac</a></li>
+          <li><a href="#loja-acessorios" data-go="acessorios">Acessórios</a></li>
         </ul>
       </div>
       <div>
@@ -930,7 +955,7 @@ function device(m,c){
 }
 
 /* ---------- Fotos reais (arquivos em img/, nome = id-versão) ---------- */
-const FOTOS=new Set(["n15-0", "n16-0", "n17-0", "n17e-0", "n17p-0", "n17pm-0", "n17pm-1", "n18p-0", "n18p-1", "n18p-2", "n18pm-0", "n18pm-1", "n18pm-2", "nair-0", "nduo-0", "nduo-1", "s12-0", "s12-1", "s12-2", "s13-0", "s13-1", "s13mini-0", "s13p-0", "s13p-1", "s13pm-0", "s14-0", "s14p-0", "s14p-1", "s14plus-0", "s14plus-1", "s14plus-2", "s14pm-0", "s14pm-1", "s15-1", "s15p-0", "s15p-1", "s15pm-0", "s15pm-1", "s16-0", "s16-1", "s16e-0", "s16e-1", "s16p-0", "s16p-1", "s16p-2", "s16p-3", "s16p-4", "s16plus-0", "s16pm-0", "s16pm-1", "s16pm-2", "s16pm-3", "s17-0", "s17p-0", "s17p-1", "s17pm-0", "s17pm-1", "s17pm-2", "sair-0"]);
+const FOTOS=new Set(["adapt-0", "adapt-1", "airbuds-0", "airtag-0", "ap4-0", "ap4-1", "ap5-0", "ap5-1", "app3-0", "c3em1-0", "cabcc-0", "cabcc-1", "cabcl-0", "cabcl-1", "cabul-0", "cabul-1", "cabwatch-0", "canfam-0", "canfam-1", "canfam-2", "capamac-0", "capatec-0", "caseap-0", "charge5-0", "clip5-0", "cwatch-0", "cwatch-1", "cx20-0", "earpods-0", "earpods-1", "echo-0", "echo-1", "echo-2", "echo-3", "fcc-0", "fcc-1", "fcc-2", "fcc-3", "fcl-0", "fcl-1", "fcl-2", "fcl-3", "fcl-4", "fdupla-0", "fire-0", "fire-1", "flip6-0", "fonefio-0", "fonefio-1", "fonte-0", "fonte-1", "fuc-0", "fuc-1", "fuc-2", "ful-0", "ful-1", "go4-0", "go5-0", "harbor-0", "hub-0", "ind-0", "ind-1", "ind-2", "ind-3", "ipa16-0", "ipair5-0", "ippro4-0", "ippro5-0", "ippro5-1", "jbl520-0", "jbl770-0", "jbljr-0", "magfam-0", "magic-0", "mbam5n-0", "mbam5s-0", "mbp15-0", "mbpm3-0", "mouse-0", "n15-0", "n16-0", "n17-0", "n17e-0", "n17p-0", "n17pm-0", "n17pm-1", "n18p-0", "n18p-1", "n18p-2", "n18pm-0", "n18pm-1", "n18pm-2", "nair-0", "nduo-0", "nduo-1", "openair-0", "pen2n-0", "pen2s-0", "penpro-0", "penusbc-0", "ps5-0", "s12-0", "s12-1", "s12-2", "s13-0", "s13-1", "s13mini-0", "s13p-0", "s13p-1", "s13pm-0", "s14-0", "s14p-0", "s14p-1", "s14plus-0", "s14plus-1", "s14plus-2", "s14pm-0", "s14pm-1", "s15-1", "s15p-0", "s15p-1", "s15pm-0", "s15pm-1", "s16-0", "s16-1", "s16e-0", "s16e-1", "s16p-0", "s16p-1", "s16p-2", "s16p-3", "s16p-4", "s16plus-0", "s16pm-0", "s16pm-1", "s16pm-2", "s16pm-3", "s17-0", "s17p-0", "s17p-1", "s17pm-0", "s17pm-1", "s17pm-2", "sair-0", "suporte-0", "veic-0", "viagem-0", "w11-0", "w12-0", "w12-1", "ws10-0", "ws8-0", "ws9-0", "wse2-0", "wse3-0", "wse3-1", "wu1-0", "wu2-0", "wu3n-0", "wu3s-0", "xiaomi-0", "xiaomi-1"]);
 const fotoOf=(p,a)=>FOTOS.has(p.id+'-'+a)?p.id+'-'+a:(FOTOS.has(p.id+'-0')?p.id+'-0':null);
 const media=(p,a,c)=>{const f=fotoOf(p,a);return f?`<img src="img/${f}.jpg" alt="${esc(p.nome)}" loading="lazy">`:device(p.m,p.cores[c][1])};
 PRODUTOS.forEach(p=>{if(p.cat==="novos"&&p.id!=="nduo")p.inc="Acompanha cabo, caixa e manual";if(p.cat==="seminovos")p.inc="Cabo e fonte Anatel de brinde"});
@@ -1046,12 +1071,13 @@ function clock(){
 /* ---------- Loja ---------- */
 function tabs(){
   $("#tabs").innerHTML=CATS.map(([k,n])=>`<button class="tab" role="tab" id="tab-${k}" data-tab="${k}" aria-selected="${state.tab===k}">${n}<span class="n">${PRODUTOS.filter(p=>p.cat===k).length}</span></button>`).join("");
-  $("#tabs").querySelectorAll(".tab").forEach(b=>b.onclick=()=>setTab(b.dataset.tab));
+  $("#tabs").querySelectorAll(".tab").forEach(b=>b.onclick=()=>{location.hash="loja-"+b.dataset.tab});
 }
 function setTab(k){
   state.tab=k;state.sub="Todos";
   $("#tabs").querySelectorAll(".tab").forEach(b=>b.setAttribute("aria-selected",b.dataset.tab===k));
   $("#grid").setAttribute("aria-labelledby","tab-"+k);
+  if(typeof centerX==="function") centerX($("#tab-"+k));
   $("#tabNote").innerHTML=CATS.find(c=>c[0]===k)[2];
   const subs=[...new Set(PRODUTOS.filter(p=>p.cat===k&&p.sub).map(p=>p.sub))];
   const chips=$("#chips");
@@ -1252,7 +1278,7 @@ function closeProduct(fromHash){
   if($("#pv").hidden) return;
   $("#pv").hidden=true;document.body.classList.remove("pv-open");
   const last=pv.id;pv.id=null;
-  if(!fromHash){ if(pv.pushed){pv.pushed=false;history.back()} else {try{history.replaceState(null,"",location.pathname+location.search)}catch(e){}} }
+  if(!fromHash){ if(pv.pushed){pv.pushed=false;history.back()} else {try{history.replaceState(null,"","#loja-"+byId(last).cat)}catch(e){} showPage("loja")} }
   if(state.tab!==byId(last).cat){setTab(byId(last).cat)}
 }
 async function shareProduct(){
@@ -1275,13 +1301,47 @@ document.addEventListener("keydown",e=>{
   if((e.key==="Enter"||e.key===" ")&&e.target.matches?.(".pic[data-open]")){e.preventDefault();openProduct(e.target.dataset.open,e.target.dataset.a)}
 });
 $("#pvAdd").onclick=()=>{const id=pv.id;addToCart(id,null,pv.q,($("#pvNote").value||"").trim());closeProduct();grid()};
-function fromHash(){const m=location.hash.match(/^#produto-([a-z0-9]+)$/); if(m&&byId(m[1])){ if(pv.id!==m[1]) openProduct(m[1],null,false) } else closeProduct(true)}
-window.addEventListener("hashchange",fromHash);
+/* ---------- Páginas ---------- */
+function centerX(el){const box=el.parentElement;if(box&&box.scrollWidth>box.clientWidth)box.scrollLeft=el.offsetLeft-box.offsetLeft-box.clientWidth/2+el.offsetWidth/2}
+const PAGES=["inicio","promocoes","loja","troca","manutencao","depoimentos","pagamento","duvidas"];
+let curPage=null;
+function showPage(pg){
+  if(pg===curPage) return;
+  curPage=pg;
+  document.querySelectorAll("main > [data-page]").forEach(el=>el.hidden=el.dataset.page!==pg);
+  window.scrollTo(0,0);
+  markNav();
+}
+function markNav(){
+  const h=location.hash.slice(1)||"inicio";
+  document.querySelectorAll("nav.main a").forEach(a=>{
+    const t=a.getAttribute("href").slice(1);
+    const on=t===h||(curPage==="loja"&&t==="loja-"+state.tab)||(t===curPage&&!h.startsWith("loja"));
+    if(on){a.setAttribute("aria-current","page");centerX(a)} else a.removeAttribute("aria-current");
+  });
+}
+function route(){
+  const h=location.hash.slice(1); let m;
+  if((m=h.match(/^produto-([a-z0-9]+)$/))&&byId(m[1])){
+    const p=byId(m[1]); showPage("loja"); if(state.tab!==p.cat) setTab(p.cat);
+    if($("#pv").hidden||pv.id!==m[1]) openProduct(m[1],null,false);
+    return;
+  }
+  closeProduct(true);
+  if((m=h.match(/^loja-([a-z]+)$/))&&CATS.some(c=>c[0]===m[1])){showPage("loja"); if(state.tab!==m[1]) setTab(m[1]); markNav(); return}
+  showPage(PAGES.includes(h)?h:"inicio"); markNav();
+}
+window.addEventListener("hashchange",route);
+function cats(){
+  $("#cats").innerHTML=CATS.map(([k,n])=>{const list=PRODUTOS.filter(p=>p.cat===k);
+    const ph=list.find(p=>fotoOf(p,0))||list[0]; const min=Math.min(...list.flatMap(p=>p.arm.map(o=>o.p)));
+    return `<a class="cat" href="#loja-${k}"><span class="cat-pic">${media(ph,0,0)}</span><span class="cat-txt"><b>${n}</b><small>${list.length} produtos · a partir de ${brl0(min)}</small></span></a>`}).join("");
+}
 
 hero();
 $("#heroPhone").innerHTML='<img src="img/hero-17pm.png" alt="iPhone 17 Pro Max laranja-cósmico">';
 $("#heroSwatches").hidden=true;
-deals();tabs();setTab("novos");trade();renderCart();payUI();clock();setInterval(clock,1000);fromHash();
+deals();tabs();setTab("novos");trade();renderCart();payUI();clock();setInterval(clock,1000);cats();route();
 </script>
 </body>
 </html>
