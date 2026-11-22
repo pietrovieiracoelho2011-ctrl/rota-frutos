@@ -166,7 +166,7 @@ nav.main a.hot{color:var(--accent)}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
 .chip{border:1px solid var(--line);background:var(--surface);padding:7px 14px;border-radius:999px;font-size:13px;font-weight:700;cursor:pointer;color:var(--mute)}
 .chip[aria-pressed="true"]{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
-.tab-note{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:14px;color:var(--mute);margin-bottom:20px}
+.tab-note{display:block;font-size:14px;color:var(--mute);margin-bottom:20px}
 .tab-note b{color:var(--ink)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .2s ease,transform .2s ease}
@@ -330,6 +330,13 @@ footer.foot{background:var(--night);color:var(--night-ink);padding-block:56px 28
 .badge.enc{background:var(--ink);color:var(--bg)}
 .pricebox .inst{font-variant-numeric:tabular-nums}
 .trade.manut{grid-template-columns:1fr auto}
+.card .pic img,.deal .pic img,.sum-item .mini img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.card .pic:has(img){padding:0;height:300px}
+.card .pic img{object-position:50% 35%}
+.deal .pic,.sum-item .mini{position:relative;overflow:hidden;border-radius:12px}
+.badge{z-index:1}
+.card:hover .pic img{transform:scale(1.04);transition:transform .3s ease}
+.inc{font-size:12.5px;font-weight:600;color:var(--ok);margin-top:4px}
 @media (max-width:760px){.trade.manut{grid-template-columns:1fr}}
 </style>
 </head>
@@ -712,12 +719,12 @@ const PRODUTOS = [
   {id:"s16e",cat:"seminovos",c:"semi",nome:"iPhone 16e",m:"single",spec:S,cores:[["Branco","#F2F2F0"],["Preto","#2B2B2D"]],arm:[o("128 GB",2990,3390,[287,206,167]),o("256 GB",3190,0,[306,220,178])]},
   {id:"s16",cat:"seminovos",c:"semi",nome:"iPhone 16",m:"std",spec:S,cores:[["Branco","#F2F2F0"],["Ultramarino","#5B6FD3"],["Rosa","#EFB5C6"],["Preto","#2B2B2D"]],arm:[o("128 GB",4090,0,[392,281,229]),o("256 GB",4190,0,[401,288,234])]},
   {id:"s16plus",cat:"seminovos",c:"semi",nome:"iPhone 16 Plus",m:"std",spec:S,cores:[["Ultramarino","#5B6FD3"],["Rosa","#EFB5C6"],["Branco","#F2F2F0"],["Preto","#2B2B2D"]],arm:[o("128 GB",4190,0,[401,288,234])]},
-  {id:"s16p",cat:"seminovos",c:"semi",nome:"iPhone 16 Pro",m:"pro",spec:S,cores:CPRO,arm:[o("128 GB",4890,0,[468,336,273]),o("256 GB · marcas de uso",4390,0,null,P,"Marcas de uso"),o("256 GB",5090,5890,[487,350,284]),o("512 GB",5190,0,[497,357,290]),o("1 TB",5490,0,null,"","Impecável · Bateria 99%")]},
-  {id:"s16pm",cat:"seminovos",c:"semi",nome:"iPhone 16 Pro Max",m:"pro",spec:S,cores:CPRO,arm:[o("256 GB",5090,5550,[487,350,284]),o("512 GB · tela nova",5090,0,null,P,"Tela nova e marcas de uso"),o("512 GB",5290,6999,[507,364,296]),o("1 TB",5890,0,[564,405,329])]},
+  {id:"s16p",cat:"seminovos",c:"semi",nome:"iPhone 16 Pro",m:"pro",spec:S,cores:CPRO,arm:[o("128 GB",4890,0,[468,336,273]),o("256 GB · marcas de uso",4390,0,[421,302,245],P,"Marcas de uso"),o("256 GB",5090,5890,[487,350,284]),o("512 GB",5190,0,[497,357,290]),o("1 TB",5490,0,[526,378,307],"","Impecável · Bateria 99%")]},
+  {id:"s16pm",cat:"seminovos",c:"semi",nome:"iPhone 16 Pro Max",m:"pro",spec:S,cores:CPRO,arm:[o("256 GB",5090,5550,[487,350,284]),o("512 GB · tela nova",5090,0,[487,350,284],P,"Tela nova (1 ano de garantia) e marcas de uso"),o("512 GB",5290,6999,[507,364,296]),o("1 TB",5890,0,[564,405,329])]},
   {id:"sair",cat:"seminovos",c:"semi",nome:"iPhone Air",m:"air",spec:"Seminovo · Garantia Apple",cores:[["Preto-espacial","#2A2A2C"],["Branco-nuvem","#F1F1EE"]],arm:[o("256 GB",5390,0,[516,371,301],P,"","Apple")]},
   {id:"s17",cat:"seminovos",c:"semi",nome:"iPhone 17",m:"std",spec:"Seminovo · Garantia Apple",cores:C17,arm:[o("256 GB",5290,0,[507,364,296],P,"","Apple")]},
   {id:"s17p",cat:"seminovos",c:"semi",nome:"iPhone 17 Pro",m:"pro17",spec:S,cores:[["Laranja-cósmico","#D9642A"],["Azul-profundo","#2E3A55"]],arm:[o("256 GB",6790,0,[650,467,379]),o("512 GB",7090,0,[679,487,396],P,"Impecável","Apple até 12/2026")]},
-  {id:"s17pm",cat:"seminovos",c:"semi",nome:"iPhone 17 Pro Max",m:"pro17",spec:S,cores:C17P,arm:[o("256 GB · tela nova",6390,0,null,P,"Tela nova e marcas de uso"),o("256 GB",7250,0,[694,498,405]),o("512 GB",7790,7890,[746,535,435])]},
+  {id:"s17pm",cat:"seminovos",c:"semi",nome:"iPhone 17 Pro Max",m:"pro17",spec:S,cores:C17P,arm:[o("256 GB · tela nova",6390,0,[612,439,357],P,"Tela nova (1 ano de garantia) e marcas de uso"),o("256 GB",7250,0,[694,498,405]),o("512 GB",7790,7890,[746,535,435])]},
 
   // ---------- Apple Watch ----------
   {id:"w12",cat:"watch",c:"novo",nome:"Apple Watch Series 12",m:"watch",spec:N,cores:[["Preto-azeviche","#1F2023"]],arm:[o("42 mm",3190,0,[306,220,178]),o("46 mm",3490,0,[334,240,195])]},
@@ -886,6 +893,12 @@ function device(m,c){
   return S("");
 }
 
+/* ---------- Fotos reais (arquivos em img/, nome = id-versão) ---------- */
+const FOTOS=new Set(["n15-0", "n16-0", "n17-0", "n17e-0", "n17p-0", "n17pm-0", "n17pm-1", "n18p-0", "n18p-1", "n18p-2", "n18pm-0", "n18pm-1", "n18pm-2", "nair-0", "nduo-0", "nduo-1", "s12-0", "s12-1", "s12-2", "s13-0", "s13-1", "s13mini-0", "s13p-0", "s13p-1", "s13pm-0", "s14-0", "s14p-0", "s14p-1", "s14plus-0", "s14plus-1", "s14plus-2", "s14pm-0", "s14pm-1", "s15-1", "s15p-0", "s15p-1", "s15pm-0", "s15pm-1", "s16-0", "s16-1", "s16e-0", "s16e-1", "s16p-0", "s16p-1", "s16p-2", "s16p-3", "s16p-4", "s16plus-0", "s16pm-0", "s16pm-1", "s16pm-2", "s16pm-3", "s17-0", "s17p-0", "s17p-1", "s17pm-0", "s17pm-1", "s17pm-2", "sair-0"]);
+const fotoOf=(p,a)=>FOTOS.has(p.id+'-'+a)?p.id+'-'+a:(FOTOS.has(p.id+'-0')?p.id+'-0':null);
+const media=(p,a,c)=>{const f=fotoOf(p,a);return f?`<img src="img/${f}.jpg" alt="${esc(p.nome)}" loading="lazy">`:device(p.m,p.cores[c][1])};
+PRODUTOS.forEach(p=>{if(p.cat==="novos"&&p.id!=="nduo")p.inc="Acompanha cabo, caixa e manual";if(p.cat==="seminovos")p.inc="Cabo e fonte Anatel de brinde"});
+
 /* ---------- Estado ---------- */
 const state = {tab:"novos",sub:"Todos",sel:{}};
 PRODUTOS.forEach(p=>state.sel[p.id]={a:0,c:0});
@@ -915,7 +928,7 @@ function deals(){
   list.sort((x,y)=>y.off-x.off);
   $("#deals").innerHTML=list.slice(0,8).map(({p,a,op,off})=>`<article class="deal">
       <span class="off">−${Math.round(off*100)}%</span>
-      <div class="pic">${device(p.m,p.cores[0][1])}</div>
+      <div class="pic">${media(p,a,0)}</div>
       <div><h3>${esc(p.nome)}</h3><div class="spec">${esc(op.l)} · ${p.c==="semi"?"seminovo":"novo"}</div></div>
       <div><div class="old">de ${brl0(op.de)}</div><div class="price">${brl0(op.p)}</div><div class="pix">${op.x===0?"à vista":"ou 24x de "+brl0(parc(op,24))}</div></div>
       <div class="stock">${esc(op.st||"Consulte disponibilidade")}</div>
@@ -961,9 +974,9 @@ function cardHTML(p){
   const hot = op.de?`<span class="badge hot r">−${Math.round((1-op.p/op.de)*100)}%</span>`:(op.st===E?`<span class="badge enc r">Sob encomenda</span>`:"");
   const showOpts = p.arm.length>1 || op.l!=="Única";
   return `<article class="card" data-id="${p.id}">
-    <div class="pic">${badge}${hot}${device(p.m,p.cores[s.c][1])}</div>
+    <div class="pic">${badge}${hot}${media(p,s.a,s.c)}</div>
     <div class="body">
-      <div><h3>${esc(p.nome)}</h3><div class="spec">${esc(p.spec)}</div></div>
+      <div><h3>${esc(p.nome)}</h3><div class="spec">${esc(p.spec)}</div>${p.inc?`<div class="inc">✓ ${esc(p.inc)}</div>`:""}</div>
       ${semi?`<div class="semi"><div><small>Garantia</small><b>${esc(op.gar||"3 meses")}</b></div><div><small>Estado</small><b>${esc(op.nota||"Revisado")}</b></div></div>`:(op.nota?`<div class="spec">${esc(op.nota)}</div>`:"")}
       ${showOpts?`<div class="opts" role="group" aria-label="Versões">${p.arm.map((x,i)=>`<button type="button" class="opt" data-a="${i}" aria-pressed="${i===s.a}">${esc(x.l)}</button>`).join("")}</div>`:""}
       ${p.cores.length>1?`<div class="dots" role="group" aria-label="Cores">${p.cores.map(([cn,h],i)=>`<button type="button" class="dot" data-c="${i}" style="background:${h}" aria-label="${esc(cn)}" title="${esc(cn)}" aria-pressed="${i===s.c}"></button>`).join("")}<span class="cname">${esc(p.cores[s.c][0])}</span></div>`:""}
@@ -1007,7 +1020,7 @@ function addToCart(id,a){
 }
 function itemsHTML(){
   return cart.map(it=>{const p=byId(it.id); const op=p.arm[it.a];
-    return `<div class="sum-item"><div class="mini">${device(p.m,p.cores[it.c][1])}</div>
+    return `<div class="sum-item"><div class="mini">${media(p,it.a,it.c)}</div>
     <div><b>${esc(p.nome)}</b><small>${op.l!=="Única"?esc(op.l)+" · ":""}${esc(p.cores[it.c][0])}</small>
       <div class="qty"><button type="button" data-q="${it.key}" data-d="-1" aria-label="Diminuir">−</button><span>${it.q}</span><button type="button" data-q="${it.key}" data-d="1" aria-label="Aumentar">+</button><button type="button" class="rm" data-rm="${it.key}">remover</button></div></div>
     <span class="mono">${brl0(op.p*it.q)}</span></div>`}).join("");
