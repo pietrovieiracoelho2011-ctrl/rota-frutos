@@ -111,7 +111,8 @@ nav.main a.hot{color:var(--accent)}
 .hero-stage{position:relative;aspect-ratio:1/1;max-width:520px;width:100%;justify-self:center}
 .hero-stage .disc{position:absolute;inset:6%;border-radius:50%;background:radial-gradient(circle at 50% 40%,var(--accent-soft),transparent 68%)}
 .hero-stage .ring{position:absolute;inset:0;border-radius:50%;border:1px dashed var(--line)}
-.hero-stage .phone{position:absolute;inset:0 0 4% 0}
+.hero-stage .phone{position:absolute;inset:6% 14% 10%;display:grid;place-items:center}
+.hero-stage .phone img{max-height:100%;width:auto;filter:drop-shadow(0 30px 30px rgba(0,0,0,.28))}
 .hero-stage .phone svg{width:100%;height:100%}
 .tag{position:absolute;right:2%;bottom:12%;background:var(--surface);color:var(--ink);border-radius:12px;padding:14px 18px 14px 26px;box-shadow:var(--shadow);transform:rotate(-6deg);min-width:210px}
 .tag::before{content:"";position:absolute;left:10px;top:50%;width:8px;height:8px;margin-top:-4px;border-radius:50%;background:var(--bg);box-shadow:inset 0 0 0 2px var(--line)}
@@ -1277,7 +1278,10 @@ $("#pvAdd").onclick=()=>{const id=pv.id;addToCart(id,null,pv.q,($("#pvNote").val
 function fromHash(){const m=location.hash.match(/^#produto-([a-z0-9]+)$/); if(m&&byId(m[1])){ if(pv.id!==m[1]) openProduct(m[1],null,false) } else closeProduct(true)}
 window.addEventListener("hashchange",fromHash);
 
-hero();deals();tabs();setTab("novos");trade();renderCart();payUI();clock();setInterval(clock,1000);fromHash();
+hero();
+$("#heroPhone").innerHTML='<img src="img/hero-17pm.png" alt="iPhone 17 Pro Max laranja-cósmico">';
+$("#heroSwatches").hidden=true;
+deals();tabs();setTab("novos");trade();renderCart();payUI();clock();setInterval(clock,1000);fromHash();
 </script>
 </body>
 </html>
