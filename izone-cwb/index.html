@@ -1188,7 +1188,6 @@ function openProduct(id,a,push=true){
   pv.id=id;pv.q=1;$("#pvBody").innerHTML="";pvRender();
   $("#pv").hidden=false;document.body.classList.add("pv-open");$("#pvBody").scrollTop=0;
   if(push&&location.hash!=="#produto-"+id){pv.pushed=true;location.hash="produto-"+id}
-  setTimeout(()=>$(".pv-back")?.focus(),50);
 }
 function closeProduct(fromHash){
   if($("#pv").hidden) return;
