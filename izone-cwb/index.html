@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Izone CWB</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Izone CWB — iPhone novo e seminovo, Apple Watch, iPad, Mac e acessórios em Curitiba. Black Friday, Pix com desconto, até 12x sem juros e seu usado na troca.">
+<meta name="description" content="Izone CWB — iPhone novo e seminovo, Apple Watch, iPad, Mac e acessórios em Curitiba. Black Friday, pagamento à vista ou em até 24x e seu usado na troca.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
@@ -325,6 +325,12 @@ footer.foot{background:var(--night);color:var(--night-ink);padding-block:56px 28
 .drawer .btn{width:100%;margin-top:14px}
 .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--ink);color:var(--bg);padding:12px 18px;border-radius:999px;font-weight:700;font-size:14px;z-index:95;opacity:0;transition:all .25s;pointer-events:none;max-width:calc(100% - 32px);text-align:center}
 .toast.on{opacity:1;transform:translate(-50%,0)}
+.pricebox .st{font-size:12px;font-weight:700;color:var(--ok);margin-top:4px}
+.pricebox .st.enc{color:var(--accent)}
+.badge.enc{background:var(--ink);color:var(--bg)}
+.pricebox .inst{font-variant-numeric:tabular-nums}
+.trade.manut{grid-template-columns:1fr auto}
+@media (max-width:760px){.trade.manut{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -351,7 +357,10 @@ footer.foot{background:var(--night);color:var(--night-ink);padding-block:56px 28
       <a href="#loja" data-go="watch">Apple Watch</a>
       <a href="#loja" data-go="ipad">iPad</a>
       <a href="#loja" data-go="mac">Mac</a>
+      <a href="#loja" data-go="audio">AirPods e som</a>
       <a href="#loja" data-go="acessorios">Acessórios</a>
+      <a href="#loja" data-go="casa">Casa e games</a>
+      <a href="#manutencao">Manutenção</a>
       <a href="#depoimentos">Depoimentos</a>
       <a href="#pagamento">Pagamento</a>
     </nav>
@@ -369,15 +378,15 @@ footer.foot{background:var(--night);color:var(--night-ink);padding-block:56px 28
     <div>
       <span class="eyebrow">Revenda Apple em Curitiba</span>
       <h1>O iPhone que você quer, com preço de <em>Black Friday</em>.</h1>
-      <p class="lead">Aparelhos lacrados com nota fiscal, seminovos testados em 40 pontos e acessórios originais. Pix com 5% de desconto, até 12x sem juros e seu usado entra na troca.</p>
+      <p class="lead">iPhone novo lacrado e seminovo revisado com garantia, Apple Watch, MacBook, iPad, AirPods e acessórios. Pague à vista no Pix ou em até 24x no cartão, e use seu usado na troca.</p>
       <div class="cta-row">
         <a class="btn btn-accent" href="#promocoes">Ver ofertas da semana</a>
-        <a class="btn btn-ghost" href="#loja" data-go="seminovos">Seminovos a partir de R$ 2.199</a>
+        <a class="btn btn-ghost" href="#loja" data-go="seminovos">Seminovos a partir de R$ 1.290</a>
       </div>
       <ul class="trust">
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Lacrado com nota fiscal e 1 ano de garantia Apple</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Entrega por motoboy em Curitiba no mesmo dia</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Seminovo com bateria acima de 85% e 90 dias de garantia</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Pronta entrega e retirada na loja no Batel</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Seminovos revisados com 3 meses de garantia</li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Avaliamos seu iPhone usado na hora</li>
       </ul>
     </div>
@@ -402,7 +411,7 @@ footer.foot{background:var(--night);color:var(--night-ink);padding-block:56px 28
       <div>
         <span class="eyebrow">Ofertas com estoque limitado</span>
         <h2 style="margin-top:10px">Black Friday <span>Izone</span></h2>
-        <p>Preço válido enquanto durar o lote. Quando a barra zera, o produto volta ao preço normal.</p>
+        <p>Os maiores descontos da loja agora. Preço válido enquanto houver estoque.</p>
       </div>
       <div>
         <div class="clock-label" id="clockLabel">Black Friday começa em</div>
@@ -424,7 +433,7 @@ footer.foot{background:var(--night);color:var(--night-ink);padding-block:56px 28
       <div>
         <span class="eyebrow">Loja</span>
         <h2 style="margin-top:10px">Escolha o seu Apple</h2>
-        <p>Preço à vista no Pix já com desconto. No cartão, até 12x sem juros. Escolha armazenamento e cor direto no card.</p>
+        <p>Preço à vista ou em até 24x no cartão. Escolha a versão e a cor direto no card.</p>
       </div>
     </div>
     <div class="tabs" role="tablist" aria-label="Categorias" id="tabs"></div>
@@ -456,6 +465,19 @@ footer.foot{background:var(--night);color:var(--night-ink);padding-block:56px 28
         <output id="tradeOut" class="mono">R$ 0</output>
         <span style="font-size:12px;color:var(--mute)">Valor sujeito à avaliação presencial do aparelho.</span>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="manutencao" style="padding-top:0">
+  <div class="wrap">
+    <div class="trade manut">
+      <div>
+        <span class="eyebrow">Manutenção</span>
+        <h2 style="margin-top:10px">Seu Apple precisa de reparo?</h2>
+        <p>Fazemos manutenção em iPhone, iPad, Mac e Apple Watch. Mande o modelo e o problema pelo WhatsApp e receba seu orçamento.</p>
+      </div>
+      <a class="btn btn-wa" id="manutWa" href="#" target="_blank" rel="noopener">Fazer orçamento</a>
     </div>
   </div>
 </section>
@@ -500,9 +522,8 @@ footer.foot{background:var(--night);color:var(--night-ink);padding-block:56px 28
         <fieldset class="fset">
           <h3><span class="step">2</span>Entrega</h3>
           <div class="radios">
-            <div class="radio"><input type="radio" name="entrega" id="e-retira" value="Retirada na loja" checked><label for="e-retira"><span class="ic">GRÁTIS</span><b>Retirar na loja</b><small>Pronto em 1 hora</small></label></div>
-            <div class="radio"><input type="radio" name="entrega" id="e-moto" value="Motoboy Curitiba e RMC"><label for="e-moto"><span class="ic">HOJE</span><b>Motoboy</b><small>Curitiba e região</small></label></div>
-            <div class="radio"><input type="radio" name="entrega" id="e-brasil" value="Envio para todo o Brasil"><label for="e-brasil"><span class="ic">SEDEX</span><b>Envio Brasil</b><small>Com seguro e rastreio</small></label></div>
+            <div class="radio"><input type="radio" name="entrega" id="e-retira" value="Retirada na loja" checked><label for="e-retira"><span class="ic">GRÁTIS</span><b>Retirar na loja</b><small>Seg a sex 10h–18h · Sáb 10h–13h</small></label></div>
+            <div class="radio"><input type="radio" name="entrega" id="e-moto" value="Entrega (combinar pelo WhatsApp)"><label for="e-moto"><span class="ic">A COMBINAR</span><b>Entrega</b><small>Prazo e frete pelo WhatsApp</small></label></div>
           </div>
           <div class="fields" id="addr" hidden style="margin-top:12px">
             <div class="field"><label for="f-cep">CEP</label><input id="f-cep" name="cep" inputmode="numeric" placeholder="80000-000"></div>
@@ -514,9 +535,9 @@ footer.foot{background:var(--night);color:var(--night-ink);padding-block:56px 28
         <fieldset class="fset">
           <h3><span class="step">3</span>Forma de pagamento</h3>
           <div class="radios">
-            <div class="radio"><input type="radio" name="pag" id="p-pix" value="pix" checked><label for="p-pix"><span class="ic">−5%</span><b>Pix</b><small>Aprovação na hora</small></label></div>
-            <div class="radio"><input type="radio" name="pag" id="p-cc" value="credito"><label for="p-cc"><span class="ic">12x</span><b>Cartão de crédito</b><small>Sem juros, por link seguro</small></label></div>
-            <div class="radio"><input type="radio" name="pag" id="p-deb" value="debito"><label for="p-deb"><span class="ic">LOJA</span><b>Débito ou dinheiro</b><small>Na retirada</small></label></div>
+            <div class="radio"><input type="radio" name="pag" id="p-pix" value="pix" checked><label for="p-pix"><span class="ic">À VISTA</span><b>Pix</b><small>Melhor preço</small></label></div>
+            <div class="radio"><input type="radio" name="pag" id="p-cc" value="credito"><label for="p-cc"><span class="ic">ATÉ 24x</span><b>Cartão de crédito</b><small>Por link de pagamento</small></label></div>
+            <div class="radio"><input type="radio" name="pag" id="p-deb" value="debito"><label for="p-deb"><span class="ic">LOJA</span><b>Débito ou dinheiro</b><small>Na retirada, preço à vista</small></label></div>
           </div>
 
           <div id="pixInfo" class="pix-box">
@@ -566,9 +587,9 @@ footer.foot{background:var(--night);color:var(--night-ink);padding-block:56px 28
     <div class="sec-head"><div><span class="eyebrow">Dúvidas frequentes</span><h2 style="margin-top:10px">Antes de comprar</h2></div></div>
     <div class="faq">
       <details><summary>Os iPhones novos são originais e lacrados?</summary><p>Sim. Todos os novos saem lacrados, com nota fiscal e 1 ano de garantia Apple, válida em qualquer assistência autorizada do Brasil.</p></details>
-      <details><summary>Como vocês testam os seminovos?</summary><p>Cada aparelho passa por 40 testes: Face ID, câmeras, alto-falantes, tela, sensores e saúde da bateria. Todos têm 90 dias de garantia Izone e nota fiscal.</p></details>
-      <details><summary>Em quanto tempo recebo em Curitiba?</summary><p>Pedidos confirmados até as 16h saem por motoboy no mesmo dia para Curitiba e região metropolitana. Para o restante do Brasil, enviamos com seguro e rastreio.</p></details>
-      <details><summary>Posso parcelar e ainda usar meu usado na troca?</summary><p>Pode. O valor do seu aparelho é abatido e a diferença pode ser paga no Pix ou em até 12x sem juros no cartão.</p></details>
+      <details><summary>Como vocês testam os seminovos?</summary><p>Cada aparelho é revisado antes da venda e sai com 3 meses de garantia da loja. Quando ainda tem garantia Apple, isso aparece no card do produto.</p></details>
+      <details><summary>Os produtos estão em estoque?</summary><p>Os itens marcados como pronta entrega estão na loja para retirada. Os marcados como sob encomenda chegam após a confirmação do pedido. Confirme o prazo pelo WhatsApp.</p></details>
+      <details><summary>Posso parcelar e ainda usar meu usado na troca?</summary><p>Pode. O valor do seu aparelho é abatido e a diferença pode ser paga no Pix ou em até 24x no cartão.</p></details>
     </div>
   </div>
 </section>
@@ -581,7 +602,7 @@ footer.foot{background:var(--night);color:var(--night-ink);padding-block:56px 28
       <div>
         <a class="logo" href="#inicio"><span class="logo-mark">i</span><span class="logo-word">IZONE</span><span class="logo-tag">CWB</span></a>
         <p>Revenda especializada em produtos Apple em Curitiba. iPhone novo e seminovo, Apple Watch, iPad, Mac e acessórios, com nota fiscal e garantia.</p>
-        <div class="methods"><span>PIX</span><span>VISA</span><span>MASTER</span><span>ELO</span><span>AMEX</span><span>12x</span></div>
+        <div class="methods"><span>PIX</span><span>VISA</span><span>MASTER</span><span>ELO</span><span>AMEX</span><span>24x</span></div>
       </div>
       <div>
         <h4>Loja</h4>
@@ -636,144 +657,192 @@ footer.foot{background:var(--night);color:var(--night-ink);padding-block:56px 28
    CONFIGURAÇÃO DA LOJA — edite aqui os dados da Izone CWB
    ========================================================== */
 const LOJA = {
-  whatsapp: "5541999999999",          // DDI + DDD + número, só dígitos
-  whatsappExibir: "(41) 99999-9999",
-  instagram: "izonecwb",
-  email: "contato@izonecwb.com.br",
-  endereco: "Rua Exemplo, 123, Batel, Curitiba - PR",
-  horario: "Seg a sex 9h às 19h · Sáb 9h às 14h",
-  cnpj: "00.000.000/0001-00",
-  chavePix: "00.000.000/0001-00",
-  descontoPix: 0.05,                  // 5% no Pix
-  parcelasSemJuros: 12,
+  whatsapp: "5541991191002",          // DDI + DDD + número, só dígitos
+  whatsappExibir: "(41) 99119-1002",
+  instagram: "",                      // ex.: "izonecwb" (vazio = não aparece)
+  email: "",                          // vazio = não aparece
+  endereco: "Batel, Curitiba - PR",
+  horario: "Seg a sex 10h às 18h · Sáb 10h às 13h",
+  cnpj: "",                           // vazio = não aparece
+  chavePix: "",                       // vazio = chave enviada pelo WhatsApp
+  parcelas: [12,18,24],
+  fator: {12:0.0958, 18:0.0687, 24:0.0559}, // usado quando a parcela não está informada
   inicioBlackFriday: "2026-11-27T00:00:00-03:00",
   fimBlackFriday: "2026-11-30T23:59:59-03:00"
 };
 
-/* Produtos: preço por armazenamento; "bf" = oferta Black Friday (de, estoque restante, estoque total) */
+/* Opção de produto: o(rótulo, preço à vista, preço "de" (0 = sem), parcelas [12x,18x,24x] (null = calcula, 0 = só à vista), status, observação, garantia) */
+const P="Pronta entrega", E="Sob encomenda";
+const o=(l,p,de=0,x=null,st=P,nota="",gar="")=>({l,p,de,x,st,nota,gar});
+const W=[["Branco","#F4F4F2"]], K=[["Preto","#2A2B2E"]];
+const N="Novo · Lacrado · Garantia de 1 ano Apple", S="Seminovo · Garantia de 3 meses", A="Novo · Garantia de 1 ano";
+const C16=[["Ultramarino","#5B6FD3"],["Verde-acinzentado","#9DC2B6"],["Rosa","#EFB5C6"],["Branco","#F2F2F0"],["Preto","#2B2B2D"]];
+const C17=[["Lavanda","#CBBDDF"],["Sálvia","#B6C7AE"],["Azul-névoa","#A7BED4"],["Branco","#F2F2F0"],["Preto","#2B2B2D"]];
+const CAIR=[["Azul-céu","#C6D9E8"],["Dourado-claro","#E8D9BE"],["Branco-nuvem","#F1F1EE"],["Preto-espacial","#2A2A2C"]];
+const C17P=[["Laranja-cósmico","#D9642A"],["Azul-profundo","#2E3A55"],["Prata","#DADBDE"]];
+const C18=[["Preto","#2B2C30"],["Prata","#DADBDE"],["Azul-claro","#9DB8D6"],["Vinho","#6E2A33"]];
+const CPRO=[["Titânio-deserto","#BFA48C"],["Titânio-natural","#B8B3AB"],["Titânio-branco","#E4E2DD"],["Titânio-preto","#3A3B3E"]];
+
 const PRODUTOS = [
-  // iPhone novos
-  {id:"17pm",cat:"novos",nome:"iPhone 17 Pro Max",modelo:"pro17",spec:"Tela 6,9\" · A19 Pro · 48 MP x3",tag:"Mais vendido",
-   cores:[["Laranja-cósmico","#D9642A"],["Azul-profundo","#2E3A55"],["Prata","#DADBDE"]],
-   arm:[["256 GB",9499],["512 GB",10999],["1 TB",12499]],bf:{de:10999,resta:4,total:20}},
-  {id:"17p",cat:"novos",nome:"iPhone 17 Pro",modelo:"pro17",spec:"Tela 6,3\" · A19 Pro · 48 MP x3",
-   cores:[["Azul-profundo","#2E3A55"],["Laranja-cósmico","#D9642A"],["Prata","#DADBDE"]],
-   arm:[["256 GB",8499],["512 GB",9999],["1 TB",11499]],bf:{de:9799,resta:6,total:20}},
-  {id:"air",cat:"novos",nome:"iPhone Air",modelo:"air",spec:"Tela 6,5\" · 5,6 mm · A19 Pro",tag:"Mais fino",
-   cores:[["Azul-céu","#C6D9E8"],["Dourado-claro","#E8D9BE"],["Branco-nuvem","#F1F1EE"],["Preto-espacial","#2A2A2C"]],
-   arm:[["256 GB",7799],["512 GB",9299]]},
-  {id:"17",cat:"novos",nome:"iPhone 17",modelo:"std",spec:"Tela 6,3\" ProMotion · A19 · 48 MP",
-   cores:[["Lavanda","#CBBDDF"],["Sálvia","#B6C7AE"],["Azul-névoa","#A7BED4"],["Branco","#F2F2F0"],["Preto","#2B2B2D"]],
-   arm:[["256 GB",6499],["512 GB",7999]],bf:{de:7299,resta:9,total:25}},
-  {id:"16",cat:"novos",nome:"iPhone 16",modelo:"std",spec:"Tela 6,1\" · A18 · 48 MP",
-   cores:[["Ultramarino","#5B6FD3"],["Verde-acinzentado","#9DC2B6"],["Rosa","#EFB5C6"],["Branco","#F2F2F0"],["Preto","#2B2B2D"]],
-   arm:[["128 GB",4799],["256 GB",5499]]},
-  {id:"16e",cat:"novos",nome:"iPhone 16e",modelo:"single",spec:"Tela 6,1\" · A18 · 48 MP",
-   cores:[["Branco","#F2F2F0"],["Preto","#2B2B2D"]],arm:[["128 GB",3999],["256 GB",4699]]},
+  // ---------- iPhone novo ----------
+  {id:"n15",cat:"novos",c:"novo",nome:"iPhone 15",m:"diag",spec:N,cores:[["Azul","#C9DCE6"],["Preto","#3A3D42"],["Rosa","#F1D3D6"]],arm:[o("128 GB",4090,0,[392,281,229])]},
+  {id:"n16",cat:"novos",c:"novo",nome:"iPhone 16",m:"std",spec:N,cores:C16,arm:[o("128 GB",4990,0,[477,343,279],"")]},
+  {id:"nair",cat:"novos",c:"novo",nome:"iPhone Air",m:"air",spec:N,cores:CAIR,arm:[o("256 GB",6190,0,[593,426,346],"")]},
+  {id:"n17e",cat:"novos",c:"novo",nome:"iPhone 17e",m:"single",spec:N,cores:[["Branco","#F2F2F0"],["Preto","#2B2B2D"]],arm:[o("256 GB",4790,0,[459,329,268],"")]},
+  {id:"n17",cat:"novos",c:"novo",nome:"iPhone 17",m:"std",spec:N,cores:C17,arm:[o("256 GB",5890,6390,[564,405,329])]},
+  {id:"n17p",cat:"novos",c:"novo",nome:"iPhone 17 Pro",m:"pro17",spec:N,cores:C17P,arm:[o("256 GB",7750,8590,[742,533,433],"")]},
+  {id:"n17pm",cat:"novos",c:"novo",nome:"iPhone 17 Pro Max",m:"pro17",spec:N,cores:C17P,arm:[o("256 GB",8090,10290,[775,556,null]),o("512 GB",8790,10890,[841,604,491],"")]},
+  {id:"n18p",cat:"novos",c:"novo",nome:"iPhone 18 Pro",m:"pro17",spec:N,cores:C18,arm:[o("256 GB",8390,8890,[803,577,468],""),o("512 GB",9490,0,[908,652,530],""),o("1 TB",10790,0,[1033,741,null])]},
+  {id:"n18pm",cat:"novos",c:"novo",nome:"iPhone 18 Pro Max",m:"pro17",spec:N,cores:C18,arm:[o("256 GB",9390,11690,[899,645,524]),o("512 GB",11090,13090,[1062,762,null]),o("1 TB",13590,0,[1301,934,null],"")]},
+  {id:"nduo",cat:"novos",c:"novo",nome:"iPhone Duo",m:"fold",spec:"Dobrável · "+N,cores:[["Cores sob consulta","#3A3D42"]],arm:[o("256 GB",15490,0,[1483,1064,null],E),o("512 GB",16690,0,[1597,1147,null],E)]},
 
-  // Seminovos
-  {id:"s16pm",cat:"seminovos",nome:"iPhone 16 Pro Max",modelo:"pro",spec:"256 GB · Titânio-deserto",bat:94,grade:"A+",
-   cores:[["Titânio-deserto","#BFA48C"]],arm:[["256 GB",6999]],bf:{de:7599,resta:2,total:8}},
-  {id:"s16p",cat:"seminovos",nome:"iPhone 16 Pro",modelo:"pro",spec:"128 GB · Titânio-natural",bat:91,grade:"A",
-   cores:[["Titânio-natural","#B8B3AB"]],arm:[["128 GB",5799]]},
-  {id:"s15pm",cat:"seminovos",nome:"iPhone 15 Pro Max",modelo:"pro",spec:"256 GB · Titânio-azul",bat:88,grade:"A",
-   cores:[["Titânio-azul","#414B5B"]],arm:[["256 GB",5199]],bf:{de:5699,resta:3,total:10}},
-  {id:"s15",cat:"seminovos",nome:"iPhone 15",modelo:"diag",spec:"128 GB · Rosa",bat:90,grade:"A+",
-   cores:[["Rosa","#F1D3D6"]],arm:[["128 GB",3499]]},
-  {id:"s14p",cat:"seminovos",nome:"iPhone 14 Pro",modelo:"pro",spec:"128 GB · Roxo-profundo",bat:86,grade:"A",
-   cores:[["Roxo-profundo","#5E5469"]],arm:[["128 GB",3299]]},
-  {id:"s13",cat:"seminovos",nome:"iPhone 13",modelo:"diag",spec:"128 GB · Meia-noite",bat:87,grade:"B+",
-   cores:[["Meia-noite","#232A31"]],arm:[["128 GB",2199]]},
+  // ---------- iPhone seminovo ----------
+  {id:"s12",cat:"seminovos",c:"semi",nome:"iPhone 12",m:"diag",spec:S,cores:[["Preto","#25272B"],["Branco","#EEEDEA"]],arm:[o("64 GB",1290,1890,[124,89,72]),o("128 GB",1490,1990,[143,103,84]),o("256 GB",1790,0,[171,123,100])]},
+  {id:"s13mini",cat:"seminovos",c:"semi",nome:"iPhone 13 mini",m:"diag",spec:S,cores:[["Branco","#EEEDEA"]],arm:[o("128 GB",1690,0,[162,null,95])]},
+  {id:"s13",cat:"seminovos",c:"semi",nome:"iPhone 13",m:"diag",spec:S,cores:[["Preto","#25272B"],["Branco","#EEEDEA"],["Azul","#2F6DB0"]],arm:[o("128 GB",1890,2190,[181,130,106]),o("256 GB",2290,2690,[220,158,128])]},
+  {id:"s13p",cat:"seminovos",c:"semi",nome:"iPhone 13 Pro",m:"pro",spec:S,cores:[["Azul-sierra","#9FB7CF"],["Verde-alpino","#4A5A4A"],["Grafite","#4A4B4F"],["Prateado","#E3E3E0"]],arm:[o("128 GB",2590,3690,[248,178,145]),o("256 GB",2790,2990,[267,192,156],P,"Impecável")]},
+  {id:"s13pm",cat:"seminovos",c:"semi",nome:"iPhone 13 Pro Max",m:"pro",spec:S,cores:[["Verde-alpino","#4A5A4A"],["Prateado","#E3E3E0"],["Dourado","#E6D6BC"]],arm:[o("128 GB",2790,4190,[267,192,156],"")]},
+  {id:"s14",cat:"seminovos",c:"semi",nome:"iPhone 14",m:"diag",spec:S,cores:[["Azul","#A9C3DB"],["Estelar","#EDE7DC"],["Meia-noite","#25272B"],["Roxo","#D9D2E6"]],arm:[o("128 GB",2490,3590,[239,171,139])]},
+  {id:"s14plus",cat:"seminovos",c:"semi",nome:"iPhone 14 Plus",m:"diag",spec:S,cores:[["Meia-noite","#25272B"],["Estelar","#EDE7DC"]],arm:[o("128 GB",2790,0,[267,192,156]),o("256 GB",2990,0,[287,206,167]),o("512 GB",3090,0,[296,213,173])]},
+  {id:"s14p",cat:"seminovos",c:"semi",nome:"iPhone 14 Pro",m:"pro",spec:S,cores:[["Roxo-profundo","#5E5469"],["Preto-espacial","#35363A"]],arm:[o("128 GB",3190,3690,[306,220,178]),o("256 GB",3350,3790,[321,231,187])]},
+  {id:"s14pm",cat:"seminovos",c:"semi",nome:"iPhone 14 Pro Max",m:"pro",spec:S,cores:[["Roxo-profundo","#5E5469"],["Preto-espacial","#35363A"],["Prateado","#E3E3E0"]],arm:[o("128 GB",3490,4990,[334,240,195]),o("256 GB",3790,5390,[363,261,212])]},
+  {id:"s15",cat:"seminovos",c:"semi",nome:"iPhone 15",m:"diag",spec:S,cores:[["Preto","#3A3D42"],["Verde","#D5E4D0"],["Branco","#EEEDEA"]],arm:[o("128 GB",3090,4090,[296,213,173]),o("256 GB",3290,3690,[315,226,184])]},
+  {id:"s15p",cat:"seminovos",c:"semi",nome:"iPhone 15 Pro",m:"pro",spec:S,cores:[["Titânio-azul","#414B5B"]],arm:[o("128 GB",3590,4590,[344,247,201]),o("256 GB",4090,0,[392,281,229])]},
+  {id:"s15pm",cat:"seminovos",c:"semi",nome:"iPhone 15 Pro Max",m:"pro",spec:S,cores:[["Titânio-azul","#414B5B"],["Titânio-branco","#E4E2DD"],["Titânio-preto","#3A3B3E"]],arm:[o("256 GB",4590,6590,[440,316,257]),o("512 GB",4690,0,[449,323,262])]},
+  {id:"s16e",cat:"seminovos",c:"semi",nome:"iPhone 16e",m:"single",spec:S,cores:[["Branco","#F2F2F0"],["Preto","#2B2B2D"]],arm:[o("128 GB",2990,3390,[287,206,167]),o("256 GB",3190,0,[306,220,178])]},
+  {id:"s16",cat:"seminovos",c:"semi",nome:"iPhone 16",m:"std",spec:S,cores:[["Branco","#F2F2F0"],["Ultramarino","#5B6FD3"],["Rosa","#EFB5C6"],["Preto","#2B2B2D"]],arm:[o("128 GB",4090,0,[392,281,229]),o("256 GB",4190,0,[401,288,234])]},
+  {id:"s16plus",cat:"seminovos",c:"semi",nome:"iPhone 16 Plus",m:"std",spec:S,cores:[["Ultramarino","#5B6FD3"],["Rosa","#EFB5C6"],["Branco","#F2F2F0"],["Preto","#2B2B2D"]],arm:[o("128 GB",4190,0,[401,288,234])]},
+  {id:"s16p",cat:"seminovos",c:"semi",nome:"iPhone 16 Pro",m:"pro",spec:S,cores:CPRO,arm:[o("128 GB",4890,0,[468,336,273]),o("256 GB · marcas de uso",4390,0,null,P,"Marcas de uso"),o("256 GB",5090,5890,[487,350,284]),o("512 GB",5190,0,[497,357,290]),o("1 TB",5490,0,null,"","Impecável · Bateria 99%")]},
+  {id:"s16pm",cat:"seminovos",c:"semi",nome:"iPhone 16 Pro Max",m:"pro",spec:S,cores:CPRO,arm:[o("256 GB",5090,5550,[487,350,284]),o("512 GB · tela nova",5090,0,null,P,"Tela nova e marcas de uso"),o("512 GB",5290,6999,[507,364,296]),o("1 TB",5890,0,[564,405,329])]},
+  {id:"sair",cat:"seminovos",c:"semi",nome:"iPhone Air",m:"air",spec:"Seminovo · Garantia Apple",cores:[["Preto-espacial","#2A2A2C"],["Branco-nuvem","#F1F1EE"]],arm:[o("256 GB",5390,0,[516,371,301],P,"","Apple")]},
+  {id:"s17",cat:"seminovos",c:"semi",nome:"iPhone 17",m:"std",spec:"Seminovo · Garantia Apple",cores:C17,arm:[o("256 GB",5290,0,[507,364,296],P,"","Apple")]},
+  {id:"s17p",cat:"seminovos",c:"semi",nome:"iPhone 17 Pro",m:"pro17",spec:S,cores:[["Laranja-cósmico","#D9642A"],["Azul-profundo","#2E3A55"]],arm:[o("256 GB",6790,0,[650,467,379]),o("512 GB",7090,0,[679,487,396],P,"Impecável","Apple até 12/2026")]},
+  {id:"s17pm",cat:"seminovos",c:"semi",nome:"iPhone 17 Pro Max",m:"pro17",spec:S,cores:C17P,arm:[o("256 GB · tela nova",6390,0,null,P,"Tela nova e marcas de uso"),o("256 GB",7250,0,[694,498,405]),o("512 GB",7790,7890,[746,535,435])]},
 
-  // Apple Watch
-  {id:"w11",cat:"watch",nome:"Apple Watch Series 11",modelo:"watch",spec:"GPS · Alumínio · Pulseira esportiva",
-   cores:[["Prateado","#D5D6D8"],["Ouro-rosa","#E4C1B1"],["Cinza-espacial","#3A3B3E"]],arm:[["42 mm",3299],["46 mm",3599]],bf:{de:3799,resta:5,total:15}},
-  {id:"wu3",cat:"watch",nome:"Apple Watch Ultra 3",modelo:"ultra",spec:"GPS + Celular · Titânio 49 mm",tag:"Aventura",
-   cores:[["Titânio-natural","#B9B5AE"],["Titânio-preto","#2C2C2E"]],arm:[["49 mm",6999]]},
-  {id:"wse",cat:"watch",nome:"Apple Watch SE 3",modelo:"watch",spec:"GPS · Alumínio",
-   cores:[["Meia-noite","#2A2E36"],["Estelar","#E8E1D6"]],arm:[["40 mm",2299],["44 mm",2499]]},
+  // ---------- Apple Watch ----------
+  {id:"w12",cat:"watch",c:"novo",nome:"Apple Watch Series 12",m:"watch",spec:N,cores:[["Preto-azeviche","#1F2023"]],arm:[o("42 mm",3190,0,[306,220,178]),o("46 mm",3490,0,[334,240,195])]},
+  {id:"w11",cat:"watch",c:"novo",nome:"Apple Watch Series 11",m:"watch",spec:N,cores:[["Preto-azeviche","#1F2023"]],arm:[o("42 mm",2590,3490,[248,178,145])]},
+  {id:"wu3n",cat:"watch",c:"novo",nome:"Apple Watch Ultra 3",m:"ultra",spec:N,cores:[["Titânio-preto","#2C2C2E"]],arm:[o("49 mm",4790,5290,[459,329,268])]},
+  {id:"wse3",cat:"watch",c:"novo",nome:"Apple Watch SE 3",m:"watch",spec:N,cores:[["Meia-noite","#2A2E36"]],arm:[o("40 mm",1950,0,[187,134,109]),o("44 mm",2150,3490,[206,148,120])]},
+  {id:"wu3s",cat:"watch",c:"semi",nome:"Apple Watch Ultra 3",m:"ultra",spec:"Seminovo · Impecável · Garantia Apple até 03/2027",cores:[["Titânio-preto","#2C2C2E"]],arm:[o("49 mm",4790,0,[459,329,268],P,"Impecável","Apple até 03/2027")]},
+  {id:"wu2",cat:"watch",c:"semi",nome:"Apple Watch Ultra 2",m:"ultra",spec:S,cores:[["Titânio-natural","#B9B5AE"],["Titânio-preto","#2C2C2E"]],arm:[o("49 mm",2790,0,[267,192,156])]},
+  {id:"wu1",cat:"watch",c:"semi",nome:"Apple Watch Ultra",m:"ultra",spec:S,cores:[["Titânio","#B9B5AE"]],arm:[o("49 mm",2390,0,[229,165,134])]},
+  {id:"ws10",cat:"watch",c:"semi",nome:"Apple Watch Series 10",m:"watch",spec:S,cores:[["Preto-azeviche","#1F2023"]],arm:[o("46 mm",1890,0,[181,130,106])]},
+  {id:"ws9",cat:"watch",c:"semi",nome:"Apple Watch Series 9",m:"watch",spec:S,cores:[["Rosa","#EFC9CF"]],arm:[o("41 mm",1690,2090,[162,117,95])]},
+  {id:"ws8",cat:"watch",c:"semi",nome:"Apple Watch Series 8",m:"watch",spec:S,cores:[["Prateado","#D5D6D8"]],arm:[o("45 mm",1290,0,[124,89,72])]},
+  {id:"wse2",cat:"watch",c:"semi",nome:"Apple Watch SE (2ª geração)",m:"watch",spec:S,cores:[["Estelar","#E8E1D6"]],arm:[o("40 mm",1290,0,[124,89,72])]},
 
-  // iPad
-  {id:"ipp",cat:"ipad",nome:"iPad Pro M5",modelo:"ipad",spec:"Tela Ultra Retina XDR · Wi-Fi",
-   cores:[["Preto-espacial","#2E2F32"],["Prateado","#D8D9DB"]],arm:[["11\" 256 GB",11999],["13\" 256 GB",15999]]},
-  {id:"ipa",cat:"ipad",nome:"iPad Air M3",modelo:"ipad",spec:"Tela Liquid Retina · Wi-Fi",
-   cores:[["Azul","#A9BED6"],["Roxo","#C7B9DA"],["Estelar","#E6DFD3"],["Cinza-espacial","#55575C"]],arm:[["11\" 128 GB",5999],["13\" 128 GB",7999]]},
-  {id:"ip",cat:"ipad",nome:"iPad A16",modelo:"ipad",spec:"Tela 11\" · Wi-Fi · 128 GB",
-   cores:[["Azul","#8FB4DA"],["Rosa","#EDB9C4"],["Amarelo","#F0D97A"],["Prateado","#D8D9DB"]],arm:[["128 GB",3599],["256 GB",4299]]},
-  {id:"ipm",cat:"ipad",nome:"iPad mini",modelo:"ipad",spec:"Tela 8,3\" · A17 Pro · Wi-Fi",
-   cores:[["Cinza-espacial","#55575C"],["Roxo","#C7B9DA"],["Estelar","#E6DFD3"]],arm:[["128 GB",4999]]},
+  // ---------- MacBook ----------
+  {id:"mbam5n",cat:"mac",c:"novo",nome:"MacBook Air M5 13\"",m:"mac",spec:N,cores:[["Prateado","#D8D9DB"]],arm:[o("512 GB",8790,0,[841,604,491])]},
+  {id:"mbam5s",cat:"mac",c:"semi",nome:"MacBook Air M5 13\"",m:"mac",spec:"Seminovo · Impecável · Garantia de 3 meses",cores:[["Meia-noite","#2A2F38"]],arm:[o("512 GB",8090,0,[775,556,452],P,"Impecável")]},
+  {id:"mbpm3",cat:"mac",c:"semi",nome:"MacBook Pro M3 14\"",m:"mac",spec:S,cores:[["Preto-espacial","#2E2F32"]],arm:[o("14\"",7990,0,[765,549,446])]},
+  {id:"mbp15",cat:"mac",c:"semi",nome:"MacBook Pro 2015 15\"",m:"mac",spec:S,cores:[["Prateado","#D8D9DB"]],arm:[o("15\"",2890,0,[277,199,166])]},
+  {id:"capamac",cat:"mac",c:"acc",nome:"Capa para MacBook até 14\"",m:"sleeve",spec:"Compatível com MacBook até 14\"",cores:[["Preto","#2A2B2E"],["Marrom","#7A5E48"]],arm:[o("Única",169,0,0)]},
 
-  // Mac
-  {id:"mba13",cat:"mac",nome:"MacBook Air 13\" M4",modelo:"mac",spec:"16 GB · 256 GB SSD",
-   cores:[["Azul-céu","#AFC6D9"],["Prateado","#D8D9DB"],["Estelar","#E6DFD3"],["Meia-noite","#2A2F38"]],arm:[["256 GB",8499],["512 GB",9999]],bf:{de:9299,resta:3,total:10}},
-  {id:"mba15",cat:"mac",nome:"MacBook Air 15\" M4",modelo:"mac",spec:"16 GB · 256 GB SSD",
-   cores:[["Meia-noite","#2A2F38"],["Prateado","#D8D9DB"],["Azul-céu","#AFC6D9"]],arm:[["256 GB",10499],["512 GB",11999]]},
-  {id:"mbp14",cat:"mac",nome:"MacBook Pro 14\" M5",modelo:"mac",spec:"16 GB · 512 GB SSD",tag:"Pro",
-   cores:[["Preto-espacial","#2E2F32"],["Prateado","#D8D9DB"]],arm:[["512 GB",14999],["1 TB",16999]]},
+  // ---------- iPad ----------
+  {id:"ipa16",cat:"ipad",sub:"iPad",c:"novo",nome:"iPad 11\" A16",m:"ipad",spec:N,cores:[["Azul","#8FB4DA"],["Rosa","#EDB9C4"],["Amarelo","#F0D97A"],["Prateado","#D8D9DB"]],arm:[o("128 GB",3190,0,[306,220,178])]},
+  {id:"ippro5",cat:"ipad",sub:"iPad",c:"semi",nome:"iPad Pro 12,9\" (5ª geração)",m:"ipad",spec:S,cores:[["Prateado","#D8D9DB"]],arm:[o("256 GB",4990,0,[478,343,279]),o("1 TB",6090,0,[583,418,340])]},
+  {id:"ippro4",cat:"ipad",sub:"iPad",c:"semi",nome:"iPad Pro 12,9\" (4ª geração)",m:"ipad",spec:S,cores:[["Cinza-espacial","#6A6C70"]],arm:[o("256 GB",4290,0,[411,295,240])]},
+  {id:"ipair5",cat:"ipad",sub:"iPad",c:"semi",nome:"iPad Air 11\" (5ª geração)",m:"ipad",spec:S,cores:[["Cinza-espacial","#6A6C70"],["Azul","#A9BED6"]],arm:[o("64 GB",3090,0,[296,212,172])]},
+  {id:"penpro",cat:"ipad",sub:"Pencil e capas",c:"novo",nome:"Apple Pencil Pro",m:"pencil",spec:N,cores:W,arm:[o("Única",999,0,[95,68,55])]},
+  {id:"penusbc",cat:"ipad",sub:"Pencil e capas",c:"novo",nome:"Apple Pencil (USB-C)",m:"pencil",spec:N,cores:W,arm:[o("Única",890,0,[86,62,50])]},
+  {id:"pen2n",cat:"ipad",sub:"Pencil e capas",c:"novo",nome:"Apple Pencil (2ª geração)",m:"pencil",spec:N,cores:W,arm:[o("Única",690,0,[66,47,38])]},
+  {id:"pen2s",cat:"ipad",sub:"Pencil e capas",c:"semi",nome:"Apple Pencil (2ª geração)",m:"pencil",spec:"Seminovo",cores:W,arm:[o("Única",390,0,null)]},
+  {id:"canfam",cat:"ipad",sub:"Pencil e capas",c:"acc",nome:"Caneta magnética FAM",m:"pencil",spec:A,cores:W,arm:[o("Para iPad",159,0,0,""),o("Universal iPad",169,0,0),o("iPad e celular",160,0,0)]},
+  {id:"capatec",cat:"ipad",sub:"Pencil e capas",c:"acc",nome:"Capa com teclado para iPad",m:"keyboard",spec:"Novo · Garantia de 3 meses",cores:[["Rosa","#EBC3C9"],["Preto","#2A2B2E"]],arm:[o("Única",370,0,0)]},
 
-  // Acessórios
-  {id:"capsil",cat:"acessorios",sub:"Capinhas",nome:"Capa de silicone com MagSafe",modelo:"case",spec:"Para iPhone 13 ao 17",
-   cores:[["Laranja","#E26A32"],["Azul-marinho","#2D3B57"],["Rosa-claro","#F0C6CF"],["Preto","#26272A"]],arm:[["Única",299]]},
-  {id:"captr",cat:"acessorios",sub:"Capinhas",nome:"Capa transparente com MagSafe",modelo:"case",spec:"Não amarela · Bordas elevadas",
-   cores:[["Transparente","#DCE3EA"]],arm:[["Única",249]]},
-  {id:"capac",cat:"acessorios",sub:"Capinhas",nome:"Capa antichoque Izone",modelo:"case",spec:"Proteção de quinas · 2 m de queda",
-   cores:[["Grafite","#3B3E44"],["Verde","#7F9C86"],["Lilás","#B9A9D4"]],arm:[["Única",129]]},
-  {id:"app3",cat:"acessorios",sub:"Fones",nome:"AirPods Pro 3",modelo:"airpods",spec:"Cancelamento de ruído · Estojo USB-C",tag:"Lacrado",
-   cores:[["Branco","#F4F4F2"]],arm:[["Única",2299]],bf:{de:2599,resta:7,total:20}},
-  {id:"ap4",cat:"acessorios",sub:"Fones",nome:"AirPods 4 com cancelamento de ruído",modelo:"airpods",spec:"Estojo USB-C",
-   cores:[["Branco","#F4F4F2"]],arm:[["Única",1399]]},
-  {id:"ear",cat:"acessorios",sub:"Fones",nome:"EarPods USB-C",modelo:"earpods",spec:"Com microfone e controle",
-   cores:[["Branco","#F4F4F2"]],arm:[["Única",199]]},
-  {id:"c20",cat:"acessorios",sub:"Carregadores",nome:"Carregador USB-C 20W",modelo:"charger",spec:"Carga rápida · Original Apple",
-   cores:[["Branco","#F4F4F2"]],arm:[["Única",199]]},
-  {id:"c35",cat:"acessorios",sub:"Carregadores",nome:"Carregador duplo 35W",modelo:"charger2",spec:"Duas portas USB-C",
-   cores:[["Branco","#F4F4F2"]],arm:[["Única",449]]},
-  {id:"cmag",cat:"acessorios",sub:"Carregadores",nome:"Carregador MagSafe",modelo:"magsafe",spec:"Até 25W · Cabo 1 m",
-   cores:[["Branco","#F4F4F2"]],arm:[["Única",449]]},
-  {id:"cabo",cat:"acessorios",sub:"Outros",nome:"Cabo USB-C trançado",modelo:"cable",spec:"1 m · 60W",
-   cores:[["Branco","#F4F4F2"]],arm:[["1 m",149],["2 m",199]]},
-  {id:"tag",cat:"acessorios",sub:"Outros",nome:"AirTag",modelo:"airtag",spec:"Localize chaves, malas e bolsas",
-   cores:[["Branco","#F4F4F2"]],arm:[["1 unidade",349],["Kit com 4",1199]]},
-  {id:"pel",cat:"acessorios",sub:"Outros",nome:"Película de vidro 3D",modelo:"film",spec:"Aplicação grátis na loja",
-   cores:[["Transparente","#DCE3EA"]],arm:[["Única",79]]}
+  // ---------- AirPods e som ----------
+  {id:"app3",cat:"audio",sub:"AirPods",c:"novo",nome:"AirPods Pro 3",m:"airpods",spec:N,cores:W,arm:[o("Única",1790,0,[172,123,100])]},
+  {id:"ap5",cat:"audio",sub:"AirPods",c:"novo",nome:"AirPods 5",m:"airpods",spec:N,cores:W,arm:[o("Padrão",1390,0,[133,96,78]),o("Estojo sem fio",1590,0,[153,110,89])]},
+  {id:"ap4",cat:"audio",sub:"AirPods",c:"novo",nome:"AirPods 4",m:"airpods",spec:N,cores:W,arm:[o("Padrão",999,0,[96,69,56]),o("Cancelamento de ruído",1290,0,[124,89,72])]},
+  {id:"caseap",cat:"audio",sub:"AirPods",c:"acc",nome:"Case para AirPods",m:"airpods",spec:"Com mosquetão",cores:[["Preto","#2A2B2E"],["Laranja","#E2702F"],["Cinza","#6E7275"]],arm:[o("Única",69,0,0)]},
+  {id:"airbuds",cat:"audio",sub:"Fones",c:"acc",nome:"Airbuds Pro FAM",m:"airpods",spec:"Novo · Lacrado · Garantia de 1 ano",cores:W,arm:[o("Única",170,0,0)]},
+  {id:"harbor",cat:"audio",sub:"Fones",c:"acc",nome:"Fone sem fio FAM 80h",m:"headphone",spec:"Novo · Lacrado · Garantia de 1 ano",cores:[["Bege","#CDBFB0"]],arm:[o("Única",259,0,0)]},
+  {id:"openair",cat:"audio",sub:"Fones",c:"acc",nome:"Fone Open Air 2 FAM",m:"earpods",spec:"Fone de ouvido OWS",cores:[["Branco","#F4F4F2"]],arm:[o("Única",259,0,0)]},
+  {id:"fonefio",cat:"audio",sub:"Fones",c:"acc",nome:"Fone com fio",m:"earpods",spec:"Novo · Lacrado · Garantia de 1 ano",cores:W,arm:[o("P2",59,0,0),o("USB-C",60,0,0)]},
+  {id:"jbl770",cat:"audio",sub:"JBL",c:"acc",nome:"JBL Tune 770NC",m:"headphone",spec:A,cores:[["Azul","#2E4E8F"]],arm:[o("Única",459,0,[44,32,26])]},
+  {id:"jbl520",cat:"audio",sub:"JBL",c:"acc",nome:"JBL Tune 520BT",m:"headphone",spec:A,cores:K,arm:[o("Única",280,0,[27,20,16])]},
+  {id:"jbljr",cat:"audio",sub:"JBL",c:"acc",nome:"JBL Junior 310BT",m:"headphone",spec:A,cores:[["Azul","#5DA9D6"]],arm:[o("Única",299,0,[29,21,17])]},
+  {id:"charge5",cat:"audio",sub:"JBL",c:"acc",nome:"JBL Charge 5",m:"speaker",spec:A,cores:K,arm:[o("Única",850,0,[82,59,48])]},
+  {id:"flip6",cat:"audio",sub:"JBL",c:"acc",nome:"JBL Flip 6",m:"speaker",spec:A,cores:K,arm:[o("Única",520,660,[50,36,30])]},
+  {id:"clip5",cat:"audio",sub:"JBL",c:"acc",nome:"JBL Clip 5",m:"speaker",spec:A,cores:K,arm:[o("Única",350,0,[34,25,null])]},
+  {id:"go5",cat:"audio",sub:"JBL",c:"acc",nome:"JBL Go 5",m:"speaker",spec:A,cores:[["Camuflada","#6F7A55"]],arm:[o("Única",279,0,[27,20,16])]},
+  {id:"go4",cat:"audio",sub:"JBL",c:"acc",nome:"JBL Go 4",m:"speaker",spec:A,cores:K,arm:[o("Única",250,0,[24,18,14])]},
+  {id:"goess",cat:"audio",sub:"JBL",c:"acc",nome:"JBL Go Essential",m:"speaker",spec:A,cores:[["Vermelha","#C2382F"],["Azul","#2E4E8F"]],arm:[o("Única",200,0,0)]},
+  {id:"cx20",cat:"audio",sub:"JBL",c:"acc",nome:"Caixa acústica 20W FAM",m:"speaker",spec:A,cores:K,arm:[o("Única",290,0,[28,20,17])]},
+
+  // ---------- Casa e games ----------
+  {id:"ps5",cat:"casa",sub:"Games",c:"acc",nome:"PlayStation 5 Mídia Digital",m:"console",spec:"Novo · Lacrado · Garantia de 1 ano",cores:W,arm:[o("825 GB",4590,0,[440,316,null],"")]},
+  {id:"echo",cat:"casa",sub:"Alexa",c:"acc",nome:"Amazon Echo (Alexa)",m:"echo",spec:"Novo · Lacrado · Garantia de 1 ano",cores:[["Grafite","#3A3D42"]],arm:[o("Echo Pop",320,0,0),o("Echo Dot 5",380,0,0),o("Echo Spot",450,0,0),o("Echo Show",560,0,0)]},
+  {id:"fire",cat:"casa",sub:"TV",c:"acc",nome:"Amazon Fire TV Stick",m:"stick",spec:"Garantia de 1 ano",cores:K,arm:[o("Fire TV Stick",270,0,0),o("Fire TV Stick Lite",280,0,0)]},
+  {id:"xiaomi",cat:"casa",sub:"TV",c:"acc",nome:"Xiaomi TV",m:"stick",spec:"Garantia de 1 ano",cores:K,arm:[o("TV Box S 4K",320,0,0),o("Mi TV Stick",420,0,0)]},
+
+  // ---------- Acessórios ----------
+  {id:"airtag",cat:"acessorios",sub:"Originais Apple",c:"novo",nome:"AirTag",m:"airtag",spec:"Novo · Lacrado · Garantia de 1 ano",cores:W,arm:[o("Única",189,0,0)]},
+  {id:"fonte",cat:"acessorios",sub:"Originais Apple",c:"novo",nome:"Fonte USB-C Apple",m:"charger",spec:"Novo · Lacrado · Garantia de 1 ano",cores:W,arm:[o("20W",149,0,0),o("35W",279,0,0)]},
+  {id:"earpods",cat:"acessorios",sub:"Originais Apple",c:"novo",nome:"EarPods Apple",m:"earpods",spec:"Novo · Lacrado · Garantia de 1 ano",cores:W,arm:[o("Lightning",199,0,0),o("USB-C",199,0,0)]},
+  {id:"cabcc",cat:"acessorios",sub:"Originais Apple",c:"novo",nome:"Cabo USB-C para USB-C Apple",m:"cable",spec:"Novo · Lacrado · Garantia de 1 ano",cores:W,arm:[o("1 m",199,0,0),o("2 m",299,0,0)]},
+  {id:"cabcl",cat:"acessorios",sub:"Originais Apple",c:"novo",nome:"Cabo USB-C para Lightning Apple",m:"cable",spec:"Novo · Lacrado · Garantia de 1 ano",cores:W,arm:[o("1 m",199,0,0),o("2 m",299,0,0)]},
+  {id:"cabul",cat:"acessorios",sub:"Originais Apple",c:"novo",nome:"Cabo USB para Lightning Apple",m:"cable",spec:"Novo · Lacrado · Garantia de 1 ano",cores:W,arm:[o("1 m",179,0,0),o("2 m",289,0,0)]},
+  {id:"cabwatch",cat:"acessorios",sub:"Originais Apple",c:"novo",nome:"Cabo de carregamento Apple Watch",m:"magsafe",spec:"Novo · Lacrado · Garantia de 1 ano",cores:W,arm:[o("Única",259,0,0)]},
+  {id:"magic",cat:"acessorios",sub:"Originais Apple",c:"semi",nome:"Magic Mouse",m:"mouse",spec:S,cores:W,arm:[o("Branco",490,0,[47,34,28])]},
+  {id:"fcl",cat:"acessorios",sub:"Cabos",c:"acc",nome:"Cabo USB-C para Lightning",m:"cable",spec:A,cores:W,arm:[o("1,2 m FAM",60,0,0),o("2 m FAM",89,0,0),o("Metal 1,2 m FAM",89,0,0),o("2 m Baseus",99,0,0),o("1,5 m Baseus (2 un.)",99,0,0)]},
+  {id:"fcc",cat:"acessorios",sub:"Cabos",c:"acc",nome:"Cabo USB-C para USB-C",m:"cable",spec:A,cores:W,arm:[o("1,2 m FAM",69,0,0),o("2 m FAM",89,0,0),o("Metal 1,2 m FAM",89,0,0),o("1 m Baseus",89,0,0)]},
+  {id:"fuc",cat:"acessorios",sub:"Cabos",c:"acc",nome:"Cabo USB para USB-C",m:"cable",spec:A,cores:K,arm:[o("1 m FAM",69,0,0),o("1,2 m FAM",69,0,0),o("Tipo-C 1,2 m",75,0,0)]},
+  {id:"ful",cat:"acessorios",sub:"Cabos",c:"acc",nome:"Cabo USB para Lightning",m:"cable",spec:A,cores:W,arm:[o("1 m FAM",60,0,0),o("2 m Baseus",99,0,0)]},
+  {id:"c3em1",cat:"acessorios",sub:"Cabos",c:"acc",nome:"Cabo 3 em 1 Baseus",m:"cable",spec:"1,5 m · Lightning, USB-C e V8",cores:W,arm:[o("Única",90,0,0)]},
+  {id:"ind",cat:"acessorios",sub:"Carregadores",c:"acc",nome:"Carregador por indução",m:"wcharger",spec:"Celular, AirPods e Apple Watch · Garantia de 1 ano",cores:W,arm:[o("Base 3 em 1 dobrável",120,0,0),o("4 em 1 FAM",159,0,0),o("3 em 1",219,0,0),o("3 em 1 FAM",279,0,0)]},
+  {id:"magfam",cat:"acessorios",sub:"Carregadores",c:"acc",nome:"Carregador MagSafe FAM",m:"magsafe",spec:A,cores:W,arm:[o("Única",110,0,0)]},
+  {id:"cwatch",cat:"acessorios",sub:"Carregadores",c:"acc",nome:"Carregador magnético Apple Watch",m:"magsafe",spec:A,cores:W,arm:[o("Rápido",60,0,0),o("FAM",99,0,0)]},
+  {id:"fdupla",cat:"acessorios",sub:"Carregadores",c:"acc",nome:"Fonte dupla 20W Baseus",m:"charger2",spec:"USB e USB-C · Fast Charge",cores:K,arm:[o("Única",120,0,0)]},
+  {id:"viagem",cat:"acessorios",sub:"Carregadores",c:"acc",nome:"Carregador de viagem FAM",m:"charger2",spec:"2 USB-C e 1 USB",cores:K,arm:[o("Única",150,0,0)]},
+  {id:"veic",cat:"acessorios",sub:"Carregadores",c:"acc",nome:"Carregador veicular FAM",m:"charger",spec:"1 USB-C e 1 USB · Turbo 38W",cores:K,arm:[o("Única",79,0,0)]},
+  {id:"suporte",cat:"acessorios",sub:"Outros",c:"acc",nome:"Suporte magnético veicular Baseus",m:"magsafe",spec:"Giro de 360°",cores:[["Prata","#D5D6D8"]],arm:[o("Única",80,0,0)]},
+  {id:"hub",cat:"acessorios",sub:"Outros",c:"acc",nome:"Mini hub 3 em 1",m:"hub",spec:A,cores:[["Cinza","#8E9196"]],arm:[o("Única",219,0,0)]},
+  {id:"mouse",cat:"acessorios",sub:"Outros",c:"acc",nome:"Mouse Bluetooth HRebos",m:"mouse",spec:"Novo · Lacrado · Garantia de 1 ano",cores:[["Cinza","#8E9196"]],arm:[o("Única",99,0,0,"")]},
+  {id:"adapt",cat:"acessorios",sub:"Outros",c:"acc",nome:"Adaptador",m:"charger",spec:"Pronta entrega",cores:K,arm:[o("Lightning para USB-C",15,0,0),o("Universal",120,0,0)]}
 ];
 
 const CATS = [
   ["novos","iPhone novo","Lacrados com nota fiscal e <b>1 ano de garantia Apple</b>."],
-  ["seminovos","iPhone seminovo","Testados em 40 pontos, <b>90 dias de garantia Izone</b>, bateria e grade informadas em cada aparelho."],
-  ["watch","Apple Watch","Lacrados, com <b>pulseira de brinde</b> na Black Friday."],
-  ["ipad","iPad","Lacrados com nota fiscal. <b>Película grátis</b> em qualquer iPad."],
-  ["mac","Mac","Lacrados com nota fiscal e <b>1 ano de garantia Apple</b>."],
-  ["acessorios","Acessórios","Capinhas, fones e carregadores. <b>Leve 3, pague 2</b> em capinhas e películas."]
+  ["seminovos","iPhone seminovo","Revisados, com <b>3 meses de garantia</b> da loja. Quando ainda há garantia Apple, ela aparece no card. Cores sujeitas à disponibilidade."],
+  ["watch","Apple Watch","Novos lacrados com <b>1 ano de garantia Apple</b> e seminovos com 3 meses de garantia."],
+  ["mac","MacBook","Novos lacrados e seminovos revisados."],
+  ["ipad","iPad e Pencil","iPads novos e seminovos, Apple Pencil e acessórios."],
+  ["audio","AirPods e som","AirPods originais, fones e caixas de som JBL."],
+  ["acessorios","Acessórios","Originais Apple e acessórios FAM e Baseus com <b>1 ano de garantia</b>."],
+  ["casa","Casa e games","Alexa, Fire TV, Xiaomi TV e PlayStation 5."]
 ];
 
 const DEPOIMENTOS = [
-  {nome:"Camila R.",bairro:"Água Verde",prod:"iPhone 17 Pro · 256 GB",txt:"Comprei no Pix e o motoboy entregou no mesmo dia, lacrado e com nota. Atendimento pelo WhatsApp respondeu tudo antes de eu fechar."},
-  {nome:"Rafael M.",bairro:"Batel",prod:"Troca 13 → 16 Pro",txt:"Dei meu iPhone 13 na troca e paguei a diferença em 10x. Avaliaram na hora, sem enrolação. Valor justo."},
-  {nome:"Juliana T.",bairro:"Portão",prod:"iPhone 15 seminovo",txt:"Tinha medo de seminovo, mas veio com bateria em 90% e garantia. Parece novo. Já indiquei para minha irmã."},
-  {nome:"Lucas P.",bairro:"Centro Cívico",prod:"MacBook Air M4",txt:"Preço melhor do que nas grandes lojas e consegui parcelar sem juros. Retirei na loja em menos de uma hora."},
-  {nome:"Fernanda A.",bairro:"São José dos Pinhais",prod:"Apple Watch Series 11",txt:"Presente de aniversário pro meu marido. Ajudaram a escolher o tamanho e ainda ganhei uma pulseira extra."},
-  {nome:"Gustavo L.",bairro:"Bigorrilho",prod:"AirPods Pro 3 + capinha",txt:"Original, lacrado, chegou rápido. Voltei depois para comprar a capinha MagSafe e o carregador."}
+  {nome:"Camila R.",bairro:"Água Verde",prod:"iPhone 17 Pro · 256 GB",txt:"Comprei no Pix e retirei no mesmo dia, lacrado e com nota. O atendimento pelo WhatsApp respondeu tudo antes de eu fechar."},
+  {nome:"Rafael M.",bairro:"Batel",prod:"Troca 13 → 16 Pro",txt:"Dei meu iPhone 13 na troca e paguei a diferença no cartão. Avaliaram na hora, sem enrolação. Valor justo."},
+  {nome:"Juliana T.",bairro:"Portão",prod:"iPhone 15 seminovo",txt:"Tinha medo de seminovo, mas veio revisado e com garantia. Parece novo. Já indiquei para minha irmã."},
+  {nome:"Lucas P.",bairro:"Centro Cívico",prod:"MacBook Air M5",txt:"Preço melhor do que nas grandes lojas e consegui parcelar. Retirei na loja em menos de uma hora."},
+  {nome:"Fernanda A.",bairro:"São José dos Pinhais",prod:"Apple Watch Series 11",txt:"Presente de aniversário pro meu marido. Ajudaram a escolher o tamanho certo."},
+  {nome:"Gustavo L.",bairro:"Bigorrilho",prod:"AirPods Pro 3 + case",txt:"Original, lacrado, entrega rápida. Voltei depois para comprar a case e o carregador."}
 ];
 
-const TROCA = [["iPhone 16 Pro Max",4800],["iPhone 16 Pro",4100],["iPhone 16",3100],["iPhone 15 Pro Max",3900],["iPhone 15 Pro",3300],["iPhone 15",2400],["iPhone 14 Pro Max",2900],["iPhone 14 Pro",2500],["iPhone 14",1800],["iPhone 13 Pro",1900],["iPhone 13",1400],["iPhone 12",900],["iPhone 11",650]];
+const TROCA = [["iPhone 17 Pro Max",6000],["iPhone 17 Pro",5300],["iPhone 16 Pro Max",4300],["iPhone 16 Pro",3700],["iPhone 16",2900],["iPhone 15 Pro Max",3500],["iPhone 15 Pro",2900],["iPhone 15",2300],["iPhone 14 Pro Max",2700],["iPhone 14 Pro",2300],["iPhone 14",1700],["iPhone 13 Pro",1800],["iPhone 13",1300],["iPhone 12",850],["iPhone 11",600]];
 
 /* ========================================================== */
 const brl = v => v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
 const brl0 = v => v.toLocaleString("pt-BR",{style:"currency",currency:"BRL",maximumFractionDigits:0,minimumFractionDigits:0});
-const pix = v => Math.round(v*(1-LOJA.descontoPix)*100)/100;
 const wa = msg => `https://wa.me/${LOJA.whatsapp}?text=${encodeURIComponent(msg)}`;
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const parc = (op,n) => {const i=LOJA.parcelas.indexOf(n);return (op.x&&op.x[i]!=null)?op.x[i]:Math.round(op.p*LOJA.fator[n])};
+const instTxt = op => op.x===0 ? "Preço à vista" : "à vista ou "+LOJA.parcelas.map(n=>`${n}x ${brl0(parc(op,n))}`).join(" · ");
+const badgeOf = p => p.c==="semi"?"Seminovo":p.c==="novo"?(["novos","watch","mac","ipad"].includes(p.cat)||p.cat==="audio"?"Novo lacrado":"Original Apple"):"Novo";
 
-/* ---------- Desenho dos aparelhos (SVG) ---------- */
+/* ---------- Desenho dos produtos (SVG) ---------- */
 let gid = 0;
 function shade(hex,amt){const n=parseInt(hex.slice(1),16);let r=n>>16,g=n>>8&255,b=n&255;const f=c=>Math.max(0,Math.min(255,Math.round(c+(amt<0?c*amt:(255-c)*amt))));return "#"+((1<<24)|(f(r)<<16)|(f(g)<<8)|f(b)).toString(16).slice(1)}
 function lens(x,y,r){return `<circle cx="${x}" cy="${y}" r="${r+2.5}" fill="#1b1c1f"/><circle cx="${x}" cy="${y}" r="${r}" fill="#0a0b0d"/><circle cx="${x}" cy="${y}" r="${r*.45}" fill="#1f2a3d"/><circle cx="${x-r*.3}" cy="${y-r*.3}" r="${r*.18}" fill="#8fa3c2" opacity=".8"/>`}
 function device(m,c){
-  const id="g"+(++gid), d=shade(c,-.22), l=shade(c,.25);
+  const id="g"+(++gid), d=shade(c,-.22), l=shade(c,.25), G=`url(#${id})`;
   const grad=`<defs><linearGradient id="${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${l}"/><stop offset=".55" stop-color="${c}"/><stop offset="1" stop-color="${d}"/></linearGradient></defs>`;
-  const phoneBody=`<rect x="52" y="10" width="96" height="180" rx="20" fill="url(#${id})"/><rect x="52.5" y="10.5" width="95" height="179" rx="19.5" fill="none" stroke="${d}" stroke-width="1.2"/><circle cx="100" cy="112" r="20" fill="none" stroke="${d}" stroke-opacity=".35" stroke-width="1"/>`;
+  const phoneBody=`<rect x="52" y="10" width="96" height="180" rx="20" fill="${G}"/><rect x="52.5" y="10.5" width="95" height="179" rx="19.5" fill="none" stroke="${d}" stroke-width="1.2"/><circle cx="100" cy="112" r="20" fill="none" stroke="${d}" stroke-opacity=".35" stroke-width="1"/>`;
   const S=s=>`<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">${grad}${s}</svg>`;
   switch(m){
     case "pro17": return S(phoneBody+`<path d="M52 30a20 20 0 0 1 20-20h56a20 20 0 0 1 20 20v34H52Z" fill="${d}" opacity=".55"/>`+lens(73,30,8.5)+lens(73,52,8.5)+lens(94,41,8.5)+`<circle cx="124" cy="30" r="4" fill="#f3e9cf"/><circle cx="124" cy="50" r="2.6" fill="#111"/>`);
@@ -782,26 +851,37 @@ function device(m,c){
     case "single": return S(phoneBody+lens(74,32,9)+`<circle cx="92" cy="26" r="3" fill="#f3e9cf"/>`);
     case "pro": return S(phoneBody+`<rect x="60" y="18" width="52" height="52" rx="14" fill="${d}" opacity=".55"/>`+lens(74,32,8.5)+lens(74,56,8.5)+lens(97,44,8.5)+`<circle cx="98" cy="26" r="3" fill="#f3e9cf"/><circle cx="98" cy="62" r="2.4" fill="#111"/>`);
     case "diag": return S(phoneBody+`<rect x="60" y="18" width="46" height="46" rx="13" fill="${d}" opacity=".5"/>`+lens(73,31,8)+lens(93,51,8)+`<circle cx="94" cy="29" r="3" fill="#f3e9cf"/>`);
+    case "fold": return S(`<rect x="14" y="38" width="172" height="124" rx="16" fill="${G}"/><rect x="20" y="44" width="160" height="112" rx="11" fill="#0b0d10"/><rect x="20" y="44" width="160" height="112" rx="11" fill="#6d7fa8" opacity=".35"/><circle cx="62" cy="96" r="34" fill="#c9a7d8" opacity=".35"/><circle cx="140" cy="112" r="30" fill="#f0b48a" opacity=".3"/><path d="M100 44v112" stroke="#fff" stroke-opacity=".18" stroke-width="2"/><circle cx="150" cy="52" r="3" fill="#222"/>`);
     case "watch": case "ultra": {
       const u=m==="ultra";
-      return S(`<rect x="72" y="0" width="56" height="200" rx="10" fill="${u?"#E26A32":d}" opacity="${u?.9:.85}"/>`+
-        `<rect x="${u?50:55}" y="${u?46:50}" width="${u?100:90}" height="${u?108:100}" rx="${u?22:26}" fill="url(#${id})"/>`+
+      return S(`<rect x="72" y="0" width="56" height="200" rx="10" fill="${u?"#2C2C2E":d}" opacity=".9"/>`+
+        `<rect x="${u?50:55}" y="${u?46:50}" width="${u?100:90}" height="${u?108:100}" rx="${u?22:26}" fill="${G}"/>`+
         `<rect x="${u?60:63}" y="${u?56:58}" width="${u?80:74}" height="${u?88:84}" rx="${u?14:20}" fill="#050607"/>`+
         `<circle cx="100" cy="100" r="26" fill="none" stroke="#E2591B" stroke-width="5" stroke-dasharray="120 200" transform="rotate(-90 100 100)" stroke-linecap="round"/>`+
         `<circle cx="100" cy="100" r="18" fill="none" stroke="#7BD88F" stroke-width="5" stroke-dasharray="80 200" transform="rotate(-90 100 100)" stroke-linecap="round"/>`+
         `<text x="100" y="${u?78:80}" text-anchor="middle" font-family="Manrope,Arial" font-weight="800" font-size="11" fill="#fff">10:09</text>`+
         `<rect x="${u?150:145}" y="82" width="6" height="20" rx="3" fill="${d}"/>${u?`<rect x="44" y="90" width="6" height="22" rx="3" fill="#E26A32"/>`:""}`);
     }
-    case "ipad": return S(`<rect x="18" y="38" width="164" height="124" rx="14" fill="url(#${id})"/><rect x="25" y="45" width="150" height="110" rx="8" fill="#0b0d10"/><rect x="25" y="45" width="150" height="110" rx="8" fill="${c}" opacity=".35"/><circle cx="70" cy="100" r="40" fill="${l}" opacity=".35"/><circle cx="140" cy="80" r="28" fill="${d}" opacity=".45"/><circle cx="100" cy="41.5" r="1.6" fill="#222"/>`);
-    case "mac": return S(`<rect x="30" y="34" width="140" height="94" rx="8" fill="#111317"/><rect x="35" y="39" width="130" height="84" rx="4" fill="${c}" opacity=".55"/><circle cx="80" cy="90" r="34" fill="${l}" opacity=".5"/><circle cx="135" cy="70" r="24" fill="${d}" opacity=".6"/><path d="M14 130h172l-8 14a8 8 0 0 1-7 4H29a8 8 0 0 1-7-4Z" fill="url(#${id})"/><rect x="85" y="130" width="30" height="4" rx="2" fill="${d}"/>`);
-    case "case": return S(`<rect x="52" y="10" width="96" height="180" rx="22" fill="url(#${id})"/><rect x="60" y="18" width="80" height="164" rx="16" fill="${d}" opacity=".25"/><rect x="62" y="20" width="50" height="50" rx="14" fill="${shade(c,-.5)}" opacity=".55"/><circle cx="100" cy="115" r="24" fill="none" stroke="${l}" stroke-width="3" opacity=".8"/><rect x="146" y="60" width="4" height="26" rx="2" fill="${d}"/>`);
-    case "airpods": return S(`<rect x="45" y="58" width="110" height="94" rx="34" fill="url(#${id})"/><path d="M45 92h110" stroke="#c9cbcf" stroke-width="1.4"/><circle cx="100" cy="106" r="2.6" fill="#7BD88F"/><rect x="92" y="146" width="16" height="4" rx="2" fill="#bfc2c6"/>`);
-    case "earpods": return S(`<path d="M70 70c0 50 10 70 30 100M130 70c0 50-10 70-30 100" stroke="#e7e8ea" stroke-width="4" fill="none"/><ellipse cx="68" cy="58" rx="18" ry="16" fill="url(#${id})"/><ellipse cx="132" cy="58" rx="18" ry="16" fill="url(#${id})"/><rect x="96" y="150" width="8" height="24" rx="3" fill="#cfd1d4"/><rect x="97" y="174" width="6" height="12" rx="1" fill="#9a9da2"/>`);
-    case "charger": case "charger2": return S(`<rect x="58" y="52" width="84" height="96" rx="16" fill="url(#${id})"/><rect x="58.5" y="52.5" width="83" height="95" rx="15.5" fill="none" stroke="#c9cbcf"/><rect x="80" y="28" width="8" height="26" rx="2" fill="#b9bcc0"/><rect x="112" y="28" width="8" height="26" rx="2" fill="#b9bcc0"/><rect x="88" y="${m==="charger2"?110:118}" width="24" height="8" rx="4" fill="#2a2b2e"/>${m==="charger2"?`<rect x="88" y="126" width="24" height="8" rx="4" fill="#2a2b2e"/>`:""}`);
-    case "magsafe": return S(`<path d="M100 132c0 30-40 30-40 60" stroke="#e7e8ea" stroke-width="6" fill="none" stroke-linecap="round"/><circle cx="100" cy="84" r="56" fill="url(#${id})"/><circle cx="100" cy="84" r="56" fill="none" stroke="#c9cbcf"/><circle cx="100" cy="84" r="34" fill="none" stroke="#d5d7da" stroke-width="2"/>`);
-    case "cable": return S(`<path d="M40 40c80 0 120 40 60 70s-40 60 60 60" stroke="url(#${id})" stroke-width="9" fill="none" stroke-linecap="round"/><path d="M40 40c80 0 120 40 60 70s-40 60 60 60" stroke="#c9cbcf" stroke-width="9" fill="none" stroke-dasharray="2 6" opacity=".7"/><rect x="18" y="32" width="28" height="16" rx="6" fill="#e3e4e6"/><rect x="154" y="162" width="28" height="16" rx="6" fill="#e3e4e6"/>`);
-    case "airtag": return S(`<circle cx="100" cy="100" r="60" fill="#c9ccd0"/><circle cx="100" cy="100" r="54" fill="url(#${id})"/><circle cx="100" cy="100" r="54" fill="none" stroke="#dfe1e4"/><circle cx="82" cy="82" r="14" fill="#fff" opacity=".6"/>`);
-    case "film": return S(`<rect x="52" y="10" width="96" height="180" rx="20" fill="#11151b"/><rect x="56" y="14" width="88" height="172" rx="17" fill="${c}" opacity=".35"/><rect x="85" y="20" width="30" height="9" rx="4.5" fill="#000"/><path d="M60 120 140 40v40l-80 80Z" fill="#fff" opacity=".18"/>`);
+    case "ipad": return S(`<rect x="18" y="38" width="164" height="124" rx="14" fill="${G}"/><rect x="25" y="45" width="150" height="110" rx="8" fill="#0b0d10"/><rect x="25" y="45" width="150" height="110" rx="8" fill="${c}" opacity=".35"/><circle cx="70" cy="100" r="40" fill="${l}" opacity=".35"/><circle cx="140" cy="80" r="28" fill="${d}" opacity=".45"/><circle cx="100" cy="41.5" r="1.6" fill="#222"/>`);
+    case "mac": return S(`<rect x="30" y="34" width="140" height="94" rx="8" fill="#111317"/><rect x="35" y="39" width="130" height="84" rx="4" fill="${c}" opacity=".55"/><circle cx="80" cy="90" r="34" fill="${l}" opacity=".5"/><circle cx="135" cy="70" r="24" fill="${d}" opacity=".6"/><path d="M14 130h172l-8 14a8 8 0 0 1-7 4H29a8 8 0 0 1-7-4Z" fill="${G}"/><rect x="85" y="130" width="30" height="4" rx="2" fill="${d}"/>`);
+    case "sleeve": return S(`<rect x="22" y="44" width="156" height="116" rx="14" fill="${G}"/><path d="M22 72h156" stroke="${d}" stroke-width="2"/><rect x="88" y="62" width="24" height="6" rx="3" fill="${d}"/>`);
+    case "keyboard": return S(`<rect x="44" y="20" width="112" height="84" rx="9" fill="#15171b"/><rect x="50" y="26" width="100" height="72" rx="5" fill="${c}" opacity=".45"/><rect x="28" y="112" width="144" height="64" rx="10" fill="${G}"/>`+Array.from({length:4},(_,r)=>Array.from({length:10},(_,k)=>`<rect x="${38+k*12.6}" y="${120+r*12}" width="10" height="9" rx="2" fill="${d}" opacity=".7"/>`).join("")).join(""));
+    case "pencil": return S(`<g transform="rotate(-35 100 100)"><rect x="92" y="14" width="16" height="152" rx="5" fill="${G}"/><rect x="92.5" y="14.5" width="15" height="151" rx="4.5" fill="none" stroke="#c9cbcf"/><path d="M92 166 100 190 108 166Z" fill="#e2e3e5"/><path d="M97 182 100 190 103 182Z" fill="#555"/></g>`);
+    case "case": return S(`<rect x="52" y="10" width="96" height="180" rx="22" fill="${G}"/><rect x="62" y="20" width="50" height="50" rx="14" fill="${shade(c,-.5)}" opacity=".55"/><circle cx="100" cy="115" r="24" fill="none" stroke="${l}" stroke-width="3" opacity=".8"/>`);
+    case "airpods": return S(`<rect x="45" y="58" width="110" height="94" rx="34" fill="${G}"/><path d="M45 92h110" stroke="${d}" stroke-width="1.4"/><circle cx="100" cy="106" r="2.6" fill="#7BD88F"/><rect x="92" y="146" width="16" height="4" rx="2" fill="${d}"/>`);
+    case "earpods": return S(`<path d="M70 70c0 50 10 70 30 100M130 70c0 50-10 70-30 100" stroke="${d}" stroke-width="4" fill="none"/><ellipse cx="68" cy="58" rx="18" ry="16" fill="${G}"/><ellipse cx="132" cy="58" rx="18" ry="16" fill="${G}"/><rect x="96" y="150" width="8" height="24" rx="3" fill="#cfd1d4"/><rect x="97" y="174" width="6" height="12" rx="1" fill="#9a9da2"/>`);
+    case "headphone": return S(`<path d="M44 118V98a56 56 0 0 1 112 0v20" stroke="${G}" stroke-width="12" fill="none" stroke-linecap="round"/><rect x="28" y="104" width="38" height="62" rx="16" fill="${G}"/><rect x="134" y="104" width="38" height="62" rx="16" fill="${G}"/><rect x="58" y="112" width="10" height="46" rx="5" fill="${d}"/><rect x="132" y="112" width="10" height="46" rx="5" fill="${d}"/>`);
+    case "speaker": return S(`<rect x="30" y="66" width="140" height="72" rx="36" fill="${G}"/>`+Array.from({length:5},(_,r)=>Array.from({length:12},(_,k)=>`<circle cx="${54+k*8.4}" cy="${82+r*10}" r="2" fill="${d}"/>`).join("")).join("")+`<ellipse cx="30" cy="102" rx="9" ry="30" fill="${d}"/><ellipse cx="170" cy="102" rx="9" ry="30" fill="${d}"/>`);
+    case "echo": return S(`<circle cx="100" cy="104" r="64" fill="${G}"/><ellipse cx="100" cy="158" rx="46" ry="8" fill="none" stroke="#33b5ff" stroke-width="4" opacity=".9"/><circle cx="82" cy="78" r="14" fill="#fff" opacity=".12"/>`);
+    case "stick": return S(`<rect x="22" y="92" width="104" height="30" rx="9" fill="${G}"/><rect x="18" y="100" width="10" height="14" rx="2" fill="#888"/><rect x="142" y="36" width="34" height="130" rx="17" fill="${shade(c,.1)}"/><circle cx="159" cy="64" r="10" fill="none" stroke="#666" stroke-width="2"/><circle cx="159" cy="98" r="3" fill="#33b5ff"/><circle cx="159" cy="116" r="3" fill="#666"/>`);
+    case "console": return S(`<path d="M60 18h34v164H60c-10 0-16-6-16-16V34c0-10 6-16 16-16Z" fill="#F3F3F1"/><path d="M106 18h34c10 0 16 6 16 16v132c0 10-6 16-16 16h-34Z" fill="#F3F3F1"/><rect x="94" y="18" width="12" height="164" fill="#1b1b1d"/><path d="M44 34v132" stroke="#d5d5d3"/>`);
+    case "mouse": return S(`<ellipse cx="100" cy="100" rx="40" ry="66" fill="${G}"/><ellipse cx="100" cy="100" rx="40" ry="66" fill="none" stroke="${d}"/><path d="M100 40v34" stroke="${d}" stroke-width="2"/>`);
+    case "hub": return S(`<rect x="30" y="80" width="110" height="40" rx="12" fill="${G}"/><rect x="48" y="94" width="16" height="10" rx="2" fill="#222"/><rect x="72" y="94" width="16" height="10" rx="2" fill="#222"/><rect x="96" y="96" width="20" height="7" rx="3" fill="#222"/><path d="M140 100c20 0 20-40 34-40" stroke="${d}" stroke-width="6" fill="none" stroke-linecap="round"/><rect x="168" y="50" width="14" height="20" rx="3" fill="#cfd1d4"/>`);
+    case "charger": case "charger2": return S(`<rect x="58" y="52" width="84" height="96" rx="16" fill="${G}"/><rect x="58.5" y="52.5" width="83" height="95" rx="15.5" fill="none" stroke="${d}"/><rect x="80" y="28" width="8" height="26" rx="2" fill="#b9bcc0"/><rect x="112" y="28" width="8" height="26" rx="2" fill="#b9bcc0"/><rect x="88" y="${m==="charger2"?110:118}" width="24" height="8" rx="4" fill="#2a2b2e"/>${m==="charger2"?`<rect x="88" y="126" width="24" height="8" rx="4" fill="#2a2b2e"/>`:""}`);
+    case "magsafe": return S(`<path d="M100 132c0 30-40 30-40 60" stroke="${d}" stroke-width="6" fill="none" stroke-linecap="round"/><circle cx="100" cy="84" r="56" fill="${G}"/><circle cx="100" cy="84" r="56" fill="none" stroke="${d}"/><circle cx="100" cy="84" r="34" fill="none" stroke="${d}" stroke-width="2"/>`);
+    case "wcharger": return S(`<rect x="24" y="146" width="152" height="24" rx="12" fill="${G}"/><rect x="24.5" y="146.5" width="151" height="23" rx="11.5" fill="none" stroke="#c9cbcf"/><rect x="48" y="30" width="56" height="112" rx="12" fill="${G}" stroke="#c9cbcf"/><circle cx="76" cy="86" r="16" fill="none" stroke="#c9cbcf" stroke-width="2"/><rect x="128" y="96" width="10" height="50" rx="4" fill="#d5d7da"/><circle cx="133" cy="92" r="16" fill="${G}" stroke="#c9cbcf"/><ellipse cx="158" cy="140" rx="14" ry="6" fill="#d5d7da"/>`);
+    case "cable": return S(`<path d="M40 40c80 0 120 40 60 70s-40 60 60 60" stroke="${G}" stroke-width="9" fill="none" stroke-linecap="round"/><path d="M40 40c80 0 120 40 60 70s-40 60 60 60" stroke="${d}" stroke-width="9" fill="none" stroke-dasharray="2 6" opacity=".5"/><rect x="18" y="32" width="28" height="16" rx="6" fill="#e3e4e6"/><rect x="154" y="162" width="28" height="16" rx="6" fill="#e3e4e6"/>`);
+    case "airtag": return S(`<circle cx="100" cy="100" r="60" fill="#c9ccd0"/><circle cx="100" cy="100" r="54" fill="${G}"/><circle cx="100" cy="100" r="54" fill="none" stroke="#dfe1e4"/><circle cx="82" cy="82" r="14" fill="#fff" opacity=".6"/>`);
   }
   return S("");
 }
@@ -810,36 +890,37 @@ function device(m,c){
 const state = {tab:"novos",sub:"Todos",sel:{}};
 PRODUTOS.forEach(p=>state.sel[p.id]={a:0,c:0});
 let cart = [];
-try{cart = JSON.parse(localStorage.getItem("izone-cart")||"[]")||[]}catch(e){cart=[]}
-const save=()=>{try{localStorage.setItem("izone-cart",JSON.stringify(cart))}catch(e){}};
+try{cart = JSON.parse(localStorage.getItem("izone-cart2")||"[]")||[]}catch(e){cart=[]}
+const save=()=>{try{localStorage.setItem("izone-cart2",JSON.stringify(cart))}catch(e){}};
 const byId = id => PRODUTOS.find(p=>p.id===id);
-const priceOf = (p,a) => p.arm[a][1];
+cart = cart.filter(it=>{const p=byId(it.id);return p&&p.arm[it.a]&&p.cores[it.c]});
 
 /* ---------- Hero ---------- */
 function hero(){
-  const p=byId("17pm"); let ci=0;
+  const p=byId("n17pm"), op=p.arm[0]; let ci=0;
   const draw=()=>{$("#heroPhone").innerHTML=device("pro17",p.cores[ci][1]);
     $("#heroSwatches").querySelectorAll("button").forEach((b,i)=>b.setAttribute("aria-pressed",i===ci))};
   $("#heroSwatches").innerHTML=p.cores.map(([n,h])=>`<button type="button" style="background:${h}" aria-label="${n}" title="${n}"></button>`).join("");
   $("#heroSwatches").querySelectorAll("button").forEach((b,i)=>b.onclick=()=>{ci=i;draw()});
-  $("#heroOld").textContent="de "+brl0(p.bf.de);
-  $("#heroPrice").textContent=brl0(p.arm[0][1]);
-  $("#heroPix").textContent=brl(pix(p.arm[0][1]))+" no Pix";
+  $("#heroOld").textContent="de "+brl0(op.de);
+  $("#heroPrice").textContent=brl0(op.p);
+  $("#heroPix").textContent="ou 24x de "+brl0(parc(op,24));
   draw();
 }
 
-/* ---------- Black Friday ---------- */
+/* ---------- Ofertas ---------- */
 function deals(){
-  $("#deals").innerHTML=PRODUTOS.filter(p=>p.bf).map(p=>{
-    const v=p.arm[0][1], off=Math.round((1-v/p.bf.de)*100), w=Math.max(8,Math.round(p.bf.resta/p.bf.total*100));
-    return `<article class="deal">
-      <span class="off">−${off}%</span>
-      <div class="pic">${device(p.modelo,p.cores[0][1])}</div>
-      <div><h3>${esc(p.nome)}</h3><div class="spec">${esc(p.arm[0][0])}${p.cat==="seminovos"?" · seminovo "+p.grade:""}</div></div>
-      <div><div class="old">de ${brl0(p.bf.de)}</div><div class="price">${brl0(v)}</div><div class="pix">${brl(pix(v))} no Pix</div></div>
-      <div class="stock">Restam ${p.bf.resta} unidades<i style="--w:${w}%"></i></div>
-      <button class="btn btn-accent" type="button" data-add="${p.id}">Garantir o meu</button>
-    </article>`}).join("");
+  const list=[];
+  PRODUTOS.forEach(p=>p.arm.forEach((op,a)=>{if(op.de) list.push({p,a,op,off:1-op.p/op.de})}));
+  list.sort((x,y)=>y.off-x.off);
+  $("#deals").innerHTML=list.slice(0,8).map(({p,a,op,off})=>`<article class="deal">
+      <span class="off">−${Math.round(off*100)}%</span>
+      <div class="pic">${device(p.m,p.cores[0][1])}</div>
+      <div><h3>${esc(p.nome)}</h3><div class="spec">${esc(op.l)} · ${p.c==="semi"?"seminovo":"novo"}</div></div>
+      <div><div class="old">de ${brl0(op.de)}</div><div class="price">${brl0(op.p)}</div><div class="pix">${op.x===0?"à vista":"ou 24x de "+brl0(parc(op,24))}</div></div>
+      <div class="stock">${esc(op.st||"Consulte disponibilidade")}</div>
+      <button class="btn btn-accent" type="button" data-add="${p.id}" data-a="${a}">Garantir o meu</button>
+    </article>`).join("");
 }
 function clock(){
   const now=Date.now(), ini=Date.parse(LOJA.inicioBlackFriday), fim=Date.parse(LOJA.fimBlackFriday);
@@ -865,35 +946,36 @@ function setTab(k){
   $("#tabs").querySelectorAll(".tab").forEach(b=>b.setAttribute("aria-selected",b.dataset.tab===k));
   $("#grid").setAttribute("aria-labelledby","tab-"+k);
   $("#tabNote").innerHTML=CATS.find(c=>c[0]===k)[2];
+  const subs=[...new Set(PRODUTOS.filter(p=>p.cat===k&&p.sub).map(p=>p.sub))];
   const chips=$("#chips");
-  if(k==="acessorios"){
+  if(subs.length>1){
     chips.hidden=false;
-    chips.innerHTML=["Todos","Capinhas","Fones","Carregadores","Outros"].map(s=>`<button class="chip" type="button" data-sub="${s}" aria-pressed="${s===state.sub}">${s}</button>`).join("");
+    chips.innerHTML=["Todos",...subs].map(s=>`<button class="chip" type="button" data-sub="${s}" aria-pressed="${s===state.sub}">${s}</button>`).join("");
     chips.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{state.sub=b.dataset.sub;chips.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",x===b));grid()});
   } else chips.hidden=true;
   grid();
 }
 function cardHTML(p){
-  const s=state.sel[p.id], v=priceOf(p,s.a), semi=p.cat==="seminovos";
-  const n=LOJA.parcelasSemJuros;
-  const badge = semi?`<span class="badge">Seminovo · Grade ${p.grade}</span>`:`<span class="badge">${p.cat==="acessorios"?"Original":"Novo lacrado"}</span>`;
-  const hot = p.bf?`<span class="badge hot r">Black Friday</span>`:(p.tag?`<span class="badge r">${esc(p.tag)}</span>`:"");
+  const s=state.sel[p.id], op=p.arm[s.a], semi=p.c==="semi";
+  const badge=`<span class="badge">${badgeOf(p)}</span>`;
+  const hot = op.de?`<span class="badge hot r">−${Math.round((1-op.p/op.de)*100)}%</span>`:(op.st===E?`<span class="badge enc r">Sob encomenda</span>`:"");
+  const showOpts = p.arm.length>1 || op.l!=="Única";
   return `<article class="card" data-id="${p.id}">
-    <div class="pic">${badge}${hot}${device(p.modelo,p.cores[s.c][1])}</div>
+    <div class="pic">${badge}${hot}${device(p.m,p.cores[s.c][1])}</div>
     <div class="body">
       <div><h3>${esc(p.nome)}</h3><div class="spec">${esc(p.spec)}</div></div>
-      ${semi?`<div class="semi"><div><small>Bateria</small><b class="batt"><i style="--b:${p.bat}"></i>${p.bat}%</b></div><div><small>Garantia</small><b>90 dias</b></div></div>`:""}
-      ${p.arm.length>1?`<div class="opts" role="group" aria-label="Opções">${p.arm.map(([l],i)=>`<button type="button" class="opt" data-a="${i}" aria-pressed="${i===s.a}">${esc(l)}</button>`).join("")}</div>`:""}
+      ${semi?`<div class="semi"><div><small>Garantia</small><b>${esc(op.gar||"3 meses")}</b></div><div><small>Estado</small><b>${esc(op.nota||"Revisado")}</b></div></div>`:(op.nota?`<div class="spec">${esc(op.nota)}</div>`:"")}
+      ${showOpts?`<div class="opts" role="group" aria-label="Versões">${p.arm.map((x,i)=>`<button type="button" class="opt" data-a="${i}" aria-pressed="${i===s.a}">${esc(x.l)}</button>`).join("")}</div>`:""}
       ${p.cores.length>1?`<div class="dots" role="group" aria-label="Cores">${p.cores.map(([cn,h],i)=>`<button type="button" class="dot" data-c="${i}" style="background:${h}" aria-label="${esc(cn)}" title="${esc(cn)}" aria-pressed="${i===s.c}"></button>`).join("")}<span class="cname">${esc(p.cores[s.c][0])}</span></div>`:""}
       <div class="pricebox">
-        ${p.bf&&s.a===0?`<div class="old">de ${brl0(p.bf.de)}</div>`:""}
-        <div class="price mono">${brl0(v)}</div>
-        <div class="inst">ou ${n}x de ${brl(v/n)} sem juros</div>
-        <div class="pix">${brl(pix(v))} no Pix (−${Math.round(LOJA.descontoPix*100)}%)</div>
+        ${op.de?`<div class="old">de ${brl0(op.de)}</div>`:""}
+        <div class="price mono">${brl0(op.p)}</div>
+        <div class="inst">${instTxt(op)}</div>
+        ${op.st?`<div class="st${op.st===E?" enc":""}">${esc(op.st)}</div>`:""}
       </div>
       <div class="card-actions">
         <button class="btn btn-accent" type="button" data-add="${p.id}">Adicionar à sacola</button>
-        <a class="ask" href="${wa(`Olá, Izone CWB! Tenho uma dúvida sobre o ${p.nome} ${p.arm[s.a][0]} (${p.cores[s.c][0]}).`)}" target="_blank" rel="noopener" aria-label="Tirar dúvida sobre ${esc(p.nome)} no WhatsApp" title="Tirar dúvida no WhatsApp">${waIcon}</a>
+        <a class="ask" href="${wa(`Olá, Izone CWB! Tenho uma dúvida sobre o ${p.nome}${op.l!=="Única"?" "+op.l:""}.`)}" target="_blank" rel="noopener" aria-label="Tirar dúvida sobre ${esc(p.nome)} no WhatsApp" title="Tirar dúvida no WhatsApp">${waIcon}</a>
       </div>
     </div>
   </article>`;
@@ -905,49 +987,48 @@ function grid(){
 $("#grid").addEventListener("click",e=>{
   const card=e.target.closest(".card"); if(!card) return;
   const id=card.dataset.id, s=state.sel[id];
-  const o=e.target.closest(".opt"), d=e.target.closest(".dot");
-  if(o){s.a=+o.dataset.a}else if(d){s.c=+d.dataset.c}else return;
+  const op=e.target.closest(".opt"), d=e.target.closest(".dot");
+  if(op){s.a=+op.dataset.a}else if(d){s.c=+d.dataset.c}else return;
   card.outerHTML=cardHTML(byId(id));
 });
 document.addEventListener("click",e=>{
-  const add=e.target.closest("[data-add]"); if(add){addToCart(add.dataset.add);return}
+  const add=e.target.closest("[data-add]"); if(add){addToCart(add.dataset.add,add.dataset.a);return}
   const go=e.target.closest("[data-go]"); if(go){setTab(go.dataset.go)}
 });
 
 /* ---------- Sacola ---------- */
-function addToCart(id){
-  const p=byId(id), s=state.sel[id], key=`${id}|${s.a}|${s.c}`;
+function addToCart(id,a){
+  const p=byId(id), s=state.sel[id];
+  const ai=a!=null?+a:s.a, key=`${id}|${ai}|${s.c}`;
   const it=cart.find(x=>x.key===key);
-  if(it) it.q++; else cart.push({key,id,a:s.a,c:s.c,q:1});
+  if(it) it.q++; else cart.push({key,id,a:ai,c:s.c,q:1});
   save();renderCart();
-  toast(`${p.nome} ${p.arm[s.a][0]} adicionado à sacola`);
+  toast(`${p.nome}${p.arm[ai].l!=="Única"?" "+p.arm[ai].l:""} adicionado à sacola`);
 }
 function itemsHTML(){
-  return cart.map(it=>{const p=byId(it.id); if(!p) return "";
-    return `<div class="sum-item"><div class="mini">${device(p.modelo,p.cores[it.c][1])}</div>
-    <div><b>${esc(p.nome)}</b><small>${esc(p.arm[it.a][0])} · ${esc(p.cores[it.c][0])}</small>
+  return cart.map(it=>{const p=byId(it.id); const op=p.arm[it.a];
+    return `<div class="sum-item"><div class="mini">${device(p.m,p.cores[it.c][1])}</div>
+    <div><b>${esc(p.nome)}</b><small>${op.l!=="Única"?esc(op.l)+" · ":""}${esc(p.cores[it.c][0])}</small>
       <div class="qty"><button type="button" data-q="${it.key}" data-d="-1" aria-label="Diminuir">−</button><span>${it.q}</span><button type="button" data-q="${it.key}" data-d="1" aria-label="Aumentar">+</button><button type="button" class="rm" data-rm="${it.key}">remover</button></div></div>
-    <span class="mono">${brl0(p.arm[it.a][1]*it.q)}</span></div>`}).join("");
+    <span class="mono">${brl0(op.p*it.q)}</span></div>`}).join("");
 }
-const subtotal=()=>cart.reduce((t,it)=>{const p=byId(it.id);return t+(p?p.arm[it.a][1]*it.q:0)},0);
+const subtotal=()=>cart.reduce((t,it)=>t+byId(it.id).arm[it.a].p*it.q,0);
+const parcTotal=n=>cart.reduce((t,it)=>t+parc(byId(it.id).arm[it.a],n)*it.q,0);
 function totalsHTML(){
   const st=subtotal(), method=(document.querySelector('input[name="pag"]:checked')||{}).value||"pix";
-  const n=+($("#f-parc")?.value||LOJA.parcelasSemJuros);
-  let rows=`<div><span>Subtotal</span><span class="mono">${brl(st)}</span></div>`;
-  if(method==="pix") rows+=`<div class="save"><span>Desconto Pix (${Math.round(LOJA.descontoPix*100)}%)</span><span class="mono">−${brl(st-pix(st))}</span></div>`;
-  rows+=`<div><span>Entrega</span><span>${(document.querySelector('input[name="entrega"]:checked')||{}).value==="Envio para todo o Brasil"?"a calcular":"grátis"}</span></div>`;
-  const total=method==="pix"?pix(st):st;
-  rows+=`<div class="grand"><span>Total</span><span class="mono">${brl(total)}</span></div>`;
-  if(method==="credito") rows+=`<div><span></span><span>${n}x de ${brl(st/n)} sem juros</span></div>`;
+  const n=+($("#f-parc")?.value||24);
+  let rows=`<div><span>Total à vista</span><span class="mono">${brl(st)}</span></div>`;
+  rows+=`<div><span>Entrega</span><span>${(document.querySelector('input[name="entrega"]:checked')||{}).value==="Retirada na loja"?"retirada grátis":"a combinar"}</span></div>`;
+  if(method==="credito"){const v=parcTotal(n);rows+=`<div class="grand"><span>${n}x no cartão</span><span class="mono">${brl0(v)}</span></div><div><span></span><span>total ${brl(v*n)}</span></div>`}
+  else rows+=`<div class="grand"><span>Total</span><span class="mono">${brl(st)}</span></div>`;
   return `<div class="totals">${rows}</div>`;
 }
 function renderCart(){
   const n=cart.reduce((t,i)=>t+i.q,0);
   $("#cartCount").textContent=n;
-  const empty=`<div class="empty"><b>Sua sacola está vazia</b>Escolha um produto na <a href="#loja">loja</a> ou nas <a href="#promocoes">ofertas da Black Friday</a>.</div>`;
+  const empty=`<div class="empty"><b>Sua sacola está vazia</b>Escolha um produto na <a href="#loja">loja</a> ou nas <a href="#promocoes">ofertas</a>.</div>`;
   $("#summary").innerHTML=cart.length?`<div class="sum-items">${itemsHTML()}</div>${totalsHTML()}`:empty;
   $("#drawerBody").innerHTML=cart.length?`<div class="sum-items">${itemsHTML()}</div>${totalsHTML()}<a class="btn btn-accent" href="#pagamento" id="goPay">Ir para o pagamento</a>`:empty;
-  const g=$("#goPay"); if(g) g.onclick=closeCart;
   $("#drawerBody").querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener("click",closeCart));
   fillParcelas();
 }
@@ -964,9 +1045,9 @@ let tt;function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("on
 
 /* ---------- Pagamento ---------- */
 function fillParcelas(){
-  const sel=$("#f-parc"), st=subtotal()||0, cur=sel.value;
-  sel.innerHTML=Array.from({length:LOJA.parcelasSemJuros},(_,i)=>i+1).map(n=>`<option value="${n}">${n}x de ${brl(st/n)} sem juros${n===1?" (à vista)":""}</option>`).join("");
-  sel.value=cur||String(LOJA.parcelasSemJuros);
+  const sel=$("#f-parc"), cur=sel.value;
+  sel.innerHTML=LOJA.parcelas.map(n=>`<option value="${n}">${n}x de ${brl0(parcTotal(n))}</option>`).join("");
+  sel.value=cur||"24";
 }
 function payUI(){
   const m=document.querySelector('input[name="pag"]:checked').value;
@@ -978,18 +1059,14 @@ function payUI(){
 }
 document.querySelectorAll('input[name="pag"],input[name="entrega"],#f-troca').forEach(i=>i.addEventListener("change",payUI));
 $("#f-parc").addEventListener("change",renderCart);
-$("#pixKey").textContent=LOJA.chavePix;
-$("#copyPix").onclick=()=>{const b=$("#copyPix");
-  (navigator.clipboard?navigator.clipboard.writeText(LOJA.chavePix):Promise.reject()).then(()=>{b.textContent="Chave copiada"},()=>{const r=document.createRange();r.selectNodeContents($("#pixKey"));const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent="Selecionada, copie com Ctrl+C"});
-  setTimeout(()=>b.textContent="Copiar chave",2500)};
-(function qr(){ // padrão ilustrativo (o QR real com valor é enviado no WhatsApp)
-  const cv=$("#pixQr"),x=cv.getContext("2d"),N=29;x.fillStyle="#fff";x.fillRect(0,0,N,N);x.fillStyle="#111";
-  let seed=0;for(const ch of LOJA.chavePix)seed=(seed*31+ch.charCodeAt(0))>>>0;
-  const rnd=()=>(seed=(seed*1664525+1013904223)>>>0)/4294967296;
-  for(let i=0;i<N;i++)for(let j=0;j<N;j++)if(rnd()>.52)x.fillRect(i,j,1,1);
-  const eye=(a,b)=>{x.fillStyle="#111";x.fillRect(a,b,7,7);x.fillStyle="#fff";x.fillRect(a+1,b+1,5,5);x.fillStyle="#111";x.fillRect(a+2,b+2,3,3)};
-  x.fillStyle="#fff";x.fillRect(0,0,8,8);x.fillRect(N-8,0,8,8);x.fillRect(0,N-8,8,8);eye(0,0);eye(N-7,0);eye(0,N-7);
-})();
+if(LOJA.chavePix){
+  $("#pixKey").textContent=LOJA.chavePix;
+  $("#copyPix").onclick=()=>{const b=$("#copyPix");
+    (navigator.clipboard?navigator.clipboard.writeText(LOJA.chavePix):Promise.reject()).then(()=>{b.textContent="Chave copiada"},()=>{const r=document.createRange();r.selectNodeContents($("#pixKey"));const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent="Selecionada, copie com Ctrl+C"});
+    setTimeout(()=>b.textContent="Copiar chave",2500)};
+} else {
+  $("#pixInfo").innerHTML=`<div style="grid-column:1/-1;font-size:14px"><b>Pix com preço à vista.</b><br><span style="color:var(--mute)">Depois de enviar o pedido, você recebe a chave Pix e o valor exato pelo WhatsApp, junto com a confirmação do estoque.</span></div>`;
+}
 $("#checkout").addEventListener("submit",e=>{
   e.preventDefault();
   const err=$("#formErr");err.textContent="";
@@ -1000,8 +1077,8 @@ $("#checkout").addEventListener("submit",e=>{
   const ent=document.querySelector('input[name="entrega"]:checked').value;
   if(ent!=="Retirada na loja"&&!$("#f-end").value.trim()){err.textContent="Informe o endereço de entrega.";$("#f-end").focus();return}
   const m=document.querySelector('input[name="pag"]:checked').value, st=subtotal(), n=+$("#f-parc").value;
-  const linhas=cart.map(it=>{const p=byId(it.id);return `• ${it.q}x ${p.nome} ${p.arm[it.a][0]} (${p.cores[it.c][0]}) — ${brl(p.arm[it.a][1]*it.q)}`}).join("\n");
-  const pag=m==="pix"?`Pix — total ${brl(pix(st))} (com ${Math.round(LOJA.descontoPix*100)}% de desconto)`:m==="credito"?`Cartão de crédito — ${n}x de ${brl(st/n)} sem juros (total ${brl(st)})`:`Débito ou dinheiro na retirada — total ${brl(st)}`;
+  const linhas=cart.map(it=>{const p=byId(it.id),op=p.arm[it.a];return `• ${it.q}x ${p.nome}${op.l!=="Única"?" "+op.l:""} (${p.cores[it.c][0]}) — ${brl(op.p*it.q)}`}).join("\n");
+  const pag=m==="pix"?`Pix à vista — total ${brl(st)}`:m==="credito"?`Cartão em ${n}x de ${brl0(parcTotal(n))}`:`Débito ou dinheiro na retirada — total ${brl(st)}`;
   let msg=`Olá, Izone CWB! Quero finalizar meu pedido:\n\n${linhas}\n\nPagamento: ${pag}\nEntrega: ${ent}`;
   if(ent!=="Retirada na loja") msg+=`\nEndereço: ${$("#f-end").value.trim()}, ${$("#f-bairro").value.trim()} ${$("#f-cep").value.trim()}`;
   if($("#f-troca").checked) msg+=`\nTroca: ${$("#f-trocamodelo").value.trim()||"quero avaliar meu usado"}`;
@@ -1013,7 +1090,7 @@ $("#checkout").addEventListener("submit",e=>{
 });
 
 /* ---------- Troca ---------- */
-$("#tradeModel").innerHTML=TROCA.map(([n,v],i)=>`<option value="${i}">${n}</option>`).join("");
+$("#tradeModel").innerHTML=TROCA.map(([n],i)=>`<option value="${i}">${n}</option>`).join("");
 function trade(){const [n,v]=TROCA[+$("#tradeModel").value], f=+$("#tradeState").value;
   $("#tradeOut").textContent="até "+brl0(Math.round(v*f/50)*50);
   $("#tradeWa").href=wa(`Olá, Izone CWB! Quero avaliar meu ${n} para usar na troca. Estado: ${$("#tradeState").selectedOptions[0].text}.`)}
@@ -1026,8 +1103,10 @@ $("#reviews").innerHTML=DEPOIMENTOS.map(d=>`<article class="review"><span class=
 const waIcon=`<svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3Zm0 23.6c-2 0-4-.5-5.7-1.6l-.4-.2-3.9 1 1-3.8-.2-.4A10.6 10.6 0 1 1 16 26.6Zm5.8-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.4.2-.7.1a8.7 8.7 0 0 1-4.3-3.8c-.3-.5.3-.5 1-1.6.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.7s1.2 3.2 1.3 3.4c.2.2 2.3 3.5 5.6 4.9 2.1.9 2.9 1 4 .8.6-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5l-.6-.4Z"/></svg>`;
 const hello=wa("Olá, Izone CWB! Vim pelo site e queria tirar uma dúvida.");
 $("#waFloat").href=hello;$("#footWa").href=hello;$("#footWaNum").textContent=LOJA.whatsappExibir;
-$("#footIg").href="https://instagram.com/"+LOJA.instagram;$("#footIgUser").textContent="@"+LOJA.instagram;
-$("#footMail").textContent=LOJA.email;$("#footAddr").textContent=LOJA.endereco;$("#footHours").textContent=LOJA.horario;$("#footCnpj").textContent="CNPJ "+LOJA.cnpj;
+$("#manutWa").href=wa("Olá, Izone CWB! Quero um orçamento de manutenção. Aparelho: ___ Problema: ___");
+const setOrHide=(sel,txt,li)=>{const el=$(sel); if(txt) el.textContent=txt; else (li?el.closest("li"):el).hidden=true};
+if(LOJA.instagram){$("#footIg").href="https://instagram.com/"+LOJA.instagram;$("#footIgUser").textContent="@"+LOJA.instagram}else $("#footIg").closest("li").hidden=true;
+setOrHide("#footMail",LOJA.email,true);setOrHide("#footAddr",LOJA.endereco);setOrHide("#footHours",LOJA.horario);setOrHide("#footCnpj",LOJA.cnpj?"CNPJ "+LOJA.cnpj:"",true);
 
 /* ---------- Início ---------- */
 hero();deals();tabs();setTab("novos");trade();renderCart();payUI();clock();setInterval(clock,1000);
