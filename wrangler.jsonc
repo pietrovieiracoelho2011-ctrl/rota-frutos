@@ -1,0 +1,9 @@
+{
+  // Publica o site da Vitrio (pasta vitrio-site) como site estático na Cloudflare.
+  "name": "vitrio",
+  "compatibility_date": "2025-01-01",
+  "assets": {
+    "directory": "./vitrio-site",
+    "not_found_handling": "404-page"
+  }
+}
