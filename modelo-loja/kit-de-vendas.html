@@ -143,7 +143,7 @@ footer{padding-block:40px 60px;color:var(--mute);font-size:14px}
     <h1>Kit da primeira venda</h1>
     <p class="lead">Tudo o que você precisa para vender sites da Vitrio, começando pelas lojas de celular: o passo a passo, as mensagens prontas, os preços e o contrato. Comece pelo passo 1 e vá marcando.</p>
     <div class="links">
-      <a href="https://demo.vitriosites.workers.dev" target="_blank" rel="noopener">Abrir a loja de demonstração</a>
+      <a href="https://vitrio.vitriosites.workers.dev/exemplos/celular/" target="_blank" rel="noopener">Abrir a loja de demonstração</a>
       <a class="ghost" href="https://izone-cwb.frutosdagraciosa.workers.dev" target="_blank" rel="noopener">Ver o site da Izone</a>
     </div>
   </div>
@@ -171,7 +171,7 @@ footer{padding-block:40px 60px;color:var(--mute);font-size:14px}
     <ol class="steps" id="steps">
       <li><input type="checkbox" id="s1"><label for="s1"><b>Garanta o nome Vitrio</b><span>Crie o @vitrio (ou @vitrio.sites) no Instagram e confira se vitrio.com.br está livre em registro.br.</span></label></li>
       <li><input type="checkbox" id="s2"><label for="s2"><b>Ative o WhatsApp Business no (41) 99131-2403</b><span>Coloque o perfil da Vitrio, horário e uma mensagem automática de boas-vindas. É esse número que aparece no botão "Quero um site assim" da demonstração.</span></label></li>
-      <li><input type="checkbox" id="s3"><label for="s3"><b>Registre vitrio.com.br (cerca de R$ 40 por ano)</b><span>Opcional: a demonstração já está em demo.vitriosites.workers.dev. Com o domínio, ela pode virar demo.vitrio.com.br.</span></label></li>
+      <li><input type="checkbox" id="s3"><label for="s3"><b>Registre vitrio.com.br (cerca de R$ 40 por ano)</b><span>Opcional: o site da Vitrio está em vitrio.vitriosites.workers.dev. Com o domínio, ele pode virar vitrio.com.br.</span></label></li>
       <li><input type="checkbox" id="s4"><label for="s4"><b>Grave um vídeo de 30 segundos da demonstração</b><span>Gravação de tela no celular: abrir o site, buscar "17 Pro", abrir o produto, adicionar à sacola, ir ao pagamento e mostrar a mensagem pronta no WhatsApp. Toque nas bolinhas de cor da faixa azul para mostrar que muda para a cor da loja.</span></label></li>
       <li><input type="checkbox" id="s5"><label for="s5"><b>Monte uma lista de 30 lojas da sua cidade</b><span>No Instagram, busque "iphone seminovo [cidade]", "apple [cidade]" e "assistência iphone [cidade]". As melhores são as que vendem só pelo Instagram ou por catálogos simples, como loja.menu.</span></label></li>
       <li><input type="checkbox" id="s6"><label for="s6"><b>Mande a primeira mensagem para 10 lojas por dia</b><span>Use as mensagens prontas da seção 3. Anote quem respondeu.</span></label></li>
@@ -263,7 +263,7 @@ Eu monto sites de vendas para lojas de iPhone. O cliente escolhe o modelo, vê a
 Posso te mandar um vídeo de 30 segundos mostrando como fica?</pre></div>
 
     <div class="msg"><div class="msg-head"><div><b>Quando responderem "pode mandar"</b><br><small>Vídeo + link</small></div><button class="copy" type="button">Copiar</button></div>
-<pre>Aqui está! Esse é o site de demonstração, pode abrir no celular e testar: https://demo.vitriosites.workers.dev
+<pre>Aqui está! Esse é o site de demonstração, pode abrir no celular e testar: https://vitrio.vitriosites.workers.dev/exemplos/celular/
 
 No site de vocês fica com o nome, as cores e as fotos da loja, e com os preços que vocês já usam. Os clientes podem buscar o modelo, compartilhar o link de um aparelho e mandar o pedido direto no WhatsApp.
 
@@ -404,7 +404,7 @@ python3 publicar.py nome-da-loja</pre>
 (function(){
 const $=s=>document.querySelector(s);
 const esc=t=>String(t??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const DEMO="https://demo.vitriosites.workers.dev";
+const DEMO="https://vitrio.vitriosites.workers.dev/exemplos/celular/";
 /* Nichos em ordem de chance de compra */
 const NICHOS=[
  {id:"celular",nome:"Lojas de celular e Apple",fit:"alta",termos:["loja de celular","iphone seminovo","loja apple"],tags:["iphone","iphoneseminovo","celular"],porque:"Ticket alto, preço muda toda semana e já vendem pelo WhatsApp.",beneficio:"o cliente vê o preço, as parcelas em até 24x, simula a troca do usado e o pedido chega pronto no WhatsApp",demo:true},

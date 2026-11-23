@@ -10,7 +10,7 @@ TERÇA (24/11), dia do lançamento
 2. terca-2-enquete.png
    Figurinha ENQUETE no espaço vazio: "Sua loja tem site?"  Opções: "Tem sim" / "Ainda não".
 3. terca-3-demo.png
-   Figurinha LINK: https://demo.vitriosites.workers.dev  (texto do link: "Ver loja de exemplo")
+   Figurinha LINK: https://vitrio.vitriosites.workers.dev  (texto do link: "Ver loja de exemplo")
    Coloque o link só depois de renomear o site para "demo" na Cloudflare.
 
 ==============================

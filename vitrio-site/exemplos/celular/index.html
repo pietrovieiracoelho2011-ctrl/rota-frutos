@@ -1,0 +1,1648 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sua Loja</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sua Loja">
+<meta property="og:title" content="Sua Loja · iPhone novo e seminovo em sua cidade">
+<meta property="og:description" content="Black Friday: iPhone, Apple Watch, iPad, Mac e acessórios. À vista ou em até 24x, e seu usado na troca.">
+
+<meta name="theme-color" content="#11151B">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2311151B'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-family='Arial Black,Arial' font-weight='900' font-size='38' fill='%232457D6'%3Ei%3C/text%3E%3C/svg%3E">
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Sua Loja — iPhone novo e seminovo, Apple Watch, iPad, Mac e acessórios em sua cidade. Black Friday, pagamento à vista ou em até 24x e seu usado na troca.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: vitrine em faixas — barra de contagem, hero com etiqueta de preço, faixa Black Friday escura, loja em abas, prova social, checkout em duas colunas, rodapé institucional */
+:root{
+  --bg:#ECEEF1;          /* alumínio frio */
+  --surface:#FFFFFF;
+  --well:#E2E6EB;        /* fundo da vitrine de cada produto */
+  --ink:#11151B;
+  --mute:#5A6472;
+  --line:#D3D9E0;
+  --accent:#E2591B;      /* laranja-cósmico */
+  --accent-ink:#FFFFFF;
+  --accent-soft:#FBE3D6;
+  --night:#0C0F14;       /* faixas escuras (Black Friday, rodapé) */
+  --night-2:#161B23;
+  --night-ink:#F1F3F6;
+  --night-mute:#9AA4B3;
+  --night-line:#262D38;
+  --ok:#1F8A4C;
+  --wa:#1FAF5A;
+  --hdr:rgba(236,238,241,.86);
+  --shadow:0 18px 40px -18px rgba(17,21,27,.28);
+  --f-display:"Unbounded","Arial Black",system-ui,sans-serif;
+  --f-body:"Manrope",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+  --r:14px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0F1217;--surface:#171B22;--well:#1F252E;--ink:#EEF1F5;--mute:#9AA4B2;--line:#2A313C;
+  --accent:#FF7533;--accent-ink:#1A0B03;--accent-soft:#3A2115;
+  --night:#07090C;--night-2:#12161D;--night-ink:#F1F3F6;--night-mute:#9AA4B3;--night-line:#232A34;
+  --ok:#3CC377;--wa:#25C266;--hdr:rgba(15,18,23,.86);--shadow:0 18px 40px -18px rgba(0,0,0,.7);color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F1217;--surface:#171B22;--well:#1F252E;--ink:#EEF1F5;--mute:#9AA4B2;--line:#2A313C;
+  --accent:#FF7533;--accent-ink:#1A0B03;--accent-soft:#3A2115;
+  --night:#07090C;--night-2:#12161D;--night-ink:#F1F3F6;--night-mute:#9AA4B3;--night-line:#232A34;
+  --ok:#3CC377;--wa:#25C266;--hdr:rgba(15,18,23,.86);--shadow:0 18px 40px -18px rgba(0,0,0,.7);color-scheme:dark}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 120px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--hdr)}
+img,svg{max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
+.wrap{max-width:1220px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;letter-spacing:-.01em}
+h2{font-size:clamp(1.6rem,3.4vw,2.5rem);line-height:1.1;font-weight:700}
+.sec{padding-block:72px}
+.sec-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 32px;margin-bottom:32px}
+.sec-head p{margin:8px 0 0;color:var(--mute);max-width:56ch}
+
+/* Barra de contagem */
+.bf-bar{background:var(--night);color:var(--night-ink);font-size:13px}
+.bf-bar .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 18px;padding-block:9px;text-align:center}
+.bf-bar b{color:var(--accent)}
+.bf-bar .mono{letter-spacing:.04em}
+.bf-bar a{color:var(--night-ink);font-weight:700;text-underline-offset:3px}
+
+/* Cabeçalho */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--hdr);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--line)}
+.top-row{display:flex;align-items:center;gap:20px;padding-block:12px}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none;flex-shrink:0}
+.logo-mark{width:34px;height:34px;border-radius:10px;background:var(--ink);color:var(--bg);display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:17px}
+.logo-word{font-family:var(--f-display);font-weight:800;font-size:19px;letter-spacing:-.02em}
+.logo-tag{font-family:var(--f-mono);font-size:10px;font-weight:700;background:var(--accent);color:var(--accent-ink);padding:2px 6px;border-radius:5px;letter-spacing:.08em}
+nav.main{display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none;min-width:0}
+nav.main::-webkit-scrollbar{display:none}
+nav.main a{text-decoration:none;font-weight:600;font-size:14px;padding:8px 12px;border-radius:999px;white-space:nowrap;color:var(--mute)}
+nav.main a:hover{color:var(--ink);background:var(--well)}
+nav.main a.hot{color:var(--accent)}
+.cart-btn{position:relative;display:flex;align-items:center;gap:8px;border:0;background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:999px;font-weight:700;font-size:14px;cursor:pointer;flex-shrink:0}
+.cart-btn .count{min-width:22px;height:22px;border-radius:999px;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-size:12px;font-family:var(--f-mono);padding:0 6px}
+@media (max-width:860px){
+  .top-row{flex-wrap:wrap;gap:10px}
+  nav.main{order:3;width:100%;margin-left:0;padding-bottom:2px}
+  .cart-btn{margin-left:auto}
+}
+
+/* Hero */
+.hero{padding-block:48px 56px;position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(2.2rem,5.4vw,4.4rem);line-height:1.02;font-weight:800;margin-top:14px}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero .lead{font-size:18px;color:var(--mute);max-width:46ch;margin:20px 0 28px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;padding:14px 24px;font-weight:800;font-size:15px;text-decoration:none;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn-accent{background:var(--accent);color:var(--accent-ink);box-shadow:0 10px 24px -10px var(--accent)}
+.btn-ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+.btn-wa{background:var(--wa);color:#fff}
+.trust{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 20px;margin-top:34px;padding:0;list-style:none;max-width:520px}
+.trust li{display:flex;gap:10px;align-items:flex-start;font-size:14px;font-weight:600}
+.trust svg{flex-shrink:0;width:20px;height:20px;color:var(--ok);margin-top:1px}
+.hero-stage{position:relative;aspect-ratio:1/1;max-width:520px;width:100%;justify-self:center}
+.hero-stage .disc{position:absolute;inset:6%;border-radius:50%;background:radial-gradient(circle at 50% 40%,var(--accent-soft),transparent 68%)}
+.hero-stage .ring{position:absolute;inset:0;border-radius:50%;border:1px dashed var(--line)}
+.hero-stage .phone{position:absolute;inset:6% 14% 10%;display:grid;place-items:center}
+.hero-stage .phone img{max-height:100%;width:auto;filter:drop-shadow(0 30px 30px rgba(0,0,0,.28))}
+.hero-stage .phone svg{width:100%;height:100%}
+.tag{position:absolute;right:2%;bottom:12%;background:var(--surface);color:var(--ink);border-radius:12px;padding:14px 18px 14px 26px;box-shadow:var(--shadow);transform:rotate(-6deg);min-width:210px}
+.tag::before{content:"";position:absolute;left:10px;top:50%;width:8px;height:8px;margin-top:-4px;border-radius:50%;background:var(--bg);box-shadow:inset 0 0 0 2px var(--line)}
+.tag small{display:block;font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;color:var(--mute)}
+.tag .t-name{font-weight:800;font-size:14px;margin-top:2px}
+.tag .t-old{font-size:13px;color:var(--mute);text-decoration:line-through}
+.tag .t-price{font-family:var(--f-display);font-weight:800;font-size:26px;line-height:1.1;color:var(--accent)}
+.tag .t-pix{font-size:12px;font-weight:700;color:var(--ok)}
+.swatch-row{position:absolute;left:4%;top:12%;display:flex;flex-direction:column;gap:8px;background:var(--surface);padding:10px;border-radius:999px;box-shadow:var(--shadow)}
+.swatch-row button{width:22px;height:22px;border-radius:50%;border:0;cursor:pointer;box-shadow:inset 0 0 0 1px rgba(0,0,0,.18)}
+.swatch-row button[aria-pressed="true"]{outline:2px solid var(--ink);outline-offset:2px}
+@media (max-width:860px){
+  .hero .wrap{grid-template-columns:1fr}
+  .hero-stage{max-width:400px}
+  .tag{min-width:0;right:0;padding:10px 14px 10px 22px}
+  .tag .t-price{font-size:22px}
+}
+@media (max-width:420px){.trust{grid-template-columns:1fr}}
+
+/* Black Friday */
+.bf{background:var(--night);color:var(--night-ink);position:relative;overflow:hidden}
+.bf::before{content:"BLACK FRIDAY";position:absolute;left:50%;top:18px;transform:translateX(-50%);font-family:var(--f-display);font-weight:800;font-size:clamp(4rem,14vw,12rem);line-height:1;white-space:nowrap;color:transparent;-webkit-text-stroke:1px var(--night-line);pointer-events:none}
+.bf .wrap{position:relative}
+.bf .sec-head p{color:var(--night-mute)}
+.bf h2 span{color:var(--accent)}
+.clock{display:flex;gap:10px}
+.clock div{background:var(--night-2);border:1px solid var(--night-line);border-radius:12px;padding:10px 12px;min-width:68px;text-align:center}
+.clock b{display:block;font-family:var(--f-display);font-size:28px;line-height:1.1;font-variant-numeric:tabular-nums}
+.clock small{font-family:var(--f-mono);font-size:10px;letter-spacing:.12em;color:var(--night-mute);text-transform:uppercase}
+.clock-label{font-family:var(--f-mono);font-size:12px;color:var(--night-mute);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.deals{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.deal{background:var(--night-2);border:1px solid var(--night-line);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:10px;position:relative}
+.deal .off{position:absolute;top:14px;left:14px;background:var(--accent);color:var(--accent-ink);font-family:var(--f-display);font-weight:800;font-size:14px;padding:5px 10px;border-radius:8px}
+.deal .pic{height:170px;display:grid;place-items:center}
+.deal .pic svg{height:100%;width:auto}
+.deal h3{font-family:var(--f-body);font-size:17px;font-weight:800}
+.deal .spec{font-family:var(--f-mono);font-size:12px;color:var(--night-mute)}
+.deal .old{color:var(--night-mute);text-decoration:line-through;font-size:14px}
+.deal .price{font-family:var(--f-display);font-weight:800;font-size:26px;line-height:1}
+.deal .pix{font-size:13px;color:var(--ok);font-weight:700}
+.stock{font-size:12px;font-weight:700;color:var(--accent);display:flex;flex-direction:column;gap:6px;margin-top:auto}
+.stock i{display:block;height:6px;border-radius:9px;background:var(--night-line);overflow:hidden}
+.stock i::after{content:"";display:block;height:100%;width:var(--w,30%);background:var(--accent);border-radius:9px}
+.deal .btn{width:100%;padding:12px}
+
+/* Loja */
+.tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:6px;background:var(--surface);border:1px solid var(--line);border-radius:999px;margin-bottom:16px}
+.tabs::-webkit-scrollbar{display:none}
+.tab{border:0;background:transparent;padding:10px 18px;border-radius:999px;font-weight:700;font-size:14px;cursor:pointer;white-space:nowrap;color:var(--mute)}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+.tab .n{font-family:var(--f-mono);font-size:11px;opacity:.7;margin-left:4px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.chip{border:1px solid var(--line);background:var(--surface);padding:7px 14px;border-radius:999px;font-size:13px;font-weight:700;cursor:pointer;color:var(--mute)}
+.chip[aria-pressed="true"]{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.tab-note{display:block;font-size:14px;color:var(--mute);margin-bottom:20px}
+.tab-note b{color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .2s ease,transform .2s ease}
+.card:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+.card .pic{background:var(--well);height:220px;display:grid;place-items:center;position:relative;padding:16px}
+.card .pic svg{height:100%;width:auto;transition:transform .3s ease}
+.card:hover .pic svg{transform:scale(1.04)}
+.badge{position:absolute;top:12px;left:12px;font-family:var(--f-mono);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 8px;border-radius:6px;background:var(--surface);color:var(--ink)}
+.badge.hot{background:var(--accent);color:var(--accent-ink)}
+.badge.r{left:auto;right:12px}
+.card .body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:10px;flex:1}
+.card h3{font-family:var(--f-body);font-weight:800;font-size:18px;line-height:1.25}
+.card .spec{font-family:var(--f-mono);font-size:12px;color:var(--mute)}
+.opts{display:flex;flex-wrap:wrap;gap:6px}
+.opt{border:1px solid var(--line);background:transparent;border-radius:8px;padding:5px 10px;font-size:12px;font-weight:700;font-family:var(--f-mono);cursor:pointer;color:var(--mute)}
+.opt[aria-pressed="true"]{border-color:var(--ink);color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.dots{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.dot{width:20px;height:20px;border-radius:50%;border:0;cursor:pointer;box-shadow:inset 0 0 0 1px rgba(0,0,0,.2)}
+.dot[aria-pressed="true"]{outline:2px solid var(--ink);outline-offset:2px}
+.dots .cname{font-size:12px;color:var(--mute);margin-left:4px}
+.semi{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.semi div{background:var(--well);border-radius:10px;padding:8px 10px}
+.semi small{display:block;font-size:10px;font-family:var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.semi b{font-family:var(--f-mono);font-size:15px}
+.batt{display:flex;align-items:center;gap:6px}
+.batt i{width:26px;height:12px;border:2px solid currentColor;border-radius:3px;position:relative;display:inline-block}
+.batt i::after{content:"";position:absolute;left:1px;top:1px;bottom:1px;width:calc(var(--b) * .88%);background:var(--ok);border-radius:1px}
+.pricebox{margin-top:auto;padding-top:6px;border-top:1px dashed var(--line)}
+.pricebox .old{font-size:13px;color:var(--mute);text-decoration:line-through}
+.pricebox .price{font-family:var(--f-display);font-weight:800;font-size:24px;line-height:1.15}
+.pricebox .inst{font-size:13px;color:var(--mute)}
+.pricebox .pix{font-size:13px;font-weight:700;color:var(--ok)}
+.card-actions{display:flex;gap:8px}
+.card-actions .btn{flex:1;padding:12px 14px;font-size:14px}
+.ask{width:46px;flex:0 0 46px;border-radius:999px;display:grid;place-items:center;background:var(--well);color:var(--wa);text-decoration:none}
+.ask svg{width:22px;height:22px}
+
+/* Troca */
+.trade{background:var(--surface);border:1px solid var(--line);border-radius:24px;display:grid;grid-template-columns:1.2fr 1fr;gap:28px;padding:32px;align-items:center}
+.trade h2{font-size:clamp(1.4rem,3vw,2.1rem)}
+.trade p{color:var(--mute);margin:12px 0 20px}
+.trade-calc{background:var(--well);border-radius:18px;padding:20px;display:grid;gap:10px}
+.trade-calc label{font-size:13px;font-weight:700}
+.trade-calc output{font-family:var(--f-display);font-weight:800;font-size:22px;color:var(--accent)}
+@media (max-width:760px){.trade{grid-template-columns:1fr;padding:22px}}
+
+/* Depoimentos */
+.reviews{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px}
+.review{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:14px}
+.stars{color:var(--accent);letter-spacing:2px;font-size:15px}
+.review blockquote{margin:0;font-size:15.5px;line-height:1.6}
+.who{display:flex;align-items:center;gap:12px;margin-top:auto}
+.avatar{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-family:var(--f-display);font-size:14px;background:var(--well)}
+.who b{display:block;font-size:14px}
+.who small{color:var(--mute);font-size:12.5px}
+.bought{font-family:var(--f-mono);font-size:11px;color:var(--mute);background:var(--well);padding:4px 8px;border-radius:6px;align-self:flex-start}
+.score{display:flex;align-items:center;gap:14px}
+.score b{font-family:var(--f-display);font-size:44px;line-height:1}
+.score small{display:block;color:var(--mute);font-size:13px}
+.sample-note{font-size:12px;color:var(--mute);margin-top:14px}
+
+/* Pagamento */
+.pay{display:grid;grid-template-columns:1.25fr .9fr;gap:24px;align-items:start}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:26px}
+.panel h3{font-family:var(--f-body);font-size:17px;font-weight:800;margin:0 0 14px;display:flex;align-items:center;gap:10px}
+.panel h3 .step{font-family:var(--f-mono);font-size:11px;width:24px;height:24px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center}
+.fset{border:0;padding:0;margin:0 0 26px}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.field.full{grid-column:1/-1}
+.field label{font-size:13px;font-weight:700}
+.field input,.field select{font:inherit;font-size:15px;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--ink);width:100%}
+.field input:focus,.field select:focus{outline:2px solid var(--accent);outline-offset:0;border-color:transparent}
+.radios{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.radio{position:relative}
+.radio input{position:absolute;opacity:0;pointer-events:none}
+.radio label{display:flex;flex-direction:column;gap:2px;border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;height:100%;background:var(--bg)}
+.radio label b{font-size:14px}
+.radio label small{font-size:12px;color:var(--mute)}
+.radio label .ic{font-family:var(--f-mono);font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+.radio input:checked+label{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent);background:var(--accent-soft)}
+.radio input:focus-visible+label{outline:3px solid var(--accent);outline-offset:2px}
+.pix-box{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;background:var(--well);border-radius:14px;padding:14px;margin-top:12px}
+.pix-box canvas{width:96px;height:96px;border-radius:8px;background:#fff;image-rendering:pixelated}
+.pix-box code{font-family:var(--f-mono);font-size:13px;word-break:break-all;display:block;margin:4px 0 8px}
+.copy{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer}
+.sum-items{display:flex;flex-direction:column;gap:12px;margin-bottom:16px}
+.sum-item{display:grid;grid-template-columns:52px 1fr auto;gap:12px;align-items:center}
+.sum-item .mini{width:52px;height:52px;border-radius:12px;background:var(--well);display:grid;place-items:center;padding:4px}
+.sum-item .mini svg{height:100%;width:auto}
+.sum-item b{font-size:14px;display:block;line-height:1.3}
+.sum-item small{font-size:12px;color:var(--mute)}
+.sum-item .mono{font-size:13px;font-weight:700;white-space:nowrap}
+.qty{display:inline-flex;align-items:center;gap:6px;margin-top:4px}
+.qty button{width:24px;height:24px;border-radius:7px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-weight:800;line-height:1}
+.qty span{font-family:var(--f-mono);font-size:12px;min-width:14px;text-align:center}
+.rm{border:0;background:none;color:var(--mute);font-size:12px;text-decoration:underline;cursor:pointer;padding:0;margin-left:6px}
+.totals{border-top:1px solid var(--line);padding-top:14px;display:grid;gap:8px;font-size:14px}
+.totals div{display:flex;justify-content:space-between;gap:12px}
+.totals .grand{font-size:15px;font-weight:800;padding-top:6px}
+.totals .grand span:last-child{font-family:var(--f-display);font-size:24px}
+.totals .save{color:var(--ok);font-weight:700}
+.empty{text-align:center;padding:24px 10px;color:var(--mute)}
+.empty b{display:block;color:var(--ink);font-size:16px;margin-bottom:6px}
+.methods{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px}
+.methods span{font-family:var(--f-mono);font-size:11px;font-weight:700;border:1px solid var(--line);border-radius:6px;padding:5px 8px;color:var(--mute)}
+.secure{display:flex;gap:8px;align-items:center;font-size:12.5px;color:var(--mute);margin-top:14px}
+.secure svg{width:16px;height:16px;color:var(--ok);flex-shrink:0}
+.done{border:2px solid var(--wa);border-radius:16px;padding:18px;margin-top:16px;background:var(--surface)}
+.done b{display:block;margin-bottom:6px}
+.err{color:#C2361B;font-size:13px;font-weight:700;margin-top:10px;min-height:1em}
+@media (max-width:900px){.pay{grid-template-columns:1fr}.pay .panel.summary{order:-1}}
+@media (max-width:520px){.fields{grid-template-columns:1fr}.panel{padding:18px}}
+
+/* FAQ */
+.faq{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.faq details{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px 20px}
+.faq summary{font-weight:800;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::after{content:"+";font-family:var(--f-mono);color:var(--accent);font-size:18px;line-height:1}
+.faq details[open] summary::after{content:"–"}
+.faq p{margin:10px 0 0;color:var(--mute);font-size:15px}
+@media (max-width:760px){.faq{grid-template-columns:1fr}}
+
+/* Rodapé */
+footer.foot{background:var(--night);color:var(--night-ink);padding-block:56px 28px;margin-top:40px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:32px}
+.foot h4{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--night-mute);margin:0 0 14px}
+.foot ul{list-style:none;padding:0;margin:0;display:grid;gap:9px;font-size:14px}
+.foot a{text-decoration:none;color:var(--night-ink)}
+.foot a:hover{color:var(--accent)}
+.foot p{color:var(--night-mute);font-size:14px;margin:12px 0 0;max-width:36ch}
+.foot .logo-mark{background:var(--night-ink);color:var(--night)}
+.foot-bottom{border-top:1px solid var(--night-line);margin-top:40px;padding-top:20px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:12px;color:var(--night-mute)}
+.foot .methods span{border-color:var(--night-line);color:var(--night-mute)}
+@media (max-width:900px){.foot-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.foot-grid{grid-template-columns:1fr}}
+
+/* WhatsApp flutuante */
+.wa-float{position:fixed;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:70;display:flex;align-items:center;gap:10px;text-decoration:none}
+.wa-float .bubble{background:var(--surface);color:var(--ink);font-size:13px;font-weight:700;padding:9px 14px;border-radius:999px;box-shadow:var(--shadow);white-space:nowrap}
+.wa-float .ico{width:60px;height:60px;border-radius:50%;background:var(--wa);display:grid;place-items:center;color:#fff;box-shadow:0 12px 28px -8px rgba(31,175,90,.7);position:relative}
+.wa-float .ico::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--wa);animation:pulse 2.2s ease-out infinite}
+.wa-float .ico svg{width:30px;height:30px}
+@keyframes pulse{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.6);opacity:0}}
+@media (max-width:520px){.wa-float .bubble{display:none}}
+
+/* Carrinho lateral */
+.overlay{position:fixed;inset:0;background:rgba(5,7,10,.5);z-index:80;opacity:0;pointer-events:none;transition:opacity .2s}
+.overlay.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:var(--surface);z-index:90;transform:translateX(100%);transition:transform .28s ease;display:flex;flex-direction:column;padding:calc(20px + env(safe-area-inset-top,0px)) calc(20px + env(safe-area-inset-right,0px)) calc(20px + env(safe-area-inset-bottom,0px)) 20px}
+.drawer.on{transform:none}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.drawer-head h3{font-size:18px}
+.x{border:0;background:var(--well);width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:18px}
+.drawer .sum-items{overflow:auto;flex:1}
+.drawer .btn{width:100%;margin-top:14px}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--ink);color:var(--bg);padding:12px 18px;border-radius:999px;font-weight:700;font-size:14px;z-index:95;opacity:0;transition:all .25s;pointer-events:none;max-width:calc(100% - 32px);text-align:center}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.pricebox .st{font-size:12px;font-weight:700;color:var(--ok);margin-top:4px}
+.pricebox .st.enc{color:var(--accent)}
+.badge.enc{background:var(--ink);color:var(--bg)}
+.pricebox .inst{font-variant-numeric:tabular-nums}
+.trade.manut{grid-template-columns:1fr auto}
+.card .pic img,.deal .pic img,.sum-item .mini img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.card .pic:has(img){padding:0;height:300px}
+.card .pic img{object-position:50% 35%}
+.deal .pic,.sum-item .mini{position:relative;overflow:hidden;border-radius:12px}
+.badge{z-index:1}
+.card:hover .pic img{transform:scale(1.04);transition:transform .3s ease}
+.card h3[data-open]{cursor:pointer}
+.card .pic[data-open],.deal .pic[data-open]{cursor:zoom-in}
+.pv{position:fixed;inset:0;z-index:85;background:var(--bg);display:flex;flex-direction:column}
+.pv-scroll{flex:1;overflow-y:auto;overscroll-behavior:contain}
+.pv-photo{position:relative;width:100%;max-width:820px;margin:0 auto;height:min(60vh,560px);background:var(--well);display:grid;place-items:center;overflow:hidden}
+.pv-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pv-photo svg{height:78%;width:auto}
+.pv-back,.pv-share{position:absolute;top:calc(16px + env(safe-area-inset-top,0px));border:0;cursor:pointer;color:#fff;background:rgba(28,30,34,.62);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:2}
+.pv-back{left:calc(16px + env(safe-area-inset-left,0px));display:flex;align-items:center;gap:6px;padding:11px 20px 11px 14px;border-radius:999px;font-weight:700;font-size:15px}
+.pv-share{right:calc(16px + env(safe-area-inset-right,0px));width:48px;height:48px;border-radius:50%;display:grid;place-items:center}
+.pv-info.wrap{max-width:820px;padding-block:22px 96px;display:grid;gap:14px}
+.pv-info h2{font-size:clamp(1.45rem,4.6vw,2.1rem)}
+.pv-txt{margin:0;color:var(--mute);font-size:16px;line-height:1.5}
+.pv-price{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.pv-price .price{font-family:var(--f-display);font-weight:800;font-size:28px}
+.pv-price .price.off{color:var(--ok)}
+.pv-price .old{color:var(--mute);text-decoration:line-through;font-size:17px}
+.pv textarea{font:inherit;font-size:15px;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);width:100%;resize:vertical}
+.pv-wa{display:flex;align-items:center;gap:8px;color:var(--wa);font-weight:700;font-size:14px;text-decoration:none}
+.pv-wa svg{width:20px;height:20px}
+.pv-bar{display:flex;gap:12px;background:var(--surface);border-top:1px solid var(--line);padding-block:12px calc(12px + env(safe-area-inset-bottom,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.pv-qty{display:flex;align-items:center;border:1px solid var(--line);border-radius:12px;background:var(--bg)}
+.pv-qty button{width:48px;height:52px;border:0;background:none;font-size:24px;font-weight:700;color:var(--accent);cursor:pointer}
+.pv-qty span{min-width:28px;text-align:center;font-size:17px}
+#pvAdd{flex:1;justify-content:space-between;border-radius:12px;font-size:16px;padding:14px 20px;max-width:560px;margin-left:auto}
+body.pv-open{overflow:hidden}
+body.pv-open .wa-float{z-index:86;bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+body.pv-open .wa-float .bubble{display:none}
+nav.main a[aria-current="page"]{color:var(--ink);background:var(--well)}
+nav.main a.hot[aria-current="page"]{color:var(--accent)}
+main > [data-page]{min-height:60vh}
+.cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.cat{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:10px;text-decoration:none;transition:box-shadow .2s,transform .2s}
+.cat:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+.cat-pic{position:relative;flex:0 0 84px;height:84px;border-radius:12px;overflow:hidden;background:var(--well);display:grid;place-items:center}
+.cat-pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cat-pic svg{height:80%;width:auto}
+.cat-txt{display:grid;gap:2px;min-width:0}
+.cat-txt b{font-size:16px}
+.cat-txt small{color:var(--mute);font-size:13px}
+.atalhos{padding-top:0}
+.search{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:0 18px;margin-bottom:12px}
+.search svg{width:20px;height:20px;color:var(--mute);flex-shrink:0}
+.search input{flex:1;min-width:0;border:0;background:none;font:inherit;font-size:16px;padding:14px 0;color:var(--ink);outline:none}
+.search:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.sim{display:grid;grid-template-columns:.9fr 1.1fr;gap:20px;align-items:start}
+.sim-form{display:grid;gap:16px}
+.sim-check{display:flex;gap:10px;align-items:center;font-weight:700;cursor:pointer}
+.sim-check input{width:18px;height:18px;accent-color:var(--accent)}
+.sim-res{display:grid;gap:16px}
+.sim-resumo{display:grid;gap:6px;font-size:14.5px}
+.sim-resumo div{display:flex;justify-content:space-between;gap:12px}
+.sim-resumo span{color:var(--mute)}
+.sim-resumo b{text-align:right}
+.sim-resto{border-top:1px dashed var(--line);padding-top:8px;font-size:16px}
+.sim-resto span{color:var(--ink);font-weight:700}
+.sim-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:8px}
+.sim-op{display:grid;gap:2px;text-align:left;border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:10px 12px;cursor:pointer;color:var(--ink)}
+.sim-op b{font-size:14px}
+.sim-op span{font-size:15px;font-weight:700}
+.sim-op small{font-size:11px;color:var(--mute)}
+.sim-op[aria-checked="true"]{border-color:var(--accent);background:var(--accent-soft);box-shadow:inset 0 0 0 1px var(--accent)}
+.sim-total{display:grid;gap:2px;background:var(--well);border-radius:14px;padding:14px 16px}
+.sim-total:empty{display:none}
+.sim-total > span{font-size:12px;color:var(--mute);font-family:var(--f-mono);letter-spacing:.08em;text-transform:uppercase}
+.sim-total b{font-family:var(--f-display);font-size:24px;line-height:1.2}
+.sim-total small{color:var(--mute);font-size:13px}
+.sim-nota{margin:0;font-size:12.5px;color:var(--mute)}
+.pv-sim{justify-self:start}
+@media (max-width:860px){.sim{grid-template-columns:1fr}}
+/* Animações */
+@keyframes subir{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes flutuar{0%,100%{translate:0 0}50%{translate:0 -10px}}
+@keyframes balanco{0%{transform:rotate(-14deg) translateY(-30px);opacity:0}60%{transform:rotate(-3deg)}80%{transform:rotate(-8deg)}100%{transform:rotate(-6deg)}}
+@keyframes pulso{0%{transform:scale(1)}40%{transform:scale(1.18)}100%{transform:scale(1)}}
+@keyframes brilho{from{background-position:-200% 0}to{background-position:200% 0}}
+@keyframes girar{to{transform:rotate(360deg)}}
+.hero .eyebrow,.hero h1,.hero .lead,.hero .cta-row,.hero .trust{animation:subir .7s cubic-bezier(.2,.7,.2,1) both}
+.hero h1{animation-delay:.08s}.hero .lead{animation-delay:.18s}.hero .cta-row{animation-delay:.28s}.hero .trust{animation-delay:.38s}
+.hero-stage .phone{animation:flutuar 6s ease-in-out infinite;transition:transform .25s ease-out;will-change:transform}
+.hero-stage .ring{animation:girar 60s linear infinite}
+.hero-stage .tag{animation:balanco 1.1s .5s cubic-bezier(.3,1.4,.5,1) both;transform-origin:10px 50%}
+.hero h1 em{background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 40%,#ffb27a 50%,var(--accent) 60%,var(--accent) 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:brilho 4s linear infinite}
+.enter > .wrap > *, #grid.enter > *{animation:subir .5s cubic-bezier(.2,.7,.2,1) both}
+.enter > .wrap > :nth-child(2){animation-delay:.06s}.enter > .wrap > :nth-child(3){animation-delay:.12s}.enter > .wrap > :nth-child(4){animation-delay:.18s}
+#grid.enter > :nth-child(2){animation-delay:.05s}#grid.enter > :nth-child(3){animation-delay:.1s}#grid.enter > :nth-child(4){animation-delay:.15s}#grid.enter > :nth-child(5){animation-delay:.2s}#grid.enter > :nth-child(6){animation-delay:.25s}#grid.enter > :nth-child(n+7){animation-delay:.3s}
+.fly{position:fixed;z-index:120;pointer-events:none;object-fit:cover;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.cart-btn.bump{animation:pulso .45s ease}
+.cart-btn.bump .count{animation:pulso .45s .1s ease}
+.btn-accent{position:relative;overflow:hidden}
+.btn-accent::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.35) 50%,transparent 70%);transform:translateX(-120%);transition:transform .6s ease}
+.btn-accent:hover::after{transform:translateX(120%)}
+.clock b{display:inline-block}
+/* Teste do iPhone ideal */
+.qz{min-height:340px;display:grid;gap:14px;align-content:start}
+.qz.qz-in > *{animation:subir .45s cubic-bezier(.2,.7,.2,1) both}
+.qz-prog{display:flex;gap:6px}
+.qz-prog i{flex:1;height:6px;border-radius:9px;background:var(--well)}
+.qz-prog i.done{background:var(--accent)}
+.qz-prog i.now{background:linear-gradient(90deg,var(--accent) 50%,var(--well) 50%)}
+.qz-t{font-size:clamp(1.3rem,3.4vw,1.8rem)}
+.qz-s{margin:0;color:var(--mute)}
+.qz-ops{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.qz-op{text-align:left;border:1px solid var(--line);background:var(--bg);border-radius:14px;padding:16px 18px;font-weight:700;font-size:15.5px;cursor:pointer;color:var(--ink);transition:transform .15s,border-color .15s,background .15s}
+.qz-op:hover{border-color:var(--accent);background:var(--accent-soft);transform:translateY(-2px)}
+.qz-back{justify-self:start;border:0;background:none;color:var(--mute);font-weight:700;cursor:pointer;padding:4px 0}
+.qz-recs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.qz-rec{position:relative;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--bg);display:flex;flex-direction:column;animation:subir .5s var(--d,0ms) cubic-bezier(.2,.7,.2,1) both}
+.qz-rec:first-child{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.qz-best{position:absolute;top:10px;left:10px;z-index:2}
+.qz-pic{position:relative;height:200px;background:var(--well);display:grid;place-items:center;cursor:zoom-in}
+.qz-pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.qz-pic svg{height:85%;width:auto}
+.qz-body{padding:14px 16px 16px;display:grid;gap:8px;flex:1}
+.qz-body b{font-size:16.5px}
+.qz-body ul{margin:0;padding-left:18px;color:var(--mute);font-size:14px;display:grid;gap:2px}
+.qz-price{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.qz-price .mono{font-family:var(--f-display);font-weight:800;font-size:22px}
+.qz-price small{color:var(--mute);font-size:13px}
+.qz-acts{display:flex;gap:8px;margin-top:auto}
+.qz-acts .btn{flex:1;padding:11px 12px;font-size:14px}
+.qz-end{display:flex;flex-wrap:wrap;gap:10px}
+.qz-cta{display:flex;align-items:center;gap:16px;text-decoration:none;background:var(--ink);color:var(--bg);border-radius:20px;padding:18px 22px;transition:transform .2s}
+.qz-cta:hover{transform:translateY(-2px)}
+.qz-cta b{display:block;font-size:17px}
+.qz-cta small{opacity:.75;font-size:14px}
+.qz-cta-ic{flex:0 0 48px;height:48px;border-radius:14px;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:22px;animation:pulso 2.4s ease-in-out infinite}
+.qz-cta-go{margin-left:auto;font-size:22px;font-weight:800}
+.inc{font-size:12.5px;font-weight:600;color:var(--ok);margin-top:4px}
+@media (max-width:760px){.trade.manut{grid-template-columns:1fr}}
+
+:root{--accent:#2457D6;--accent-soft:#DCE6FB}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--accent:#5B8CFF;--accent-soft:#17244A}}
+:root[data-theme="dark"]{--accent:#5B8CFF;--accent-soft:#17244A}
+.demo-bar{background:var(--accent);color:var(--accent-ink);font-size:13px}
+.demo-bar .wrap{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center;justify-content:center;padding-block:8px;text-align:center}
+.demo-bar a{color:inherit;font-weight:800;background:rgba(0,0,0,.18);padding:4px 12px;border-radius:999px;text-decoration:none}
+.demo-cores{display:inline-flex;gap:6px;align-items:center}
+.demo-cores button{width:20px;height:20px;border-radius:50%;border:2px solid rgba(255,255,255,.85);cursor:pointer;padding:0}
+</style>
+</head>
+<body>
+
+<div class="demo-bar" role="note"><div class="wrap"><span><b>Site de demonstração da Vitrio.</b> Preços e depoimentos ilustrativos. O site da sua loja sai com o seu nome, suas cores e suas fotos.</span><span class="demo-cores" aria-label="Testar outra cor">Teste outra cor: <button type="button" data-cor="#E2591B,#FF7533,#FBE3D6,#3A2115" style="background:#E2591B" aria-label="Laranja"></button><button type="button" data-cor="#2457D6,#5B8CFF,#DCE6FB,#17244A" style="background:#2457D6" aria-label="Azul"></button><button type="button" data-cor="#0E8A5F,#2FC48D,#D4F1E4,#0F3326" style="background:#0E8A5F" aria-label="Verde"></button><button type="button" data-cor="#B0257A,#E35BB0,#F7DCEC,#3B1530" style="background:#B0257A" aria-label="Rosa"></button><button type="button" data-cor="#11151B,#EEF1F5,#E2E6EB,#2A313C" style="background:#11151B" aria-label="Grafite"></button></span><a href="https://wa.me/5541991312403?text=Ol%C3%A1%21%20Vi%20a%20loja%20de%20demonstra%C3%A7%C3%A3o%20da%20Vitrio%20e%20quero%20um%20site%20assim%20para%20a%20minha%20loja." target="_blank" rel="noopener">Quero um site assim · (41) 99131-2403</a></div></div>
+<div class="bf-bar" role="region" aria-label="Contagem da Black Friday">
+  <div class="wrap">
+    <span><b id="barLabel">Esquenta Black Friday</b> · preços já liberados</span>
+    <span class="mono" id="barClock">--d --h --m --s</span>
+    <a href="#promocoes">Ver ofertas</a>
+  </div>
+</div>
+
+<header class="top">
+  <div class="wrap top-row">
+    <a class="logo" href="#inicio" aria-label="Sua Loja, início">
+      <span class="logo-mark">S</span>
+      <span class="logo-word">SUA LOJA</span>
+      <span class="logo-tag">DEMO</span>
+    </a>
+    <nav class="main" aria-label="Seções">
+      <a href="#inicio">Início</a>
+      <a href="#promocoes" class="hot">Black Friday</a>
+      <a href="#loja-novos" data-go="novos">iPhone novo</a>
+      <a href="#loja-seminovos" data-go="seminovos">Seminovos</a>
+      <a href="#loja-watch" data-go="watch">Apple Watch</a>
+      <a href="#loja-ipad" data-go="ipad">iPad</a>
+      <a href="#loja-mac" data-go="mac">Mac</a>
+      <a href="#loja-audio" data-go="audio">AirPods e som</a>
+      <a href="#loja-acessorios" data-go="acessorios">Acessórios</a>
+      <a href="#loja-casa" data-go="casa">Casa e games</a>
+      <a href="#ideal" class="hot">iPhone ideal</a>
+      <a href="#parcelamento">Parcelamento</a>
+      <a href="#troca">Troca</a>
+      <a href="#manutencao">Manutenção</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <a href="#pagamento">Pagamento</a>
+      <a href="#duvidas">Dúvidas</a>
+    </nav>
+    <button class="cart-btn" id="openCart" type="button" aria-label="Abrir carrinho">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+      Sacola <span class="count" id="cartCount">0</span>
+    </button>
+  </div>
+</header>
+
+<main id="conteudo">
+
+<div data-page="inicio">
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Revenda Apple em sua cidade</span>
+      <h1>O iPhone que você quer, com preço de <em>Black Friday</em>.</h1>
+      <p class="lead">iPhone novo lacrado e seminovo revisado com garantia, Apple Watch, MacBook, iPad, AirPods e acessórios. Pague à vista no Pix ou em até 24x no cartão, e use seu usado na troca.</p>
+      <div class="cta-row">
+        <a class="btn btn-accent" href="#promocoes">Ver ofertas da semana</a>
+        <a class="btn btn-ghost" href="#ideal">Descubra seu iPhone ideal</a>
+      </div>
+      <ul class="trust">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Lacrado com nota fiscal e 1 ano de garantia Apple</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Pronta entrega e retirada na loja no Centro</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Seminovos revisados com 3 meses de garantia</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Avaliamos seu iPhone usado na hora</li>
+      </ul>
+    </div>
+    <div class="hero-stage" aria-label="iPhone 17 Pro Max em destaque">
+      <div class="disc"></div><div class="ring"></div>
+      <div class="phone" id="heroPhone"></div>
+      <div class="swatch-row" id="heroSwatches" aria-label="Cores"></div>
+      <div class="tag">
+        <small>17PM-256 · LACRADO</small>
+        <div class="t-name">iPhone 17 Pro Max 256 GB</div>
+        <div class="t-old" id="heroOld"></div>
+        <div class="t-price mono" id="heroPrice"></div>
+        <div class="t-pix" id="heroPix"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec atalhos">
+  <div class="wrap">
+    <a class="qz-cta" href="#ideal"><span class="qz-cta-ic" aria-hidden="true">?</span><span><b>Não sabe qual iPhone escolher?</b><small>Faça o teste de 30 segundos e veja os ideais para você.</small></span><span class="qz-cta-go" aria-hidden="true">→</span></a>
+  </div>
+</section>
+<section class="sec atalhos">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Categorias</span><h2 style="margin-top:10px">O que você procura?</h2></div></div>
+    <div class="cats" id="cats"></div>
+  </div>
+</section>
+</div>
+
+<section class="sec" id="ideal" data-page="ideal">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Teste de 30 segundos</span><h2 style="margin-top:10px">Descubra o seu iPhone ideal</h2><p>Responda 4 perguntas e a gente mostra os aparelhos do nosso estoque que mais combinam com você.</p></div></div>
+    <div class="panel qz" id="quizBox"></div>
+  </div>
+</section>
+
+<section class="bf sec" id="promocoes" data-page="promocoes">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">Ofertas com estoque limitado</span>
+        <h2 style="margin-top:10px">Black Friday <span>Sua Loja</span></h2>
+        <p>Os maiores descontos da loja agora. Preço válido enquanto houver estoque.</p>
+      </div>
+      <div>
+        <div class="clock-label" id="clockLabel">Black Friday começa em</div>
+        <div class="clock" aria-live="off">
+          <div><b id="cd-d">00</b><small>dias</small></div>
+          <div><b id="cd-h">00</b><small>horas</small></div>
+          <div><b id="cd-m">00</b><small>min</small></div>
+          <div><b id="cd-s">00</b><small>seg</small></div>
+        </div>
+      </div>
+    </div>
+    <div class="deals" id="deals"></div>
+  </div>
+</section>
+
+<section class="sec" id="loja" data-page="loja">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">Loja</span>
+        <h2 style="margin-top:10px">Escolha o seu Apple</h2>
+        <p>Preço à vista ou em até 24x no cartão. Escolha a versão e a cor direto no card.</p>
+      </div>
+    </div>
+    <div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="busca" type="search" placeholder="Buscar produto: 15 Pro, AirPods, carregador..." aria-label="Buscar produto" autocomplete="off"></div>
+    <div class="tabs" role="tablist" aria-label="Categorias" id="tabs"></div>
+    <div class="tab-note" id="tabNote"></div>
+    <div class="chips" id="chips" hidden></div>
+    <div class="grid" id="grid" role="tabpanel" aria-labelledby="tab-novos"></div>
+  </div>
+</section>
+
+<section class="sec" id="parcelamento" data-page="parcelamento">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Simulador</span><h2 style="margin-top:10px">Simule o seu parcelamento</h2><p>Escolha o produto, informe uma entrada ou o seu usado na troca e veja quanto fica cada parcela.</p></div></div>
+    <div class="sim">
+      <div class="panel sim-form">
+        <div class="field"><label for="simProd">Produto</label><select id="simProd"></select></div>
+        <div class="field" id="simValorWrap" hidden><label for="simValor">Valor do produto (R$)</label><input id="simValor" type="number" inputmode="decimal" min="0" step="1" placeholder="Ex.: 5000"></div>
+        <div class="field" id="simEntradaWrap"><label for="simEntrada">Entrada no Pix ou dinheiro (R$)</label><input id="simEntrada" type="number" inputmode="decimal" min="0" step="1" placeholder="0"></div>
+        <div id="simTrocaWrap">
+          <label class="sim-check"><input type="checkbox" id="simTroca"> Vou dar meu usado na troca</label>
+          <div class="fields" id="simTrocaCampos" hidden style="margin-top:10px">
+            <div class="field"><label for="simTrocaModelo">Modelo</label><select id="simTrocaModelo"></select></div>
+            <div class="field"><label for="simTrocaEstado">Estado</label><select id="simTrocaEstado"><option value="1">Perfeito</option><option value="0.85" selected>Marcas leves</option><option value="0.65">Trincado</option></select></div>
+          </div>
+        </div>
+      </div>
+      <div class="panel sim-res" aria-live="polite">
+        <div class="sim-resumo" id="simResumo"></div>
+        <div class="sim-grid" id="simGrid" role="radiogroup" aria-label="Número de parcelas"></div>
+        <div class="sim-total" id="simTotal"></div>
+        <a class="btn btn-wa" id="simWa" href="#" target="_blank" rel="noopener" style="width:100%">Enviar esta simulação no WhatsApp</a>
+        <p class="sim-nota" id="simNota"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="troca" data-page="troca">
+  <div class="wrap">
+    <div class="trade">
+      <div>
+        <span class="eyebrow">Troca</span>
+        <h2 style="margin-top:10px">Seu iPhone antigo paga parte do novo</h2>
+        <p>Traga seu aparelho, a gente avalia na hora e desconta o valor. Simule uma estimativa e envie as fotos pelo WhatsApp para a avaliação final.</p>
+        <a class="btn btn-wa" id="tradeWa" href="#" target="_blank" rel="noopener">Avaliar meu iPhone no WhatsApp</a>
+      </div>
+      <div class="trade-calc">
+        <label for="tradeModel">Modelo do seu iPhone</label>
+        <div class="field"><select id="tradeModel"></select></div>
+        <label for="tradeState">Estado</label>
+        <div class="field"><select id="tradeState">
+          <option value="1">Perfeito, sem marcas</option>
+          <option value="0.85" selected>Marcas leves de uso</option>
+          <option value="0.65">Tela ou traseira trincada</option>
+        </select></div>
+        <span style="font-size:13px;color:var(--mute)">Estimativa de abatimento</span>
+        <output id="tradeOut" class="mono">R$ 0</output>
+        <span style="font-size:12px;color:var(--mute)">Valor sujeito à avaliação presencial do aparelho.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="manutencao" data-page="manutencao">
+  <div class="wrap">
+    <div class="trade manut">
+      <div>
+        <span class="eyebrow">Manutenção</span>
+        <h2 style="margin-top:10px">Seu Apple precisa de reparo?</h2>
+        <p>Fazemos manutenção em iPhone, iPad, Mac e Apple Watch. Mande o modelo e o problema pelo WhatsApp e receba seu orçamento.</p>
+      </div>
+      <a class="btn btn-wa" id="manutWa" href="#" target="_blank" rel="noopener">Fazer orçamento</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="depoimentos" data-page="depoimentos">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">Quem comprou</span>
+        <h2 style="margin-top:10px">Clientes que voltaram para contar</h2>
+      </div>
+      <div class="score">
+        <b class="mono">4,9</b>
+        <div><span class="stars" aria-label="5 estrelas">★★★★★</span><small>média das avaliações dos clientes</small></div>
+      </div>
+    </div>
+    <div class="reviews" id="reviews"></div>
+    <p class="sample-note">Depoimentos de exemplo para o layout. Substitua pelos depoimentos reais dos seus clientes no arquivo.</p>
+  </div>
+</section>
+
+<section class="sec" id="pagamento" data-page="pagamento">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">Pagamento</span>
+        <h2 style="margin-top:10px">Finalize sua compra</h2>
+        <p>Preencha os dados, escolha como pagar e envie o pedido. Um consultor confirma estoque e envia a chave Pix ou o link seguro de pagamento no cartão.</p>
+      </div>
+    </div>
+    <div class="pay">
+      <form class="panel" id="checkout" novalidate>
+        <fieldset class="fset">
+          <h3><span class="step">1</span>Seus dados</h3>
+          <div class="fields">
+            <div class="field full"><label for="f-nome">Nome completo</label><input id="f-nome" name="nome" autocomplete="name" placeholder="Ex.: Mariana Souza" required></div>
+            <div class="field"><label for="f-tel">WhatsApp</label><input id="f-tel" name="tel" type="tel" autocomplete="tel" inputmode="tel" placeholder="(41) 99999-0000" required></div>
+            <div class="field"><label for="f-cpf">CPF (para a nota fiscal)</label><input id="f-cpf" name="cpf" inputmode="numeric" placeholder="000.000.000-00"></div>
+          </div>
+        </fieldset>
+
+        <fieldset class="fset">
+          <h3><span class="step">2</span>Entrega</h3>
+          <div class="radios">
+            <div class="radio"><input type="radio" name="entrega" id="e-retira" value="Retirada na loja" checked><label for="e-retira"><span class="ic">GRÁTIS</span><b>Retirar na loja</b><small>Seg a sex 10h–18h · Sáb 10h–13h</small></label></div>
+            <div class="radio"><input type="radio" name="entrega" id="e-moto" value="Entrega (combinar pelo WhatsApp)"><label for="e-moto"><span class="ic">A COMBINAR</span><b>Entrega</b><small>Prazo e frete pelo WhatsApp</small></label></div>
+          </div>
+          <div class="fields" id="addr" hidden style="margin-top:12px">
+            <div class="field"><label for="f-cep">CEP</label><input id="f-cep" name="cep" inputmode="numeric" placeholder="80000-000"></div>
+            <div class="field"><label for="f-bairro">Bairro / cidade</label><input id="f-bairro" name="bairro" placeholder="Centro, sua cidade"></div>
+            <div class="field full"><label for="f-end">Endereço</label><input id="f-end" name="end" autocomplete="street-address" placeholder="Rua, número, complemento"></div>
+          </div>
+        </fieldset>
+
+        <fieldset class="fset">
+          <h3><span class="step">3</span>Forma de pagamento</h3>
+          <div class="radios">
+            <div class="radio"><input type="radio" name="pag" id="p-pix" value="pix" checked><label for="p-pix"><span class="ic">À VISTA</span><b>Pix</b><small>Melhor preço</small></label></div>
+            <div class="radio"><input type="radio" name="pag" id="p-cc" value="credito"><label for="p-cc"><span class="ic">ATÉ 24x</span><b>Cartão de crédito</b><small>Por link de pagamento</small></label></div>
+            <div class="radio"><input type="radio" name="pag" id="p-deb" value="debito"><label for="p-deb"><span class="ic">LOJA</span><b>Débito ou dinheiro</b><small>Na retirada, preço à vista</small></label></div>
+          </div>
+
+          <div id="pixInfo" class="pix-box">
+            <canvas id="pixQr" width="29" height="29" aria-label="Código ilustrativo do Pix"></canvas>
+            <div style="min-width:0">
+              <small style="font-size:12px;color:var(--mute)">Chave Pix (CNPJ)</small>
+              <code id="pixKey"></code>
+              <button type="button" class="copy" id="copyPix">Copiar chave</button>
+              <div style="font-size:12px;color:var(--mute);margin-top:6px">O QR Code com o valor exato chega no WhatsApp após a confirmação do estoque.</div>
+            </div>
+          </div>
+
+          <div id="ccInfo" class="fields" hidden style="margin-top:12px">
+            <div class="field full"><label for="f-parc">Parcelamento</label><select id="f-parc" name="parcelas"></select></div>
+            <p class="full" style="grid-column:1/-1;margin:0;font-size:13px;color:var(--mute)">Você recebe um link de pagamento da maquininha. Os dados do cartão nunca são digitados neste site.</p>
+          </div>
+
+          <div class="field full" style="margin-top:14px">
+            <label style="display:flex;gap:10px;align-items:center;font-weight:700;cursor:pointer"><input type="checkbox" id="f-troca" style="width:18px;height:18px;accent-color:var(--accent)"> Quero dar meu iPhone usado como parte do pagamento</label>
+          </div>
+          <div class="field full" id="trocaWrap" hidden style="margin-top:8px"><label for="f-trocamodelo">Qual modelo e estado?</label><input id="f-trocamodelo" name="troca" placeholder="Ex.: iPhone 13 128 GB, bateria 84%, sem marcas"></div>
+        </fieldset>
+
+        <button class="btn btn-accent" type="submit" style="width:100%;padding:16px">Enviar pedido pelo WhatsApp</button>
+        <div class="err" id="formErr" role="alert"></div>
+        <div class="done" id="done" hidden>
+          <b>Pedido pronto para enviar.</b>
+          <span style="font-size:14px;color:var(--mute)">Se o WhatsApp não abriu sozinho, toque no botão abaixo. A mensagem já vai com os produtos, a entrega e a forma de pagamento.</span>
+          <div style="margin-top:12px"><a class="btn btn-wa" id="doneLink" href="#" target="_blank" rel="noopener">Abrir WhatsApp com meu pedido</a></div>
+        </div>
+        <div class="secure"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Nota fiscal em todas as compras. Seus dados (nome, WhatsApp e CPF) são usados só para emitir a nota e entregar o pedido, e não são compartilhados com terceiros, conforme a LGPD.</div>
+      </form>
+
+      <aside class="panel summary" aria-label="Resumo do pedido">
+        <h3>Resumo do pedido</h3>
+        <div id="summary"></div>
+        <div class="methods" aria-label="Formas de pagamento aceitas">
+          <span>PIX</span><span>VISA</span><span>MASTERCARD</span><span>ELO</span><span>AMEX</span><span>HIPERCARD</span><span>DÉBITO</span><span>DINHEIRO</span>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="duvidas" data-page="duvidas">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Dúvidas frequentes</span><h2 style="margin-top:10px">Antes de comprar</h2></div></div>
+    <div class="faq">
+      <details><summary>Os iPhones novos são originais e lacrados?</summary><p>Sim. Todos os novos saem lacrados, com nota fiscal e 1 ano de garantia Apple, válida em qualquer assistência autorizada do Brasil.</p></details>
+      <details><summary>Como vocês testam os seminovos?</summary><p>Cada aparelho é revisado antes da venda e sai com 3 meses de garantia da loja. Quando ainda tem garantia Apple, isso aparece no card do produto.</p></details>
+      <details><summary>Os produtos estão em estoque?</summary><p>Os itens marcados como pronta entrega estão na loja para retirada. Os marcados como sob encomenda chegam após a confirmação do pedido. Confirme o prazo pelo WhatsApp.</p></details>
+      <details><summary>Posso parcelar e ainda usar meu usado na troca?</summary><p>Pode. O valor do seu aparelho é abatido e a diferença pode ser paga no Pix ou em até 24x no cartão.</p></details>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="logo" href="#inicio"><span class="logo-mark">S</span><span class="logo-word">SUA LOJA</span><span class="logo-tag">DEMO</span></a>
+        <p>Revenda especializada em produtos Apple em sua cidade. iPhone novo e seminovo, Apple Watch, iPad, Mac e acessórios, com nota fiscal e garantia.</p>
+        <div class="methods"><span>PIX</span><span>VISA</span><span>MASTER</span><span>ELO</span><span>AMEX</span><span>24x</span></div>
+      </div>
+      <div>
+        <h4>Loja</h4>
+        <ul>
+          <li><a href="#loja-novos" data-go="novos">iPhone novo</a></li>
+          <li><a href="#loja-seminovos" data-go="seminovos">iPhone seminovo</a></li>
+          <li><a href="#loja-watch" data-go="watch">Apple Watch</a></li>
+          <li><a href="#loja-ipad" data-go="ipad">iPad</a></li>
+          <li><a href="#loja-mac" data-go="mac">Mac</a></li>
+          <li><a href="#loja-acessorios" data-go="acessorios">Acessórios</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Atendimento</h4>
+        <ul>
+          <li><a id="footWa" href="#" target="_blank" rel="noopener">WhatsApp <span class="mono" id="footWaNum"></span></a></li>
+          <li><a id="footIg" href="#" target="_blank" rel="noopener">Instagram <span id="footIgUser"></span></a></li>
+          <li><span id="footMail"></span></li>
+          <li><a href="#pagamento">Formas de pagamento</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Endereço e horário</h4>
+        <ul>
+          <li id="footAddr"></li>
+          <li id="footHours"></li>
+          <li><span class="mono" id="footCnpj"></span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Sua Loja. Todos os direitos reservados.</span>
+      <span>Apple, iPhone, iPad, Apple Watch, Mac e AirPods são marcas da Apple Inc. A Sua Loja é uma revenda independente.</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" id="waFloat" href="#" target="_blank" rel="noopener" aria-label="Tirar dúvidas no WhatsApp">
+  <span class="bubble">Dúvidas? Chama no WhatsApp</span>
+  <span class="ico"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3Zm0 23.6c-2 0-4-.5-5.7-1.6l-.4-.2-3.9 1 1-3.8-.2-.4A10.6 10.6 0 1 1 16 26.6Zm5.8-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.4.2-.7.1a8.7 8.7 0 0 1-4.3-3.8c-.3-.5.3-.5 1-1.6.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.7s1.2 3.2 1.3 3.4c.2.2 2.3 3.5 5.6 4.9 2.1.9 2.9 1 4 .8.6-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5l-.6-.4Z"/></svg></span>
+</a>
+
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer" aria-label="Sacola de compras" aria-hidden="true">
+  <div class="drawer-head"><h3>Sua sacola</h3><button class="x" id="closeCart" type="button" aria-label="Fechar sacola">×</button></div>
+  <div id="drawerBody" style="display:flex;flex-direction:column;flex:1;min-height:0"></div>
+</aside>
+<div class="pv" id="pv" hidden role="dialog" aria-modal="true" aria-label="Detalhes do produto">
+  <div class="pv-scroll" id="pvBody"></div>
+  <div class="pv-bar">
+    <div class="pv-qty"><button type="button" data-pvq="-1" aria-label="Diminuir quantidade">−</button><span id="pvQ" class="mono">1</span><button type="button" data-pvq="1" aria-label="Aumentar quantidade">+</button></div>
+    <button type="button" class="btn btn-accent" id="pvAdd"><span>Adicionar</span><span class="mono" id="pvTotal"></span></button>
+  </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* ==========================================================
+   CONFIGURAÇÃO DA LOJA — edite aqui os dados da Sua Loja
+   ========================================================== */
+const LOJA = {
+  whatsapp: "",
+  whatsappExibir: "seu número aqui",
+  instagram: "",
+  email: "",
+  endereco: "Endereço da sua loja",
+  horario: "Seg a sex 10h às 18h · Sáb 10h às 13h",
+  cnpj: "",
+  chavePix: "",
+  demo: true,
+  parcelas: [12,18,24],
+  fator: {12:0.0958, 18:0.0687, 24:0.0559},
+  inicioBlackFriday: "2026-11-27T00:00:00-03:00",
+  fimBlackFriday: "2026-11-30T23:59:59-03:00",
+  /* Simulador de parcelamento: ajuste conforme a maquininha da loja */
+  simulador: {
+    parcelasMax: 24,          // até quantas vezes
+    semJurosAte: 1,           // até quantas vezes sem juros (1 = só à vista)
+    jurosMes: 0.025,          // juros ao mês acima disso (0.025 = 2,5%)
+    opcoes: [1,2,3,4,5,6,8,10,12,15,18,21,24], // parcelas mostradas
+    entrada: true,            // permite entrada
+    troca: true,              // permite usado na troca
+    nota: "Simulação. O valor final é confirmado pela loja no fechamento do pedido."
+  }
+};
+
+/* Opção de produto: o(rótulo, preço à vista, preço "de" (0 = sem), parcelas [12x,18x,24x] (null = calcula, 0 = só à vista), status, observação, garantia) */
+const P="Pronta entrega", E="Sob encomenda";
+const o=(l,p,de=0,x=null,st=P,nota="",gar="")=>({l,p,de,x,st,nota,gar});
+const W=[["Branco","#F4F4F2"]], K=[["Preto","#2A2B2E"]];
+const N="Novo · Lacrado · Garantia de 1 ano Apple", S="Seminovo · Garantia de 3 meses", A="Novo · Garantia de 1 ano";
+const C16=[["Ultramarino","#5B6FD3"],["Verde-acinzentado","#9DC2B6"],["Rosa","#EFB5C6"],["Branco","#F2F2F0"],["Preto","#2B2B2D"]];
+const C17=[["Lavanda","#CBBDDF"],["Sálvia","#B6C7AE"],["Azul-névoa","#A7BED4"],["Branco","#F2F2F0"],["Preto","#2B2B2D"]];
+const CAIR=[["Azul-céu","#C6D9E8"],["Dourado-claro","#E8D9BE"],["Branco-nuvem","#F1F1EE"],["Preto-espacial","#2A2A2C"]];
+const C17P=[["Laranja-cósmico","#D9642A"],["Azul-profundo","#2E3A55"],["Prata","#DADBDE"]];
+const C18=[["Preto","#2B2C30"],["Prata","#DADBDE"],["Azul-claro","#9DB8D6"],["Vinho","#6E2A33"]];
+const CPRO=[["Titânio-deserto","#BFA48C"],["Titânio-natural","#B8B3AB"],["Titânio-branco","#E4E2DD"],["Titânio-preto","#3A3B3E"]];
+
+const PRODUTOS = [
+  // ---------- iPhone novo ----------
+  {id:"n15",cat:"novos",c:"novo",nome:"iPhone 15",m:"diag",spec:N,cores:[["Azul","#C9DCE6"],["Preto","#3A3D42"],["Rosa","#F1D3D6"]],arm:[o("128 GB",4090,0,[392,281,229])]},
+  {id:"n16",cat:"novos",c:"novo",nome:"iPhone 16",m:"std",spec:N,cores:C16,arm:[o("128 GB",4990,0,[477,343,279],"")]},
+  {id:"nair",cat:"novos",c:"novo",nome:"iPhone Air",m:"air",spec:N,cores:CAIR,arm:[o("256 GB",6190,0,[593,426,346],"")]},
+  {id:"n17e",cat:"novos",c:"novo",nome:"iPhone 17e",m:"single",spec:N,cores:[["Branco","#F2F2F0"],["Preto","#2B2B2D"]],arm:[o("256 GB",4790,0,[459,329,268],"")]},
+  {id:"n17",cat:"novos",c:"novo",nome:"iPhone 17",m:"std",spec:N,cores:C17,arm:[o("256 GB",5890,6390,[564,405,329])]},
+  {id:"n17p",cat:"novos",c:"novo",nome:"iPhone 17 Pro",m:"pro17",spec:N,cores:C17P,arm:[o("256 GB",7750,8590,[742,533,433],"")]},
+  {id:"n17pm",cat:"novos",c:"novo",nome:"iPhone 17 Pro Max",m:"pro17",spec:N,cores:C17P,arm:[o("256 GB",8090,10290,[775,556,null]),o("512 GB",8790,10890,[841,604,491],"")]},
+  {id:"n18p",cat:"novos",c:"novo",nome:"iPhone 18 Pro",m:"pro17",spec:N,cores:C18,arm:[o("256 GB",8390,8890,[803,577,468],""),o("512 GB",9490,0,[908,652,530],""),o("1 TB",10790,0,[1033,741,null])]},
+  {id:"n18pm",cat:"novos",c:"novo",nome:"iPhone 18 Pro Max",m:"pro17",spec:N,cores:C18,arm:[o("256 GB",9390,11690,[899,645,524]),o("512 GB",11090,13090,[1062,762,null]),o("1 TB",13590,0,[1301,934,null],"")]},
+  {id:"nduo",cat:"novos",c:"novo",nome:"iPhone Duo",m:"fold",spec:"Dobrável · "+N,cores:[["Cores sob consulta","#3A3D42"]],arm:[o("256 GB",15490,0,[1483,1064,null],E),o("512 GB",16690,0,[1597,1147,null],E)]},
+
+  // ---------- iPhone seminovo ----------
+  {id:"s12",cat:"seminovos",c:"semi",nome:"iPhone 12",m:"diag",spec:S,cores:[["Preto","#25272B"],["Branco","#EEEDEA"]],arm:[o("64 GB",1290,1890,[124,89,72]),o("128 GB",1490,1990,[143,103,84]),o("256 GB",1790,0,[171,123,100])]},
+  {id:"s13mini",cat:"seminovos",c:"semi",nome:"iPhone 13 mini",m:"diag",spec:S,cores:[["Branco","#EEEDEA"]],arm:[o("128 GB",1690,0,[162,null,95])]},
+  {id:"s13",cat:"seminovos",c:"semi",nome:"iPhone 13",m:"diag",spec:S,cores:[["Preto","#25272B"],["Branco","#EEEDEA"],["Azul","#2F6DB0"]],arm:[o("128 GB",1890,2190,[181,130,106]),o("256 GB",2290,2690,[220,158,128])]},
+  {id:"s13p",cat:"seminovos",c:"semi",nome:"iPhone 13 Pro",m:"pro",spec:S,cores:[["Azul-sierra","#9FB7CF"],["Verde-alpino","#4A5A4A"],["Grafite","#4A4B4F"],["Prateado","#E3E3E0"]],arm:[o("128 GB",2590,3690,[248,178,145]),o("256 GB",2790,2990,[267,192,156],P,"Impecável")]},
+  {id:"s13pm",cat:"seminovos",c:"semi",nome:"iPhone 13 Pro Max",m:"pro",spec:S,cores:[["Verde-alpino","#4A5A4A"],["Prateado","#E3E3E0"],["Dourado","#E6D6BC"]],arm:[o("128 GB",2790,4190,[267,192,156],"")]},
+  {id:"s14",cat:"seminovos",c:"semi",nome:"iPhone 14",m:"diag",spec:S,cores:[["Azul","#A9C3DB"],["Estelar","#EDE7DC"],["Meia-noite","#25272B"],["Roxo","#D9D2E6"]],arm:[o("128 GB",2490,3590,[239,171,139])]},
+  {id:"s14plus",cat:"seminovos",c:"semi",nome:"iPhone 14 Plus",m:"diag",spec:S,cores:[["Meia-noite","#25272B"],["Estelar","#EDE7DC"]],arm:[o("128 GB",2790,0,[267,192,156]),o("256 GB",2990,0,[287,206,167]),o("512 GB",3090,0,[296,213,173])]},
+  {id:"s14p",cat:"seminovos",c:"semi",nome:"iPhone 14 Pro",m:"pro",spec:S,cores:[["Roxo-profundo","#5E5469"],["Preto-espacial","#35363A"]],arm:[o("128 GB",3190,3690,[306,220,178]),o("256 GB",3350,3790,[321,231,187])]},
+  {id:"s14pm",cat:"seminovos",c:"semi",nome:"iPhone 14 Pro Max",m:"pro",spec:S,cores:[["Roxo-profundo","#5E5469"],["Preto-espacial","#35363A"],["Prateado","#E3E3E0"]],arm:[o("128 GB",3490,4990,[334,240,195]),o("256 GB",3790,5390,[363,261,212])]},
+  {id:"s15",cat:"seminovos",c:"semi",nome:"iPhone 15",m:"diag",spec:S,cores:[["Preto","#3A3D42"],["Verde","#D5E4D0"],["Branco","#EEEDEA"]],arm:[o("128 GB",3090,4090,[296,213,173]),o("256 GB",3290,3690,[315,226,184])]},
+  {id:"s15p",cat:"seminovos",c:"semi",nome:"iPhone 15 Pro",m:"pro",spec:S,cores:[["Titânio-azul","#414B5B"]],arm:[o("128 GB",3590,4590,[344,247,201]),o("256 GB",4090,0,[392,281,229])]},
+  {id:"s15pm",cat:"seminovos",c:"semi",nome:"iPhone 15 Pro Max",m:"pro",spec:S,cores:[["Titânio-azul","#414B5B"],["Titânio-branco","#E4E2DD"],["Titânio-preto","#3A3B3E"]],arm:[o("256 GB",4590,6590,[440,316,257]),o("512 GB",4690,0,[449,323,262])]},
+  {id:"s16e",cat:"seminovos",c:"semi",nome:"iPhone 16e",m:"single",spec:S,cores:[["Branco","#F2F2F0"],["Preto","#2B2B2D"]],arm:[o("128 GB",2990,3390,[287,206,167]),o("256 GB",3190,0,[306,220,178])]},
+  {id:"s16",cat:"seminovos",c:"semi",nome:"iPhone 16",m:"std",spec:S,cores:[["Branco","#F2F2F0"],["Ultramarino","#5B6FD3"],["Rosa","#EFB5C6"],["Preto","#2B2B2D"]],arm:[o("128 GB",4090,0,[392,281,229]),o("256 GB",4190,0,[401,288,234])]},
+  {id:"s16plus",cat:"seminovos",c:"semi",nome:"iPhone 16 Plus",m:"std",spec:S,cores:[["Ultramarino","#5B6FD3"],["Rosa","#EFB5C6"],["Branco","#F2F2F0"],["Preto","#2B2B2D"]],arm:[o("128 GB",4190,0,[401,288,234])]},
+  {id:"s16p",cat:"seminovos",c:"semi",nome:"iPhone 16 Pro",m:"pro",spec:S,cores:CPRO,arm:[o("128 GB",4890,0,[468,336,273]),o("256 GB · marcas de uso",4390,0,[421,302,245],P,"Marcas de uso"),o("256 GB",5090,5890,[487,350,284]),o("512 GB",5190,0,[497,357,290]),o("1 TB",5490,0,[526,378,307],"","Impecável · Bateria 99%")]},
+  {id:"s16pm",cat:"seminovos",c:"semi",nome:"iPhone 16 Pro Max",m:"pro",spec:S,cores:CPRO,arm:[o("256 GB",5090,5550,[487,350,284]),o("512 GB · tela nova",5090,0,[487,350,284],P,"Tela nova (1 ano de garantia) e marcas de uso"),o("512 GB",5290,6999,[507,364,296]),o("1 TB",5890,0,[564,405,329])]},
+  {id:"sair",cat:"seminovos",c:"semi",nome:"iPhone Air",m:"air",spec:"Seminovo · Garantia Apple",cores:[["Preto-espacial","#2A2A2C"],["Branco-nuvem","#F1F1EE"]],arm:[o("256 GB",5390,0,[516,371,301],P,"","Apple")]},
+  {id:"s17",cat:"seminovos",c:"semi",nome:"iPhone 17",m:"std",spec:"Seminovo · Garantia Apple",cores:C17,arm:[o("256 GB",5290,0,[507,364,296],P,"","Apple")]},
+  {id:"s17p",cat:"seminovos",c:"semi",nome:"iPhone 17 Pro",m:"pro17",spec:S,cores:[["Laranja-cósmico","#D9642A"],["Azul-profundo","#2E3A55"]],arm:[o("256 GB",6790,0,[650,467,379]),o("512 GB",7090,0,[679,487,396],P,"Impecável","Apple até 12/2026")]},
+  {id:"s17pm",cat:"seminovos",c:"semi",nome:"iPhone 17 Pro Max",m:"pro17",spec:S,cores:C17P,arm:[o("256 GB · tela nova",6390,0,[612,439,357],P,"Tela nova (1 ano de garantia) e marcas de uso"),o("256 GB",7250,0,[694,498,405]),o("512 GB",7790,7890,[746,535,435])]},
+
+  // ---------- Apple Watch ----------
+  {id:"w12",cat:"watch",c:"novo",nome:"Apple Watch Series 12",m:"watch",spec:N,cores:[["Preto-azeviche","#1F2023"]],arm:[o("42 mm",3190,0,[306,220,178]),o("46 mm",3490,0,[334,240,195])]},
+  {id:"w11",cat:"watch",c:"novo",nome:"Apple Watch Series 11",m:"watch",spec:N,cores:[["Preto-azeviche","#1F2023"]],arm:[o("42 mm",2590,3490,[248,178,145])]},
+  {id:"wu3n",cat:"watch",c:"novo",nome:"Apple Watch Ultra 3",m:"ultra",spec:N,cores:[["Titânio-preto","#2C2C2E"]],arm:[o("49 mm",4790,5290,[459,329,268])]},
+  {id:"wse3",cat:"watch",c:"novo",nome:"Apple Watch SE 3",m:"watch",spec:N,cores:[["Meia-noite","#2A2E36"]],arm:[o("40 mm",1950,0,[187,134,109]),o("44 mm",2150,3490,[206,148,120])]},
+  {id:"wu3s",cat:"watch",c:"semi",nome:"Apple Watch Ultra 3",m:"ultra",spec:"Seminovo · Impecável · Garantia Apple até 03/2027",cores:[["Titânio-preto","#2C2C2E"]],arm:[o("49 mm",4790,0,[459,329,268],P,"Impecável","Apple até 03/2027")]},
+  {id:"wu2",cat:"watch",c:"semi",nome:"Apple Watch Ultra 2",m:"ultra",spec:S,cores:[["Titânio-natural","#B9B5AE"],["Titânio-preto","#2C2C2E"]],arm:[o("49 mm",2790,0,[267,192,156])]},
+  {id:"wu1",cat:"watch",c:"semi",nome:"Apple Watch Ultra",m:"ultra",spec:S,cores:[["Titânio","#B9B5AE"]],arm:[o("49 mm",2390,0,[229,165,134])]},
+  {id:"ws10",cat:"watch",c:"semi",nome:"Apple Watch Series 10",m:"watch",spec:S,cores:[["Preto-azeviche","#1F2023"]],arm:[o("46 mm",1890,0,[181,130,106])]},
+  {id:"ws9",cat:"watch",c:"semi",nome:"Apple Watch Series 9",m:"watch",spec:S,cores:[["Rosa","#EFC9CF"]],arm:[o("41 mm",1690,2090,[162,117,95])]},
+  {id:"ws8",cat:"watch",c:"semi",nome:"Apple Watch Series 8",m:"watch",spec:S,cores:[["Prateado","#D5D6D8"]],arm:[o("45 mm",1290,0,[124,89,72])]},
+  {id:"wse2",cat:"watch",c:"semi",nome:"Apple Watch SE (2ª geração)",m:"watch",spec:S,cores:[["Estelar","#E8E1D6"]],arm:[o("40 mm",1290,0,[124,89,72])]},
+
+  // ---------- MacBook ----------
+  {id:"mbam5n",cat:"mac",c:"novo",nome:"MacBook Air M5 13\"",m:"mac",spec:N,cores:[["Prateado","#D8D9DB"]],arm:[o("512 GB",8790,0,[841,604,491])]},
+  {id:"mbam5s",cat:"mac",c:"semi",nome:"MacBook Air M5 13\"",m:"mac",spec:"Seminovo · Impecável · Garantia de 3 meses",cores:[["Meia-noite","#2A2F38"]],arm:[o("512 GB",8090,0,[775,556,452],P,"Impecável")]},
+  {id:"mbpm3",cat:"mac",c:"semi",nome:"MacBook Pro M3 14\"",m:"mac",spec:S,cores:[["Preto-espacial","#2E2F32"]],arm:[o("14\"",7990,0,[765,549,446])]},
+  {id:"mbp15",cat:"mac",c:"semi",nome:"MacBook Pro 2015 15\"",m:"mac",spec:S,cores:[["Prateado","#D8D9DB"]],arm:[o("15\"",2890,0,[277,199,166])]},
+  {id:"capamac",cat:"mac",c:"acc",nome:"Capa para MacBook até 14\"",m:"sleeve",spec:"Compatível com MacBook até 14\"",cores:[["Preto","#2A2B2E"],["Marrom","#7A5E48"]],arm:[o("Única",169,0,0)]},
+
+  // ---------- iPad ----------
+  {id:"ipa16",cat:"ipad",sub:"iPad",c:"novo",nome:"iPad 11\" A16",m:"ipad",spec:N,cores:[["Azul","#8FB4DA"],["Rosa","#EDB9C4"],["Amarelo","#F0D97A"],["Prateado","#D8D9DB"]],arm:[o("128 GB",3190,0,[306,220,178])]},
+  {id:"ippro5",cat:"ipad",sub:"iPad",c:"semi",nome:"iPad Pro 12,9\" (5ª geração)",m:"ipad",spec:S,cores:[["Prateado","#D8D9DB"]],arm:[o("256 GB",4990,0,[478,343,279]),o("1 TB",6090,0,[583,418,340])]},
+  {id:"ippro4",cat:"ipad",sub:"iPad",c:"semi",nome:"iPad Pro 12,9\" (4ª geração)",m:"ipad",spec:S,cores:[["Cinza-espacial","#6A6C70"]],arm:[o("256 GB",4290,0,[411,295,240])]},
+  {id:"ipair5",cat:"ipad",sub:"iPad",c:"semi",nome:"iPad Air 11\" (5ª geração)",m:"ipad",spec:S,cores:[["Cinza-espacial","#6A6C70"],["Azul","#A9BED6"]],arm:[o("64 GB",3090,0,[296,212,172])]},
+  {id:"penpro",cat:"ipad",sub:"Pencil e capas",c:"novo",nome:"Apple Pencil Pro",m:"pencil",spec:N,cores:W,arm:[o("Única",999,0,[95,68,55])]},
+  {id:"penusbc",cat:"ipad",sub:"Pencil e capas",c:"novo",nome:"Apple Pencil (USB-C)",m:"pencil",spec:N,cores:W,arm:[o("Única",890,0,[86,62,50])]},
+  {id:"pen2n",cat:"ipad",sub:"Pencil e capas",c:"novo",nome:"Apple Pencil (2ª geração)",m:"pencil",spec:N,cores:W,arm:[o("Única",690,0,[66,47,38])]},
+  {id:"pen2s",cat:"ipad",sub:"Pencil e capas",c:"semi",nome:"Apple Pencil (2ª geração)",m:"pencil",spec:"Seminovo",cores:W,arm:[o("Única",390,0,null)]},
+  {id:"canfam",cat:"ipad",sub:"Pencil e capas",c:"acc",nome:"Caneta magnética FAM",m:"pencil",spec:A,cores:W,arm:[o("Para iPad",159,0,0,""),o("Universal iPad",169,0,0),o("iPad e celular",160,0,0)]},
+  {id:"capatec",cat:"ipad",sub:"Pencil e capas",c:"acc",nome:"Capa com teclado para iPad",m:"keyboard",spec:"Novo · Garantia de 3 meses",cores:[["Rosa","#EBC3C9"],["Preto","#2A2B2E"]],arm:[o("Única",370,0,0)]},
+
+  // ---------- AirPods e som ----------
+  {id:"app3",cat:"audio",sub:"AirPods",c:"novo",nome:"AirPods Pro 3",m:"airpods",spec:N,cores:W,arm:[o("Única",1790,0,[172,123,100])]},
+  {id:"ap5",cat:"audio",sub:"AirPods",c:"novo",nome:"AirPods 5",m:"airpods",spec:N,cores:W,arm:[o("Padrão",1390,0,[133,96,78]),o("Estojo sem fio",1590,0,[153,110,89])]},
+  {id:"ap4",cat:"audio",sub:"AirPods",c:"novo",nome:"AirPods 4",m:"airpods",spec:N,cores:W,arm:[o("Padrão",999,0,[96,69,56]),o("Cancelamento de ruído",1290,0,[124,89,72])]},
+  {id:"caseap",cat:"audio",sub:"AirPods",c:"acc",nome:"Case para AirPods",m:"airpods",spec:"Com mosquetão",cores:[["Preto","#2A2B2E"],["Laranja","#E2702F"],["Cinza","#6E7275"]],arm:[o("Única",69,0,0)]},
+  {id:"airbuds",cat:"audio",sub:"Fones",c:"acc",nome:"Airbuds Pro FAM",m:"airpods",spec:"Novo · Lacrado · Garantia de 1 ano",cores:W,arm:[o("Única",170,0,0)]},
+  {id:"harbor",cat:"audio",sub:"Fones",c:"acc",nome:"Fone sem fio FAM 80h",m:"headphone",spec:"Novo · Lacrado · Garantia de 1 ano",cores:[["Bege","#CDBFB0"]],arm:[o("Única",259,0,0)]},
+  {id:"openair",cat:"audio",sub:"Fones",c:"acc",nome:"Fone Open Air 2 FAM",m:"earpods",spec:"Fone de ouvido OWS",cores:[["Branco","#F4F4F2"]],arm:[o("Única",259,0,0)]},
+  {id:"fonefio",cat:"audio",sub:"Fones",c:"acc",nome:"Fone com fio",m:"earpods",spec:"Novo · Lacrado · Garantia de 1 ano",cores:W,arm:[o("P2",59,0,0),o("USB-C",60,0,0)]},
+  {id:"jbl770",cat:"audio",sub:"JBL",c:"acc",nome:"JBL Tune 770NC",m:"headphone",spec:A,cores:[["Azul","#2E4E8F"]],arm:[o("Única",459,0,[44,32,26])]},
+  {id:"jbl520",cat:"audio",sub:"JBL",c:"acc",nome:"JBL Tune 520BT",m:"headphone",spec:A,cores:K,arm:[o("Única",280,0,[27,20,16])]},
+  {id:"jbljr",cat:"audio",sub:"JBL",c:"acc",nome:"JBL Junior 310BT",m:"headphone",spec:A,cores:[["Azul","#5DA9D6"]],arm:[o("Única",299,0,[29,21,17])]},
+  {id:"charge5",cat:"audio",sub:"JBL",c:"acc",nome:"JBL Charge 5",m:"speaker",spec:A,cores:K,arm:[o("Única",850,0,[82,59,48])]},
+  {id:"flip6",cat:"audio",sub:"JBL",c:"acc",nome:"JBL Flip 6",m:"speaker",spec:A,cores:K,arm:[o("Única",520,660,[50,36,30])]},
+  {id:"clip5",cat:"audio",sub:"JBL",c:"acc",nome:"JBL Clip 5",m:"speaker",spec:A,cores:K,arm:[o("Única",350,0,[34,25,null])]},
+  {id:"go5",cat:"audio",sub:"JBL",c:"acc",nome:"JBL Go 5",m:"speaker",spec:A,cores:[["Camuflada","#6F7A55"]],arm:[o("Única",279,0,[27,20,16])]},
+  {id:"go4",cat:"audio",sub:"JBL",c:"acc",nome:"JBL Go 4",m:"speaker",spec:A,cores:K,arm:[o("Única",250,0,[24,18,14])]},
+  {id:"goess",cat:"audio",sub:"JBL",c:"acc",nome:"JBL Go Essential",m:"speaker",spec:A,cores:[["Vermelha","#C2382F"],["Azul","#2E4E8F"]],arm:[o("Única",200,0,0)]},
+  {id:"cx20",cat:"audio",sub:"JBL",c:"acc",nome:"Caixa acústica 20W FAM",m:"speaker",spec:A,cores:K,arm:[o("Única",290,0,[28,20,17])]},
+
+  // ---------- Casa e games ----------
+  {id:"ps5",cat:"casa",sub:"Games",c:"acc",nome:"PlayStation 5 Mídia Digital",m:"console",spec:"Novo · Lacrado · Garantia de 1 ano",cores:W,arm:[o("825 GB",4590,0,[440,316,null],"")]},
+  {id:"echo",cat:"casa",sub:"Alexa",c:"acc",nome:"Amazon Echo (Alexa)",m:"echo",spec:"Novo · Lacrado · Garantia de 1 ano",cores:[["Grafite","#3A3D42"]],arm:[o("Echo Pop",320,0,0),o("Echo Dot 5",380,0,0),o("Echo Spot",450,0,0),o("Echo Show",560,0,0)]},
+  {id:"fire",cat:"casa",sub:"TV",c:"acc",nome:"Amazon Fire TV Stick",m:"stick",spec:"Garantia de 1 ano",cores:K,arm:[o("Fire TV Stick",270,0,0),o("Fire TV Stick Lite",280,0,0)]},
+  {id:"xiaomi",cat:"casa",sub:"TV",c:"acc",nome:"Xiaomi TV",m:"stick",spec:"Garantia de 1 ano",cores:K,arm:[o("TV Box S 4K",320,0,0),o("Mi TV Stick",420,0,0)]},
+
+  // ---------- Acessórios ----------
+  {id:"airtag",cat:"acessorios",sub:"Originais Apple",c:"novo",nome:"AirTag",m:"airtag",spec:"Novo · Lacrado · Garantia de 1 ano",cores:W,arm:[o("Única",189,0,0)]},
+  {id:"fonte",cat:"acessorios",sub:"Originais Apple",c:"novo",nome:"Fonte USB-C Apple",m:"charger",spec:"Novo · Lacrado · Garantia de 1 ano",cores:W,arm:[o("20W",149,0,0),o("35W",279,0,0)]},
+  {id:"earpods",cat:"acessorios",sub:"Originais Apple",c:"novo",nome:"EarPods Apple",m:"earpods",spec:"Novo · Lacrado · Garantia de 1 ano",cores:W,arm:[o("Lightning",199,0,0),o("USB-C",199,0,0)]},
+  {id:"cabcc",cat:"acessorios",sub:"Originais Apple",c:"novo",nome:"Cabo USB-C para USB-C Apple",m:"cable",spec:"Novo · Lacrado · Garantia de 1 ano",cores:W,arm:[o("1 m",199,0,0),o("2 m",299,0,0)]},
+  {id:"cabcl",cat:"acessorios",sub:"Originais Apple",c:"novo",nome:"Cabo USB-C para Lightning Apple",m:"cable",spec:"Novo · Lacrado · Garantia de 1 ano",cores:W,arm:[o("1 m",199,0,0),o("2 m",299,0,0)]},
+  {id:"cabul",cat:"acessorios",sub:"Originais Apple",c:"novo",nome:"Cabo USB para Lightning Apple",m:"cable",spec:"Novo · Lacrado · Garantia de 1 ano",cores:W,arm:[o("1 m",179,0,0),o("2 m",289,0,0)]},
+  {id:"cabwatch",cat:"acessorios",sub:"Originais Apple",c:"novo",nome:"Cabo de carregamento Apple Watch",m:"magsafe",spec:"Novo · Lacrado · Garantia de 1 ano",cores:W,arm:[o("Única",259,0,0)]},
+  {id:"magic",cat:"acessorios",sub:"Originais Apple",c:"semi",nome:"Magic Mouse",m:"mouse",spec:S,cores:W,arm:[o("Branco",490,0,[47,34,28])]},
+  {id:"fcl",cat:"acessorios",sub:"Cabos",c:"acc",nome:"Cabo USB-C para Lightning",m:"cable",spec:A,cores:W,arm:[o("1,2 m FAM",60,0,0),o("2 m FAM",89,0,0),o("Metal 1,2 m FAM",89,0,0),o("2 m Baseus",99,0,0),o("1,5 m Baseus (2 un.)",99,0,0)]},
+  {id:"fcc",cat:"acessorios",sub:"Cabos",c:"acc",nome:"Cabo USB-C para USB-C",m:"cable",spec:A,cores:W,arm:[o("1,2 m FAM",69,0,0),o("2 m FAM",89,0,0),o("Metal 1,2 m FAM",89,0,0),o("1 m Baseus",89,0,0)]},
+  {id:"fuc",cat:"acessorios",sub:"Cabos",c:"acc",nome:"Cabo USB para USB-C",m:"cable",spec:A,cores:K,arm:[o("1 m FAM",69,0,0),o("1,2 m FAM",69,0,0),o("Tipo-C 1,2 m",75,0,0)]},
+  {id:"ful",cat:"acessorios",sub:"Cabos",c:"acc",nome:"Cabo USB para Lightning",m:"cable",spec:A,cores:W,arm:[o("1 m FAM",60,0,0),o("2 m Baseus",99,0,0)]},
+  {id:"c3em1",cat:"acessorios",sub:"Cabos",c:"acc",nome:"Cabo 3 em 1 Baseus",m:"cable",spec:"1,5 m · Lightning, USB-C e V8",cores:W,arm:[o("Única",90,0,0)]},
+  {id:"ind",cat:"acessorios",sub:"Carregadores",c:"acc",nome:"Carregador por indução",m:"wcharger",spec:"Celular, AirPods e Apple Watch · Garantia de 1 ano",cores:W,arm:[o("Base 3 em 1 dobrável",120,0,0),o("4 em 1 FAM",159,0,0),o("3 em 1",219,0,0),o("3 em 1 FAM",279,0,0)]},
+  {id:"magfam",cat:"acessorios",sub:"Carregadores",c:"acc",nome:"Carregador MagSafe FAM",m:"magsafe",spec:A,cores:W,arm:[o("Única",110,0,0)]},
+  {id:"cwatch",cat:"acessorios",sub:"Carregadores",c:"acc",nome:"Carregador magnético Apple Watch",m:"magsafe",spec:A,cores:W,arm:[o("Rápido",60,0,0),o("FAM",99,0,0)]},
+  {id:"fdupla",cat:"acessorios",sub:"Carregadores",c:"acc",nome:"Fonte dupla 20W Baseus",m:"charger2",spec:"USB e USB-C · Fast Charge",cores:K,arm:[o("Única",120,0,0)]},
+  {id:"viagem",cat:"acessorios",sub:"Carregadores",c:"acc",nome:"Carregador de viagem FAM",m:"charger2",spec:"2 USB-C e 1 USB",cores:K,arm:[o("Única",150,0,0)]},
+  {id:"veic",cat:"acessorios",sub:"Carregadores",c:"acc",nome:"Carregador veicular FAM",m:"charger",spec:"1 USB-C e 1 USB · Turbo 38W",cores:K,arm:[o("Única",79,0,0)]},
+  {id:"suporte",cat:"acessorios",sub:"Outros",c:"acc",nome:"Suporte magnético veicular Baseus",m:"magsafe",spec:"Giro de 360°",cores:[["Prata","#D5D6D8"]],arm:[o("Única",80,0,0)]},
+  {id:"hub",cat:"acessorios",sub:"Outros",c:"acc",nome:"Mini hub 3 em 1",m:"hub",spec:A,cores:[["Cinza","#8E9196"]],arm:[o("Única",219,0,0)]},
+  {id:"mouse",cat:"acessorios",sub:"Outros",c:"acc",nome:"Mouse Bluetooth HRebos",m:"mouse",spec:"Novo · Lacrado · Garantia de 1 ano",cores:[["Cinza","#8E9196"]],arm:[o("Única",99,0,0,"")]},
+  {id:"adapt",cat:"acessorios",sub:"Outros",c:"acc",nome:"Adaptador",m:"charger",spec:"Pronta entrega",cores:K,arm:[o("Lightning para USB-C",15,0,0),o("Universal",120,0,0)]}
+];
+
+const CATS = [
+  ["novos","iPhone novo","Lacrados com nota fiscal e <b>1 ano de garantia Apple</b>."],
+  ["seminovos","iPhone seminovo","Revisados, com <b>3 meses de garantia</b> da loja. Quando ainda há garantia Apple, ela aparece no card. Cores sujeitas à disponibilidade."],
+  ["watch","Apple Watch","Novos lacrados com <b>1 ano de garantia Apple</b> e seminovos com 3 meses de garantia."],
+  ["mac","MacBook","Novos lacrados e seminovos revisados."],
+  ["ipad","iPad e Pencil","iPads novos e seminovos, Apple Pencil e acessórios."],
+  ["audio","AirPods e som","AirPods originais, fones e caixas de som JBL."],
+  ["acessorios","Acessórios","Originais Apple e acessórios FAM e Baseus com <b>1 ano de garantia</b>."],
+  ["casa","Casa e games","Alexa, Fire TV, Xiaomi TV e PlayStation 5."]
+];
+
+const DEPOIMENTOS = [
+  {nome:"Camila R.",bairro:"Água Verde",prod:"iPhone 17 Pro · 256 GB",txt:"Comprei no Pix e retirei no mesmo dia, lacrado e com nota. O atendimento pelo WhatsApp respondeu tudo antes de eu fechar."},
+  {nome:"Rafael M.",bairro:"Centro",prod:"Troca 13 → 16 Pro",txt:"Dei meu iPhone 13 na troca e paguei a diferença no cartão. Avaliaram na hora, sem enrolação. Valor justo."},
+  {nome:"Juliana T.",bairro:"Portão",prod:"iPhone 15 seminovo",txt:"Tinha medo de seminovo, mas veio revisado e com garantia. Parece novo. Já indiquei para minha irmã."},
+  {nome:"Lucas P.",bairro:"Centro Cívico",prod:"MacBook Air M5",txt:"Preço melhor do que nas grandes lojas e consegui parcelar. Retirei na loja em menos de uma hora."},
+  {nome:"Fernanda A.",bairro:"São José dos Pinhais",prod:"Apple Watch Series 11",txt:"Presente de aniversário pro meu marido. Ajudaram a escolher o tamanho certo."},
+  {nome:"Gustavo L.",bairro:"Bigorrilho",prod:"AirPods Pro 3 + case",txt:"Original, lacrado, entrega rápida. Voltei depois para comprar a case e o carregador."}
+];
+
+const TROCA = [["iPhone 17 Pro Max",6000],["iPhone 17 Pro",5300],["iPhone 16 Pro Max",4300],["iPhone 16 Pro",3700],["iPhone 16",2900],["iPhone 15 Pro Max",3500],["iPhone 15 Pro",2900],["iPhone 15",2300],["iPhone 14 Pro Max",2700],["iPhone 14 Pro",2300],["iPhone 14",1700],["iPhone 13 Pro",1800],["iPhone 13",1300],["iPhone 12",850],["iPhone 11",600]];
+
+/* ========================================================== */
+const brl = v => v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+const brl0 = v => v.toLocaleString("pt-BR",{style:"currency",currency:"BRL",maximumFractionDigits:0,minimumFractionDigits:0});
+const wa = msg => LOJA.whatsapp ? `https://wa.me/${LOJA.whatsapp}?text=${encodeURIComponent(msg)}` : `https://wa.me/?text=${encodeURIComponent(msg)}`;
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const parc = (op,n) => {const i=LOJA.parcelas.indexOf(n);return (op.x&&op.x[i]!=null)?op.x[i]:Math.round(op.p*LOJA.fator[n])};
+const instTxt = op => op.x===0 ? "Preço à vista" : "à vista ou "+LOJA.parcelas.map(n=>`${n}x ${brl0(parc(op,n))}`).join(" · ");
+const badgeOf = p => p.c==="semi"?"Seminovo":p.c==="novo"?(["novos","watch","mac","ipad"].includes(p.cat)||p.cat==="audio"?"Novo lacrado":"Original Apple"):"Novo";
+
+/* ---------- Desenho dos produtos (SVG) ---------- */
+let gid = 0;
+function shade(hex,amt){const n=parseInt(hex.slice(1),16);let r=n>>16,g=n>>8&255,b=n&255;const f=c=>Math.max(0,Math.min(255,Math.round(c+(amt<0?c*amt:(255-c)*amt))));return "#"+((1<<24)|(f(r)<<16)|(f(g)<<8)|f(b)).toString(16).slice(1)}
+function lens(x,y,r){return `<circle cx="${x}" cy="${y}" r="${r+2.5}" fill="#1b1c1f"/><circle cx="${x}" cy="${y}" r="${r}" fill="#0a0b0d"/><circle cx="${x}" cy="${y}" r="${r*.45}" fill="#1f2a3d"/><circle cx="${x-r*.3}" cy="${y-r*.3}" r="${r*.18}" fill="#8fa3c2" opacity=".8"/>`}
+function device(m,c){
+  const id="g"+(++gid), d=shade(c,-.22), l=shade(c,.25), G=`url(#${id})`;
+  const grad=`<defs><linearGradient id="${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${l}"/><stop offset=".55" stop-color="${c}"/><stop offset="1" stop-color="${d}"/></linearGradient></defs>`;
+  const phoneBody=`<rect x="52" y="10" width="96" height="180" rx="20" fill="${G}"/><rect x="52.5" y="10.5" width="95" height="179" rx="19.5" fill="none" stroke="${d}" stroke-width="1.2"/><circle cx="100" cy="112" r="20" fill="none" stroke="${d}" stroke-opacity=".35" stroke-width="1"/>`;
+  const S=s=>`<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">${grad}${s}</svg>`;
+  switch(m){
+    case "pro17": return S(phoneBody+`<path d="M52 30a20 20 0 0 1 20-20h56a20 20 0 0 1 20 20v34H52Z" fill="${d}" opacity=".55"/>`+lens(73,30,8.5)+lens(73,52,8.5)+lens(94,41,8.5)+`<circle cx="124" cy="30" r="4" fill="#f3e9cf"/><circle cx="124" cy="50" r="2.6" fill="#111"/>`);
+    case "air": return S(phoneBody+`<rect x="58" y="20" width="84" height="24" rx="12" fill="${d}" opacity=".6"/>`+lens(72,32,7.5)+`<circle cx="92" cy="32" r="3.5" fill="#111"/><circle cx="104" cy="32" r="3" fill="#f3e9cf"/>`);
+    case "std": return S(phoneBody+`<rect x="62" y="20" width="28" height="52" rx="14" fill="${d}" opacity=".5"/>`+lens(76,34,8)+lens(76,58,8)+`<circle cx="98" cy="28" r="3" fill="#f3e9cf"/>`);
+    case "single": return S(phoneBody+lens(74,32,9)+`<circle cx="92" cy="26" r="3" fill="#f3e9cf"/>`);
+    case "pro": return S(phoneBody+`<rect x="60" y="18" width="52" height="52" rx="14" fill="${d}" opacity=".55"/>`+lens(74,32,8.5)+lens(74,56,8.5)+lens(97,44,8.5)+`<circle cx="98" cy="26" r="3" fill="#f3e9cf"/><circle cx="98" cy="62" r="2.4" fill="#111"/>`);
+    case "diag": return S(phoneBody+`<rect x="60" y="18" width="46" height="46" rx="13" fill="${d}" opacity=".5"/>`+lens(73,31,8)+lens(93,51,8)+`<circle cx="94" cy="29" r="3" fill="#f3e9cf"/>`);
+    case "fold": return S(`<rect x="14" y="38" width="172" height="124" rx="16" fill="${G}"/><rect x="20" y="44" width="160" height="112" rx="11" fill="#0b0d10"/><rect x="20" y="44" width="160" height="112" rx="11" fill="#6d7fa8" opacity=".35"/><circle cx="62" cy="96" r="34" fill="#c9a7d8" opacity=".35"/><circle cx="140" cy="112" r="30" fill="#f0b48a" opacity=".3"/><path d="M100 44v112" stroke="#fff" stroke-opacity=".18" stroke-width="2"/><circle cx="150" cy="52" r="3" fill="#222"/>`);
+    case "watch": case "ultra": {
+      const u=m==="ultra";
+      return S(`<rect x="72" y="0" width="56" height="200" rx="10" fill="${u?"#2C2C2E":d}" opacity=".9"/>`+
+        `<rect x="${u?50:55}" y="${u?46:50}" width="${u?100:90}" height="${u?108:100}" rx="${u?22:26}" fill="${G}"/>`+
+        `<rect x="${u?60:63}" y="${u?56:58}" width="${u?80:74}" height="${u?88:84}" rx="${u?14:20}" fill="#050607"/>`+
+        `<circle cx="100" cy="100" r="26" fill="none" stroke="#E2591B" stroke-width="5" stroke-dasharray="120 200" transform="rotate(-90 100 100)" stroke-linecap="round"/>`+
+        `<circle cx="100" cy="100" r="18" fill="none" stroke="#7BD88F" stroke-width="5" stroke-dasharray="80 200" transform="rotate(-90 100 100)" stroke-linecap="round"/>`+
+        `<text x="100" y="${u?78:80}" text-anchor="middle" font-family="Manrope,Arial" font-weight="800" font-size="11" fill="#fff">10:09</text>`+
+        `<rect x="${u?150:145}" y="82" width="6" height="20" rx="3" fill="${d}"/>${u?`<rect x="44" y="90" width="6" height="22" rx="3" fill="#E26A32"/>`:""}`);
+    }
+    case "ipad": return S(`<rect x="18" y="38" width="164" height="124" rx="14" fill="${G}"/><rect x="25" y="45" width="150" height="110" rx="8" fill="#0b0d10"/><rect x="25" y="45" width="150" height="110" rx="8" fill="${c}" opacity=".35"/><circle cx="70" cy="100" r="40" fill="${l}" opacity=".35"/><circle cx="140" cy="80" r="28" fill="${d}" opacity=".45"/><circle cx="100" cy="41.5" r="1.6" fill="#222"/>`);
+    case "mac": return S(`<rect x="30" y="34" width="140" height="94" rx="8" fill="#111317"/><rect x="35" y="39" width="130" height="84" rx="4" fill="${c}" opacity=".55"/><circle cx="80" cy="90" r="34" fill="${l}" opacity=".5"/><circle cx="135" cy="70" r="24" fill="${d}" opacity=".6"/><path d="M14 130h172l-8 14a8 8 0 0 1-7 4H29a8 8 0 0 1-7-4Z" fill="${G}"/><rect x="85" y="130" width="30" height="4" rx="2" fill="${d}"/>`);
+    case "sleeve": return S(`<rect x="22" y="44" width="156" height="116" rx="14" fill="${G}"/><path d="M22 72h156" stroke="${d}" stroke-width="2"/><rect x="88" y="62" width="24" height="6" rx="3" fill="${d}"/>`);
+    case "keyboard": return S(`<rect x="44" y="20" width="112" height="84" rx="9" fill="#15171b"/><rect x="50" y="26" width="100" height="72" rx="5" fill="${c}" opacity=".45"/><rect x="28" y="112" width="144" height="64" rx="10" fill="${G}"/>`+Array.from({length:4},(_,r)=>Array.from({length:10},(_,k)=>`<rect x="${38+k*12.6}" y="${120+r*12}" width="10" height="9" rx="2" fill="${d}" opacity=".7"/>`).join("")).join(""));
+    case "pencil": return S(`<g transform="rotate(-35 100 100)"><rect x="92" y="14" width="16" height="152" rx="5" fill="${G}"/><rect x="92.5" y="14.5" width="15" height="151" rx="4.5" fill="none" stroke="#c9cbcf"/><path d="M92 166 100 190 108 166Z" fill="#e2e3e5"/><path d="M97 182 100 190 103 182Z" fill="#555"/></g>`);
+    case "case": return S(`<rect x="52" y="10" width="96" height="180" rx="22" fill="${G}"/><rect x="62" y="20" width="50" height="50" rx="14" fill="${shade(c,-.5)}" opacity=".55"/><circle cx="100" cy="115" r="24" fill="none" stroke="${l}" stroke-width="3" opacity=".8"/>`);
+    case "airpods": return S(`<rect x="45" y="58" width="110" height="94" rx="34" fill="${G}"/><path d="M45 92h110" stroke="${d}" stroke-width="1.4"/><circle cx="100" cy="106" r="2.6" fill="#7BD88F"/><rect x="92" y="146" width="16" height="4" rx="2" fill="${d}"/>`);
+    case "earpods": return S(`<path d="M70 70c0 50 10 70 30 100M130 70c0 50-10 70-30 100" stroke="${d}" stroke-width="4" fill="none"/><ellipse cx="68" cy="58" rx="18" ry="16" fill="${G}"/><ellipse cx="132" cy="58" rx="18" ry="16" fill="${G}"/><rect x="96" y="150" width="8" height="24" rx="3" fill="#cfd1d4"/><rect x="97" y="174" width="6" height="12" rx="1" fill="#9a9da2"/>`);
+    case "headphone": return S(`<path d="M44 118V98a56 56 0 0 1 112 0v20" stroke="${G}" stroke-width="12" fill="none" stroke-linecap="round"/><rect x="28" y="104" width="38" height="62" rx="16" fill="${G}"/><rect x="134" y="104" width="38" height="62" rx="16" fill="${G}"/><rect x="58" y="112" width="10" height="46" rx="5" fill="${d}"/><rect x="132" y="112" width="10" height="46" rx="5" fill="${d}"/>`);
+    case "speaker": return S(`<rect x="30" y="66" width="140" height="72" rx="36" fill="${G}"/>`+Array.from({length:5},(_,r)=>Array.from({length:12},(_,k)=>`<circle cx="${54+k*8.4}" cy="${82+r*10}" r="2" fill="${d}"/>`).join("")).join("")+`<ellipse cx="30" cy="102" rx="9" ry="30" fill="${d}"/><ellipse cx="170" cy="102" rx="9" ry="30" fill="${d}"/>`);
+    case "echo": return S(`<circle cx="100" cy="104" r="64" fill="${G}"/><ellipse cx="100" cy="158" rx="46" ry="8" fill="none" stroke="#33b5ff" stroke-width="4" opacity=".9"/><circle cx="82" cy="78" r="14" fill="#fff" opacity=".12"/>`);
+    case "stick": return S(`<rect x="22" y="92" width="104" height="30" rx="9" fill="${G}"/><rect x="18" y="100" width="10" height="14" rx="2" fill="#888"/><rect x="142" y="36" width="34" height="130" rx="17" fill="${shade(c,.1)}"/><circle cx="159" cy="64" r="10" fill="none" stroke="#666" stroke-width="2"/><circle cx="159" cy="98" r="3" fill="#33b5ff"/><circle cx="159" cy="116" r="3" fill="#666"/>`);
+    case "console": return S(`<path d="M60 18h34v164H60c-10 0-16-6-16-16V34c0-10 6-16 16-16Z" fill="#F3F3F1"/><path d="M106 18h34c10 0 16 6 16 16v132c0 10-6 16-16 16h-34Z" fill="#F3F3F1"/><rect x="94" y="18" width="12" height="164" fill="#1b1b1d"/><path d="M44 34v132" stroke="#d5d5d3"/>`);
+    case "mouse": return S(`<ellipse cx="100" cy="100" rx="40" ry="66" fill="${G}"/><ellipse cx="100" cy="100" rx="40" ry="66" fill="none" stroke="${d}"/><path d="M100 40v34" stroke="${d}" stroke-width="2"/>`);
+    case "hub": return S(`<rect x="30" y="80" width="110" height="40" rx="12" fill="${G}"/><rect x="48" y="94" width="16" height="10" rx="2" fill="#222"/><rect x="72" y="94" width="16" height="10" rx="2" fill="#222"/><rect x="96" y="96" width="20" height="7" rx="3" fill="#222"/><path d="M140 100c20 0 20-40 34-40" stroke="${d}" stroke-width="6" fill="none" stroke-linecap="round"/><rect x="168" y="50" width="14" height="20" rx="3" fill="#cfd1d4"/>`);
+    case "charger": case "charger2": return S(`<rect x="58" y="52" width="84" height="96" rx="16" fill="${G}"/><rect x="58.5" y="52.5" width="83" height="95" rx="15.5" fill="none" stroke="${d}"/><rect x="80" y="28" width="8" height="26" rx="2" fill="#b9bcc0"/><rect x="112" y="28" width="8" height="26" rx="2" fill="#b9bcc0"/><rect x="88" y="${m==="charger2"?110:118}" width="24" height="8" rx="4" fill="#2a2b2e"/>${m==="charger2"?`<rect x="88" y="126" width="24" height="8" rx="4" fill="#2a2b2e"/>`:""}`);
+    case "magsafe": return S(`<path d="M100 132c0 30-40 30-40 60" stroke="${d}" stroke-width="6" fill="none" stroke-linecap="round"/><circle cx="100" cy="84" r="56" fill="${G}"/><circle cx="100" cy="84" r="56" fill="none" stroke="${d}"/><circle cx="100" cy="84" r="34" fill="none" stroke="${d}" stroke-width="2"/>`);
+    case "wcharger": return S(`<rect x="24" y="146" width="152" height="24" rx="12" fill="${G}"/><rect x="24.5" y="146.5" width="151" height="23" rx="11.5" fill="none" stroke="#c9cbcf"/><rect x="48" y="30" width="56" height="112" rx="12" fill="${G}" stroke="#c9cbcf"/><circle cx="76" cy="86" r="16" fill="none" stroke="#c9cbcf" stroke-width="2"/><rect x="128" y="96" width="10" height="50" rx="4" fill="#d5d7da"/><circle cx="133" cy="92" r="16" fill="${G}" stroke="#c9cbcf"/><ellipse cx="158" cy="140" rx="14" ry="6" fill="#d5d7da"/>`);
+    case "cable": return S(`<path d="M40 40c80 0 120 40 60 70s-40 60 60 60" stroke="${G}" stroke-width="9" fill="none" stroke-linecap="round"/><path d="M40 40c80 0 120 40 60 70s-40 60 60 60" stroke="${d}" stroke-width="9" fill="none" stroke-dasharray="2 6" opacity=".5"/><rect x="18" y="32" width="28" height="16" rx="6" fill="#e3e4e6"/><rect x="154" y="162" width="28" height="16" rx="6" fill="#e3e4e6"/>`);
+    case "airtag": return S(`<circle cx="100" cy="100" r="60" fill="#c9ccd0"/><circle cx="100" cy="100" r="54" fill="${G}"/><circle cx="100" cy="100" r="54" fill="none" stroke="#dfe1e4"/><circle cx="82" cy="82" r="14" fill="#fff" opacity=".6"/>`);
+  }
+  return S("");
+}
+
+/* ---------- Fotos reais (arquivos em img/, nome = id-versão) ---------- */
+const FOTOS=new Set([]);
+const fotoOf=(p,a)=>FOTOS.has(p.id+'-'+a)?p.id+'-'+a:(FOTOS.has(p.id+'-0')?p.id+'-0':null);
+const media=(p,a,c)=>{const f=fotoOf(p,a);return f?`<img src="img/${f}.jpg" alt="${esc(p.nome)}" loading="lazy">`:device(p.m,p.cores[c][1])};
+PRODUTOS.forEach(p=>{if(p.cat==="novos"&&p.id!=="nduo")p.inc="Acompanha cabo, caixa e manual";if(p.cat==="seminovos")p.inc="Cabo e fonte Anatel de brinde"});
+
+/* ---------- Estado ---------- */
+const state = {tab:"novos",sub:"Todos",sel:{}};
+PRODUTOS.forEach(p=>state.sel[p.id]={a:0,c:0});
+let cart = [];
+try{cart = JSON.parse(localStorage.getItem("demo-cart")||"[]")||[]}catch(e){cart=[]}
+const save=()=>{try{localStorage.setItem("demo-cart",JSON.stringify(cart))}catch(e){}};
+const byId = id => PRODUTOS.find(p=>p.id===id);
+cart = cart.filter(it=>{const p=byId(it.id);return p&&p.arm[it.a]&&p.cores[it.c]});
+
+/* ---------- Ilustração do destaque (iPhone 17 Pro Max) ---------- */
+function heroArt(c){
+  const l=shade(c,.22), d=shade(c,-.3), dd=shade(c,-.5), pl=shade(c,.08);
+  const lensAt=(x,y)=>`<g transform="translate(${x} ${y})"><circle r="25" fill="url(#hRing)"/><circle r="25" fill="none" stroke="${dd}" stroke-width="1"/><circle r="19.5" fill="#0b0c0f"/><circle r="16" fill="url(#hGlass)"/><circle r="6.5" fill="#152038"/><circle r="2.6" fill="#3d5a8a"/><ellipse cx="-6" cy="-7" rx="5" ry="3" fill="#fff" opacity=".55" transform="rotate(-35 -6 -7)"/><circle cx="7" cy="8" r="1.6" fill="#fff" opacity=".35"/></g>`;
+  return `<svg viewBox="0 0 460 540" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <linearGradient id="hBody" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${l}"/><stop offset=".45" stop-color="${c}"/><stop offset="1" stop-color="${d}"/></linearGradient>
+    <linearGradient id="hEdge" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".7"/><stop offset=".08" stop-color="#fff" stop-opacity="0"/><stop offset=".92" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".35"/></linearGradient>
+    <radialGradient id="hRing" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="${shade(c,.45)}"/><stop offset=".6" stop-color="${c}"/><stop offset="1" stop-color="${dd}"/></radialGradient>
+    <radialGradient id="hGlass" cx=".35" cy=".3" r=".75"><stop offset="0" stop-color="#4b5d86"/><stop offset=".45" stop-color="#141a2a"/><stop offset="1" stop-color="#020203"/></radialGradient>
+    <linearGradient id="hScreen" x1="0" y1="0" x2=".4" y2="1"><stop offset="0" stop-color="#ffb070"/><stop offset=".45" stop-color="#e0537a"/><stop offset="1" stop-color="#2c1a5c"/></linearGradient>
+    <linearGradient id="hGloss" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <filter id="hBlur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="14"/></filter>
+    <filter id="hSoft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="22"/></filter>
+    <filter id="hDrop" x="-30%" y="-20%" width="160%" height="150%"><feDropShadow dx="0" dy="22" stdDeviation="18" flood-color="#000" flood-opacity=".32"/></filter>
+    <clipPath id="hScrClip"><rect x="11" y="11" width="168" height="388" rx="34"/></clipPath>
+  </defs>
+  <ellipse cx="235" cy="505" rx="185" ry="18" fill="#000" opacity=".3" filter="url(#hBlur)"/>
+  <!-- costas -->
+  <g transform="translate(48 52) rotate(-9 95 210)" filter="url(#hDrop)">
+    <rect width="190" height="412" rx="44" fill="url(#hBody)"/>
+    <rect x="1.5" y="1.5" width="187" height="409" rx="42.5" fill="none" stroke="url(#hEdge)" stroke-width="3"/>
+    <rect x="16" y="156" width="158" height="238" rx="30" fill="${pl}" opacity=".55"/>
+    <rect x="16" y="156" width="158" height="238" rx="30" fill="none" stroke="${d}" stroke-opacity=".25"/>
+    <rect x="8" y="8" width="174" height="138" rx="37" fill="${pl}"/>
+    <rect x="8" y="8" width="174" height="138" rx="37" fill="none" stroke="${dd}" stroke-opacity=".35" stroke-width="1.5"/>
+    <rect x="9" y="9" width="172" height="40" rx="30" fill="#fff" opacity=".08"/>
+    ${lensAt(54,48)}${lensAt(54,106)}${lensAt(110,77)}
+    <circle cx="153" cy="44" r="9" fill="#f3ead2" stroke="${dd}" stroke-opacity=".4"/><circle cx="150" cy="41" r="3" fill="#fff" opacity=".8"/>
+    <circle cx="153" cy="108" r="7.5" fill="#0d0e11"/><circle cx="153" cy="77" r="2.4" fill="${dd}"/>
+    <path d="M0 0h120L0 260Z" fill="url(#hGloss)" opacity=".6" clip-path="inset(0 round 44px)"/>
+    <rect x="-3" y="112" width="4" height="34" rx="2" fill="${d}"/><rect x="-3" y="156" width="4" height="34" rx="2" fill="${d}"/>
+  </g>
+  <!-- frente -->
+  <g transform="translate(226 74) rotate(7 95 210)" filter="url(#hDrop)">
+    <rect width="190" height="412" rx="44" fill="${shade(c,-.12)}"/>
+    <rect x="1.5" y="1.5" width="187" height="409" rx="42.5" fill="none" stroke="url(#hEdge)" stroke-width="3"/>
+    <rect x="5" y="5" width="180" height="402" rx="40" fill="#050506"/>
+    <g clip-path="url(#hScrClip)">
+      <rect x="11" y="11" width="168" height="388" fill="url(#hScreen)"/>
+      <circle cx="40" cy="300" r="90" fill="#ff7a3c" opacity=".55" filter="url(#hSoft)"/>
+      <circle cx="160" cy="120" r="70" fill="#ffd27a" opacity=".45" filter="url(#hSoft)"/>
+      <circle cx="140" cy="380" r="80" fill="#5b2fa0" opacity=".6" filter="url(#hSoft)"/>
+      <text x="95" y="82" text-anchor="middle" font-family="Manrope,Arial,sans-serif" font-size="10.5" font-weight="600" fill="#fff" opacity=".9">sexta-feira, 27 de novembro</text>
+      <text x="95" y="146" text-anchor="middle" font-family="Unbounded,Arial,sans-serif" font-size="56" font-weight="700" fill="#fff" opacity=".96">9:41</text>
+      <rect x="28" y="172" width="134" height="42" rx="14" fill="#fff" opacity=".18"/>
+      <text x="95" y="190" text-anchor="middle" font-family="Manrope,Arial,sans-serif" font-size="9.5" font-weight="700" fill="#fff">Black Friday Sua Loja</text>
+      <text x="95" y="204" text-anchor="middle" font-family="Manrope,Arial,sans-serif" font-size="8.5" fill="#fff" opacity=".85">Seu novo iPhone chegou</text>
+      <circle cx="42" cy="368" r="15" fill="#000" opacity=".28"/><circle cx="148" cy="368" r="15" fill="#000" opacity=".28"/>
+      <rect x="70" y="388" width="50" height="4" rx="2" fill="#fff" opacity=".8"/>
+      <path d="M11 11h120L11 250Z" fill="#fff" opacity=".07"/>
+    </g>
+    <rect x="70" y="22" width="50" height="15" rx="7.5" fill="#000"/>
+    <rect x="189" y="120" width="4" height="54" rx="2" fill="${d}"/>
+  </g>
+</svg>`;
+}
+
+/* ---------- Hero ---------- */
+function hero(){
+  const p=byId("n17pm"), op=p.arm[0]; let ci=0;
+  const draw=()=>{$("#heroPhone").innerHTML=heroArt(p.cores[ci][1]);
+    $("#heroSwatches").querySelectorAll("button").forEach((b,i)=>b.setAttribute("aria-pressed",i===ci))};
+  $("#heroSwatches").innerHTML=p.cores.map(([n,h])=>`<button type="button" style="background:${h}" aria-label="${n}" title="${n}"></button>`).join("");
+  $("#heroSwatches").querySelectorAll("button").forEach((b,i)=>b.onclick=()=>{ci=i;draw()});
+  $("#heroOld").textContent="de "+brl0(op.de);
+  $("#heroPrice").textContent=brl0(op.p);
+  $("#heroPix").textContent="ou 24x de "+brl0(parc(op,24));
+  draw();
+}
+
+/* ---------- Ofertas ---------- */
+function deals(){
+  const list=[];
+  PRODUTOS.forEach(p=>p.arm.forEach((op,a)=>{if(op.de) list.push({p,a,op,off:1-op.p/op.de})}));
+  list.sort((x,y)=>y.off-x.off);
+  $("#deals").innerHTML=list.slice(0,8).map(({p,a,op,off})=>`<article class="deal">
+      <span class="off">−${Math.round(off*100)}%</span>
+      <div class="pic" data-open="${p.id}" data-a="${a}" role="button" tabindex="0" aria-label="Ver detalhes de ${esc(p.nome)}">${media(p,a,0)}</div>
+      <div><h3>${esc(p.nome)}</h3><div class="spec">${esc(op.l)} · ${p.c==="semi"?"seminovo":"novo"}</div></div>
+      <div><div class="old">de ${brl0(op.de)}</div><div class="price">${brl0(op.p)}</div><div class="pix">${op.x===0?"à vista":"ou 24x de "+brl0(parc(op,24))}</div></div>
+      <div class="stock">${esc(op.st||"Consulte disponibilidade")}</div>
+      <button class="btn btn-accent" type="button" data-add="${p.id}" data-a="${a}">Garantir o meu</button>
+    </article>`).join("");
+}
+function clock(){
+  const now=Date.now(), ini=Date.parse(LOJA.inicioBlackFriday), fim=Date.parse(LOJA.fimBlackFriday);
+  let target, label, bar;
+  if(now<ini){target=ini;label="Black Friday começa em";bar="Esquenta Black Friday"}
+  else if(now<fim){target=fim;label="Black Friday termina em";bar="Black Friday no ar"}
+  else{target=now;label="Black Friday encerrada";bar="Ofertas de fim de ano"}
+  let t=Math.max(0,Math.floor((target-now)/1000));
+  const d=Math.floor(t/86400);t%=86400;const h=Math.floor(t/3600);t%=3600;const m=Math.floor(t/60),s=t%60;
+  const p=n=>String(n).padStart(2,"0");
+  $("#cd-d").textContent=p(d);$("#cd-h").textContent=p(h);$("#cd-m").textContent=p(m);$("#cd-s").textContent=p(s);
+  $("#clockLabel").textContent=label;$("#barLabel").textContent=bar;
+  $("#barClock").textContent=`${p(d)}d ${p(h)}h ${p(m)}m ${p(s)}s`;
+}
+
+/* ---------- Loja ---------- */
+function tabs(){
+  $("#tabs").innerHTML=CATS.map(([k,n])=>`<button class="tab" role="tab" id="tab-${k}" data-tab="${k}" aria-selected="${state.tab===k}">${n}<span class="n">${PRODUTOS.filter(p=>p.cat===k).length}</span></button>`).join("");
+  $("#tabs").querySelectorAll(".tab").forEach(b=>b.onclick=()=>{location.hash="loja-"+b.dataset.tab});
+}
+function setTab(k){
+  state.tab=k;state.sub="Todos";state.q="";if($("#busca"))$("#busca").value="";
+  $("#tabs").querySelectorAll(".tab").forEach(b=>b.setAttribute("aria-selected",b.dataset.tab===k));
+  $("#grid").setAttribute("aria-labelledby","tab-"+k);
+  if(typeof centerX==="function") centerX($("#tab-"+k));
+  $("#tabNote").innerHTML=CATS.find(c=>c[0]===k)[2];
+  const subs=[...new Set(PRODUTOS.filter(p=>p.cat===k&&p.sub).map(p=>p.sub))];
+  const chips=$("#chips");
+  if(subs.length>1){
+    chips.hidden=false;
+    chips.innerHTML=["Todos",...subs].map(s=>`<button class="chip" type="button" data-sub="${s}" aria-pressed="${s===state.sub}">${s}</button>`).join("");
+    chips.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{state.sub=b.dataset.sub;chips.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",x===b));grid()});
+  } else chips.hidden=true;
+  grid();
+}
+function cardHTML(p){
+  const s=state.sel[p.id], op=p.arm[s.a], semi=p.c==="semi";
+  const badge=`<span class="badge">${badgeOf(p)}</span>`;
+  const hot = op.de?`<span class="badge hot r">−${Math.round((1-op.p/op.de)*100)}%</span>`:(op.st===E?`<span class="badge enc r">Sob encomenda</span>`:"");
+  const showOpts = p.arm.length>1 || op.l!=="Única";
+  return `<article class="card" data-id="${p.id}">
+    <div class="pic" data-open="${p.id}" role="button" tabindex="0" aria-label="Ver detalhes de ${esc(p.nome)}">${badge}${hot}${media(p,s.a,s.c)}</div>
+    <div class="body">
+      <div><h3 data-open="${p.id}">${esc(p.nome)}</h3><div class="spec">${esc(p.spec)}</div>${p.inc?`<div class="inc">✓ ${esc(p.inc)}</div>`:""}</div>
+      ${semi?`<div class="semi"><div><small>Garantia</small><b>${esc(op.gar||"3 meses")}</b></div><div><small>Estado</small><b>${esc(op.nota||"Revisado")}</b></div></div>`:(op.nota?`<div class="spec">${esc(op.nota)}</div>`:"")}
+      ${showOpts?`<div class="opts" role="group" aria-label="Versões">${p.arm.map((x,i)=>`<button type="button" class="opt" data-a="${i}" aria-pressed="${i===s.a}">${esc(x.l)}</button>`).join("")}</div>`:""}
+      ${p.cores.length>1?`<div class="dots" role="group" aria-label="Cores">${p.cores.map(([cn,h],i)=>`<button type="button" class="dot" data-c="${i}" style="background:${h}" aria-label="${esc(cn)}" title="${esc(cn)}" aria-pressed="${i===s.c}"></button>`).join("")}<span class="cname">${esc(p.cores[s.c][0])}</span></div>`:""}
+      <div class="pricebox">
+        ${op.de?`<div class="old">de ${brl0(op.de)}</div>`:""}
+        <div class="price mono">${brl0(op.p)}</div>
+        <div class="inst">${instTxt(op)}</div>
+        ${op.st?`<div class="st${op.st===E?" enc":""}">${esc(op.st)}</div>`:""}
+      </div>
+      <div class="card-actions">
+        <button class="btn btn-accent" type="button" data-add="${p.id}">Adicionar à sacola</button>
+        <a class="ask" href="${wa(`Olá, ${LOJA_NOME}! Tenho uma dúvida sobre o ${p.nome}${op.l!=="Única"?" "+op.l:""}.`)}" target="_blank" rel="noopener" aria-label="Tirar dúvida sobre ${esc(p.nome)} no WhatsApp" title="Tirar dúvida no WhatsApp">${waIcon}</a>
+      </div>
+    </div>
+  </article>`;
+}
+const norm=t=>String(t).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+function grid(){
+  const q=norm(state.q||"").trim();
+  if(q){
+    const words=q.split(/\s+/);
+    const list=PRODUTOS.filter(p=>{const t=norm([p.nome,p.spec,p.sub||"",CATS.find(c=>c[0]===p.cat)[1],...p.arm.map(o=>o.l)].join(" "));return words.every(w=>t.includes(w))});
+    $("#chips").hidden=true;
+    $("#tabNote").innerHTML=list.length?`<b>${list.length}</b> resultado${list.length>1?"s":""} para “${esc(state.q.trim())}”`:"";
+    $("#grid").innerHTML=list.length?list.map(cardHTML).join(""):`<div class="empty" style="grid-column:1/-1"><b>Nenhum produto encontrado para “${esc(state.q.trim())}”</b>Pode ser que a gente tenha e não esteja no site. <a href="${wa(`Olá, ${LOJA_NOME}! Vocês têm ${state.q.trim()}?`)}" target="_blank" rel="noopener">Pergunte no WhatsApp</a>.</div>`;
+    return;
+  }
+  const list=PRODUTOS.filter(p=>p.cat===state.tab&&(state.sub==="Todos"||p.sub===state.sub));
+  $("#grid").innerHTML=list.map(cardHTML).join("");
+  animarEntrada($("#grid"));
+}
+$("#grid").addEventListener("click",e=>{
+  if(e.target.closest("[data-open]")) return;
+  const card=e.target.closest(".card"); if(!card) return;
+  const id=card.dataset.id, s=state.sel[id];
+  const op=e.target.closest(".opt"), d=e.target.closest(".dot");
+  if(op){s.a=+op.dataset.a}else if(d){s.c=+d.dataset.c}else return;
+  card.outerHTML=cardHTML(byId(id));
+});
+document.addEventListener("click",e=>{
+  const add=e.target.closest("[data-add]"); if(add){addToCart(add.dataset.add,add.dataset.a);return}
+  const go=e.target.closest("[data-go]"); if(go){setTab(go.dataset.go)}
+});
+
+/* ---------- Sacola ---------- */
+function addToCart(id,a,q=1,note=""){
+  const p=byId(id), s=state.sel[id];
+  const ai=a!=null?+a:s.a, key=`${id}|${ai}|${s.c}${note?"|"+note:""}`;
+  const it=cart.find(x=>x.key===key);
+  if(it) it.q+=q; else cart.push({key,id,a:ai,c:s.c,q,note});
+  save();renderCart();
+  toast(`${p.nome}${p.arm[ai].l!=="Única"?" "+p.arm[ai].l:""} adicionado à sacola`);
+}
+function itemsHTML(){
+  return cart.map(it=>{const p=byId(it.id); const op=p.arm[it.a];
+    return `<div class="sum-item"><div class="mini">${media(p,it.a,it.c)}</div>
+    <div><b>${esc(p.nome)}</b><small>${op.l!=="Única"?esc(op.l)+" · ":""}${esc(p.cores[it.c][0])}</small>${it.note?`<small style="display:block">Obs.: ${esc(it.note)}</small>`:""}
+      <div class="qty"><button type="button" data-q="${it.key}" data-d="-1" aria-label="Diminuir">−</button><span>${it.q}</span><button type="button" data-q="${it.key}" data-d="1" aria-label="Aumentar">+</button><button type="button" class="rm" data-rm="${it.key}">remover</button></div></div>
+    <span class="mono">${brl0(op.p*it.q)}</span></div>`}).join("");
+}
+const subtotal=()=>cart.reduce((t,it)=>t+byId(it.id).arm[it.a].p*it.q,0);
+const parcTotal=n=>cart.reduce((t,it)=>t+parc(byId(it.id).arm[it.a],n)*it.q,0);
+function totalsHTML(){
+  const st=subtotal(), method=(document.querySelector('input[name="pag"]:checked')||{}).value||"pix";
+  const n=+($("#f-parc")?.value||24);
+  let rows=`<div><span>Total à vista</span><span class="mono">${brl(st)}</span></div>`;
+  rows+=`<div><span>Entrega</span><span>${(document.querySelector('input[name="entrega"]:checked')||{}).value==="Retirada na loja"?"retirada grátis":"a combinar"}</span></div>`;
+  if(method==="credito"){const v=parcTotal(n);rows+=`<div class="grand"><span>${n}x no cartão</span><span class="mono">${brl0(v)}</span></div><div><span></span><span>total ${brl(v*n)}</span></div>`}
+  else rows+=`<div class="grand"><span>Total</span><span class="mono">${brl(st)}</span></div>`;
+  return `<div class="totals">${rows}</div>`;
+}
+function renderCart(){
+  const n=cart.reduce((t,i)=>t+i.q,0);
+  $("#cartCount").textContent=n;
+  const empty=`<div class="empty"><b>Sua sacola está vazia</b>Escolha um produto na <a href="#loja">loja</a> ou nas <a href="#promocoes">ofertas</a>.</div>`;
+  $("#summary").innerHTML=cart.length?`<div class="sum-items">${itemsHTML()}</div>${totalsHTML()}`:empty;
+  $("#drawerBody").innerHTML=cart.length?`<div class="sum-items">${itemsHTML()}</div>${totalsHTML()}<a class="btn btn-accent" href="#pagamento" id="goPay">Ir para o pagamento</a>`:empty;
+  $("#drawerBody").querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener("click",closeCart));
+  fillParcelas();
+}
+document.addEventListener("click",e=>{
+  const q=e.target.closest("[data-q]"), r=e.target.closest("[data-rm]");
+  if(q){const it=cart.find(x=>x.key===q.dataset.q); if(it){it.q+=+q.dataset.d; if(it.q<1) cart=cart.filter(x=>x!==it)} save();renderCart()}
+  if(r){cart=cart.filter(x=>x.key!==r.dataset.rm);save();renderCart()}
+});
+function openCart(){$("#drawer").classList.add("on");$("#overlay").classList.add("on");$("#drawer").setAttribute("aria-hidden","false");$("#closeCart").focus()}
+function closeCart(){$("#drawer").classList.remove("on");$("#overlay").classList.remove("on");$("#drawer").setAttribute("aria-hidden","true")}
+$("#openCart").onclick=openCart;$("#closeCart").onclick=closeCart;$("#overlay").onclick=closeCart;
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeCart()});
+let tt;function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("on"),2200)}
+
+/* ---------- Pagamento ---------- */
+function fillParcelas(){
+  const sel=$("#f-parc"), cur=sel.value;
+  sel.innerHTML=LOJA.parcelas.map(n=>`<option value="${n}">${n}x de ${brl0(parcTotal(n))}</option>`).join("");
+  sel.value=cur||"24";
+}
+function payUI(){
+  const m=document.querySelector('input[name="pag"]:checked').value;
+  $("#pixInfo").hidden=m!=="pix";$("#ccInfo").hidden=m!=="credito";
+  const ent=document.querySelector('input[name="entrega"]:checked').value;
+  $("#addr").hidden=ent==="Retirada na loja";
+  $("#trocaWrap").hidden=!$("#f-troca").checked;
+  renderCart();
+}
+document.querySelectorAll('input[name="pag"],input[name="entrega"],#f-troca').forEach(i=>i.addEventListener("change",payUI));
+$("#f-parc").addEventListener("change",renderCart);
+if(LOJA.chavePix){
+  $("#pixKey").textContent=LOJA.chavePix;
+  $("#copyPix").onclick=()=>{const b=$("#copyPix");
+    (navigator.clipboard?navigator.clipboard.writeText(LOJA.chavePix):Promise.reject()).then(()=>{b.textContent="Chave copiada"},()=>{const r=document.createRange();r.selectNodeContents($("#pixKey"));const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent="Selecionada, copie com Ctrl+C"});
+    setTimeout(()=>b.textContent="Copiar chave",2500)};
+} else {
+  $("#pixInfo").innerHTML=`<div style="grid-column:1/-1;font-size:14px"><b>Pix com preço à vista.</b><br><span style="color:var(--mute)">Depois de enviar o pedido, você recebe a chave Pix e o valor exato pelo WhatsApp, junto com a confirmação do estoque.</span></div>`;
+}
+$("#checkout").addEventListener("submit",e=>{
+  e.preventDefault();
+  const err=$("#formErr");err.textContent="";
+  const nome=$("#f-nome").value.trim(), tel=$("#f-tel").value.trim();
+  if(!cart.length){err.textContent="Sua sacola está vazia. Adicione um produto da loja para finalizar.";return}
+  if(!nome){err.textContent="Informe seu nome para continuarmos.";$("#f-nome").focus();return}
+  if(tel.replace(/\D/g,"").length<10){err.textContent="Informe um WhatsApp com DDD, por exemplo (41) 99999-0000.";$("#f-tel").focus();return}
+  const ent=document.querySelector('input[name="entrega"]:checked').value;
+  if(ent!=="Retirada na loja"&&!$("#f-end").value.trim()){err.textContent="Informe o endereço de entrega.";$("#f-end").focus();return}
+  const m=document.querySelector('input[name="pag"]:checked').value, st=subtotal(), n=+$("#f-parc").value;
+  const linhas=cart.map(it=>{const p=byId(it.id),op=p.arm[it.a];return `• ${it.q}x ${p.nome}${op.l!=="Única"?" "+op.l:""} (${p.cores[it.c][0]}) — ${brl(op.p*it.q)}${it.note?"\n   Obs.: "+it.note:""}`}).join("\n");
+  const pag=m==="pix"?`Pix à vista — total ${brl(st)}`:m==="credito"?`Cartão em ${n}x de ${brl0(parcTotal(n))}`:`Débito ou dinheiro na retirada — total ${brl(st)}`;
+  let msg=`Olá, ${LOJA_NOME}! Quero finalizar meu pedido:\n\n${linhas}\n\nPagamento: ${pag}\nEntrega: ${ent}`;
+  if(ent!=="Retirada na loja") msg+=`\nEndereço: ${$("#f-end").value.trim()}, ${$("#f-bairro").value.trim()} ${$("#f-cep").value.trim()}`;
+  if($("#f-troca").checked) msg+=`\nTroca: ${$("#f-trocamodelo").value.trim()||"quero avaliar meu usado"}`;
+  msg+=`\n\nNome: ${nome}\nWhatsApp: ${tel}`;
+  if($("#f-cpf").value.trim()) msg+=`\nCPF: ${$("#f-cpf").value.trim()}`;
+  const url=wa(msg);
+  $("#doneLink").href=url;$("#done").hidden=false;
+  try{window.open(url,"_blank","noopener")}catch(_){}
+});
+
+/* ---------- Troca ---------- */
+$("#tradeModel").innerHTML=TROCA.map(([n],i)=>`<option value="${i}">${n}</option>`).join("");
+function trade(){const [n,v]=TROCA[+$("#tradeModel").value], f=+$("#tradeState").value;
+  $("#tradeOut").textContent="até "+brl0(Math.round(v*f/50)*50);
+  $("#tradeWa").href=wa(`Olá, ${LOJA_NOME}! Quero avaliar meu ${n} para usar na troca. Estado: ${$("#tradeState").selectedOptions[0].text}.`)}
+$("#tradeModel").onchange=trade;$("#tradeState").onchange=trade;
+
+/* ---------- Depoimentos ---------- */
+$("#reviews").innerHTML=DEPOIMENTOS.map(d=>`<article class="review"><span class="stars" aria-label="5 estrelas">★★★★★</span><blockquote>“${esc(d.txt)}”</blockquote><span class="bought">${esc(d.prod)}</span><div class="who"><span class="avatar">${esc(d.nome.split(" ").map(w=>w[0]).join(""))}</span><div><b>${esc(d.nome)}</b><small>${esc(d.bairro)}, PR</small></div></div></article>`).join("");
+
+/* ---------- Rodapé e WhatsApp ---------- */
+const waIcon=`<svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3Zm0 23.6c-2 0-4-.5-5.7-1.6l-.4-.2-3.9 1 1-3.8-.2-.4A10.6 10.6 0 1 1 16 26.6Zm5.8-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.4.2-.7.1a8.7 8.7 0 0 1-4.3-3.8c-.3-.5.3-.5 1-1.6.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.7s1.2 3.2 1.3 3.4c.2.2 2.3 3.5 5.6 4.9 2.1.9 2.9 1 4 .8.6-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5l-.6-.4Z"/></svg>`;
+const hello=wa("Olá, Sua Loja! Vim pelo site e queria tirar uma dúvida.");
+$("#waFloat").href=hello;$("#footWa").href=hello;$("#footWaNum").textContent=LOJA.whatsappExibir;
+$("#manutWa").href=wa("Olá, Sua Loja! Quero um orçamento de manutenção. Aparelho: ___ Problema: ___");
+const setOrHide=(sel,txt,li)=>{const el=$(sel); if(txt) el.textContent=txt; else (li?el.closest("li"):el).hidden=true};
+if(LOJA.instagram){$("#footIg").href="https://instagram.com/"+LOJA.instagram;$("#footIgUser").textContent="@"+LOJA.instagram}else $("#footIg").closest("li").hidden=true;
+setOrHide("#footMail",LOJA.email,true);setOrHide("#footAddr",LOJA.endereco);setOrHide("#footHours",LOJA.horario);setOrHide("#footCnpj",LOJA.cnpj?"CNPJ "+LOJA.cnpj:"",true);
+
+/* ---------- Início ---------- */
+/* ---------- Simulador de parcelamento ---------- */
+const SIM={n:12};
+function fatorN(n,op){
+  const c=LOJA.simulador; if(n<=c.semJurosAte) return 1/n;
+  if(op){const i=LOJA.parcelas.indexOf(n); if(i>=0&&op.x&&op.x[i]!=null) return op.x[i]/op.p;}
+  const j=c.jurosMes; return j/(1-Math.pow(1+j,-n));
+}
+function simFill(){
+  const sel=$("#simProd");
+  sel.innerHTML=CATS.map(([k,nome])=>`<optgroup label="${esc(nome)}">${PRODUTOS.filter(p=>p.cat===k).flatMap(p=>p.arm.map((o,a)=>o.x===0?"":`<option value="${p.id}|${a}">${esc(p.nome)}${o.l!=="Única"?" "+esc(o.l):""} · ${brl0(o.p)}</option>`)).join("")}</optgroup>`).join("")+`<optgroup label="Outro"><option value="outro">Outro valor</option></optgroup>`;
+  $("#simTrocaModelo").innerHTML=TROCA.map(([n],i)=>`<option value="${i}">${n}</option>`).join("");
+  $("#simEntradaWrap").hidden=!LOJA.simulador.entrada; $("#simTrocaWrap").hidden=!LOJA.simulador.troca;
+  $("#simNota").textContent=LOJA.simulador.nota||"";
+  ["simProd","simValor","simEntrada","simTroca","simTrocaModelo","simTrocaEstado"].forEach(id=>$("#"+id).addEventListener(id==="simValor"||id==="simEntrada"?"input":"change",simCalc));
+  $("#simGrid").addEventListener("click",e=>{const b=e.target.closest("[data-n]");if(b){SIM.n=+b.dataset.n;simCalc()}});
+}
+function simCalc(){
+  const v=$("#simProd").value, outro=v==="outro"; $("#simValorWrap").hidden=!outro;
+  let p=null,op=null,preco=0,nome="";
+  if(outro){preco=Math.max(0,+$("#simValor").value||0);nome="Produto de "+brl(preco)}
+  else{const [id,a]=v.split("|");p=byId(id);op=p.arm[+a];preco=op.p;nome=p.nome+(op.l!=="Única"?" "+op.l:"")}
+  const entrada=LOJA.simulador.entrada?Math.max(0,+$("#simEntrada").value||0):0;
+  $("#simTrocaCampos").hidden=!$("#simTroca").checked;
+  let troca=0,trocaNome="";
+  if(LOJA.simulador.troca&&$("#simTroca").checked){const [tn,tv]=TROCA[+$("#simTrocaModelo").value];troca=Math.round(tv*(+$("#simTrocaEstado").value)/50)*50;trocaNome=tn}
+  const resto=Math.max(0,preco-entrada-troca);
+  const ops=LOJA.simulador.opcoes.filter(n=>n<=LOJA.simulador.parcelasMax);
+  if(!ops.includes(SIM.n)) SIM.n=ops[ops.length-1];
+  const val=n=>resto*fatorN(n,op);
+  $("#simResumo").innerHTML=`<div><span>Produto</span><b>${esc(nome||"Escolha um produto")}</b></div><div><span>Preço à vista</span><b class="mono">${brl(preco)}</b></div>${entrada?`<div><span>Entrada</span><b class="mono">−${brl(entrada)}</b></div>`:""}${troca?`<div><span>Seu ${esc(trocaNome)} (estimativa)</span><b class="mono">−${brl(troca)}</b></div>`:""}<div class="sim-resto"><span>Valor a parcelar</span><b class="mono">${brl(resto)}</b></div>`;
+  $("#simGrid").innerHTML=resto>0?ops.map(n=>`<button type="button" class="sim-op" data-n="${n}" role="radio" aria-checked="${n===SIM.n}"><b>${n}x</b><span class="mono">${brl(val(n))}</span><small>${n<=LOJA.simulador.semJurosAte?(n===1?"à vista":"sem juros"):"total "+brl0(val(n)*n)}</small></button>`).join(""):`<p class="muted" style="grid-column:1/-1;margin:0">${preco?"A entrada e a troca já cobrem o valor do produto.":"Escolha um produto para simular."}</p>`;
+  const tot=val(SIM.n)*SIM.n;
+  $("#simTotal").innerHTML=resto>0?`<span>Sua escolha</span><b>${SIM.n}x de <span class="mono">${brl(val(SIM.n))}</span></b><small>Total no cartão ${brl(tot)}${entrada||troca?` + ${brl(entrada+troca)} de entrada e troca`:""}</small>`:"";
+  let msg=`Olá, ${LOJA_NOME}! Fiz uma simulação no site:\n\n• ${nome} — ${brl(preco)}`;
+  if(entrada) msg+=`\n• Entrada: ${brl(entrada)}`;
+  if(troca) msg+=`\n• Troca: ${trocaNome} (estimativa ${brl(troca)})`;
+  if(resto>0) msg+=`\n• Parcelamento: ${SIM.n}x de ${brl(val(SIM.n))}`;
+  msg+=`\n\nPodem confirmar os valores?`;
+  $("#simWa").href=wa(msg);
+}
+function simAbrir(id,a){const sel=$("#simProd");const v=id+"|"+(a||0);if([...sel.options].some(o=>o.value===v))sel.value=v;simCalc()}
+
+/* ---------- Descubra seu iPhone ideal ---------- */
+const QUIZ=[
+ {k:"orc",t:"Quanto você quer investir?",s:"Valor à vista. Dá para parcelar em até 24x.",o:[["2000","Até R$ 2.000"],["3500","Até R$ 3.500"],["5500","Até R$ 5.500"],["8000","Até R$ 8.000"],["99999","Quero o melhor"]]},
+ {k:"pri",t:"O que é mais importante para você?",s:"Escolha uma opção.",o:[["camera","Fotos e vídeos"],["bateria","Bateria que dura o dia todo"],["tela","Tela grande"],["preco","O melhor preço"],["jogos","Jogos e desempenho"]]},
+ {k:"tam",t:"Que tamanho você prefere?",s:"Pense em como você segura o celular.",o:[["compacto","Compacto, cabe em qualquer bolso"],["normal","Tamanho normal"],["grande","Grande, tela enorme"]]},
+ {k:"est",t:"Novo ou seminovo?",s:"Os seminovos são revisados e têm garantia.",o:[["novo","Novo e lacrado"],["semi","Seminovo, para economizar"],["tanto","Tanto faz, quero o melhor custo-benefício"]]}
+];
+const QZ={i:0,r:{}};
+function iphoneInfo(p){
+  const n=p.nome, g=/Air/.test(n)?17:+((n.match(/iPhone (\d+)/)||[])[1]||0);
+  return {g,pro:/Pro/.test(n),max:/Max/.test(n),plus:/Plus/.test(n),mini:/mini/.test(n),air:/Air/.test(n),e:/\de\b/.test(n)};
+}
+function quizRecs(){
+  const r=QZ.r, orc=+r.orc, cands=[];
+  PRODUTOS.filter(p=>(p.cat==="novos"||p.cat==="seminovos")&&p.id!=="nduo").forEach(p=>p.arm.forEach((op,a)=>{
+    if(op.st===E) return;
+    if(r.est==="novo"&&p.cat!=="novos") return;
+    if(r.est==="semi"&&p.cat!=="seminovos") return;
+    if(op.p>orc*1.06) return;
+    const f=iphoneInfo(p), why=[]; let sc=(f.g-11)*0.6+(orc<99999?3*op.p/orc:op.p/4000);
+    if(r.pri==="camera"){sc+=f.pro?4:0;if(f.pro)why.push("Câmera Pro com três lentes e zoom")}
+    if(r.pri==="bateria"){sc+=f.max?4:f.plus?3:f.air?-2:0;if(f.max||f.plus)why.push("Bateria das maiores da linha")}
+    if(r.pri==="tela"){sc+=f.max||f.plus?4:f.mini?-3:0;if(f.max||f.plus)why.push("Tela grande de 6,7 polegadas ou mais")}
+    if(r.pri==="preco"){sc+=4*(1-op.p/Math.min(orc,20000));why.push("Melhor preço na sua faixa")}
+    if(r.pri==="jogos"){sc+=f.g*0.5+(f.pro?2:0);if(f.g>=16)why.push(`Chip recente do iPhone ${f.g}`)}
+    if(r.tam==="compacto"){sc+=f.mini?5:(f.max||f.plus)?-4:f.e?1:0;if(f.mini)why.push("O mais compacto da loja")}
+    if(r.tam==="grande"){sc+=(f.max||f.plus)?3:f.mini?-4:0}
+    if(r.tam==="normal"){sc+=(f.max||f.plus||f.mini)?-1.5:1}
+    if(r.est==="tanto"&&p.cat==="seminovos")sc+=0.8;
+    if(p.cat==="novos")why.push("Novo, lacrado, 1 ano de garantia Apple");else why.push(op.nota?`Seminovo ${op.nota.toLowerCase()} com garantia`:"Seminovo revisado com garantia");
+    if(op.de)sc+=0.5;
+    cands.push({p,a,op,sc,why});
+  }));
+  cands.sort((x,y)=>y.sc-x.sc);
+  const seen=new Set(),out=[];for(const c of cands){if(seen.has(c.p.id))continue;seen.add(c.p.id);out.push(c);if(out.length===3)break}
+  return out;
+}
+function quizRender(){
+  const box=$("#quizBox");
+  if(QZ.i<QUIZ.length){
+    const q=QUIZ[QZ.i];
+    box.innerHTML=`<div class="qz-prog" aria-hidden="true">${QUIZ.map((_,i)=>`<i class="${i<QZ.i?"done":i===QZ.i?"now":""}"></i>`).join("")}</div>
+      <span class="eyebrow">Pergunta ${QZ.i+1} de ${QUIZ.length}</span><h3 class="qz-t">${q.t}</h3><p class="qz-s">${q.s}</p>
+      <div class="qz-ops">${q.o.map(([v,l])=>`<button type="button" class="qz-op" data-qv="${v}">${l}</button>`).join("")}</div>
+      ${QZ.i?`<button type="button" class="qz-back" data-qback>← Voltar</button>`:""}`;
+    box.classList.remove("qz-in");void box.offsetWidth;box.classList.add("qz-in");
+    return;
+  }
+  const recs=quizRecs();
+  box.innerHTML=`<span class="eyebrow">Resultado</span><h3 class="qz-t">${recs.length?"Os iPhones ideais para você":"Não achamos um iPhone nessa faixa"}</h3>
+    ${recs.length?`<div class="qz-recs">${recs.map((c,i)=>`<article class="qz-rec" style="--d:${i*120}ms">
+      ${i===0?`<span class="badge hot qz-best">Melhor escolha</span>`:""}
+      <div class="qz-pic" data-open="${c.p.id}" data-a="${c.a}" role="button" tabindex="0" aria-label="Ver ${esc(c.p.nome)}">${media(c.p,c.a,0)}</div>
+      <div class="qz-body"><b>${esc(c.p.nome)}${c.op.l!=="Única"?" "+esc(c.op.l):""}</b>
+      <ul>${c.why.slice(0,3).map(w=>`<li>${esc(w)}</li>`).join("")}</ul>
+      <div class="qz-price"><span class="mono">${brl0(c.op.p)}</span><small>${c.op.x===0?"à vista":"ou 24x de "+brl0(parc(c.op,24))}</small></div>
+      <div class="qz-acts"><button type="button" class="btn btn-accent" data-add="${c.p.id}" data-a="${c.a}">Adicionar</button><button type="button" class="btn btn-ghost" data-open="${c.p.id}" data-a="${c.a}">Ver detalhes</button></div></div>
+    </article>`).join("")}</div>`:`<p class="qz-s">Aumente o orçamento ou fale com a gente: às vezes chega um aparelho que ainda não está no site.</p>`}
+    <div class="qz-end"><button type="button" class="btn btn-ghost" data-qreset>Refazer o teste</button><a class="btn btn-wa" href="${wa(`Olá, ${LOJA_NOME}! Fiz o teste do iPhone ideal no site${recs[0]?` e deu ${recs[0].p.nome} ${recs[0].op.l}`:""}. Podem me ajudar?`)}" target="_blank" rel="noopener">Tirar dúvida no WhatsApp</a></div>`;
+  box.classList.remove("qz-in");void box.offsetWidth;box.classList.add("qz-in");
+}
+document.addEventListener("click",e=>{
+  const o=e.target.closest("[data-qv]"); if(o){QZ.r[QUIZ[QZ.i].k]=o.dataset.qv;QZ.i++;quizRender();return}
+  if(e.target.closest("[data-qback]")){QZ.i=Math.max(0,QZ.i-1);quizRender();return}
+  if(e.target.closest("[data-qreset]")){QZ.i=0;QZ.r={};quizRender();return}
+});
+/* ---------- Animações ---------- */
+const calmo=matchMedia("(prefers-reduced-motion: reduce)").matches;
+function animarEntrada(el){if(calmo||!el)return;el.classList.remove("enter");void el.offsetWidth;el.classList.add("enter")}
+function voarParaSacola(origem){
+  if(calmo||!origem)return;
+  const card=origem.closest(".card,.deal,.qz-rec,.pv"); const img=card&&card.querySelector(".pic img,.pic svg,.qz-pic img,.qz-pic svg,.pv-photo img,.pv-photo svg");
+  const alvo=$("#openCart"); if(!img||!alvo)return;
+  const a=img.getBoundingClientRect(), b=alvo.getBoundingClientRect();
+  const c=img.cloneNode(true); c.className="fly"; Object.assign(c.style,{left:a.left+"px",top:a.top+"px",width:a.width+"px",height:a.height+"px"});
+  document.body.appendChild(c);
+  const dx=b.left+b.width/2-(a.left+a.width/2), dy=b.top+b.height/2-(a.top+a.height/2);
+  c.animate([{transform:"translate(0,0) scale(1)",opacity:1},{transform:`translate(${dx*0.5}px,${dy*0.5-80}px) scale(.45)`,opacity:.9},{transform:`translate(${dx}px,${dy}px) scale(.08)`,opacity:.2}],{duration:750,easing:"cubic-bezier(.5,0,.3,1)"}).onfinish=()=>{c.remove();alvo.classList.remove("bump");void alvo.offsetWidth;alvo.classList.add("bump")};
+}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-add]");if(b)voarParaSacola(b)},true);
+(function tilt(){
+  const st=document.querySelector(".hero-stage"); if(calmo||!st||!matchMedia("(pointer:fine)").matches)return;
+  const ph=$("#heroPhone");
+  st.addEventListener("pointermove",e=>{const r=st.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;ph.style.transform=`perspective(900px) rotateY(${x*14}deg) rotateX(${-y*10}deg)`});
+  st.addEventListener("pointerleave",()=>{ph.style.transform=""});
+})();
+
+/* ---------- Página do produto ---------- */
+const pv={id:null,q:1,pushed:false};
+function pvRender(){
+  const p=byId(pv.id), s=state.sel[p.id], op=p.arm[s.a], semi=p.c==="semi";
+  const note=$("#pvNote")?.value||"";
+  $("#pvBody").innerHTML=`<div class="pv-photo">${media(p,s.a,s.c)}
+      <button type="button" class="pv-back" data-pv-close><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>Catálogo</button>
+      <button type="button" class="pv-share" data-pv-share aria-label="Compartilhar produto"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4" stroke="currentColor" stroke-width="2" fill="none"/></svg></button>
+    </div>
+    <div class="pv-info wrap">
+      <span class="eyebrow">${badgeOf(p)}${op.st?" · "+esc(op.st):""}</span>
+      <h2>${esc(p.nome)}${op.l!=="Única"?" - "+esc(op.l):""}</h2>
+      <p class="pv-txt">${esc(p.spec)}<br>${esc(instTxt(op))}</p>
+      ${p.inc||p.cores.length?`<p class="pv-txt">${p.inc?esc(p.inc)+"<br>":""}${p.cores.length>1||p.cat==="seminovos"||p.cat==="novos"?"Consultar cores disponíveis":""}</p>`:""}
+      ${semi?`<div class="semi"><div><small>Garantia</small><b>${esc(op.gar||"3 meses")}</b></div><div><small>Estado</small><b>${esc(op.nota||"Revisado")}</b></div></div>`:(op.nota?`<p class="pv-txt">${esc(op.nota)}</p>`:"")}
+      ${p.arm.length>1||op.l!=="Única"?`<div class="opts" role="group" aria-label="Versões">${p.arm.map((x,i)=>`<button type="button" class="opt" data-pva="${i}" aria-pressed="${i===s.a}">${esc(x.l)}</button>`).join("")}</div>`:""}
+      ${p.cores.length>1?`<div class="dots" role="group" aria-label="Cores">${p.cores.map(([cn,h],i)=>`<button type="button" class="dot" data-pvc="${i}" style="background:${h}" aria-label="${esc(cn)}" title="${esc(cn)}" aria-pressed="${i===s.c}"></button>`).join("")}<span class="cname">${esc(p.cores[s.c][0])}</span></div>`:""}
+      <div class="pv-price"><span class="price mono${op.de?" off":""}">${brl(op.p)}</span>${op.de?`<span class="old">${brl(op.de)}</span>`:""}</div>
+      <div class="field"><label for="pvNote">Alguma observação?</label><textarea id="pvNote" rows="2" placeholder="Retirar ou modificar algum item..."></textarea></div>
+      <a class="btn btn-ghost pv-sim" href="#parcelamento" data-sim="${p.id}|${s.a}">Simular parcelamento deste produto</a>
+      <a class="pv-wa" href="${wa(`Olá, ${LOJA_NOME}! Tenho uma dúvida sobre o ${p.nome}${op.l!=="Única"?" "+op.l:""}.`)}" target="_blank" rel="noopener">${waIcon} Tirar dúvida sobre este produto no WhatsApp</a>
+    </div>`;
+  $("#pvNote").value=note;
+  $("#pvQ").textContent=pv.q;$("#pvTotal").textContent=brl(op.p*pv.q);
+}
+function openProduct(id,a,push=true){
+  if(!byId(id)) return;
+  if(a!=null) state.sel[id].a=+a;
+  pv.id=id;pv.q=1;$("#pvBody").innerHTML="";pvRender();
+  $("#pv").hidden=false;document.body.classList.add("pv-open");$("#pvBody").scrollTop=0;
+  if(push&&location.hash!=="#produto-"+id){pv.pushed=true;location.hash="produto-"+id}
+}
+function closeProduct(fromHash){
+  if($("#pv").hidden) return;
+  $("#pv").hidden=true;document.body.classList.remove("pv-open");
+  const last=pv.id;pv.id=null;
+  if(!fromHash){ if(pv.pushed){pv.pushed=false;history.back()} else {try{history.replaceState(null,"","#loja-"+byId(last).cat)}catch(e){} showPage("loja")} }
+  if(state.tab!==byId(last).cat){setTab(byId(last).cat)}
+}
+async function shareProduct(){
+  const p=byId(pv.id), op=p.arm[state.sel[p.id].a];
+  const url=location.href.split("#")[0]+"#produto-"+p.id, title=`${p.nome}${op.l!=="Única"?" "+op.l:""} | Sua Loja`;
+  try{ if(navigator.share){ await navigator.share({title,text:`${title} por ${brl(op.p)}`,url}); return } }catch(e){ if(e&&e.name==="AbortError") return }
+  try{ await navigator.clipboard.writeText(url); toast("Link do produto copiado"); return }catch(e){}
+  toast("Link: "+url);
+}
+document.addEventListener("click",e=>{
+  const op=e.target.closest("[data-open]"); if(op){e.preventDefault();openProduct(op.dataset.open,op.dataset.a);return}
+  const sm=e.target.closest("[data-sim]"); if(sm){const [i,a]=sm.dataset.sim.split("|");simAbrir(i,a);return}
+  if(e.target.closest("[data-pv-close]")){closeProduct();return}
+  if(e.target.closest("[data-pv-share]")){shareProduct();return}
+  const a=e.target.closest("[data-pva]"); if(a){state.sel[pv.id].a=+a.dataset.pva;pvRender();return}
+  const c=e.target.closest("[data-pvc]"); if(c){state.sel[pv.id].c=+c.dataset.pvc;pvRender();return}
+  const q=e.target.closest("[data-pvq]"); if(q){pv.q=Math.max(1,pv.q+ +q.dataset.pvq);pvRender();return}
+});
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape"&&!$("#pv").hidden) closeProduct();
+  if((e.key==="Enter"||e.key===" ")&&e.target.matches?.(".pic[data-open]")){e.preventDefault();openProduct(e.target.dataset.open,e.target.dataset.a)}
+});
+$("#pvAdd").onclick=()=>{const id=pv.id;addToCart(id,null,pv.q,($("#pvNote").value||"").trim());closeProduct();grid()};
+/* ---------- Páginas ---------- */
+function centerX(el){const box=el.parentElement;if(box&&box.scrollWidth>box.clientWidth)box.scrollLeft=el.offsetLeft-box.offsetLeft-box.clientWidth/2+el.offsetWidth/2}
+const PAGES=["inicio","ideal","promocoes","loja","parcelamento","troca","manutencao","depoimentos","pagamento","duvidas"];
+let curPage=null;
+function showPage(pg){
+  if(pg===curPage) return;
+  curPage=pg;
+  document.querySelectorAll("main > [data-page]").forEach(el=>el.hidden=el.dataset.page!==pg);
+  window.scrollTo(0,0);
+  animarEntrada(document.querySelector(`main > [data-page="${pg}"]`));
+  markNav();
+}
+function markNav(){
+  const h=location.hash.slice(1)||"inicio";
+  document.querySelectorAll("nav.main a").forEach(a=>{
+    const t=a.getAttribute("href").slice(1);
+    const on=t===h||(curPage==="loja"&&t==="loja-"+state.tab)||(t===curPage&&!h.startsWith("loja"));
+    if(on){a.setAttribute("aria-current","page");centerX(a)} else a.removeAttribute("aria-current");
+  });
+}
+function route(){
+  const h=location.hash.slice(1); let m;
+  if((m=h.match(/^produto-([a-z0-9]+)$/))&&byId(m[1])){
+    const p=byId(m[1]); showPage("loja"); if(state.tab!==p.cat) setTab(p.cat);
+    if($("#pv").hidden||pv.id!==m[1]) openProduct(m[1],null,false);
+    return;
+  }
+  closeProduct(true);
+  if((m=h.match(/^loja-([a-z]+)$/))&&CATS.some(c=>c[0]===m[1])){showPage("loja"); if(state.tab!==m[1]) setTab(m[1]); markNav(); return}
+  showPage(PAGES.includes(h)?h:"inicio"); markNav();
+}
+window.addEventListener("hashchange",route);
+function cats(){
+  $("#cats").innerHTML=CATS.map(([k,n])=>{const list=PRODUTOS.filter(p=>p.cat===k);
+    const ph=list.find(p=>fotoOf(p,0))||list[0]; const min=Math.min(...list.flatMap(p=>p.arm.map(o=>o.p)));
+    return `<a class="cat" href="#loja-${k}"><span class="cat-pic">${media(ph,0,0)}</span><span class="cat-txt"><b>${n}</b><small>${list.length} produtos · a partir de ${brl0(min)}</small></span></a>`}).join("");
+}
+
+const LOJA_NOME="Sua Loja";
+$("#busca").addEventListener("input",e=>{state.q=e.target.value;if(state.q.trim())grid();else setTab(state.tab)});
+document.querySelectorAll("[data-cor]").forEach(b=>b.onclick=()=>{const [a,ad,so,sod]=b.dataset.cor.split(",");const dark=document.documentElement.dataset.theme==="dark"||(!document.documentElement.dataset.theme&&matchMedia("(prefers-color-scheme: dark)").matches);const r=document.documentElement.style;r.setProperty("--accent",dark?ad:a);r.setProperty("--accent-soft",dark?sod:so)});
+hero();
+deals();tabs();setTab("novos");trade();renderCart();payUI();clock();setInterval(clock,1000);cats();simFill();quizRender();simAbrir("n17pm",0);route();
+</script>
+</body>
+</html>
