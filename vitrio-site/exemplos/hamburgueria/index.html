@@ -69,7 +69,7 @@ section.cat h2{font-size:clamp(1.5rem,3.6vw,2.1rem);margin-bottom:16px}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:transform .2s,box-shadow .2s;animation:sobe .5s both}
 .card:hover{transform:translateY(-3px);box-shadow:0 18px 40px -20px rgba(0,0,0,.45)}
 @keyframes sobe{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-.card .pic{background:var(--well);aspect-ratio:4/3;display:grid;place-items:center;position:relative}
+.card .pic{background:var(--well);aspect-ratio:1/1;display:grid;place-items:center;position:relative}
 .card .pic svg{width:72%;height:72%;transition:transform .3s}
 .card:hover .pic svg{transform:scale(1.06) rotate(-2deg)}
 .tag{position:absolute;top:10px;left:10px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--accent-ink);padding:4px 9px;border-radius:999px}
@@ -138,6 +138,12 @@ textarea,input[type=text],input[type=tel],select{font:inherit;font-size:15px;pad
 footer{border-top:1px solid var(--line);margin-top:30px;padding-block:28px 90px;color:var(--mute);font-size:14px}
 footer .wrap{display:grid;gap:6px}
 footer b{color:var(--ink);font-family:var(--f-display);font-size:20px;font-weight:400}
+.card .pic:has(.foto),.sheet-pic:has(.foto){padding:0;overflow:hidden}
+.foto{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .35s}
+.card:hover .foto{transform:scale(1.05)}
+.item .mini{position:relative;overflow:hidden}
+.hero-art:has(.hero-foto) .disc{display:none}
+.hero-foto{width:100%;height:100%;object-fit:cover;border-radius:28px;box-shadow:0 30px 60px -30px rgba(0,0,0,.6);animation:flutua 7s ease-in-out infinite}
 .toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--ink);color:var(--bg);padding:12px 18px;border-radius:999px;font-weight:700;font-size:14px;z-index:99;opacity:0;transition:all .25s;pointer-events:none;max-width:calc(100% - 32px);text-align:center}
 .toast.on{opacity:1;transform:translate(-50%,0)}
 .floatcart{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:50;width:min(520px,calc(100% - 32px))}
@@ -172,7 +178,7 @@ footer b{color:var(--ink);font-family:var(--f-display);font-size:20px;font-weigh
 <div class="toast" id="toast" role="status"></div>
 
 <script>
-const CFG = {"slug": "hamburgueria", "nome": "Brasa & Pão", "heroArte": "burger", "heroExtra": true, "txtPedido": "Pedido", "txtVazio": "Seu pedido está vazio", "horario": {"0": ["18:00", "23:30"], "2": ["18:00", "23:30"], "3": ["18:00", "23:30"], "4": ["18:00", "23:30"], "5": ["18:00", "23:59"], "6": ["18:00", "23:59"]}, "obsDica": "Ex.: sem cebola, carne ao ponto", "categorias": [{"id": "burgers", "nome": "Burgers"}, {"id": "combos", "nome": "Combos"}, {"id": "porcoes", "nome": "Porções"}, {"id": "bebidas", "nome": "Bebidas"}], "adicionais": [["Bacon", 5], ["Cheddar extra", 4], ["Ovo", 3], ["Cebola caramelizada", 4], ["Carne extra 150 g", 12]], "entrega": [["Retirar no balcão", "", 0], ["Entrega", "", 7]], "pagamentos": ["Pix", "Cartão na entrega", "Dinheiro"], "produtos": [{"id": "b1", "cat": "burgers", "nome": "Brasa Clássico", "desc": "Pão brioche, blend 150 g, queijo prato, alface, tomate e molho da casa.", "preco": 32.9, "arte": "burger", "adicionais": true, "tag": "Mais pedido"}, {"id": "b2", "cat": "burgers", "nome": "Duplo Cheddar", "desc": "Dois blends de 150 g, cheddar cremoso e cebola caramelizada.", "preco": 44.9, "arte": "burger", "extra": true, "adicionais": true}, {"id": "b3", "cat": "burgers", "nome": "Bacon Brasa", "desc": "Blend 150 g, muito bacon crocante, queijo e barbecue.", "preco": 38.9, "arte": "burger", "adicionais": true}, {"id": "b4", "cat": "burgers", "nome": "Dog Especial", "desc": "Salsicha artesanal, purê, batata palha, milho e molhos.", "preco": 24.9, "arte": "hotdog", "adicionais": true}, {"id": "c1", "cat": "combos", "nome": "Combo Brasa", "desc": "Brasa Clássico + fritas média + refrigerante lata.", "preco": 49.9, "arte": "combo", "adicionais": true, "tag": "Economize R$ 9"}, {"id": "c2", "cat": "combos", "nome": "Combo Casal", "desc": "Dois Brasa Clássico, fritas grande e dois refrigerantes.", "preco": 94.9, "arte": "combo", "adicionais": true}, {"id": "p1", "cat": "porcoes", "nome": "Fritas da casa", "desc": "Batata rústica com páprica e maionese verde. Serve 2.", "preco": 22.9, "arte": "fritas"}, {"id": "p2", "cat": "porcoes", "nome": "Fritas com cheddar e bacon", "desc": "A clássica, coberta de cheddar e bacon. Serve 2.", "preco": 32.9, "arte": "fritas", "tag": "Novo"}, {"id": "d1", "cat": "bebidas", "nome": "Refrigerante lata", "desc": "350 ml. Coca-Cola, Guaraná ou Sprite.", "preco": 7, "arte": "refri", "cor": "#C62828"}, {"id": "d2", "cat": "bebidas", "nome": "Milkshake de morango", "desc": "400 ml, com chantilly.", "preco": 19.9, "arte": "shake", "cor": "#F3A6C0"}, {"id": "d3", "cat": "bebidas", "nome": "Milkshake de chocolate", "desc": "400 ml, com calda e chantilly.", "preco": 19.9, "arte": "shake", "cor": "#7B4A2E"}]};
+const CFG = {"slug": "hamburgueria", "nome": "Brasa & Pão", "heroArte": "burger", "heroExtra": true, "txtPedido": "Pedido", "txtVazio": "Seu pedido está vazio", "horario": {"0": ["18:00", "23:30"], "2": ["18:00", "23:30"], "3": ["18:00", "23:30"], "4": ["18:00", "23:30"], "5": ["18:00", "23:59"], "6": ["18:00", "23:59"]}, "obsDica": "Ex.: sem cebola, carne ao ponto", "heroFoto": "burger.jpg", "categorias": [{"id": "lanches", "nome": "Lanches"}, {"id": "porcoes", "nome": "Porções"}, {"id": "bebidas", "nome": "Bebidas"}], "adicionais": [["Bacon", 5], ["Cheddar extra", 4], ["Ovo", 3], ["Cebola caramelizada", 4], ["Carne extra 150 g", 12]], "entrega": [["Retirar no balcão", "", 0], ["Entrega", "", 7]], "pagamentos": ["Pix", "Cartão na entrega", "Dinheiro"], "produtos": [{"id": "b1", "cat": "lanches", "nome": "Brasa Cheddar Bacon", "desc": "Pão brioche, blend 150 g, cheddar cremoso, bacon crocante, alface e molho da casa.", "preco": 38.9, "foto": "burger.jpg", "adicionais": true, "tag": "Mais pedido"}, {"id": "b4", "cat": "lanches", "nome": "Dog Especial", "desc": "Pão com gergelim, salsicha, carne desfiada, ketchup e mostarda.", "preco": 24.9, "foto": "hotdog.jpg", "adicionais": true}, {"id": "p1", "cat": "porcoes", "nome": "Fritas da casa", "desc": "Batata crocante na cestinha. Serve 2.", "preco": 22.9, "foto": "fritas.jpg", "tag": "Novo"}, {"id": "d1", "cat": "bebidas", "nome": "Refrigerante lata", "desc": "350 ml. Coca-Cola, Fanta, Sprite ou Guaraná.", "preco": 7, "foto": "refri.jpg"}, {"id": "d2", "cat": "bebidas", "nome": "Milkshake de morango", "desc": "400 ml, com morangos frescos.", "preco": 19.9, "foto": "shake-morango.jpg"}, {"id": "d3", "cat": "bebidas", "nome": "Milkshake de chocolate", "desc": "400 ml, com calda e raspas de chocolate.", "preco": 19.9, "foto": "shake-chocolate.jpg"}]};
 const $=s=>document.querySelector(s);
 const brl=v=>v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
 const esc=t=>String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -194,6 +200,7 @@ const ART={
  bolsa:(c)=>`<path d="M70 70c0-30 60-30 60 0" fill="none" stroke="${shade(c,-.3)}" stroke-width="8"/><path d="M40 70h120l-10 104H50Z" fill="${c}"/><rect x="88" y="96" width="24" height="16" rx="4" fill="#D9B44A"/>`,
  blusa:(c)=>`<path d="M64 30l-34 26 12 22 20-10 4 108h68l4-108 20 10 12-22-34-26q-16 18-36 18t-36-18Z" fill="${c}"/><path d="M78 60q22 10 44 0" stroke="${shade(c,-.2)}" stroke-width="3" fill="none"/>`
 };
+const vis=(p,c)=>p.foto?`<img class="foto" src="img/${p.foto}" alt="${esc(p.nome)}" loading="lazy">`:svg(p.arte,c,p.extra);
 const svg=(k,c,extra)=>`<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">${ART[k](c,extra)}</svg>`;
 
 /* ---------- Estado ---------- */
@@ -211,11 +218,11 @@ let cur=null;
 })();
 
 /* ---------- Render ---------- */
-$("#heroArt").innerHTML=svg(CFG.heroArte,CFG.heroCor,CFG.heroExtra);
+$("#heroArt").innerHTML=CFG.heroFoto?`<img class="hero-foto" src="img/${CFG.heroFoto}" alt="">`:svg(CFG.heroArte,CFG.heroCor,CFG.heroExtra);
 $("#cats").innerHTML=CFG.categorias.map((c,i)=>`<a href="#c-${c.id}" class="${i?"":"on"}">${esc(c.nome)}</a>`).join("");
 $("#secoes").innerHTML=CFG.categorias.map(c=>`<section class="cat" id="c-${c.id}"><div class="wrap"><h2>${esc(c.nome)}</h2><div class="grid">${P.filter(p=>p.cat===c.id).map((p,i)=>`
   <article class="card" data-id="${p.id}" style="animation-delay:${i*60}ms" tabindex="0" role="button" aria-label="${esc(p.nome)}">
-    <div class="pic">${p.tag?`<span class="tag">${esc(p.tag)}</span>`:""}${svg(p.arte,p.cores?p.cores[0][1]:p.cor,p.extra)}</div>
+    <div class="pic">${p.tag?`<span class="tag">${esc(p.tag)}</span>`:""}${vis(p,p.cores?p.cores[0][1]:p.cor)}</div>
     <div class="body"><h3>${esc(p.nome)}</h3><p>${esc(p.desc)}</p>${p.cores?`<div class="dots">${p.cores.map(([,h])=>`<i style="background:${h}"></i>`).join("")}</div>`:""}
     <div class="row"><span class="price">${brl(p.preco)}${CFG.parcelas&&p.preco>=100?`<small>ou ${CFG.parcelas}x de ${brl(p.preco/CFG.parcelas)}</small>`:""}</span><button class="plus" type="button" aria-label="Adicionar ${esc(p.nome)}">+</button></div></div>
   </article>`).join("")}</div></div></section>`).join("");
@@ -230,7 +237,7 @@ function abrir(id){
 function precoCur(){return (cur.p.preco+[...cur.adds].reduce((t,i)=>t+CFG.adicionais[i][1],0))*cur.q}
 function desenhar(){
   const p=cur.p, cor=p.cores?p.cores[cur.cor][1]:p.cor;
-  $("#sheet").innerHTML=`<div class="sheet-pic">${svg(p.arte,cor,p.extra)}<button class="x" type="button" data-close aria-label="Fechar">×</button></div>
+  $("#sheet").innerHTML=`<div class="sheet-pic">${vis(p,cor)}<button class="x" type="button" data-close aria-label="Fechar">×</button></div>
   <div class="sheet-body"><h2>${esc(p.nome)}</h2><p>${esc(p.desc)}</p>
   ${p.cores?`<div class="grp"><b>Cor: <small>${esc(p.cores[cur.cor][0])}</small></b><div class="opts">${p.cores.map(([n,h],i)=>`<button type="button" class="opt cor" data-cor="${i}" style="background:${h}" aria-label="${esc(n)}" aria-pressed="${i===cur.cor}"></button>`).join("")}</div></div>`:""}
   ${p.tamanhos?`<div class="grp"><b>Tamanho ${cur.tam?"":"<small>(escolha um)</small>"}</b><div class="opts">${p.tamanhos.map(t=>`<button type="button" class="opt" data-tam="${t}" aria-pressed="${t===cur.tam}">${t}</button>`).join("")}</div></div>`:""}
@@ -266,7 +273,7 @@ function render(){
   $("#floatcart").hidden=!n; $("#floatTxt").textContent=`Ver ${CFG.txtPedido.toLowerCase()} (${n})`; $("#floatTot").textContent=brl(sub());
   if(!cart.length){$("#drBody").innerHTML=`<div class="empty"><b>${esc(CFG.txtVazio)}</b>Toque em um produto para adicionar.</div>`;return}
   const taxa=(CFG.entrega.find(x=>x[0]===st.ent)||[0,0,0])[2], tot=sub()+taxa;
-  $("#drBody").innerHTML=cart.map((it,i)=>{const p=byId(it.id);return `<div class="item"><div class="mini">${svg(p.arte,p.cores?p.cores[it.cor][1]:p.cor,p.extra)}</div><div><b>${it.q}x ${esc(p.nome)}</b>${it.tam?`<small>Tamanho ${esc(it.tam)}${p.cores?" · "+esc(p.cores[it.cor][0]):""}</small>`:p.cores?`<small>${esc(p.cores[it.cor][0])}</small>`:""}${it.adds&&it.adds.length?`<small>+ ${it.adds.map(a=>esc(CFG.adicionais[a][0])).join(", ")}</small>`:""}${it.obs?`<small>Obs.: ${esc(it.obs)}</small>`:""}<button class="rm" type="button" data-rm="${i}">remover</button></div><b>${brl(itemPreco(it))}</b></div>`}).join("")+
+  $("#drBody").innerHTML=cart.map((it,i)=>{const p=byId(it.id);return `<div class="item"><div class="mini">${vis(p,p.cores?p.cores[it.cor][1]:p.cor)}</div><div><b>${it.q}x ${esc(p.nome)}</b>${it.tam?`<small>Tamanho ${esc(it.tam)}${p.cores?" · "+esc(p.cores[it.cor][0]):""}</small>`:p.cores?`<small>${esc(p.cores[it.cor][0])}</small>`:""}${it.adds&&it.adds.length?`<small>+ ${it.adds.map(a=>esc(CFG.adicionais[a][0])).join(", ")}</small>`:""}${it.obs?`<small>Obs.: ${esc(it.obs)}</small>`:""}<button class="rm" type="button" data-rm="${i}">remover</button></div><b>${brl(itemPreco(it))}</b></div>`}).join("")+
   `<div class="tot"><div><span>Subtotal</span><span>${brl(sub())}</span></div><div><span>${esc(st.ent)}</span><span>${taxa?brl(taxa):"grátis"}</span></div><div class="g"><span>Total</span><span>${brl(tot)}</span></div></div>
   <div class="field"><label>Como você quer receber?</label><div class="radios">${CFG.entrega.map(([n,,v])=>`<button type="button" class="opt" data-ent="${esc(n)}" aria-pressed="${n===st.ent}">${esc(n)}${v?" · "+brl(v):""}</button>`).join("")}</div></div>
   ${st.ent!==CFG.entrega[0][0]?`<div class="field"><label for="end">Endereço</label><input type="text" id="end" placeholder="Rua, número e bairro"></div>`:""}
