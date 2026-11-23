@@ -1,0 +1,359 @@
+<title>Vitrio · Instagram</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800&family=Manrope:wght@500;600;700;800&display=swap">
+<style>
+/* Layout: guia de lançamento em coluna única — perfil, grade de 9 posts com legendas, destaques e plano de crescimento */
+:root{
+  --bg:#F2F5FD; --surface:#FFFFFF; --well:#E6ECFB; --ink:#0E1328; --mute:#5B6684; --line:#D6DDF0;
+  --blue:#2D5BFF; --blue-soft:#DDE5FF; --amber:#FFB84D; --amber-ink:#8A5200; --ok:#1F8A4C;
+  --f-display:"Unbounded","Arial Black",system-ui,sans-serif;
+  --f-body:"Manrope",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0B0F1E; --surface:#141A2E; --well:#1C2440; --ink:#EEF1FA; --mute:#9AA6C8; --line:#283252;
+  --blue:#6E8EFF; --blue-soft:#1C2A5C; --amber:#FFB84D; --amber-ink:#FFCF85; --ok:#45C982; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0B0F1E; --surface:#141A2E; --well:#1C2440; --ink:#EEF1FA; --mute:#9AA6C8; --line:#283252;
+  --blue:#6E8EFF; --blue-soft:#1C2A5C; --amber:#FFB84D; --amber-ink:#FFCF85; --ok:#45C982; color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+a{color:var(--blue)}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:6px}
+img{max-width:100%;display:block}
+.wrap{max-width:900px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2{font-family:var(--f-display);font-weight:800;letter-spacing:-.02em;text-wrap:balance;margin:0}
+h1{font-size:clamp(1.9rem,5.5vw,2.9rem);line-height:1.05}
+h2{font-size:clamp(1.3rem,3.6vw,1.75rem);line-height:1.15}
+h3{font-size:17px;font-weight:800;margin:0}
+p{margin:0}
+.muted{color:var(--mute)}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
+
+header.hero{background:var(--ink);color:#fff}
+header.hero .wrap{padding-block:40px 34px;display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center}
+header.hero img{width:96px;height:96px;border-radius:50%}
+header.hero .eyebrow{color:var(--amber)}
+header.hero p{color:#C9D1EA;margin-top:8px;max-width:56ch}
+@media (max-width:520px){header.hero .wrap{grid-template-columns:1fr}}
+
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
+nav.toc .wrap{display:flex;gap:6px;overflow-x:auto;padding-block:10px;scrollbar-width:none}
+nav.toc .wrap::-webkit-scrollbar{display:none}
+nav.toc a{white-space:nowrap;text-decoration:none;color:var(--mute);font-weight:700;font-size:13px;padding:7px 12px;border-radius:999px}
+nav.toc a:hover{background:var(--well);color:var(--ink)}
+
+section{padding-block:46px 6px}
+section > .wrap{display:grid;gap:18px}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px 22px;display:grid;gap:12px;min-width:0}
+.field{display:grid;grid-template-columns:150px 1fr auto;gap:12px;align-items:start;padding:12px 0;border-bottom:1px solid var(--line)}
+.field:last-child{border-bottom:0}
+.field > span:first-child{font-size:13px;font-weight:800;color:var(--mute);padding-top:2px}
+.field b{font-weight:700;white-space:pre-line;overflow-wrap:anywhere}
+@media (max-width:560px){.field{grid-template-columns:1fr auto}.field > span:first-child{grid-column:1/-1}}
+.copy{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:6px 12px;font:inherit;font-size:12.5px;font-weight:800;cursor:pointer;white-space:nowrap}
+.copy.ok{background:var(--ok);border-color:var(--ok);color:#fff}
+
+.bios{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.bio{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px 18px;display:grid;gap:10px;align-content:start}
+.bio.rec{border-color:var(--blue);box-shadow:0 0 0 1px var(--blue)}
+.bio-head{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.bio-head small{font-size:12px;color:var(--mute);font-weight:700}
+.tag{font-size:11px;font-weight:800;letter-spacing:.06em;background:var(--blue);color:#fff;padding:3px 8px;border-radius:6px}
+.bio pre{margin:0;white-space:pre-wrap;font-family:var(--f-body);font-size:15px;line-height:1.5}
+
+.grid9{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;border-radius:14px;overflow:hidden}
+.grid9 img{aspect-ratio:4/5;object-fit:cover;width:100%}
+.posts{display:grid;gap:14px}
+.post{display:grid;grid-template-columns:170px 1fr;gap:18px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:14px;align-items:start;min-width:0}
+.post img{border-radius:12px;aspect-ratio:4/5;object-fit:cover;width:100%}
+.post-body{display:grid;gap:8px;min-width:0}
+.post-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.when{font-size:12px;font-weight:800;color:var(--amber-ink);background:color-mix(in srgb,var(--amber) 22%,transparent);padding:3px 9px;border-radius:999px}
+.post pre{margin:0;white-space:pre-wrap;font-family:var(--f-body);font-size:14.5px;line-height:1.5;background:var(--well);border-radius:12px;padding:12px 14px;overflow-wrap:anywhere}
+@media (max-width:600px){.post{grid-template-columns:1fr}.post img{max-width:240px}}
+
+.hl{display:flex;gap:16px;flex-wrap:wrap}
+.hl figure{margin:0;display:grid;gap:6px;justify-items:center;width:92px;text-align:center}
+.hl img{width:76px;height:76px;border-radius:50%;box-shadow:0 0 0 3px var(--surface),0 0 0 5px var(--line)}
+.hl figcaption{font-size:12.5px;font-weight:700}
+.hl small{font-size:11.5px;color:var(--mute);line-height:1.3}
+
+ol.plan,ul.plan{margin:0;padding-left:20px;display:grid;gap:10px}
+ol.plan li::marker,ul.plan li::marker{color:var(--blue);font-weight:800}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);font-weight:800}
+tr:last-child td{border-bottom:0}
+.reels{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.reel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;display:grid;gap:6px;align-content:start}
+.reel b{font-size:15.5px}
+.reel span{font-size:14px;color:var(--mute)}
+.note{background:color-mix(in srgb,var(--amber) 18%,var(--surface));border-radius:14px;padding:14px 16px;font-size:15px}
+.logos{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.logos img{border-radius:14px;border:1px solid var(--line);background:#fff}
+footer{padding-block:40px 60px;color:var(--mute);font-size:14px}
+</style>
+
+<header class="hero">
+  <div class="wrap">
+    <img src="logo/perfil-instagram.png" alt="Foto de perfil da Vitrio">
+    <div>
+      <span class="eyebrow">@vitriositesbr</span>
+      <h1>Lançamento do Instagram</h1>
+      <p>Logo, bio, os 9 primeiros posts com legenda, os destaques e o plano para o perfil crescer e trazer clientes.</p>
+    </div>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Seções">
+  <div class="wrap">
+    <a href="#perfil">Perfil e bio</a>
+    <a href="#posts">9 primeiros posts</a>
+    <a href="#destaques">Destaques</a>
+    <a href="#crescer">Como crescer</a>
+    <a href="#reels">Ideias de Reels</a>
+    <a href="#calendario">Primeiros 30 dias</a>
+    <a href="#logo">Logo</a>
+  </div>
+</nav>
+
+<section id="perfil">
+  <div class="wrap">
+    <span class="eyebrow">Passo 1</span>
+    <h2>Configure o perfil</h2>
+    <p class="muted">No Instagram, toque em <b>Editar perfil</b>. Antes, mude para conta profissional: Configurações › Tipo de conta e ferramentas › Mudar para conta profissional › Empresa.</p>
+    <div class="box">
+      <div class="field"><span>Foto</span><b>Use a imagem "perfil-instagram.png" que eu mandei.</b><span></span></div>
+      <div class="field"><span>Nome</span><b id="fNome">Vitrio | Sites para Lojas</b><button class="copy" data-copy="#fNome">Copiar</button></div>
+      <div class="field"><span>Por que esse nome</span><b class="muted" style="font-weight:600">O campo Nome aparece na busca. Com "Sites para Lojas", quem procura isso encontra você.</b><span></span></div>
+      <div class="field"><span>Categoria</span><b>Web designer</b><span></span></div>
+      <div class="field"><span>Link 1</span><b id="fL1">https://loja-demo.frutosdagraciosa.workers.dev</b><button class="copy" data-copy="#fL1">Copiar</button></div>
+      <div class="field"><span>Título do link 1</span><b>Veja uma loja de exemplo</b><span></span></div>
+      <div class="field"><span>Link 2</span><b id="fL2">https://wa.me/5541991312403?text=Ol%C3%A1!%20Vi%20o%20Instagram%20da%20Vitrio%20e%20quero%20um%20site%20para%20minha%20loja.</b><button class="copy" data-copy="#fL2">Copiar</button></div>
+      <div class="field"><span>Título do link 2</span><b>Falar no WhatsApp</b><span></span></div>
+      <div class="field"><span>Botão de contato</span><b>Editar perfil › Botões de ação ou Opções de contato › WhatsApp: (41) 99131-2403</b><span></span></div>
+    </div>
+    <h3 style="margin-top:6px">Escolha a bio <span class="muted" style="font-weight:600">(máximo de 150 caracteres)</span></h3>
+    <div class="bios">
+      <div class="bio rec"><div class="bio-head"><span class="tag">RECOMENDADA</span><small>145 caracteres</small><button class="copy" data-copy-pre>Copiar</button></div>
+<pre>Sites de vendas para lojas 🛍️
+Preço, parcelas e pedido direto no seu WhatsApp
+Pronto em até 3 dias · Curitiba e Brasil
+👇 Veja uma loja de exemplo</pre></div>
+      <div class="bio"><div class="bio-head"><small>150 caracteres</small><button class="copy" data-copy-pre>Copiar</button></div>
+<pre>Sua loja vendendo 24h com site próprio
+Catálogo, parcelas e pedido no WhatsApp
+Sem comissão por venda
+📍 Curitiba · atendo todo o Brasil
+👇 Demonstração</pre></div>
+      <div class="bio"><div class="bio-head"><small>140 caracteres</small><button class="copy" data-copy-pre>Copiar</button></div>
+<pre>Sites que vendem para lojas físicas e do Instagram
+✓ Pedido direto no WhatsApp
+✓ Pronto em 3 dias
+✓ Sem comissão
+👇 Teste uma loja de exemplo</pre></div>
+    </div>
+    <p class="note"><b>Quando registrar o domínio vitrio.com.br</b>, troque o link 1 por ele. O link atual funciona, mas o endereço não tem o nome da sua marca.</p>
+  </div>
+</section>
+
+<section id="posts">
+  <div class="wrap">
+    <span class="eyebrow">Passo 2</span>
+    <h2>Os 9 primeiros posts</h2>
+    <p class="muted">Publique na ordem abaixo, do 1 ao 9, três por dia. O Instagram mostra o último publicado primeiro, então a grade final fica assim:</p>
+    <div class="grid9" aria-label="Como a grade do perfil vai ficar">
+      <img src="posts/09-capa.png" alt="Post 9: capa"><img src="posts/08-oferta.png" alt="Post 8: oferta de lançamento"><img src="posts/07-quanto-custa.png" alt="Post 7: chega de quanto custa">
+      <img src="posts/06-produto.png" alt="Post 6: catálogo"><img src="posts/05-simulador.png" alt="Post 5: simulador"><img src="posts/04-produto-ideal.png" alt="Post 4: produto ideal">
+      <img src="posts/03-sem-comissao.png" alt="Post 3: sem comissão"><img src="posts/02-como-funciona.png" alt="Post 2: como funciona"><img src="posts/01-cinco-motivos.png" alt="Post 1: cinco motivos">
+    </div>
+    <p class="muted">Em todos os posts, adicione a localização <b>Curitiba</b>. Ajuda a aparecer para lojistas da cidade.</p>
+    <div class="posts" id="postList"></div>
+  </div>
+</section>
+
+<section id="destaques">
+  <div class="wrap">
+    <span class="eyebrow">Passo 3</span>
+    <h2>Destaques do perfil</h2>
+    <p class="muted">Crie cada destaque a partir de um story e use a capa correspondente. Destaques respondem as dúvidas antes de a pessoa chamar você.</p>
+    <div class="box">
+      <div class="hl">
+        <figure><img src="destaques/demo.png" alt=""><figcaption>Demo</figcaption><small>Vídeo navegando na loja de exemplo</small></figure>
+        <figure><img src="destaques/como-funciona.png" alt=""><figcaption>Como funciona</figcaption><small>Os 4 passos e o prazo de 3 dias</small></figure>
+        <figure><img src="destaques/planos.png" alt=""><figcaption>Planos</figcaption><small>Essencial, Completo e a oferta</small></figure>
+        <figure><img src="destaques/clientes.png" alt=""><figcaption>Clientes</figcaption><small>Sites entregues e depoimentos</small></figure>
+        <figure><img src="destaques/contato.png" alt=""><figcaption>Contato</figcaption><small>WhatsApp e horário</small></figure>
+      </div>
+      <p class="muted" style="font-size:14px">O destaque Clientes fica vazio até a primeira venda. Crie-o depois, com o print do site entregue e o depoimento.</p>
+    </div>
+  </div>
+</section>
+
+<section id="crescer">
+  <div class="wrap">
+    <span class="eyebrow">Passo 4</span>
+    <h2>Como fazer o perfil crescer</h2>
+    <p class="muted">O objetivo não é ter muitos seguidores. É ter os seguidores certos: <b>donos de loja da sua região</b>, que podem virar clientes. 300 lojistas seguindo valem mais que 10 mil pessoas aleatórias.</p>
+    <div class="box">
+      <h3>Rotina diária (30 minutos)</h3>
+      <ol class="plan">
+        <li><b>Stories todo dia, de 3 a 5.</b> Bastidores, um trecho da demonstração, uma enquete como "Sua loja tem site?", uma pergunta.</li>
+        <li><b>Interaja com 20 lojas da lista do kit.</b> Siga, curta 2 posts e deixe um comentário verdadeiro. O dono vê seu perfil antes de você mandar mensagem.</li>
+        <li><b>Mande 10 mensagens</b> usando as mensagens prontas do kit de vendas.</li>
+        <li><b>Responda todo comentário e mensagem em até 1 hora.</b> O Instagram mostra mais o perfil que responde rápido.</li>
+      </ol>
+    </div>
+    <div class="box">
+      <h3>O que mais faz o perfil subir</h3>
+      <ul class="plan">
+        <li><b>Reels de 2 a 3 vezes por semana.</b> É o formato que mais chega a quem ainda não segue você. Ideias prontas logo abaixo.</li>
+        <li><b>Post em parceria (Collab) com cada cliente.</b> Ao entregar um site, publique "site novo no ar" e convide a loja como colaboradora. O post aparece para todos os seguidores dela.</li>
+        <li><b>Antes e depois.</b> O catálogo antigo da loja ao lado do site novo. É o tipo de conteúdo que mais convence lojista.</li>
+        <li><b>Hashtags locais e de nicho</b>, de 5 a 8 por post: #curitiba #lojasdecuritiba #empreendedorismo #lojavirtual #vendasonline #sitesparalojas.</li>
+        <li><b>Impulsione o post da oferta</b> quando tiver o primeiro cliente para mostrar: R$ 10 por dia, durante 7 dias. Objetivo "Mensagens no WhatsApp", público Curitiba e região (+20 km), de 25 a 55 anos, interesses "Pequenas empresas" e "Empreendedorismo".</li>
+      </ul>
+    </div>
+    <p class="note"><b>Nunca compre seguidores.</b> Seguidores comprados não interagem, e o Instagram passa a mostrar seus posts para menos gente. Também tira a credibilidade quando um lojista olha o perfil.</p>
+  </div>
+</section>
+
+<section id="reels">
+  <div class="wrap">
+    <span class="eyebrow">Passo 5</span>
+    <h2>8 ideias de Reels prontas</h2>
+    <p class="muted">Grave a tela do celular navegando na demonstração e coloque o texto da primeira frase por cima, nos 2 primeiros segundos. É ela que segura quem está passando.</p>
+    <div class="reels">
+      <div class="reel"><b>"Sua loja ainda responde preço no direct?"</b><span>Mostre várias mensagens de "quanto custa" e, em seguida, o cliente achando tudo sozinho no site.</span></div>
+      <div class="reel"><b>"Montei o site de uma loja de iPhone em 3 dias"</b><span>Vídeo acelerado montando a loja e, no fim, o site pronto no celular.</span></div>
+      <div class="reel"><b>"Esse teste ajuda o cliente a escolher o iPhone"</b><span>Grave as 4 perguntas do teste e o resultado aparecendo.</span></div>
+      <div class="reel"><b>"Quanto custa um site para a sua loja?"</b><span>Fale você mesmo, olhando para a câmera, e mostre os planos. Transparência gera confiança.</span></div>
+      <div class="reel"><b>"Lanchonete: pare de pagar 27% de comissão"</b><span>Faça a conta de um mês de pedidos no aplicativo contra um cardápio próprio.</span></div>
+      <div class="reel"><b>"3 erros de quem vende pelo Instagram"</b><span>Preço só no direct, catálogo desatualizado e nenhum link para mandar. Mostre como o site resolve cada um.</span></div>
+      <div class="reel"><b>"Antes e depois"</b><span>Divida a tela: o catálogo simples à esquerda e o site novo à direita.</span></div>
+      <div class="reel"><b>"O pedido chegou assim no WhatsApp da loja"</b><span>Faça um pedido na demonstração e mostre a mensagem pronta chegando.</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="calendario">
+  <div class="wrap">
+    <span class="eyebrow">Passo 6</span>
+    <h2>Os primeiros 30 dias</h2>
+    <div class="tbl"><table>
+      <thead><tr><th>Quando</th><th>No Instagram</th><th>Meta</th></tr></thead>
+      <tbody>
+        <tr><td><b>Dias 1 a 3</b></td><td>Perfil completo, os 9 posts (3 por dia), destaques Demo, Como funciona, Planos e Contato</td><td>Perfil pronto antes de abordar qualquer loja</td></tr>
+        <tr><td><b>Semana 1</b></td><td>2 Reels, stories todo dia, interagir com 20 lojas por dia</td><td>30 lojas na lista do kit, 50 mensagens enviadas</td></tr>
+        <tr><td><b>Semana 2</b></td><td>2 Reels e 1 post ("3 erros de quem vende pelo Instagram"), enquetes nos stories</td><td>5 visitas presenciais e 3 prévias enviadas</td></tr>
+        <tr><td><b>Semana 3</b></td><td>3 Reels e o post Collab com o primeiro cliente, mais o destaque Clientes</td><td>Primeira venda</td></tr>
+        <tr><td><b>Semana 4</b></td><td>Antes e depois do primeiro cliente, impulsionar o post da oferta (R$ 70 no total)</td><td>3 clientes na condição de lançamento</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+
+<section id="logo">
+  <div class="wrap">
+    <span class="eyebrow">Marca</span>
+    <h2>Logo da Vitrio</h2>
+    <p class="muted">O "V" são duas placas de vidro de uma vitrine, e o ponto âmbar é o brilho e a notificação de um pedido novo. Cores: azul #2D5BFF, tinta #0E1328 e âmbar #FFB84D. Fontes: Unbounded nos títulos e Manrope nos textos.</p>
+    <div class="logos">
+      <img src="logo/perfil-instagram.png" alt="Logo quadrado para foto de perfil">
+      <img src="logo/logo-horizontal-claro.png" alt="Logo horizontal em fundo claro">
+      <img src="logo/logo-horizontal-escuro.png" alt="Logo horizontal em fundo escuro">
+    </div>
+    <p class="note">Antes de investir na marca, pesquise "Vitrio" no INPI (busca.inpi.gov.br) para ver se alguém já registrou o nome na área de serviços de internet.</p>
+  </div>
+</section>
+
+<footer><div class="wrap">Vitrio · @vitriositesbr · (41) 99131-2403</div></footer>
+
+<script>
+(function(){
+const H="\n\n#curitiba #lojasdecuritiba #empreendedorismo #lojavirtual #vendasonline #sitesparalojas #pequenosnegocios";
+const POSTS=[
+ ["01-cinco-motivos","Dia 1","5 motivos para sua loja ter site próprio",`Sua loja já vende pelo Instagram. Então por que ter um site? 👇
+
+1. Passa confiança em compras de valor alto
+2. O cliente vê o preço sem precisar perguntar
+3. Cada produto tem um link para postar e mandar
+4. O pedido chega pronto no seu WhatsApp
+5. Nenhuma comissão por venda
+
+Qual desses faz mais falta na sua loja hoje? Conta aqui nos comentários.`+H],
+ ["02-como-funciona","Dia 1","Como funciona",`Ter o site da sua loja é mais simples do que parece:
+
+1. Você manda as fotos e a lista de preços que já usa
+2. A gente monta o site com o nome e as cores da sua loja
+3. Você coloca o link na bio e no WhatsApp
+4. Mudou o preço? A gente atualiza para você
+
+Pronto em até 3 dias. Quer ver um exemplo? O link está na bio.`+H],
+ ["03-sem-comissao","Dia 1","Sem comissão (lanchonetes)",`Dono de lanchonete, faça essa conta:
+
+Um pedido de R$ 80 no aplicativo pode custar até R$ 21 de comissão. Em 100 pedidos por mês, são R$ 2.100 que não ficam com você.
+
+Com um cardápio próprio, o cliente escolhe o lanche, os adicionais e o pedido chega pronto no seu WhatsApp. Sem comissão por pedido.
+
+Quer ver como fica para a sua lanchonete? Chama no direct.`+H+" #hamburgueria #delivery"],
+ ["04-produto-ideal","Dia 2","O site ajuda o cliente a escolher",`Sabe aquele cliente que pergunta "qual é melhor para mim?" e some?
+
+No site da sua loja, ele faz um teste de 30 segundos (orçamento, o que mais importa, tamanho) e recebe os produtos certos do seu estoque, com foto, preço e parcelas.
+
+Menos dúvida, mais venda. Teste na loja de exemplo: link na bio.`+H],
+ ["05-simulador","Dia 2","Simulador de parcelas",`"Quanto fica a parcela?" é a pergunta que mais trava uma venda.
+
+No site, o cliente escolhe o produto, coloca uma entrada, o usado na troca e vê na hora quanto fica em 12x, 18x ou 24x. Depois manda a simulação pronta no seu WhatsApp.
+
+Você só confirma e fecha a venda.`+H],
+ ["06-produto","Dia 2","Catálogo com foto, preço e parcelas",`Cada produto da sua loja com:
+
+✓ Fotos
+✓ Preço à vista e parcelado
+✓ Versões e cores para escolher
+✓ Link próprio para mandar no WhatsApp e postar nos stories
+
+Seu cliente compartilha o link com quem vai dar a opinião, e a venda acontece.`+H],
+ ["07-quanto-custa","Dia 3","Chega de \"quanto custa?\"",`Quanto tá? Parcela em quantas vezes? Tem outra cor?
+
+Se você responde isso o dia inteiro no direct, perde tempo e perde venda: muita gente desiste antes da resposta.
+
+Com o site da sua loja, o cliente já vê tudo e manda o pedido assim:
+"Olá! Quero finalizar meu pedido: 1x iPhone 15 Pro 128 GB, 12x no cartão."
+
+Você só confirma. Quer um assim? Chama no direct ou no WhatsApp da bio.`+H],
+ ["08-oferta","Dia 3","Oferta de lançamento",`🚀 Condição de lançamento da Vitrio, só para as 3 primeiras lojas:
+
+Site completo da sua loja por R$ 497 (o valor normal é R$ 1.497)
++ 1º mês de manutenção grátis
+
+Inclui catálogo com fotos, parcelamento, simulador, pedido no WhatsApp e atualização de preços.
+
+Chame no WhatsApp (41) 99131-2403 ou no direct. Quando as 3 vagas acabarem, volta ao valor normal.`+H],
+ ["09-capa","Dia 3","Capa (apresentação)",`Prazer, somos a Vitrio 👋
+
+A gente cria sites de vendas para lojas: o cliente vê o preço, as parcelas e manda o pedido pronto no seu WhatsApp. Sua loja aberta 24 horas, sem comissão por venda.
+
+📍 Curitiba, atendemos todo o Brasil
+👇 Veja uma loja de exemplo no link da bio
+
+Siga para dicas de como vender mais pela internet.`+H]
+];
+document.getElementById("postList").innerHTML=POSTS.map(([f,d,t,c],i)=>`<article class="post"><img src="posts/${f}.png" alt="Post ${i+1}: ${t}" loading="lazy"><div class="post-body"><div class="post-head"><h3>Post ${i+1} · ${t}</h3><span class="when">${d}</span></div><pre>${c.replace(/[&<>]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[m]))}</pre><div><button class="copy" data-copy-pre>Copiar legenda</button></div></div></article>`).join("");
+document.addEventListener("click",e=>{
+  const b=e.target.closest(".copy");if(!b)return;
+  const el=b.dataset.copy?document.querySelector(b.dataset.copy):b.closest(".bio,.post-body").querySelector("pre");
+  const txt=el.innerText.trim(), orig=b.textContent;
+  const ok=()=>{b.textContent="Copiado";b.classList.add("ok");setTimeout(()=>{b.textContent=orig;b.classList.remove("ok")},1600)};
+  const fb=()=>{const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent="Selecionado"};
+  try{navigator.clipboard.writeText(txt).then(ok,fb)}catch(err){fb()}
+});
+})();
+</script>
