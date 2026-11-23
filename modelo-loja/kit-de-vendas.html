@@ -499,8 +499,14 @@ function linkContato(c){
 }
 function msgPara(l){
   const n=NICHOS.find(x=>x.id===l.nicho)||NICHOS[0];
-  return `Oi, ${l.nome}! Tudo bem? Aqui é [seu nome], da Vitrio. Vi o perfil de vocês e gostei muito.\n\nEu monto sites de vendas para ${n.nome.toLowerCase()}: ${n.beneficio}.\n\nPosso te mandar um vídeo de 30 segundos mostrando como fica?`;
+  const nome=String(l.nome).split(/\s+[|–-]\s+/)[0];
+  const gancho=l.site&&/ifood/i.test(l.site)?"Vi que vocês vendem pelo iFood, mas ainda não têm um cardápio próprio com pedido direto no WhatsApp, sem comissão."
+    :l.sinais&&l.sinais.semSite?"Vi que vocês ainda não têm um site com os produtos e preços."
+    :"Vi o perfil de vocês e gostei muito.";
+  return `Oi, ${nome}! Tudo bem? Aqui é [seu nome], da Vitrio, de Curitiba. ${gancho}\n\nEu monto sites de vendas para ${n.nome.toLowerCase()}: ${n.beneficio}.\n\nPosso te mandar um vídeo de 30 segundos mostrando como fica? É sem compromisso.`;
 }
+const COMENT={celular:["Que vitrine caprichada! 👏","Aparelhos impecáveis, parabéns pelo trabalho!","Esse está lindo demais 😍"],moda:["Que peças lindas! 😍","Amei essa coleção, parabéns!","Que vitrine linda 👏"],lanche:["Que lanche caprichado! 🤤","Deu fome só de ver 😋","Parabéns pelo capricho!"],pizza:["Que pizza linda! 🤤","Deu fome agora 😋"],beleza:["Que produtos lindos! 😍","Amei a vitrine!"],joias:["Que peças delicadas! 😍","Lindas demais!"]};
+function comentarioPara(l){const a=COMENT[l.nicho]||["Parabéns pelo trabalho! 👏","Que capricho! 😍"];return a[Math.floor(Math.random()*a.length)]}
 function render(offline){
   if(!carregou) return;
   const soAqui=$("#pSoAqui").checked, cid=($("#pCidade").value.trim()||"").toLowerCase(), nid=$("#pNicho").value;
@@ -511,12 +517,15 @@ function render(offline){
   if(!lista.length){$("#pLista").innerHTML=aviso+`<div class="empty-list"><b>${leads.length?"Nenhuma loja com esse filtro":"Sua lista está vazia"}</b>Use os botões de busca acima, abra o perfil de uma loja e adicione aqui o que você viu. As lojas com mais pontos aparecem primeiro.</div>`;return}
   $("#pLista").innerHTML=aviso+lista.map(l=>{const [c,t]=nivel(l.pontos||0),n=NICHOS.find(x=>x.id===l.nicho),lk=linkContato(l.contato);
     return `<article class="leadc st-${slug(l.status)}" data-id="${esc(l.id)}">
-      <div class="lead-main"><b>${esc(l.nome)}</b><small>${esc(n?n.nome:"")} · ${esc([l.bairro,l.cidade].filter(Boolean).join(", "))}${l.contato?" · "+esc(l.contato):""}</small></div>
+      <div class="lead-main"><b>${esc(l.nome)}</b><small>${esc(n?n.nome:"")} · ${esc([l.bairro,l.cidade].filter(Boolean).join(", "))}${l.contato&&l.contato!==l.telefone?" · "+esc(l.contato):""}</small>${l.endereco?`<small>📍 ${esc(l.endereco)}</small>`:""}${l.telefone?`<small>📞 ${esc(l.telefone)}${l.siteStatus?" · "+esc(l.siteStatus):""}</small>`:""}</div>
       <span class="chip ${c}">${t} · ${l.pontos||0} pts</span>
       <div class="lead-acts">
         <select data-act="status" aria-label="Situação de ${esc(l.nome)}">${STATUS.map(s=>`<option${s===l.status?" selected":""}>${s}</option>`).join("")}</select>
         <button type="button" data-act="msg">Copiar mensagem</button>
-        ${lk?`<a href="${esc(lk)}" target="_blank" rel="noopener">Abrir contato ↗</a>`:""}
+        <button type="button" data-act="com">Copiar comentário</button>
+        ${l.telefone&&/9\d{4}-?\d{4}$/.test(l.telefone.replace(/\s/g,""))?`<a href="https://wa.me/55${esc(l.telefone.replace(/\D/g,""))}?text=${encodeURIComponent(msgPara(l))}" target="_blank" rel="noopener">WhatsApp com mensagem ↗</a>`:""}
+        ${lk&&!(l.telefone&&lk.includes("wa.me"))?`<a href="${esc(lk)}" target="_blank" rel="noopener">${lk.includes("instagram")?"Instagram":"Abrir contato"} ↗</a>`:""}
+        ${l.endereco?`<a href="https://www.google.com/maps/search/${encodeURIComponent(l.nome+" "+l.endereco)}" target="_blank" rel="noopener">Ver no mapa ↗</a>`:""}
         <button type="button" class="del" data-act="del">Excluir</button>
       </div></article>`}).join("");
 }
@@ -525,6 +534,7 @@ $("#pLista").addEventListener("change",async e=>{const sel=e.target.closest('[da
 $("#pLista").addEventListener("click",async e=>{
   const b=e.target.closest("button[data-act]");if(!b)return;const l=leads.find(x=>x.id===b.closest(".leadc").dataset.id);if(!l)return;
   if(b.dataset.act==="msg"){const txt=msgPara(l);try{await navigator.clipboard.writeText(txt);b.textContent="Copiada";setTimeout(()=>b.textContent="Copiar mensagem",1800)}catch(err){b.textContent="Não deu para copiar";}}
+  if(b.dataset.act==="com"){try{await navigator.clipboard.writeText(comentarioPara(l));b.textContent="Copiado";setTimeout(()=>b.textContent="Copiar comentário",1800)}catch(err){b.textContent="Não deu para copiar";}}
   if(b.dataset.act==="del"){if(!b.classList.contains("armed")){b.classList.add("armed");b.textContent="Confirmar exclusão";setTimeout(()=>{b.classList.remove("armed");b.textContent="Excluir"},3000);return}await excluir(l.id)}
 });
 })();
