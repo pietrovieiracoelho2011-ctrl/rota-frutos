@@ -1,0 +1,327 @@
+<title>Kit da Primeira Venda</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: manual de campo em coluna única — índice fixo no topo, seções numeradas porque são uma sequência real, blocos de mensagem prontos para copiar */
+:root{
+  --bg:#F1F3F7; --surface:#FFFFFF; --well:#E6EAF1; --ink:#121722; --mute:#566173; --line:#D4DAE4;
+  --accent:#2457D6; --accent-soft:#DCE6FB; --ok:#1F8A4C; --warn:#B25E09; --warn-soft:#FCEBD8;
+  --f-display:"Unbounded","Arial Black",system-ui,sans-serif;
+  --f-body:"Manrope",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0E1117; --surface:#171B23; --well:#1F2530; --ink:#EDF0F5; --mute:#9AA4B3; --line:#2A3140;
+  --accent:#6E97FF; --accent-soft:#1A2648; --ok:#45C982; --warn:#F0A04B; --warn-soft:#3A2814; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E1117; --surface:#171B23; --well:#1F2530; --ink:#EDF0F5; --mute:#9AA4B3; --line:#2A3140;
+  --accent:#6E97FF; --accent-soft:#1A2648; --ok:#45C982; --warn:#F0A04B; --warn-soft:#3A2814; color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+a{color:var(--accent)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
+.wrap{max-width:860px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;letter-spacing:-.01em}
+h1{font-size:clamp(1.9rem,5vw,2.8rem);line-height:1.08;font-weight:800}
+h2{font-size:clamp(1.3rem,3.4vw,1.7rem);line-height:1.15;font-weight:800}
+h3{font-family:var(--f-body);font-size:17px;font-weight:800}
+p{margin:0}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+
+header.top{background:var(--surface);border-bottom:1px solid var(--line)}
+header.top .wrap{padding-block:40px 28px;display:grid;gap:14px}
+.lead{color:var(--mute);font-size:18px;max-width:62ch}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.links a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:14px;padding:10px 16px;border-radius:999px;background:var(--accent);color:#fff}
+.links a.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--line)}
+
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
+nav.toc .wrap{display:flex;gap:6px;overflow-x:auto;padding-block:10px;scrollbar-width:none}
+nav.toc .wrap::-webkit-scrollbar{display:none}
+nav.toc a{white-space:nowrap;text-decoration:none;color:var(--mute);font-weight:700;font-size:13px;padding:7px 12px;border-radius:999px}
+nav.toc a:hover{background:var(--well);color:var(--ink)}
+
+section{padding-block:44px 8px}
+section > .wrap{display:grid;gap:18px}
+.sec-n{font-family:var(--f-mono);font-size:12px;font-weight:700;color:var(--accent);letter-spacing:.1em}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px 22px;display:grid;gap:12px;min-width:0}
+.note{background:var(--warn-soft);border-radius:14px;padding:14px 16px;font-size:15px}
+.note b{color:var(--warn)}
+.muted{color:var(--mute)}
+
+ol.steps{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+ol.steps li{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+ol.steps input{width:22px;height:22px;margin:2px 0 0;accent-color:var(--ok);cursor:pointer}
+ol.steps label{cursor:pointer;display:grid;gap:2px}
+ol.steps label b{font-size:16px}
+ol.steps label span{color:var(--mute);font-size:14.5px}
+ol.steps li:has(input:checked) label b{text-decoration:line-through;color:var(--mute)}
+.progress{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--mute)}
+.progress i{flex:1;height:8px;border-radius:9px;background:var(--well);overflow:hidden}
+.progress i::after{content:"";display:block;height:100%;width:var(--p,0%);background:var(--ok);border-radius:9px;transition:width .3s}
+
+.msg{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;min-width:0}
+.msg-head{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 14px;background:var(--well)}
+.msg-head b{font-size:14px}
+.msg-head small{color:var(--mute);font-size:12.5px}
+.copy{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:6px 12px;font:inherit;font-size:12.5px;font-weight:700;cursor:pointer;flex-shrink:0}
+.copy.ok{background:var(--ok);border-color:var(--ok);color:#fff}
+.msg pre{margin:0;padding:14px 16px;white-space:pre-wrap;word-wrap:break-word;font-family:var(--f-body);font-size:15px;line-height:1.55}
+
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.plan{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px;display:grid;gap:10px;align-content:start}
+.plan.star{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.plan .tag{justify-self:start;font-family:var(--f-mono);font-size:11px;font-weight:700;letter-spacing:.08em;background:var(--accent);color:#fff;padding:3px 8px;border-radius:6px}
+.plan .price{font-family:var(--f-display);font-weight:800;font-size:26px;line-height:1.1}
+.plan .price small{font-family:var(--f-body);font-size:14px;color:var(--mute);font-weight:600}
+.plan ul{margin:0;padding-left:18px;color:var(--mute);font-size:14.5px;display:grid;gap:4px}
+
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;font-family:var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--mute);font-weight:700}
+tr:last-child td{border-bottom:0}
+.obj td:first-child{font-weight:700;width:34%}
+
+details{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 18px}
+summary{font-weight:800;cursor:pointer}
+.contract{display:grid;gap:10px;margin-top:12px;font-size:15px}
+.contract p b{font-family:var(--f-mono);font-size:12.5px;color:var(--accent)}
+code{font-family:var(--f-mono);font-size:13.5px;background:var(--well);padding:2px 6px;border-radius:6px}
+pre.cmd{background:var(--well);border-radius:12px;padding:12px 14px;overflow-x:auto;font-family:var(--f-mono);font-size:13px;margin:0}
+footer{padding-block:40px 60px;color:var(--mute);font-size:14px}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <span class="eyebrow">Plano de ação</span>
+    <h1>Kit da primeira venda</h1>
+    <p class="lead">Tudo o que você precisa para vender o site de loja de celular: o passo a passo, as mensagens prontas, os preços e o contrato. Comece pelo passo 1 e vá marcando.</p>
+    <div class="links">
+      <a href="https://loja-demo.frutosdagraciosa.workers.dev" target="_blank" rel="noopener">Abrir a loja de demonstração</a>
+      <a class="ghost" href="https://izone-cwb.frutosdagraciosa.workers.dev" target="_blank" rel="noopener">Ver o site da Izone</a>
+    </div>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Seções">
+  <div class="wrap">
+    <a href="#passos">1. Passo a passo</a>
+    <a href="#precos">2. Planos e preços</a>
+    <a href="#mensagens">3. Mensagens</a>
+    <a href="#visita">4. Visita</a>
+    <a href="#objecoes">5. Objeções</a>
+    <a href="#dados">6. Dados da loja</a>
+    <a href="#contrato">7. Contrato</a>
+    <a href="#montar">8. Montar o site</a>
+  </div>
+</nav>
+
+<section id="passos">
+  <div class="wrap">
+    <span class="sec-n">PASSO 1</span>
+    <h2>Passo a passo até a primeira venda</h2>
+    <div class="progress"><span id="progTxt">0 de 10</span><i id="progBar"></i></div>
+    <ol class="steps" id="steps">
+      <li><input type="checkbox" id="s1"><label for="s1"><b>Escolha o nome da sua marca</b><span>Ex.: "Vitrine Cell", "Loja no Ar", "Cell Site". Confira se o @ está livre no Instagram e se o domínio .com.br está livre em registro.br.</span></label></li>
+      <li><input type="checkbox" id="s2"><label for="s2"><b>Tenha um WhatsApp só para vendas</b><span>Chip ou eSIM pré-pago com WhatsApp Business. Assim você não usa o seu número pessoal.</span></label></li>
+      <li><input type="checkbox" id="s3"><label for="s3"><b>Registre um domínio para a sua marca (cerca de R$ 40 por ano)</b><span>Ex.: suamarca.com.br. Ligue a demonstração nele, para não mandar o link com "frutosdagraciosa" para o cliente. Me mande o domínio que eu configuro.</span></label></li>
+      <li><input type="checkbox" id="s4"><label for="s4"><b>Grave um vídeo de 30 segundos da demonstração</b><span>Gravação de tela no celular: abrir o site, buscar "17 Pro", abrir o produto, adicionar à sacola, ir ao pagamento e mostrar a mensagem pronta no WhatsApp. Toque nas bolinhas de cor da faixa azul para mostrar que muda para a cor da loja.</span></label></li>
+      <li><input type="checkbox" id="s5"><label for="s5"><b>Monte uma lista de 30 lojas da sua cidade</b><span>No Instagram, busque "iphone seminovo [cidade]", "apple [cidade]" e "assistência iphone [cidade]". As melhores são as que vendem só pelo Instagram ou por catálogos simples, como loja.menu.</span></label></li>
+      <li><input type="checkbox" id="s6"><label for="s6"><b>Mande a primeira mensagem para 10 lojas por dia</b><span>Use as mensagens prontas da seção 3. Anote quem respondeu.</span></label></li>
+      <li><input type="checkbox" id="s7"><label for="s7"><b>Visite 5 lojas pessoalmente</b><span>Presencial converte muito mais. Use o roteiro da seção 4, com a demonstração aberta no seu celular.</span></label></li>
+      <li><input type="checkbox" id="s8"><label for="s8"><b>Feche com a oferta de lançamento</b><span>Para as 3 primeiras lojas: implantação com 50% de desconto e o 1º mês grátis, em troca de um depoimento e de você poder mostrar o site delas.</span></label></li>
+      <li><input type="checkbox" id="s9"><label for="s9"><b>Colete os dados e monte o site em até 3 dias</b><span>Use a lista da seção 6. Combine 50% na assinatura e 50% na entrega.</span></label></li>
+      <li><input type="checkbox" id="s10"><label for="s10"><b>Peça depoimento e 2 indicações</b><span>Lojistas se conhecem. Uma loja satisfeita indica outras.</span></label></li>
+    </ol>
+    <p class="note"><b>Formalização.</b> Para emitir nota de serviço, confira no Portal do Empreendedor (gov.br/mei) se a criação de sites entra como atividade de MEI. Se não entrar, um contador indica o formato mais barato. Para começar a vender, isso não é obrigatório.</p>
+  </div>
+</section>
+
+<section id="precos">
+  <div class="wrap">
+    <span class="sec-n">PASSO 2</span>
+    <h2>Planos e preços</h2>
+    <p class="muted">Cobre uma implantação (montar o site) e uma mensalidade (manter no ar e atualizar). A mensalidade é o que gera renda todo mês, porque loja de celular muda preço e estoque toda semana.</p>
+    <div class="plans">
+      <div class="plan">
+        <h3>Essencial</h3>
+        <div class="price">R$ 997 <small>implantação</small></div>
+        <div class="price">R$ 99 <small>por mês</small></div>
+        <ul><li>Site com nome, logo e cores da loja</li><li>Até 60 produtos com fotos da loja</li><li>Pedido pelo WhatsApp e parcelamento</li><li>1 atualização de preços por semana</li></ul>
+      </div>
+      <div class="plan star">
+        <span class="tag">MAIS VENDIDO</span>
+        <h3>Completo</h3>
+        <div class="price">R$ 1.497 <small>implantação</small></div>
+        <div class="price">R$ 149 <small>por mês</small></div>
+        <ul><li>Tudo do Essencial</li><li>Produtos ilimitados</li><li>Domínio próprio configurado (.com.br)</li><li>Atualizações de preço sempre que a loja pedir</li><li>Campanhas como Black Friday e Dia das Mães</li></ul>
+      </div>
+      <div class="plan">
+        <h3>Oferta de lançamento</h3>
+        <div class="price">R$ 497 <small>implantação</small></div>
+        <div class="price">1º mês <small>grátis</small></div>
+        <ul><li>Plano Completo, só para as 3 primeiras lojas</li><li>Em troca de depoimento e de usar o site como exemplo</li><li>Depois do 1º mês: R$ 149 por mês</li></ul>
+      </div>
+    </div>
+    <p class="note"><b>Referência.</b> Esses valores são uma sugestão para começar e mudam conforme a cidade. Se a loja achar caro, ofereça o parcelamento da implantação em 3x em vez de baixar o preço.</p>
+  </div>
+</section>
+
+<section id="mensagens">
+  <div class="wrap">
+    <span class="sec-n">PASSO 3</span>
+    <h2>Mensagens prontas</h2>
+    <p class="muted">Troque o que está entre colchetes. Mande o vídeo da demonstração logo depois da primeira mensagem.</p>
+
+    <div class="msg"><div class="msg-head"><div><b>Primeira mensagem (Instagram ou WhatsApp)</b><br><small>Curta e sem pedir nada</small></div><button class="copy" type="button">Copiar</button></div>
+<pre>Oi, [nome da loja]! Tudo bem? Vi o perfil de vocês e gostei muito dos aparelhos.
+
+Eu monto sites de vendas para lojas de iPhone. O cliente escolhe o modelo, vê as parcelas em até 24x, simula a troca do usado e o pedido chega pronto no WhatsApp de vocês.
+
+Posso te mandar um vídeo de 30 segundos mostrando como fica?</pre></div>
+
+    <div class="msg"><div class="msg-head"><div><b>Quando responderem "pode mandar"</b><br><small>Vídeo + link</small></div><button class="copy" type="button">Copiar</button></div>
+<pre>Aqui está! Esse é o site de demonstração, pode abrir no celular e testar: [link da demonstração]
+
+No site de vocês fica com o nome, as cores e as fotos da loja, e com os preços que vocês já usam. Os clientes podem buscar o modelo, compartilhar o link de um aparelho e mandar o pedido direto no WhatsApp.
+
+Quer que eu monte uma prévia com o nome de vocês? É sem compromisso.</pre></div>
+
+    <div class="msg"><div class="msg-head"><div><b>Prévia personalizada (a que mais fecha)</b><br><small>Depois que aceitarem a prévia</small></div><button class="copy" type="button">Copiar</button></div>
+<pre>Montei a prévia com o nome de vocês: [link da prévia]
+
+Coloquei alguns produtos de exemplo. Com as fotos e a lista de preços de vocês, deixo pronto em até 3 dias.
+
+Para as 3 primeiras lojas estou fazendo uma condição de lançamento: R$ 497 para montar (em vez de R$ 1.497) e o primeiro mês grátis. Depois fica R$ 149 por mês, com atualização de preços sempre que precisarem.</pre></div>
+
+    <div class="msg"><div class="msg-head"><div><b>Lembrete (3 dias sem resposta)</b><br><small>Só uma vez</small></div><button class="copy" type="button">Copiar</button></div>
+<pre>Oi, [nome]! Passando para saber se conseguiu ver o site. Ainda tenho uma vaga na condição de lançamento. Se quiser, te mostro pessoalmente em 5 minutos na loja.</pre></div>
+
+    <div class="msg"><div class="msg-head"><div><b>Quando perguntarem "quanto custa?"</b></div><button class="copy" type="button">Copiar</button></div>
+<pre>A implantação, que é montar o site com os produtos, fotos e dados de vocês, sai por R$ 1.497 e pode ser em 3x. A mensalidade é R$ 149 e inclui hospedagem, suporte e atualização de preços.
+
+Mas para as 3 primeiras lojas estou fazendo R$ 497 na implantação e o primeiro mês grátis. Uma venda de iPhone a mais por mês já paga o site.</pre></div>
+  </div>
+</section>
+
+<section id="visita">
+  <div class="wrap">
+    <span class="sec-n">PASSO 4</span>
+    <h2>Roteiro de visita (2 minutos)</h2>
+    <div class="box">
+      <p><b>1. Abertura.</b> "Oi, sou [seu nome], monto sites para lojas de iPhone aqui de [cidade]. Posso te mostrar uma coisa rápida no celular?"</p>
+      <p><b>2. Mostre, não explique.</b> Entregue o seu celular com a demonstração aberta e deixe a pessoa mexer. Peça para ela buscar um modelo que vende muito na loja.</p>
+      <p><b>3. Mostre os 3 pontos que mais vendem.</b> O parcelamento em 24x em cada produto, o simulador de troca e o pedido chegando pronto no WhatsApp.</p>
+      <p><b>4. Personalize.</b> Toque nas bolinhas de cor da faixa da demonstração: "Fica com a cor e o nome de vocês".</p>
+      <p><b>5. Pergunte.</b> "Hoje como os clientes veem os preços de vocês?" Escute. Normalmente a resposta é "pelo Instagram" ou "mando no WhatsApp um por um". Aí o site resolve.</p>
+      <p><b>6. Feche ou marque a prévia.</b> "Posso montar uma prévia com o nome de vocês e te mandar até amanhã?"</p>
+    </div>
+  </div>
+</section>
+
+<section id="objecoes">
+  <div class="wrap">
+    <span class="sec-n">PASSO 5</span>
+    <h2>Respostas para objeções</h2>
+    <div class="tbl"><table class="obj">
+      <thead><tr><th>O lojista diz</th><th>Você responde</th></tr></thead>
+      <tbody>
+        <tr><td>"Já vendo pelo Instagram."</td><td>"O site não substitui, ele completa. No Instagram o cliente pergunta preço um por um. Com o site, você coloca o link na bio e ele já vê preço, parcela e manda o pedido pronto."</td></tr>
+        <tr><td>"Já uso o loja.menu."</td><td>"Ele funciona, mas parece catálogo de lanchonete. Para quem vai gastar R$ 8 mil num iPhone, um site com a cara da loja passa mais confiança. E aqui tem busca, simulador de troca e página de Black Friday."</td></tr>
+        <tr><td>"Está caro."</td><td>"Uma venda de iPhone a mais por mês paga o ano inteiro. E dá para fazer a implantação em 3x."</td></tr>
+        <tr><td>"Vou pensar."</td><td>"Claro! Posso montar a prévia com o nome de vocês enquanto isso? Aí você decide vendo o seu site, não o de exemplo."</td></tr>
+        <tr><td>"Não tenho tempo de cadastrar produto."</td><td>"Você não precisa cadastrar nada. Me manda a lista de preços e as fotos como já manda para os clientes, e eu coloco tudo."</td></tr>
+        <tr><td>"E se eu quiser cancelar?"</td><td>"Sem multa, só avisar com 30 dias. O site fica no ar até o fim do mês pago."</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+
+<section id="dados">
+  <div class="wrap">
+    <span class="sec-n">PASSO 6</span>
+    <h2>O que pedir para a loja</h2>
+    <div class="msg"><div class="msg-head"><div><b>Lista para mandar ao cliente</b></div><button class="copy" type="button">Copiar</button></div>
+<pre>Para montar o site, preciso de:
+
+1. Nome da loja e logo (se tiver)
+2. Cor principal da loja
+3. WhatsApp que vai receber os pedidos
+4. Endereço, bairro e horário de funcionamento
+5. Instagram, e-mail e CNPJ (se quiser que apareçam)
+6. Chave Pix (opcional)
+7. Lista de produtos com preço à vista e parcelas (pode ser print do catálogo)
+8. Fotos dos produtos (as que já usam no Instagram servem)
+9. 3 a 6 depoimentos de clientes (prints de mensagens servem)
+10. Garantias: novos, seminovos e acessórios</pre></div>
+  </div>
+</section>
+
+<section id="contrato">
+  <div class="wrap">
+    <span class="sec-n">PASSO 7</span>
+    <h2>Contrato simples</h2>
+    <p class="muted">Um modelo para começar. Se a loja for grande ou pedir algo diferente, vale revisar com um advogado.</p>
+    <details>
+      <summary>Ver o modelo de contrato</summary>
+      <div class="contract">
+        <p><b>CONTRATO DE PRESTAÇÃO DE SERVIÇOS DE SITE</b></p>
+        <p><b>Partes.</b> De um lado, [seu nome ou empresa], CPF/CNPJ [número], doravante CONTRATADO. De outro, [nome da loja], CNPJ [número], representada por [nome], doravante CONTRATANTE.</p>
+        <p><b>1. Objeto.</b> Criação, publicação e manutenção de um site de vendas para a loja do CONTRATANTE, com catálogo de produtos, preços, parcelamento e envio de pedidos por WhatsApp.</p>
+        <p><b>2. Implantação.</b> Valor de R$ [valor], pago 50% na assinatura e 50% na entrega. Prazo de entrega: até [3] dias úteis após o recebimento de todos os dados e fotos.</p>
+        <p><b>3. Mensalidade.</b> R$ [valor] por mês, com vencimento todo dia [dia], a partir de [data]. Inclui hospedagem, suporte por WhatsApp e atualizações de preço e produtos conforme o plano [Essencial/Completo].</p>
+        <p><b>4. Responsabilidades da loja.</b> Fornecer informações corretas, ter o direito de uso das fotos e textos enviados, e responder pelas vendas, entregas, garantias e atendimento aos clientes finais.</p>
+        <p><b>5. Domínio.</b> O domínio é registrado em nome do CONTRATANTE. O custo anual do domínio é [incluso / pago pelo CONTRATANTE].</p>
+        <p><b>6. Dados pessoais.</b> Os dados dos clientes finais enviados pelo site vão direto ao WhatsApp da loja. O CONTRATADO não armazena nem compartilha esses dados.</p>
+        <p><b>7. Cancelamento.</b> Qualquer parte pode cancelar com aviso de 30 dias, sem multa. O site fica no ar até o fim do período pago.</p>
+        <p><b>8. Atraso.</b> Com mais de 15 dias de atraso na mensalidade, o site pode ser suspenso até a regularização.</p>
+        <p><b>9. Foro.</b> Comarca de [cidade - UF].</p>
+        <p>[Cidade], [data]. Assinaturas das partes.</p>
+      </div>
+      <p style="margin-top:12px"><button class="copy" type="button" data-copy-contract>Copiar contrato</button></p>
+    </details>
+  </div>
+</section>
+
+<section id="montar">
+  <div class="wrap">
+    <span class="sec-n">PASSO 8</span>
+    <h2>Como montar o site de cada loja</h2>
+    <div class="box">
+      <p><b>Jeito mais fácil:</b> me mande os dados da seção 6, e eu monto e publico o site da loja.</p>
+      <p><b>Se quiser fazer sozinho:</b> o modelo fica na pasta <code>modelo-loja</code>.</p>
+      <p>1. Copie <code>lojas/demo.json</code> para <code>lojas/nome-da-loja.json</code> e preencha nome, cidade, WhatsApp, cor e os outros dados. Retire a linha <code>"demo": true</code>.</p>
+      <p>2. Coloque as fotos em <code>lojas/nome-da-loja-img/</code>. Cada arquivo tem o nome do produto e da versão, por exemplo <code>n17pm-0.jpg</code>. A foto do destaque se chama <code>hero.png</code>.</p>
+      <p>3. Gere e publique:</p>
+      <pre class="cmd">python3 gerar.py lojas/nome-da-loja.json
+python3 publicar.py nome-da-loja</pre>
+      <p class="muted">A lista de produtos e preços fica no próprio site gerado, no bloco <code>PRODUTOS</code>, igual ao site da Izone.</p>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap">Feito para a sua primeira venda. Quando fechar a primeira loja, me mande os dados que eu monto o site dela.</div></footer>
+
+<script>
+(function(){
+  const boxes=[...document.querySelectorAll('#steps input')];
+  const upd=()=>{const n=boxes.filter(b=>b.checked).length;document.getElementById('progTxt').textContent=`${n} de ${boxes.length}`;document.getElementById('progBar').style.setProperty('--p',(n/boxes.length*100)+'%')};
+  let saved={};try{saved=JSON.parse(localStorage.getItem('kit-passos')||'{}')||{}}catch(e){}
+  boxes.forEach(b=>{b.checked=!!saved[b.id];b.addEventListener('change',()=>{saved[b.id]=b.checked;try{localStorage.setItem('kit-passos',JSON.stringify(saved))}catch(e){}upd()})});
+  upd();
+  document.querySelectorAll('.copy').forEach(btn=>btn.addEventListener('click',()=>{
+    const el=btn.hasAttribute('data-copy-contract')?btn.closest('details').querySelector('.contract'):btn.closest('.msg').querySelector('pre');
+    const txt=el.innerText.trim();
+    const done=()=>{btn.textContent='Copiado';btn.classList.add('ok');setTimeout(()=>{btn.textContent=btn.hasAttribute('data-copy-contract')?'Copiar contrato':'Copiar';btn.classList.remove('ok')},1800)};
+    const fallback=()=>{const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='Selecionado, copie com Ctrl+C'};
+    try{navigator.clipboard.writeText(txt).then(done,fallback)}catch(e){fallback()}
+  }));
+})();
+</script>

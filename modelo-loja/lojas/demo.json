@@ -1,0 +1,21 @@
+{
+  "slug": "demo",
+  "demo": true,
+  "nome": "Sua Loja",
+  "nomeCurto": "Sua Loja",
+  "logoTexto": "SUA LOJA",
+  "logoTag": "DEMO",
+  "inicial": "S",
+  "cidade": "sua cidade",
+  "bairro": "Centro",
+  "whatsapp": "",
+  "whatsappExibir": "seu número aqui",
+  "instagram": "",
+  "email": "",
+  "endereco": "Endereço da sua loja",
+  "horario": "Seg a sex 10h às 18h · Sáb 10h às 13h",
+  "cnpj": "",
+  "chavePix": "",
+  "contatoVendedor": "",
+  "cor": {"clara": "#2457D6", "escura": "#5B8CFF", "suaveClara": "#DCE6FB", "suaveEscura": "#17244A"}
+}

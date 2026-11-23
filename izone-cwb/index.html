@@ -4,6 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Izone CWB</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Izone CWB">
+<meta property="og:title" content="Izone CWB · iPhone novo e seminovo em Curitiba">
+<meta property="og:description" content="Black Friday: iPhone, Apple Watch, iPad, Mac e acessórios. À vista ou em até 24x, e seu usado na troca.">
+<meta property="og:image" content="https://izone-cwb.frutosdagraciosa.workers.dev/img/hero-17pm.png">
+<meta name="theme-color" content="#11151B">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2311151B'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-family='Arial Black,Arial' font-weight='900' font-size='38' fill='%23E2591B'%3Ei%3C/text%3E%3C/svg%3E">
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Izone CWB — iPhone novo e seminovo, Apple Watch, iPad, Mac e acessórios em Curitiba. Black Friday, pagamento à vista ou em até 24x e seu usado na troca.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -378,6 +385,10 @@ main > [data-page]{min-height:60vh}
 .cat-txt b{font-size:16px}
 .cat-txt small{color:var(--mute);font-size:13px}
 .atalhos{padding-top:0}
+.search{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:0 18px;margin-bottom:12px}
+.search svg{width:20px;height:20px;color:var(--mute);flex-shrink:0}
+.search input{flex:1;min-width:0;border:0;background:none;font:inherit;font-size:16px;padding:14px 0;color:var(--ink);outline:none}
+.search:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
 .inc{font-size:12.5px;font-weight:600;color:var(--ok);margin-top:4px}
 @media (max-width:760px){.trade.manut{grid-template-columns:1fr}}
 </style>
@@ -497,6 +508,7 @@ main > [data-page]{min-height:60vh}
         <p>Preço à vista ou em até 24x no cartão. Escolha a versão e a cor direto no card.</p>
       </div>
     </div>
+    <div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="busca" type="search" placeholder="Buscar produto: 15 Pro, AirPods, carregador..." aria-label="Buscar produto" autocomplete="off"></div>
     <div class="tabs" role="tablist" aria-label="Categorias" id="tabs"></div>
     <div class="tab-note" id="tabNote"></div>
     <div class="chips" id="chips" hidden></div>
@@ -629,7 +641,7 @@ main > [data-page]{min-height:60vh}
           <span style="font-size:14px;color:var(--mute)">Se o WhatsApp não abriu sozinho, toque no botão abaixo. A mensagem já vai com os produtos, a entrega e a forma de pagamento.</span>
           <div style="margin-top:12px"><a class="btn btn-wa" id="doneLink" href="#" target="_blank" rel="noopener">Abrir WhatsApp com meu pedido</a></div>
         </div>
-        <div class="secure"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Nota fiscal em todas as compras. Seus dados são usados só para emitir a nota e entregar o pedido.</div>
+        <div class="secure"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Nota fiscal em todas as compras. Seus dados (nome, WhatsApp e CPF) são usados só para emitir a nota e entregar o pedido, e não são compartilhados com terceiros, conforme a LGPD.</div>
       </form>
 
       <aside class="panel summary" aria-label="Resumo do pedido">
@@ -1074,7 +1086,7 @@ function tabs(){
   $("#tabs").querySelectorAll(".tab").forEach(b=>b.onclick=()=>{location.hash="loja-"+b.dataset.tab});
 }
 function setTab(k){
-  state.tab=k;state.sub="Todos";
+  state.tab=k;state.sub="Todos";state.q="";if($("#busca"))$("#busca").value="";
   $("#tabs").querySelectorAll(".tab").forEach(b=>b.setAttribute("aria-selected",b.dataset.tab===k));
   $("#grid").setAttribute("aria-labelledby","tab-"+k);
   if(typeof centerX==="function") centerX($("#tab-"+k));
@@ -1108,12 +1120,22 @@ function cardHTML(p){
       </div>
       <div class="card-actions">
         <button class="btn btn-accent" type="button" data-add="${p.id}">Adicionar à sacola</button>
-        <a class="ask" href="${wa(`Olá, Izone CWB! Tenho uma dúvida sobre o ${p.nome}${op.l!=="Única"?" "+op.l:""}.`)}" target="_blank" rel="noopener" aria-label="Tirar dúvida sobre ${esc(p.nome)} no WhatsApp" title="Tirar dúvida no WhatsApp">${waIcon}</a>
+        <a class="ask" href="${wa(`Olá, ${LOJA_NOME}! Tenho uma dúvida sobre o ${p.nome}${op.l!=="Única"?" "+op.l:""}.`)}" target="_blank" rel="noopener" aria-label="Tirar dúvida sobre ${esc(p.nome)} no WhatsApp" title="Tirar dúvida no WhatsApp">${waIcon}</a>
       </div>
     </div>
   </article>`;
 }
+const norm=t=>String(t).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
 function grid(){
+  const q=norm(state.q||"").trim();
+  if(q){
+    const words=q.split(/\s+/);
+    const list=PRODUTOS.filter(p=>{const t=norm([p.nome,p.spec,p.sub||"",CATS.find(c=>c[0]===p.cat)[1],...p.arm.map(o=>o.l)].join(" "));return words.every(w=>t.includes(w))});
+    $("#chips").hidden=true;
+    $("#tabNote").innerHTML=list.length?`<b>${list.length}</b> resultado${list.length>1?"s":""} para “${esc(state.q.trim())}”`:"";
+    $("#grid").innerHTML=list.length?list.map(cardHTML).join(""):`<div class="empty" style="grid-column:1/-1"><b>Nenhum produto encontrado para “${esc(state.q.trim())}”</b>Pode ser que a gente tenha e não esteja no site. <a href="${wa(`Olá, ${LOJA_NOME}! Vocês têm ${state.q.trim()}?`)}" target="_blank" rel="noopener">Pergunte no WhatsApp</a>.</div>`;
+    return;
+  }
   const list=PRODUTOS.filter(p=>p.cat===state.tab&&(state.sub==="Todos"||p.sub===state.sub));
   $("#grid").innerHTML=list.map(cardHTML).join("");
 }
@@ -1213,7 +1235,7 @@ $("#checkout").addEventListener("submit",e=>{
   const m=document.querySelector('input[name="pag"]:checked').value, st=subtotal(), n=+$("#f-parc").value;
   const linhas=cart.map(it=>{const p=byId(it.id),op=p.arm[it.a];return `• ${it.q}x ${p.nome}${op.l!=="Única"?" "+op.l:""} (${p.cores[it.c][0]}) — ${brl(op.p*it.q)}${it.note?"\n   Obs.: "+it.note:""}`}).join("\n");
   const pag=m==="pix"?`Pix à vista — total ${brl(st)}`:m==="credito"?`Cartão em ${n}x de ${brl0(parcTotal(n))}`:`Débito ou dinheiro na retirada — total ${brl(st)}`;
-  let msg=`Olá, Izone CWB! Quero finalizar meu pedido:\n\n${linhas}\n\nPagamento: ${pag}\nEntrega: ${ent}`;
+  let msg=`Olá, ${LOJA_NOME}! Quero finalizar meu pedido:\n\n${linhas}\n\nPagamento: ${pag}\nEntrega: ${ent}`;
   if(ent!=="Retirada na loja") msg+=`\nEndereço: ${$("#f-end").value.trim()}, ${$("#f-bairro").value.trim()} ${$("#f-cep").value.trim()}`;
   if($("#f-troca").checked) msg+=`\nTroca: ${$("#f-trocamodelo").value.trim()||"quero avaliar meu usado"}`;
   msg+=`\n\nNome: ${nome}\nWhatsApp: ${tel}`;
@@ -1227,7 +1249,7 @@ $("#checkout").addEventListener("submit",e=>{
 $("#tradeModel").innerHTML=TROCA.map(([n],i)=>`<option value="${i}">${n}</option>`).join("");
 function trade(){const [n,v]=TROCA[+$("#tradeModel").value], f=+$("#tradeState").value;
   $("#tradeOut").textContent="até "+brl0(Math.round(v*f/50)*50);
-  $("#tradeWa").href=wa(`Olá, Izone CWB! Quero avaliar meu ${n} para usar na troca. Estado: ${$("#tradeState").selectedOptions[0].text}.`)}
+  $("#tradeWa").href=wa(`Olá, ${LOJA_NOME}! Quero avaliar meu ${n} para usar na troca. Estado: ${$("#tradeState").selectedOptions[0].text}.`)}
 $("#tradeModel").onchange=trade;$("#tradeState").onchange=trade;
 
 /* ---------- Depoimentos ---------- */
@@ -1262,7 +1284,7 @@ function pvRender(){
       ${p.cores.length>1?`<div class="dots" role="group" aria-label="Cores">${p.cores.map(([cn,h],i)=>`<button type="button" class="dot" data-pvc="${i}" style="background:${h}" aria-label="${esc(cn)}" title="${esc(cn)}" aria-pressed="${i===s.c}"></button>`).join("")}<span class="cname">${esc(p.cores[s.c][0])}</span></div>`:""}
       <div class="pv-price"><span class="price mono${op.de?" off":""}">${brl(op.p)}</span>${op.de?`<span class="old">${brl(op.de)}</span>`:""}</div>
       <div class="field"><label for="pvNote">Alguma observação?</label><textarea id="pvNote" rows="2" placeholder="Retirar ou modificar algum item..."></textarea></div>
-      <a class="pv-wa" href="${wa(`Olá, Izone CWB! Tenho uma dúvida sobre o ${p.nome}${op.l!=="Única"?" "+op.l:""}.`)}" target="_blank" rel="noopener">${waIcon} Tirar dúvida sobre este produto no WhatsApp</a>
+      <a class="pv-wa" href="${wa(`Olá, ${LOJA_NOME}! Tenho uma dúvida sobre o ${p.nome}${op.l!=="Única"?" "+op.l:""}.`)}" target="_blank" rel="noopener">${waIcon} Tirar dúvida sobre este produto no WhatsApp</a>
     </div>`;
   $("#pvNote").value=note;
   $("#pvQ").textContent=pv.q;$("#pvTotal").textContent=brl(op.p*pv.q);
@@ -1338,6 +1360,8 @@ function cats(){
     return `<a class="cat" href="#loja-${k}"><span class="cat-pic">${media(ph,0,0)}</span><span class="cat-txt"><b>${n}</b><small>${list.length} produtos · a partir de ${brl0(min)}</small></span></a>`}).join("");
 }
 
+const LOJA_NOME="Izone CWB";
+$("#busca").addEventListener("input",e=>{state.q=e.target.value;if(state.q.trim())grid();else setTab(state.tab)});
 hero();
 $("#heroPhone").innerHTML='<img src="img/hero-17pm.png" alt="iPhone 17 Pro Max laranja-cósmico">';
 $("#heroSwatches").hidden=true;
