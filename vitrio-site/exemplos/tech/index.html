@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Nexo Tech</title>
+<title>Sua Loja</title>
 <meta name="description" content="Celulares, áudio, games e acessórios. Pix com desconto, até 12x e pedido direto no WhatsApp.">
 <meta name="theme-color" content="#0A1024">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -202,7 +202,7 @@ nav.tab .shop.bump span{animation:bump .45s}
 <header class="top"><div class="wrap">
   <div class="bar">
     <button class="icon-btn" type="button" data-go="categorias" aria-label="Categorias"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
-    <a class="logo" href="#" data-go="inicio"><b><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg>NEXO TECH</b><small>TECNOLOGIA · CURITIBA</small></a>
+    <a class="logo" href="#" data-go="inicio"><b><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg>SUA LOJA</b><small>SEU SLOGAN AQUI</small></a>
     <div class="right">
       <button class="icon-btn" type="button" data-go="ofertas" aria-label="Ofertas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><span class="badge" id="nOfertas">0</span></button>
       <button class="icon-btn" type="button" data-cart aria-label="Abrir sacola"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L21 7H6"/></svg><span class="badge" id="nCart">0</span></button>
@@ -250,11 +250,11 @@ nav.tab .shop.bump span{animation:bump .45s}
 
   <section data-page="conta" hidden>
     <div class="panel">
-      <h2>Nexo Tech</h2>
-      <div class="line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Rua Exemplo, 300 · Centro · Curitiba - PR</span></div>
+      <h2>Sua Loja</h2>
+      <div class="line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Endereço da sua loja</span></div>
       <div class="line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Segunda a sexta, das 9h às 19h · Sábado, das 9h às 14h</span></div>
       <div class="line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg><span>Pix com 5% de desconto · Cartão em até 12x · Débito · Seu usado na troca</span></div>
-      <a class="wa-btn" href="https://wa.me/?text=Ol%C3%A1%2C%20Nexo%20Tech!%20Vim%20pelo%20site%20e%20tenho%20uma%20d%C3%BAvida." target="_blank" rel="noopener">Falar no WhatsApp</a>
+      <a class="wa-btn" href="https://wa.me/?text=Ol%C3%A1%2C%20Sua%20Loja!%20Vim%20pelo%20site%20e%20tenho%20uma%20d%C3%BAvida." target="_blank" rel="noopener">Falar no WhatsApp</a>
     </div>
     <div class="panel">
       <h2>Dúvidas frequentes</h2>
@@ -418,7 +418,7 @@ function desenhaSacola(){
 }
 function link(){
   const a=$("#enviar");if(!a)return;const sub=cart.reduce((t,i)=>t+pr(i),0),frete=ent.tipo==="Motoboy"?15:0,tot=(ent.pag==="Pix"?sub*(1-PIX):sub)+frete;
-  let m="Olá, Nexo Tech! Quero fazer um pedido:\n\n"+cart.map(i=>{const p=byId(i.id);return `• ${i.q}x ${p.nome}${p.v[i.v][0]!=="Única"?" "+p.v[i.v][0]:""} — ${brl(pr(i))}`}).join("\n")+`\n\nTotal: ${brl(tot)}\nEntrega: ${ent.tipo}\nPagamento: ${ent.pag}`;
+  let m="Olá, Sua Loja! Quero fazer um pedido:\n\n"+cart.map(i=>{const p=byId(i.id);return `• ${i.q}x ${p.nome}${p.v[i.v][0]!=="Única"?" "+p.v[i.v][0]:""} — ${brl(pr(i))}`}).join("\n")+`\n\nTotal: ${brl(tot)}\nEntrega: ${ent.tipo}\nPagamento: ${ent.pag}`;
   const n=$("#nome");if(n&&n.value.trim())m+=`\nNome: ${n.value.trim()}`;a.href="https://wa.me/?text="+encodeURIComponent(m);
 }
 $("#drB").addEventListener("input",link);
