@@ -1,0 +1,53 @@
+ROTEIRO DE STORIES DA VITRIO (@vitriositesbr)
+Poste os stories da noite entre 19h e 21h. Em todos, coloque a figurinha de LOCALIZAÇÃO: Curitiba.
+As figurinhas (enquete, link, perguntas, quiz) você adiciona no próprio Instagram, no espaço vazio embaixo do texto.
+
+==============================
+TERÇA (24/11), dia do lançamento
+==============================
+1. terca-1-chegamos.png
+   Sem figurinha. Pode colocar uma música animada.
+2. terca-2-enquete.png
+   Figurinha ENQUETE no espaço vazio: "Sua loja tem site?"  Opções: "Tem sim" / "Ainda não".
+3. terca-3-demo.png
+   Figurinha LINK: https://demo.vitriosites.workers.dev  (texto do link: "Ver loja de exemplo")
+   Coloque o link só depois de renomear o site para "demo" na Cloudflare.
+
+==============================
+QUARTA (25/11)
+==============================
+1. quarta-1-catalogo.png
+   Figurinha LINK para a demonstração (a mesma de terça).
+2. quarta-2-perguntas.png
+   Figurinha CAIXA DE PERGUNTAS: "Manda sua dúvida".
+   Responda as perguntas que chegarem nos dias seguintes (toque na pergunta > Compartilhar resposta).
+3. quarta-3-simulador.png
+   Sem figurinha, ou a de LINK para a demonstração.
+
+==============================
+QUINTA (26/11)
+==============================
+1. quinta-1-quiz.png
+   Figurinha QUIZ: "Quanto o app pode cobrar?"  Opções: "5%" / "12%" / "Até 27%" (marque "Até 27%" como certa).
+2. quinta-2-resposta.png  (poste umas 2 horas depois do quiz)
+   Sem figurinha.
+3. quinta-3-oferta.png
+   Figurinha LINK para o WhatsApp: https://wa.me/5541991312403  (texto: "Quero minha vaga")
+
+==============================
+SEXTA (27/11), Black Friday
+==============================
+1. sexta-1-black-friday.png  (de manhã)
+   Sem figurinha. Só deseje boas vendas, sem vender nada.
+2. sexta-2-reflexao.png  (à noite, depois das 20h)
+   Figurinha LINK para a demonstração.
+
+==============================
+DESTAQUES DO PERFIL
+==============================
+Poste estes stories em qualquer dia e, depois, toque no story > Destacar > crie o destaque com a capa correspondente (pasta destaques).
+- Destaque "Demo": terca-3-demo.png + quarta-1-catalogo.png + quarta-3-simulador.png
+- Destaque "Como funciona": destaque-como-funciona.png
+- Destaque "Planos": destaque-planos.png + quinta-3-oferta.png
+- Destaque "Contato": destaque-contato.png (com figurinha LINK para o WhatsApp)
+- Destaque "Clientes": crie depois da primeira venda.

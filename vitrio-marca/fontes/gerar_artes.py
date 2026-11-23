@@ -144,6 +144,76 @@ ICONES = {
 for nome, svg in ICONES.items():
     ARTES[f"destaques/{nome}"] = (1080, 1080, page(1080, 1080, f'<div style="width:1080px;height:1080px;background:{BLUE};display:grid;place-items:center"><svg width="520" height="520" viewBox="0 0 100 100">{svg}</svg></div>'))
 
+# ---------- Stories (1080x1920) ----------
+# Área segura: nada importante nos 250 px de cima (barra do Instagram) nem nos 340 px de baixo (campo de resposta).
+SW, SH = 1080, 1920
+def story(bg, fg, corpo, marca=True):
+    topo = f'<div style="position:absolute;left:90px;top:270px;display:flex;align-items:center;gap:16px">{mark(58)}{wordmark(42, fg)}</div>' if marca else ""
+    return page(SW, SH, f'<div style="position:relative;width:{SW}px;height:{SH}px;background:{bg};overflow:hidden">{topo}{corpo}</div>')
+
+def story_phone(bg, fg, eyebrow, titulo, img, rodape, eyecor=AMBER):
+    return story(bg, fg, f'''<div style="position:absolute;left:90px;right:90px;top:390px">
+<span class="pill" style="background:{eyecor};color:{INK}">{eyebrow}</span>
+<h1 style="color:{fg};font-size:68px;margin-top:30px">{titulo}</h1>
+<p style="color:{fg};opacity:.85;font-size:40px;font-weight:700;margin-top:22px">{rodape}</p></div>
+<div class="phone" style="left:250px;top:880px;width:580px;height:1180px"><img src="{b64(img)}"></div>''')
+
+def story_texto(bg, fg, eyebrow, titulo, sub="", espaco="", eyecor=AMBER, subcor=None):
+    return story(bg, fg, f'''<div style="position:absolute;left:90px;right:90px;top:430px">
+<span class="pill" style="background:{eyecor};color:{INK}">{eyebrow}</span>
+<h1 style="color:{fg};font-size:84px;margin-top:40px">{titulo}</h1>
+{f'<p style="color:{subcor or fg};opacity:.85;font-size:40px;line-height:1.4;margin-top:34px;font-weight:600">{sub}</p>' if sub else ""}</div>{espaco}''')
+
+ARTES["stories/terca-1-chegamos"] = (SW, SH, story(BLUE, "#fff", f'''
+<div style="position:absolute;left:90px;right:90px;top:520px">
+<p style="color:#fff;opacity:.85;font-size:44px;font-weight:700">Prazer, somos a</p>
+<div style="margin-top:20px">{wordmark(190, "#fff")}</div>
+<h1 style="color:#fff;font-size:72px;margin-top:70px">Criamos sites de vendas para lojas.</h1>
+<p style="color:#fff;opacity:.88;font-size:42px;line-height:1.4;margin-top:34px;font-weight:600">Seu cliente vê o preço, as parcelas e manda o pedido pronto no seu WhatsApp.</p></div>''', marca=False))
+ARTES["stories/terca-2-enquete"] = (SW, SH, story_texto(INK, "#fff", "Enquete", "Sua loja tem site próprio?", "Responde aqui embaixo 👇", ""))
+ARTES["stories/terca-3-demo"] = (SW, SH, story_phone(BLUE, "#fff", "Demonstração", "Veja como fica uma loja feita pela Vitrio.", "print-home.png", "Toque no link para testar 👇"))
+ARTES["stories/quarta-1-catalogo"] = (SW, SH, story_phone(INK, "#fff", "Bastidores", "Cada produto com foto, preço e parcelas.", "print-loja.png", "E um link para cada produto"))
+ARTES["stories/quarta-2-perguntas"] = (SW, SH, story_texto(ICE, INK, "Caixa de perguntas", "Pergunte qualquer coisa sobre ter um site para a sua loja.", "Eu respondo todas aqui nos stories.", "", BLUE, MUTE).replace(f'background:{BLUE};color:{INK}">Caixa', f'background:{BLUE};color:#fff">Caixa'))
+ARTES["stories/quarta-3-simulador"] = (SW, SH, story_phone(BLUE, "#fff", "Simulador", "Seu cliente simula as parcelas sozinho.", "print-sim.png", "Entrada, troca e até 24x"))
+ARTES["stories/quinta-1-quiz"] = (SW, SH, story_texto(INK, "#fff", "Quiz", "Quanto o aplicativo de delivery pode cobrar por pedido?", "Responde no quiz 👇", ""))
+ARTES["stories/quinta-2-resposta"] = (SW, SH, story(INK, "#fff", f'''<div style="position:absolute;left:90px;right:90px;top:430px">
+<span class="pill" style="background:{AMBER};color:{INK}">Resposta</span>
+<p style="color:{AMBER};font-family:Unbounded,Arial Black,sans-serif;font-weight:800;font-size:230px;line-height:1;margin-top:50px">27%</p>
+<h1 style="color:#fff;font-size:64px;margin-top:30px">de comissão em alguns planos.</h1>
+<p style="color:#C9D1EA;font-size:40px;line-height:1.4;margin-top:34px;font-weight:600">Com um cardápio próprio, o pedido chega no seu WhatsApp e a comissão é zero.</p></div>'''))
+ARTES["stories/quinta-3-oferta"] = (SW, SH, story(INK, "#fff", f'''<div style="position:absolute;left:90px;right:90px;top:420px">
+<span class="pill" style="background:{AMBER};color:{INK}">Lançamento</span>
+<h1 style="color:#fff;font-size:76px;margin-top:40px">Só <span style="color:{AMBER}">3 vagas</span> com preço de lançamento.</h1>
+<div style="margin-top:60px;background:rgba(255,255,255,.06);border:2px solid rgba(255,255,255,.12);border-radius:36px;padding:44px">
+<p style="color:#9AA6C8;font-size:32px;font-weight:700;text-decoration:line-through">De R$ 1.497</p>
+<p style="color:#fff;font-family:Unbounded,Arial Black,sans-serif;font-weight:800;font-size:130px;line-height:1.05">R$ 497</p>
+<p style="color:#fff;font-size:38px;font-weight:700;margin-top:10px">+ 1º mês de manutenção grátis</p></div>
+<p style="color:#C9D1EA;font-size:40px;margin-top:50px;font-weight:600">Chame no WhatsApp:<br><b style="color:#fff;font-size:52px">{WHATS}</b></p></div>'''))
+ARTES["stories/sexta-1-black-friday"] = (SW, SH, story(INK, "#fff", f'''<div style="position:absolute;left:90px;right:90px;top:520px">
+<p style="color:{AMBER};font-family:Unbounded,Arial Black,sans-serif;font-weight:800;font-size:120px;line-height:1">BLACK<br>FRIDAY</p>
+<h1 style="color:#fff;font-size:70px;margin-top:60px">Boas vendas hoje, lojistas!</h1>
+<p style="color:#C9D1EA;font-size:42px;line-height:1.4;margin-top:34px;font-weight:600">Que o caixa encha e o estoque esvazie. 🖤</p></div>'''))
+ARTES["stories/sexta-2-reflexao"] = (SW, SH, story_texto(BLUE, "#fff", "Para pensar", "Quantos clientes perguntaram o preço hoje e foram embora sem resposta?", "Com um site, o preço está lá 24 horas, até na loja fechada.", ""))
+# Stories para os destaques
+ARTES["stories/destaque-como-funciona"] = (SW, SH, story(ICE, INK, f'''<div style="position:absolute;left:90px;right:90px;top:430px">
+<span class="pill" style="background:{BLUE};color:#fff">Como funciona</span>
+<h1 style="color:{INK};font-size:78px;margin-top:40px">Seu site pronto em até 3 dias.</h1>
+<div style="margin-top:70px;display:grid;gap:44px">{lista(["Você manda as fotos e a lista de preços.","A gente monta com o nome e as cores da sua loja.","Você coloca o link na bio e no WhatsApp.","Mudou o preço? A gente atualiza."], BLUE, INK)}</div></div>'''))
+ARTES["stories/destaque-planos"] = (SW, SH, story(INK, "#fff", f'''<div style="position:absolute;left:90px;right:90px;top:420px">
+<span class="pill" style="background:{AMBER};color:{INK}">Planos</span>
+<div style="margin-top:44px;display:grid;gap:22px">
+<div style="background:rgba(255,255,255,.06);border:2px solid rgba(255,255,255,.12);border-radius:30px;padding:34px 38px"><p style="color:#fff;font-size:40px;font-weight:800">Essencial</p><p style="color:#fff;font-family:Unbounded,Arial Black,sans-serif;font-weight:800;font-size:54px;margin-top:8px">R$ 997 <span style="font-family:Manrope;font-size:28px;color:#9AA6C8">+ R$ 99/mês</span></p><p style="color:#C9D1EA;font-size:28px;margin-top:8px">Até 60 produtos · 1 atualização por semana</p></div>
+<div style="background:{BLUE};border-radius:30px;padding:34px 38px"><p style="color:#fff;font-size:40px;font-weight:800">Completo</p><p style="color:#fff;font-family:Unbounded,Arial Black,sans-serif;font-weight:800;font-size:54px;margin-top:8px">R$ 1.497 <span style="font-family:Manrope;font-size:28px;color:#DCE4FF">+ R$ 149/mês</span></p><p style="color:#DCE4FF;font-size:28px;margin-top:8px">Produtos ilimitados · domínio próprio · atualizações sempre</p></div>
+<div style="background:{AMBER};border-radius:30px;padding:34px 38px"><p style="color:{INK};font-size:40px;font-weight:800">Lançamento: 3 vagas</p><p style="color:{INK};font-family:Unbounded,Arial Black,sans-serif;font-weight:800;font-size:54px;margin-top:8px">R$ 497</p><p style="color:{INK};font-size:28px;margin-top:8px;font-weight:700">Plano Completo + 1º mês grátis</p></div></div>
+<p style="color:#C9D1EA;font-size:32px;margin-top:40px;font-weight:600">A implantação pode ser parcelada em 3x.</p></div>'''))
+ARTES["stories/destaque-contato"] = (SW, SH, story(BLUE, "#fff", f'''<div style="position:absolute;left:90px;right:90px;top:430px">
+<span class="pill" style="background:{AMBER};color:{INK}">Contato</span>
+<h1 style="color:#fff;font-size:80px;margin-top:40px">Vamos montar o site da sua loja?</h1>
+<div style="margin-top:70px;display:grid;gap:30px;color:#fff;font-size:44px;font-weight:700">
+<p>WhatsApp<br><b style="font-family:Unbounded,Arial Black,sans-serif;font-size:58px">{WHATS}</b></p>
+<p>Instagram<br><b style="font-size:52px">{HANDLE}</b></p>
+<p style="opacity:.85;font-size:36px;font-weight:600">Atendemos Curitiba e todo o Brasil.</p></div></div>'''))
+
 # ---------- Render ----------
 jobs = []
 for nome, (w, h, html) in ARTES.items():
