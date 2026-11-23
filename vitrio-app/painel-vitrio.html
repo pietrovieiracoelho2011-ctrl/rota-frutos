@@ -1,0 +1,239 @@
+<title>Painel Vitrio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800&family=Manrope:wght@500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: painel de gestão da Vitrio — resumo em números no topo, funil de clientes em colunas, mensalidades do mês e pedidos de alteração */
+:root{
+  --bg:#F2F5FD; --surface:#FFFFFF; --well:#E8EDFB; --ink:#0E1328; --mute:#5B6684; --line:#D7DEF1;
+  --blue:#2D5BFF; --blue-soft:#DDE5FF; --amber:#FFB84D; --amber-soft:#FFF0D6; --ok:#1F8A4C; --ok-soft:#DDF3E6; --bad:#C2361B; --bad-soft:#FBE1DA;
+  --f-display:"Unbounded","Arial Black",system-ui,sans-serif; --f-body:"Manrope",system-ui,-apple-system,"Segoe UI",Arial,sans-serif; --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0B0F1E;--surface:#141A2E;--well:#1C2440;--ink:#EEF1FA;--mute:#9AA6C8;--line:#283252;--blue:#6E8EFF;--blue-soft:#1C2A5C;--amber-soft:#3A2B12;--ok:#45C982;--ok-soft:#123222;--bad:#FF7A5C;--bad-soft:#3A1A14;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0B0F1E;--surface:#141A2E;--well:#1C2440;--ink:#EEF1FA;--mute:#9AA6C8;--line:#283252;--blue:#6E8EFF;--blue-soft:#1C2A5C;--amber-soft:#3A2B12;--ok:#45C982;--ok-soft:#123222;--bad:#FF7A5C;--bad-soft:#3A1A14;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:8px}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2{font-family:var(--f-display);font-weight:800;letter-spacing:-.02em;margin:0}
+h1{font-size:22px}
+h2{font-size:17px}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.muted{color:var(--mute)}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
+.top-row{display:flex;align-items:center;gap:14px;padding-block:12px;flex-wrap:wrap}
+.top-row .logo{display:flex;align-items:center;gap:10px}
+nav.tabs{display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+nav.tabs::-webkit-scrollbar{display:none}
+nav.tabs button{border:0;background:none;padding:8px 14px;border-radius:999px;font-weight:700;color:var(--mute);cursor:pointer;white-space:nowrap}
+nav.tabs button[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+@media (max-width:720px){nav.tabs{width:100%;margin-left:0}}
+main{padding-block:20px 60px;display:grid;gap:18px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px;display:grid;gap:4px}
+.kpi small{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.kpi b{font-family:var(--f-display);font-size:24px;font-weight:800}
+.kpi span{font-size:13px;color:var(--mute)}
+.kpi.alert b{color:var(--bad)}
+.board{display:grid;grid-template-columns:repeat(5,minmax(220px,1fr));gap:12px;overflow-x:auto;padding-bottom:6px}
+.col{background:var(--well);border-radius:18px;padding:12px;display:grid;gap:10px;align-content:start;min-height:160px}
+.col-h{display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:13.5px}
+.col-h i{font-style:normal;font-family:var(--f-mono);font-size:12px;background:var(--surface);border-radius:999px;padding:2px 8px}
+.cli{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px;display:grid;gap:6px;cursor:pointer;text-align:left}
+.cli:hover{border-color:var(--blue)}
+.cli b{font-size:14.5px}
+.cli small{color:var(--mute);font-size:12.5px}
+.chip{justify-self:start;font-size:11px;font-weight:800;padding:3px 8px;border-radius:999px;background:var(--blue-soft);color:var(--blue)}
+.chip.ok{background:var(--ok-soft);color:var(--ok)}.chip.bad{background:var(--bad-soft);color:var(--bad)}.chip.amber{background:var(--amber-soft);color:#9A5B00}
+.check{height:6px;border-radius:9px;background:var(--well);overflow:hidden}
+.check i{display:block;height:100%;background:var(--blue);border-radius:9px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px;display:grid;gap:12px;min-width:0}
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);font-weight:800}
+tr:last-child td{border-bottom:0}
+.btn{border:0;border-radius:999px;padding:10px 16px;font-weight:800;cursor:pointer;background:var(--blue);color:#fff}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
+.btn.sm{padding:6px 12px;font-size:13px}
+.btn.ok{background:var(--ok)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.sp{margin-left:auto}
+.req{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.req:last-child{border-bottom:0}
+.req input{width:20px;height:20px;accent-color:var(--ok)}
+.req.done b{text-decoration:line-through;color:var(--mute)}
+.empty{text-align:center;color:var(--mute);padding:24px;border:1px dashed var(--line);border-radius:16px}
+.empty b{display:block;color:var(--ink);margin-bottom:4px}
+dialog{border:0;border-radius:22px;padding:0;width:min(560px,calc(100% - 24px));background:var(--surface);color:var(--ink);box-shadow:0 30px 80px -20px rgba(0,0,0,.5)}
+dialog::backdrop{background:rgba(5,9,22,.55)}
+.dlg{padding:20px;display:grid;gap:14px;max-height:86vh;overflow:auto}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{display:grid;gap:5px;min-width:0}
+.field.full{grid-column:1/-1}
+.field label{font-size:12.5px;font-weight:800}
+.field input,.field select,.field textarea{padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:var(--bg);width:100%}
+.steps{display:grid;gap:6px}
+.steps label{display:flex;gap:10px;align-items:center;font-size:14px;cursor:pointer}
+.steps input{width:18px;height:18px;accent-color:var(--blue)}
+.danger{color:var(--bad);background:none;border:0;font-weight:700;cursor:pointer;text-decoration:underline}
+.status{font-size:12.5px;color:var(--mute)}
+@media (max-width:560px){.fields{grid-template-columns:1fr}}
+</style>
+
+<header class="top"><div class="wrap top-row">
+  <div class="logo"><svg width="32" height="32" viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="26" fill="#2D5BFF"/><path d="M24 27h15l11 30 11-30h15L57 77H43Z" fill="#fff"/><circle cx="79" cy="20" r="7" fill="#FFB84D"/></svg><div><h1>Painel Vitrio</h1><span class="status" id="sync">Carregando…</span></div></div>
+  <nav class="tabs" role="tablist" aria-label="Seções">
+    <button role="tab" data-tab="resumo" aria-selected="true">Resumo</button>
+    <button role="tab" data-tab="clientes" aria-selected="false">Clientes</button>
+    <button role="tab" data-tab="mensalidades" aria-selected="false">Mensalidades</button>
+    <button role="tab" data-tab="alteracoes" aria-selected="false">Alterações</button>
+  </nav>
+</div></header>
+
+<main class="wrap">
+  <section data-pane="resumo">
+    <div class="kpis" id="kpis"></div>
+    <div class="card" style="margin-top:16px"><div class="row"><h2>Próximas ações</h2></div><div id="acoes"></div></div>
+  </section>
+
+  <section data-pane="clientes" hidden>
+    <div class="row" style="margin-bottom:12px"><h2>Funil de clientes</h2><button class="btn sp" type="button" id="novo">+ Novo cliente</button></div>
+    <div class="board" id="board"></div>
+  </section>
+
+  <section data-pane="mensalidades" hidden>
+    <div class="card"><div class="row"><h2 id="mesTit">Mensalidades</h2><span class="sp"></span><button class="btn ghost sm" type="button" data-mes="-1">← Mês anterior</button><button class="btn ghost sm" type="button" data-mes="1">Próximo mês →</button></div>
+    <div class="tbl"><table><thead><tr><th>Cliente</th><th>Plano</th><th>Vence</th><th>Valor</th><th>Situação</th><th></th></tr></thead><tbody id="mens"></tbody></table></div>
+    <div class="row"><span class="muted" id="mensTot"></span></div></div>
+  </section>
+
+  <section data-pane="alteracoes" hidden>
+    <div class="card">
+      <div class="row"><h2>Pedidos de alteração das lojas</h2></div>
+      <form class="row" id="altForm"><select id="altCli" aria-label="Cliente" style="padding:10px;border-radius:12px;border:1px solid var(--line);background:var(--bg)"></select><input id="altTxt" placeholder="Ex.: trocar preço do iPhone 15 para R$ 3.990" style="flex:1;min-width:200px;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:var(--bg)"><button class="btn" type="submit">Adicionar</button></form>
+      <div id="alts"></div>
+    </div>
+  </section>
+</main>
+
+<dialog id="dlg"><form class="dlg" id="cliForm" method="dialog">
+  <div class="row"><h2 id="dlgTit">Cliente</h2><button class="btn ghost sm sp" type="button" value="cancel" id="fechar">Fechar</button></div>
+  <div class="fields">
+    <div class="field"><label for="cNome">Loja</label><input id="cNome" required></div>
+    <div class="field"><label for="cContato">WhatsApp ou Instagram</label><input id="cContato"></div>
+    <div class="field"><label for="cNicho">Nicho</label><select id="cNicho"><option>Celulares</option><option>Lanchonete</option><option>Moda</option><option>Cosméticos</option><option>Pet shop</option><option>Outro</option></select></div>
+    <div class="field"><label for="cEtapa">Etapa</label><select id="cEtapa"></select></div>
+    <div class="field"><label for="cPlano">Plano</label><select id="cPlano"><option>Lançamento</option><option>Essencial</option><option>Completo</option></select></div>
+    <div class="field"><label for="cImpl">Implantação (R$)</label><input id="cImpl" type="number" min="0" step="1"></div>
+    <div class="field"><label for="cMens">Mensalidade (R$)</label><input id="cMens" type="number" min="0" step="1"></div>
+    <div class="field"><label for="cDia">Dia do vencimento</label><input id="cDia" type="number" min="1" max="28"></div>
+    <div class="field"><label for="cInicio">Mensalidade a partir de</label><input id="cInicio" type="month"></div>
+    <div class="field"><label for="cSite">Link do site</label><input id="cSite" placeholder="https://…"></div>
+    <div class="field full"><label>Montagem do site</label><div class="steps" id="cSteps"></div></div>
+    <div class="field full"><label for="cObs">Anotações</label><textarea id="cObs" rows="3"></textarea></div>
+  </div>
+  <div class="row"><button class="danger" type="button" id="excluir">Excluir cliente</button><span class="sp"></span><button class="btn" type="submit">Salvar</button></div>
+</form></dialog>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s);
+const esc=t=>String(t??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const brl=v=>(+v||0).toLocaleString("pt-BR",{style:"currency",currency:"BRL",maximumFractionDigits:0});
+const ETAPAS=["Proposta","Fechado","Montando","No ar","Cancelado"];
+const PASSOS=["Recebi fotos e preços","Site montado","Cliente aprovou","Publicado","Domínio configurado"];
+const PLANOS={"Lançamento":[497,149],"Essencial":[997,99],"Completo":[1497,149]};
+let C=[],A=[],P={},db=null,ok=false,mesRef=new Date();mesRef.setDate(1);
+const mk=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}`;
+const mesNome=d=>d.toLocaleDateString("pt-BR",{month:"long",year:"numeric"});
+
+/* Armazenamento: banco do painel, com cópia local se não houver */
+const L={get(k){try{return JSON.parse(localStorage.getItem("painel-"+k)||"null")}catch(e){return null}},set(k,v){try{localStorage.setItem("painel-"+k,JSON.stringify(v))}catch(e){}}};
+async function put(col,id,data){if(db){try{await db.collection(col).doc(id).set(data);return}catch(e){$("#sync").textContent="Não foi possível salvar. Tente de novo."}}else{const all=L.get(col)||{};all[id]=data;L.set(col,all);carregaLocal()}}
+async function del(col,id){if(db){try{await db.collection(col).doc(id).delete()}catch(e){}}else{const all=L.get(col)||{};delete all[id];L.set(col,all);carregaLocal()}}
+function carregaLocal(){C=Object.entries(L.get("clientes")||{}).map(([id,d])=>({id,...d}));A=Object.entries(L.get("alteracoes")||{}).map(([id,d])=>({id,...d}));P=L.get("pagamentos")||{};render()}
+const t=setTimeout(()=>{if(!ok){ok=true;$("#sync").textContent="Salvo neste aparelho";carregaLocal()}},10000);
+(async()=>{try{db=window.claude&&window.claude.use?await window.claude.use("db"):null}catch(e){db=null}
+  if(!db){clearTimeout(t);ok=true;$("#sync").textContent="Salvo neste aparelho";carregaLocal();return}
+  let n=0;const pronto=()=>{if(++n>=3){clearTimeout(t);ok=true;$("#sync").textContent="Sincronizado";}render()};
+  const err=()=>{clearTimeout(t);db=null;ok=true;$("#sync").textContent="Salvo neste aparelho";carregaLocal()};
+  db.collection("clientes").onSnapshot(s=>{C=s.docs.map(d=>({id:d.id,...d.data()}));pronto()},err);
+  db.collection("alteracoes").onSnapshot(s=>{A=s.docs.map(d=>({id:d.id,...d.data()}));pronto()},err);
+  db.collection("pagamentos").onSnapshot(s=>{P={};s.docs.forEach(d=>P[d.id]=d.data().pago);pronto()},err);
+})();
+
+/* Regras */
+const ativo=c=>c.etapa==="No ar"||c.etapa==="Montando"||c.etapa==="Fechado";
+function devido(c,mes){ if(!ativo(c)||!c.mens) return false; if(!c.inicio) return c.etapa==="No ar"; return mes>=c.inicio }
+function situacao(c,d){const mes=mk(d),pago=P[c.id+"_"+mes];if(pago)return["Pago","ok"];const hoje=new Date(),venc=new Date(d.getFullYear(),d.getMonth(),c.dia||10);
+  if(mk(hoje)>mes||(mk(hoje)===mes&&hoje.getDate()>(c.dia||10)))return["Atrasado","bad"];return["A vencer","amber"]}
+
+function render(){
+  if(!ok) return;
+  const hoje=new Date(), mes=mk(hoje);
+  const ativos=C.filter(c=>c.etapa==="No ar");
+  const mrr=C.filter(c=>devido(c,mes)).reduce((t,c)=>t+(+c.mens||0),0);
+  const atras=C.filter(c=>devido(c,mes)&&situacao(c,hoje)[0]==="Atrasado");
+  const recebido=C.filter(c=>devido(c,mes)&&P[c.id+"_"+mes]).reduce((t,c)=>t+(+c.mens||0),0);
+  const impl=C.filter(c=>["Fechado","Montando","No ar"].includes(c.etapa)).reduce((t,c)=>t+(+c.impl||0),0);
+  $("#kpis").innerHTML=[
+    ["Mensalidade por mês",brl(mrr),`${C.filter(c=>devido(c,mes)).length} clientes pagando`],
+    ["Recebido em "+hoje.toLocaleDateString("pt-BR",{month:"long"}),brl(recebido),`falta ${brl(mrr-recebido)}`],
+    ["Atrasados",String(atras.length),atras.length?brl(atras.reduce((t,c)=>t+(+c.mens||0),0))+" em aberto":"tudo em dia",atras.length?"alert":""],
+    ["Sites no ar",String(ativos.length),`${C.filter(c=>c.etapa==="Montando"||c.etapa==="Fechado").length} em montagem`],
+    ["Propostas abertas",String(C.filter(c=>c.etapa==="Proposta").length),`implantações fechadas: ${brl(impl)}`]
+  ].map(([a,b,c,x])=>`<div class="kpi ${x||""}"><small>${a}</small><b class="mono">${b}</b><span>${c}</span></div>`).join("");
+  const ac=[];
+  atras.forEach(c=>ac.push([`Cobrar mensalidade de <b>${esc(c.nome)}</b> (${brl(c.mens)}, venceu dia ${c.dia||10})`,c.id]));
+  C.filter(c=>c.etapa==="Montando"||c.etapa==="Fechado").forEach(c=>{const f=PASSOS.find((p,i)=>!(c.passos||[])[i]);if(f)ac.push([`<b>${esc(c.nome)}</b>: próximo passo é "${f}"`,c.id])});
+  C.filter(c=>c.etapa==="Proposta").forEach(c=>ac.push([`Fazer follow-up da proposta para <b>${esc(c.nome)}</b>`,c.id]));
+  A.filter(a=>!a.feito).forEach(a=>{const c=C.find(x=>x.id===a.cli);ac.push([`Alteração para <b>${esc(c?c.nome:"cliente")}</b>: ${esc(a.txt)}`,a.cli])});
+  $("#acoes").innerHTML=ac.length?ac.slice(0,12).map(([h,id])=>`<div class="req"><span>•</span><span>${h}</span><button class="btn ghost sm" type="button" data-open="${esc(id)}">Abrir</button></div>`).join(""):`<div class="empty"><b>Nada pendente</b>Cadastre seus clientes na aba Clientes.</div>`;
+  $("#board").innerHTML=ETAPAS.map(e=>{const l=C.filter(c=>c.etapa===e);return `<div class="col"><div class="col-h">${e}<i>${l.length}</i></div>${l.map(c=>{const n=(c.passos||[]).filter(Boolean).length;return `<button type="button" class="cli" data-open="${esc(c.id)}"><b>${esc(c.nome)}</b><small>${esc(c.nicho||"")} · ${esc(c.plano||"")}</small>${c.mens?`<small class="mono">${brl(c.impl)} + ${brl(c.mens)}/mês</small>`:""}${e==="Montando"||e==="Fechado"?`<div class="check" title="${n} de ${PASSOS.length} passos"><i style="width:${n/PASSOS.length*100}%"></i></div>`:""}${e==="No ar"?`<span class="chip ${situacao(c,hoje)[1]}">${situacao(c,hoje)[0]} este mês</span>`:""}</button>`}).join("")||`<span class="muted" style="font-size:13px">Nenhum</span>`}</div>`}).join("");
+  const mm=mk(mesRef), dev=C.filter(c=>devido(c,mm));
+  $("#mesTit").textContent="Mensalidades de "+mesNome(mesRef);
+  $("#mens").innerHTML=dev.length?dev.map(c=>{const [s,k]=situacao(c,mesRef);return `<tr><td><b>${esc(c.nome)}</b></td><td>${esc(c.plano||"")}</td><td class="mono">dia ${c.dia||10}</td><td class="mono">${brl(c.mens)}</td><td><span class="chip ${k}">${s}</span></td><td><button class="btn sm ${P[c.id+"_"+mm]?"ghost":"ok"}" type="button" data-pago="${esc(c.id)}">${P[c.id+"_"+mm]?"Desfazer":"Marcar pago"}</button></td></tr>`}).join(""):`<tr><td colspan="6"><div class="empty"><b>Nenhuma mensalidade neste mês</b>Clientes no ar ou em montagem com mensalidade aparecem aqui.</div></td></tr>`;
+  const tot=dev.reduce((t,c)=>t+(+c.mens||0),0),rec=dev.filter(c=>P[c.id+"_"+mm]).reduce((t,c)=>t+(+c.mens||0),0);
+  $("#mensTot").textContent=dev.length?`Total do mês ${brl(tot)} · recebido ${brl(rec)} · falta ${brl(tot-rec)}`:"";
+  $("#altCli").innerHTML=C.filter(c=>c.etapa!=="Cancelado").map(c=>`<option value="${esc(c.id)}">${esc(c.nome)}</option>`).join("")||`<option value="">Cadastre um cliente</option>`;
+  const al=[...A].sort((a,b)=>(a.feito-b.feito)||String(b.em).localeCompare(String(a.em)));
+  $("#alts").innerHTML=al.length?al.map(a=>{const c=C.find(x=>x.id===a.cli);return `<div class="req ${a.feito?"done":""}"><input type="checkbox" data-alt="${esc(a.id)}" ${a.feito?"checked":""} aria-label="Concluída"><span><b>${esc(a.txt)}</b><br><small class="muted">${esc(c?c.nome:"")} · ${new Date(a.em).toLocaleDateString("pt-BR")}</small></span><button class="danger" type="button" data-delalt="${esc(a.id)}">remover</button></div>`}).join(""):`<div class="empty"><b>Nenhum pedido de alteração</b>Quando uma loja pedir para mudar preço ou produto, anote aqui.</div>`;
+}
+
+/* Abas */
+document.querySelectorAll("[data-tab]").forEach(b=>b.onclick=()=>{document.querySelectorAll("[data-tab]").forEach(x=>x.setAttribute("aria-selected",x===b));document.querySelectorAll("[data-pane]").forEach(p=>p.hidden=p.dataset.pane!==b.dataset.tab)});
+
+/* Cliente */
+$("#cEtapa").innerHTML=ETAPAS.map(e=>`<option>${e}</option>`).join("");
+$("#cSteps").innerHTML=PASSOS.map((p,i)=>`<label><input type="checkbox" data-passo="${i}"> ${p}</label>`).join("");
+let edit=null;
+function abrir(id){
+  const c=C.find(x=>x.id===id)||{etapa:"Proposta",plano:"Lançamento",impl:497,mens:149,dia:10,nicho:"Celulares",passos:[]};
+  edit=C.find(x=>x.id===id)?id:null;$("#dlgTit").textContent=edit?c.nome:"Novo cliente";$("#excluir").hidden=!edit;
+  for(const [k,f] of [["nome","cNome"],["contato","cContato"],["nicho","cNicho"],["etapa","cEtapa"],["plano","cPlano"],["impl","cImpl"],["mens","cMens"],["dia","cDia"],["inicio","cInicio"],["site","cSite"],["obs","cObs"]]) $("#"+f).value=c[k]??"";
+  document.querySelectorAll("[data-passo]").forEach(i=>i.checked=!!(c.passos||[])[+i.dataset.passo]);
+  $("#dlg").showModal();
+}
+$("#cPlano").onchange=()=>{const [i,m]=PLANOS[$("#cPlano").value];$("#cImpl").value=i;$("#cMens").value=m};
+$("#novo").onclick=()=>abrir(null);
+$("#fechar").onclick=()=>$("#dlg").close();
+let armed=false;
+$("#excluir").onclick=async()=>{if(!armed){armed=true;$("#excluir").textContent="Confirmar exclusão";setTimeout(()=>{armed=false;$("#excluir").textContent="Excluir cliente"},3000);return}await del("clientes",edit);$("#dlg").close()};
+$("#cliForm").addEventListener("submit",async e=>{e.preventDefault();const nome=$("#cNome").value.trim();if(!nome){$("#cNome").focus();return}
+  const id=edit||"c"+Date.now().toString(36);
+  const d={nome,contato:$("#cContato").value.trim(),nicho:$("#cNicho").value,etapa:$("#cEtapa").value,plano:$("#cPlano").value,impl:+$("#cImpl").value||0,mens:+$("#cMens").value||0,dia:Math.min(28,Math.max(1,+$("#cDia").value||10)),inicio:$("#cInicio").value||"",site:$("#cSite").value.trim(),obs:$("#cObs").value.trim(),passos:[...document.querySelectorAll("[data-passo]")].map(i=>i.checked)};
+  await put("clientes",id,d);$("#dlg").close()});
+document.addEventListener("click",async e=>{
+  const o=e.target.closest("[data-open]");if(o&&o.dataset.open){abrir(o.dataset.open);return}
+  const p=e.target.closest("[data-pago]");if(p){const k=p.dataset.pago+"_"+mk(mesRef);const v=!P[k];if(db){try{v?await db.collection("pagamentos").doc(k).set({pago:true,em:new Date().toISOString()}):await db.collection("pagamentos").doc(k).delete()}catch(err){}}else{P[k]=v;if(!v)delete P[k];L.set("pagamentos",P);render()}return}
+  const m=e.target.closest("[data-mes]");if(m){mesRef.setMonth(mesRef.getMonth()+ +m.dataset.mes);render();return}
+  const da=e.target.closest("[data-delalt]");if(da){await del("alteracoes",da.dataset.delalt);return}
+});
+document.addEventListener("change",async e=>{const a=e.target.closest("[data-alt]");if(a){const x=A.find(y=>y.id===a.dataset.alt);if(x)await put("alteracoes",x.id,{cli:x.cli,txt:x.txt,em:x.em,feito:a.checked})}});
+$("#altForm").addEventListener("submit",async e=>{e.preventDefault();const txt=$("#altTxt").value.trim(),cli=$("#altCli").value;if(!txt||!cli)return;await put("alteracoes","a"+Date.now().toString(36),{cli,txt,em:new Date().toISOString(),feito:false});$("#altTxt").value=""});
+})();
+</script>

@@ -96,6 +96,9 @@ def gerar(cfg_path):
 """
         s = troca(s, "</style>", css + "</style>")
         js = """document.querySelectorAll("[data-cor]").forEach(b=>b.onclick=()=>{const [a,ad,so,sod]=b.dataset.cor.split(",");const dark=document.documentElement.dataset.theme==="dark"||(!document.documentElement.dataset.theme&&matchMedia("(prefers-color-scheme: dark)").matches);const r=document.documentElement.style;r.setProperty("--accent",dark?ad:a);r.setProperty("--accent-soft",dark?sod:so)});\n"""
+        js += """function registrarPedido(o){try{const K="vitrio-pedidos",a=JSON.parse(localStorage.getItem(K)||"[]");const n=Math.max(1042,...a.map(p=>+String(p.id).replace(/\\D/g,"")||0))+1;a.push(Object.assign({id:"P"+n,em:Date.now(),status:"novo"},o));localStorage.setItem(K,JSON.stringify(a))}catch(e){}}
+document.getElementById("checkout").addEventListener("submit",()=>setTimeout(()=>{if(document.getElementById("done").hidden)return;const m=document.querySelector('input[name="pag"]:checked').value,st=subtotal();registrarPedido({loja:"Sua Loja (celulares)",cliente:document.getElementById("f-nome").value.trim(),itens:cart.map(it=>{const p=byId(it.id),op=p.arm[it.a];return{q:it.q,nome:p.nome+(op.l!=="Única"?" "+op.l:""),preco:op.p*it.q}}),total:st,entrega:document.querySelector('input[name="entrega"]:checked').value,pagamento:m==="pix"?"Pix":m==="credito"?"Cartão em "+document.getElementById("f-parc").value+"x":"Débito ou dinheiro"})},50));
+"""
         s = troca(s, "hero();\n", js + "hero();\n")
 
     destino = os.path.join(AQUI, "sites", slug)

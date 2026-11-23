@@ -284,6 +284,8 @@ function atualizaLink(){
   msg+=`\nPagamento: ${st.pag}`; const n=$("#nome"); if(n&&n.value.trim()) msg+=`\nNome: ${n.value.trim()}`;
   a.href="https://wa.me/?text="+encodeURIComponent(msg);
 }
+function registrarPedido(o){try{const K="vitrio-pedidos",a=JSON.parse(localStorage.getItem(K)||"[]");const n=Math.max(1042,...a.map(p=>+String(p.id).replace(/\D/g,"")||0))+1;a.push(Object.assign({id:"P"+n,em:Date.now(),status:"novo"},o));localStorage.setItem(K,JSON.stringify(a))}catch(e){}}
+document.addEventListener("click",e=>{if(!e.target.closest("#enviar"))return;const taxa=(CFG.entrega.find(x=>x[0]===st.ent)||[0,0,0])[2];registrarPedido({loja:CFG.nome,cliente:($("#nome")?.value||"").trim()||"Cliente do site",itens:cart.map(it=>{const p=byId(it.id);return{q:it.q,nome:p.nome+(it.tam?" ("+it.tam+")":"")+(p.cores?" - "+p.cores[it.cor][0]:""),preco:itemPreco(it)}}),total:sub()+taxa,entrega:st.ent,pagamento:st.pag})},true);
 $("#drBody").addEventListener("input",atualizaLink);
 $("#drBody").addEventListener("click",e=>{
   const r=e.target.closest("[data-rm]"),en=e.target.closest("[data-ent]"),pg=e.target.closest("[data-pag]");

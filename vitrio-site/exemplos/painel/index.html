@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Painel de pedidos · Vitrio</title>
+<meta name="description" content="Exemplo do painel onde a loja acompanha os pedidos que chegam pelo site.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800&family=Manrope:wght@500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Painel de pedidos da loja: números do dia, colunas por situação e detalhe do pedido */
+:root{--bg:#F2F5FD;--surface:#FFFFFF;--well:#E8EDFB;--ink:#0E1328;--mute:#5B6684;--line:#D7DEF1;--blue:#2D5BFF;--blue-soft:#DDE5FF;--amber:#C77A00;--amber-soft:#FFF0D6;--ok:#1F8A4C;--ok-soft:#DDF3E6;--wa:#1FAF5A;--f-display:"Unbounded","Arial Black",system-ui,sans-serif;--f-body:"Manrope",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;--f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0B0F1E;--surface:#141A2E;--well:#1C2440;--ink:#EEF1FA;--mute:#9AA6C8;--line:#283252;--blue:#6E8EFF;--blue-soft:#1C2A5C;--amber:#FFB84D;--amber-soft:#3A2B12;--ok:#45C982;--ok-soft:#123222;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0B0F1E;--surface:#141A2E;--well:#1C2440;--ink:#EEF1FA;--mute:#9AA6C8;--line:#283252;--blue:#6E8EFF;--blue-soft:#1C2A5C;--amber:#FFB84D;--amber-soft:#3A2B12;--ok:#45C982;--ok-soft:#123222;color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--surface)}
+button,select{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:8px}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2{font-family:var(--f-display);font-weight:800;letter-spacing:-.02em;margin:0}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.demo{background:#2D5BFF;color:#fff;font-size:13px}
+.demo .wrap{display:flex;flex-wrap:wrap;gap:6px 14px;justify-content:center;align-items:center;padding-block:8px;text-align:center}
+.demo a{color:#fff;font-weight:800;background:rgba(0,0,0,.2);padding:4px 12px;border-radius:999px;text-decoration:none}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:var(--surface);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding-block:12px}
+header h1{font-size:20px}
+.live{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:800;color:var(--ok)}
+.live i{width:8px;height:8px;border-radius:50%;background:var(--ok);animation:pulse 2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 6px transparent}0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--ok) 50%,transparent)}}
+.sp{margin-left:auto}
+.btn{border:0;border-radius:999px;padding:9px 16px;font-weight:800;cursor:pointer;background:var(--blue);color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
+.btn.wa{background:var(--wa)}
+.btn.sm{padding:6px 12px;font-size:13px}
+main{padding-block:18px 60px;display:grid;gap:16px;grid-template-columns:minmax(0,1fr)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:14px 16px;display:grid;gap:2px;min-width:0}
+.kpi small{font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.kpi b{font-family:var(--f-display);font-size:clamp(18px,5vw,24px);overflow-wrap:anywhere}
+.kpi span{font-size:13px;color:var(--mute)}
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.filters button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 14px;font-weight:700;cursor:pointer;color:var(--mute)}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.board{display:grid;grid-template-columns:repeat(4,minmax(240px,1fr));gap:12px;overflow-x:auto;padding-bottom:6px}
+.col{background:var(--well);border-radius:18px;padding:12px;display:grid;gap:10px;align-content:start;min-height:220px}
+.col-h{display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:14px}
+.col-h i{font-style:normal;font-family:var(--f-mono);font-size:12px;background:var(--surface);border-radius:999px;padding:2px 9px}
+.ped{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px;display:grid;gap:6px;text-align:left;cursor:pointer;animation:entra .4s both}
+.ped:hover{border-color:var(--blue)}
+.ped.novo{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-soft)}
+@keyframes entra{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+.ped-h{display:flex;justify-content:space-between;gap:8px;font-size:13px}
+.ped-h b{font-family:var(--f-mono)}
+.ped-h span{color:var(--mute)}
+.ped strong{font-size:15px}
+.ped small{color:var(--mute);font-size:12.5px;display:block}
+.ped .tot{display:flex;justify-content:space-between;align-items:center}
+.ped .tot b{font-family:var(--f-display);font-size:16px}
+.chip{font-size:11px;font-weight:800;padding:3px 8px;border-radius:999px;background:var(--blue-soft);color:var(--blue)}
+.chip.ex{background:var(--amber-soft);color:var(--amber)}
+.empty-col{color:var(--mute);font-size:13px;text-align:center;padding:14px 6px}
+dialog{border:0;border-radius:22px;padding:0;width:min(520px,calc(100% - 24px));background:var(--surface);color:var(--ink);box-shadow:0 30px 80px -20px rgba(0,0,0,.5)}
+dialog::backdrop{background:rgba(5,9,22,.55)}
+.dlg{padding:20px;display:grid;gap:14px;max-height:86vh;overflow:auto}
+.dlg h2{font-size:20px}
+.itens{display:grid;gap:8px}
+.itens div{display:flex;justify-content:space-between;gap:10px;font-size:14.5px;border-bottom:1px dashed var(--line);padding-bottom:6px}
+.info{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:14px}
+.info dt{color:var(--mute)}
+.info dd{margin:0;font-weight:700}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.steps button{border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:9px 6px;font-weight:700;font-size:12.5px;cursor:pointer;color:var(--ink)}
+.steps button[aria-pressed="true"]{background:var(--blue);color:#fff;border-color:var(--blue)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom,0px));transform:translate(-50%,16px);background:var(--ink);color:var(--bg);padding:12px 18px;border-radius:999px;font-weight:700;font-size:14px;z-index:99;opacity:0;transition:all .25s;pointer-events:none;max-width:calc(100% - 32px);text-align:center}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.how{background:var(--surface);border:1px dashed var(--line);border-radius:18px;padding:16px;font-size:14px;color:var(--mute)}
+.how b{color:var(--ink)}
+@media (max-width:560px){.steps{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="demo" role="note"><div class="wrap"><span><b>Exemplo do painel de pedidos da Vitrio.</b> Pedidos fictícios. Faça um pedido em um dos exemplos e ele aparece aqui.</span><a href="https://wa.me/5541991312403?text=Ol%C3%A1!%20Vi%20o%20painel%20de%20pedidos%20da%20Vitrio%20e%20quero%20para%20minha%20loja." target="_blank" rel="noopener">Quero para minha loja · (41) 99131-2403</a><a href="../../#exemplos" style="background:transparent;text-decoration:underline">Ver exemplos</a></div></div>
+<header><div class="wrap"><h1>Pedidos</h1><span class="live"><i></i>Recebendo pedidos</span><span class="sp"></span><button class="btn ghost sm" type="button" id="som" aria-pressed="false">🔔 Ativar aviso sonoro</button><button class="btn sm" type="button" id="teste">+ Pedido de teste</button></div></header>
+<main class="wrap">
+  <div class="kpis" id="kpis"></div>
+  <div class="filters" id="lojas" role="group" aria-label="Filtrar por loja"></div>
+  <div class="board" id="board"></div>
+  <div class="how"><b>Como funciona:</b> quando o cliente envia o pedido no site, ele chega aqui na hora e também no WhatsApp da loja. A loja muda a situação do pedido (em separação, saiu para entrega, entregue) e avisa o cliente pelo WhatsApp com um toque. Neste exemplo, abra uma das lojas de exemplo em outra aba, faça um pedido e volte aqui.</div>
+</main>
+<dialog id="dlg"><div class="dlg" id="dlgB"></div></dialog>
+<div class="toast" id="toast" role="status"></div>
+<script>
+(function(){
+const $=s=>document.querySelector(s);
+const esc=t=>String(t??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const brl0=v=>(+v||0).toLocaleString("pt-BR",{style:"currency",currency:"BRL",maximumFractionDigits:0});
+const brl=v=>(+v||0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+const ST=[["novo","Novos"],["separacao","Em separação"],["entrega","Saiu para entrega"],["entregue","Entregues"]];
+const MSG={separacao:"seu pedido já está sendo separado",entrega:"seu pedido saiu para entrega e chega em breve",entregue:"seu pedido foi entregue. Obrigado pela compra!"};
+const K="vitrio-pedidos";
+const ler=()=>{try{return JSON.parse(localStorage.getItem(K)||"[]")}catch(e){return []}};
+const gravar=a=>{try{localStorage.setItem(K,JSON.stringify(a))}catch(e){}};
+let filtro="Todas", somOn=false, vistos=new Set();
+function exemplos(){
+  const agora=Date.now(),m=60000;
+  return [
+   {id:"P1042",loja:"Sua Loja (celulares)",cliente:"Mariana S.",itens:[{q:1,nome:"iPhone 16 Pro 256 GB",preco:5090}],total:5090,entrega:"Retirar na loja",pagamento:"Cartão em 12x",em:agora-6*m,status:"novo",exemplo:true},
+   {id:"P1041",loja:"Brasa & Pão",cliente:"Lucas P.",itens:[{q:2,nome:"Brasa Clássico + Bacon",preco:75.8},{q:1,nome:"Fritas da casa",preco:22.9}],total:105.7,entrega:"Entrega",pagamento:"Pix",em:agora-18*m,status:"separacao",exemplo:true},
+   {id:"P1040",loja:"Ateliê Lis",cliente:"Fernanda A.",itens:[{q:1,nome:"Vestido Midi Lis (M) - Rosé",preco:189.9}],total:201.9,entrega:"Motoboy em Curitiba",pagamento:"Pix",em:agora-55*m,status:"entrega",exemplo:true},
+   {id:"P1039",loja:"Sua Loja (eletrônicos)",cliente:"Rafael M.",itens:[{q:1,nome:"AirPods Pro 3",preco:1790},{q:1,nome:"Cabo USB-C Apple 1 m",preco:199}],total:1889.55,entrega:"Retirar na loja",pagamento:"Pix",em:agora-130*m,status:"entregue",exemplo:true}
+  ];
+}
+let P=ler(); if(!P.length){P=exemplos();gravar(P)}
+P.forEach(p=>vistos.add(p.id));
+const tempo=t=>{const d=Math.round((Date.now()-t)/60000);return d<1?"agora":d<60?`há ${d} min`:d<1440?`há ${Math.round(d/60)} h`:new Date(t).toLocaleDateString("pt-BR")};
+function render(){
+  const lojas=["Todas",...new Set(P.map(p=>p.loja))];
+  $("#lojas").innerHTML=lojas.map(l=>`<button type="button" data-loja="${esc(l)}" aria-pressed="${l===filtro}">${esc(l)}</button>`).join("");
+  const L=P.filter(p=>filtro==="Todas"||p.loja===filtro);
+  const hoje=new Date().toDateString(), dHoje=L.filter(p=>new Date(p.em).toDateString()===hoje);
+  const fat=dHoje.reduce((t,p)=>t+(+p.total||0),0);
+  $("#kpis").innerHTML=[["Pedidos hoje",dHoje.length,`${L.filter(p=>p.status==="novo").length} aguardando`],["Vendido hoje",brl0(fat),dHoje.length?`ticket médio ${brl(fat/dHoje.length)}`:"—"],["Em andamento",L.filter(p=>p.status==="separacao"||p.status==="entrega").length,"separação e entrega"],["Entregues",L.filter(p=>p.status==="entregue").length,"concluídos"]].map(([a,b,c])=>`<div class="kpi"><small>${a}</small><b class="mono">${b}</b><span>${c}</span></div>`).join("");
+  $("#board").innerHTML=ST.map(([k,n])=>{const l=L.filter(p=>p.status===k).sort((a,b)=>b.em-a.em);return `<div class="col"><div class="col-h">${n}<i>${l.length}</i></div>${l.map(p=>`<button type="button" class="ped ${p.status==="novo"&&Date.now()-p.em<120000?"novo":""}" data-id="${esc(p.id)}"><div class="ped-h"><b>#${esc(p.id)}</b><span>${tempo(p.em)}</span></div><strong>${esc(p.cliente||"Cliente")}</strong><small>${p.itens.map(i=>`${i.q}x ${esc(i.nome)}`).join(" · ")}</small><small>${esc(p.loja)} · ${esc(p.entrega)}</small><div class="tot"><span class="chip ${p.exemplo?"ex":""}">${esc(p.pagamento)}</span><b class="mono">${brl(p.total)}</b></div></button>`).join("")||`<div class="empty-col">Nenhum pedido</div>`}</div>`}).join("");
+}
+function abrir(id){
+  const p=P.find(x=>x.id===id);if(!p)return;
+  $("#dlgB").innerHTML=`<div class="row"><h2>Pedido #${esc(p.id)}</h2><button class="btn ghost sm sp" type="button" data-fechar>Fechar</button></div>
+  <dl class="info"><dt>Cliente</dt><dd>${esc(p.cliente||"—")}</dd><dt>Loja</dt><dd>${esc(p.loja)}</dd><dt>Recebido</dt><dd>${new Date(p.em).toLocaleString("pt-BR",{dateStyle:"short",timeStyle:"short"})}</dd><dt>Entrega</dt><dd>${esc(p.entrega)}</dd><dt>Pagamento</dt><dd>${esc(p.pagamento)}</dd></dl>
+  <div class="itens">${p.itens.map(i=>`<div><span>${i.q}x ${esc(i.nome)}</span><b class="mono">${brl(i.preco)}</b></div>`).join("")}<div><b>Total</b><b class="mono">${brl(p.total)}</b></div></div>
+  <div><b style="font-size:13px">Situação</b><div class="steps" style="margin-top:8px">${ST.map(([k,n])=>`<button type="button" data-st="${k}" aria-pressed="${p.status===k}">${n.replace(/s$/,"")}</button>`).join("")}</div></div>
+  ${p.status!=="novo"?`<a class="btn wa" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(`Olá, ${p.cliente||""}! Aqui é da ${p.loja}: ${MSG[p.status]} (pedido #${p.id}).`)}">Avisar o cliente no WhatsApp</a>`:""}`;
+  $("#dlg").dataset.id=id; if(!$("#dlg").open)$("#dlg").showModal();
+}
+document.addEventListener("click",e=>{
+  const l=e.target.closest("[data-loja]");if(l){filtro=l.dataset.loja;render();return}
+  const p=e.target.closest(".ped");if(p){abrir(p.dataset.id);return}
+  if(e.target.closest("[data-fechar]")){$("#dlg").close();return}
+  const s=e.target.closest("[data-st]");if(s){const id=$("#dlg").dataset.id;P=ler();const x=P.find(y=>y.id===id);if(x){x.status=s.dataset.st;gravar(P);render();abrir(id);toast("Situação atualizada")}}
+});
+$("#teste").onclick=()=>{P=ler();const n=Math.max(1042,...P.map(p=>+String(p.id).replace(/\D/g,"")||0))+1;const op=[["Ana C.","AirPods 4",999],["Bruno T.","iPhone 15 128 GB",4090],["Carla M.","Combo Brasa",49.9],["Diego R.","Camiseta Básica Premium (M)",69.9]][n%4];P.push({id:"P"+n,loja:"Pedido de teste",cliente:op[0],itens:[{q:1,nome:op[1],preco:op[2]}],total:op[2],entrega:"Retirar na loja",pagamento:"Pix",em:Date.now(),status:"novo",exemplo:true});gravar(P);chegou()};
+function chegou(){P=ler();const novos=P.filter(p=>!vistos.has(p.id));novos.forEach(p=>vistos.add(p.id));render();if(novos.length){toast(`Novo pedido #${novos[novos.length-1].id} de ${novos[novos.length-1].cliente||"cliente"}`);if(somOn)beep()}}
+window.addEventListener("storage",e=>{if(e.key===K)chegou()});
+setInterval(()=>{if(!document.hidden)chegou()},4000);
+let ac=null;function beep(){try{ac=ac||new AudioContext();[0,.18].forEach(t=>{const o=ac.createOscillator(),g=ac.createGain();o.frequency.value=t?1320:880;g.gain.setValueAtTime(.0001,ac.currentTime+t);g.gain.exponentialRampToValueAtTime(.25,ac.currentTime+t+.02);g.gain.exponentialRampToValueAtTime(.0001,ac.currentTime+t+.16);o.connect(g).connect(ac.destination);o.start(ac.currentTime+t);o.stop(ac.currentTime+t+.18)})}catch(e){}}
+$("#som").onclick=()=>{somOn=!somOn;$("#som").setAttribute("aria-pressed",somOn);$("#som").textContent=somOn?"🔔 Aviso sonoro ligado":"🔔 Ativar aviso sonoro";if(somOn)beep()};
+let tt;function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("on"),2600)}
+render();
+})();
+</script>
+</body>
+</html>

@@ -421,6 +421,8 @@ function link(){
   let m="Olá, Sua Loja! Quero fazer um pedido:\n\n"+cart.map(i=>{const p=byId(i.id);return `• ${i.q}x ${p.nome}${p.v[i.v][0]!=="Única"?" "+p.v[i.v][0]:""} — ${brl(pr(i))}`}).join("\n")+`\n\nTotal: ${brl(tot)}\nEntrega: ${ent.tipo}\nPagamento: ${ent.pag}`;
   const n=$("#nome");if(n&&n.value.trim())m+=`\nNome: ${n.value.trim()}`;a.href="https://wa.me/?text="+encodeURIComponent(m);
 }
+function registrarPedido(o){try{const K="vitrio-pedidos",a=JSON.parse(localStorage.getItem(K)||"[]");const n=Math.max(1042,...a.map(p=>+String(p.id).replace(/\D/g,"")||0))+1;a.push(Object.assign({id:"P"+n,em:Date.now(),status:"novo"},o));localStorage.setItem(K,JSON.stringify(a))}catch(e){}}
+document.addEventListener("click",e=>{if(!e.target.closest("#enviar"))return;const sub=cart.reduce((t,i)=>t+pr(i),0),frete=ent.tipo==="Motoboy"?15:0;registrarPedido({loja:"Sua Loja (eletrônicos)",cliente:($("#nome")?.value||"").trim()||"Cliente do site",itens:cart.map(i=>{const p=byId(i.id);return{q:i.q,nome:p.nome+(p.v[i.v][0]!=="Única"?" "+p.v[i.v][0]:""),preco:pr(i)}}),total:(ent.pag==="Pix"?sub*(1-PIX):sub)+frete,entrega:ent.tipo,pagamento:ent.pag})},true);
 $("#drB").addEventListener("input",link);
 $("#drB").addEventListener("click",e=>{const r=e.target.closest("[data-rm]"),t=e.target.closest("[data-ent]"),g=e.target.closest("[data-pag]");const nm=$("#nome")?.value;
   if(r){cart.splice(+r.dataset.rm,1);save();contar()} if(t)ent.tipo=t.dataset.ent; if(g)ent.pag=g.dataset.pag;
