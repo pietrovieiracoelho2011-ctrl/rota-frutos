@@ -1,18 +1,18 @@
 {
   "slug": "demo",
   "demo": true,
-  "nome": "Sua Loja",
-  "nomeCurto": "Sua Loja",
-  "logoTexto": "SUA LOJA",
-  "logoTag": "DEMO",
-  "inicial": "S",
-  "cidade": "sua cidade",
+  "nome": "Prime Cell",
+  "nomeCurto": "Prime Cell",
+  "logoTexto": "PRIME",
+  "logoTag": "CELL",
+  "inicial": "P",
+  "cidade": "Curitiba",
   "bairro": "Centro",
   "whatsapp": "",
   "whatsappExibir": "seu número aqui",
   "instagram": "",
   "email": "",
-  "endereco": "Endereço da sua loja",
+  "endereco": "Centro, Curitiba - PR",
   "horario": "Seg a sex 10h às 18h · Sáb 10h às 13h",
   "cnpj": "",
   "chavePix": "",
@@ -24,5 +24,6 @@
     "suaveEscura": "#17244A"
   },
   "marcaVendedor": "Vitrio",
-  "contatoExibir": "(41) 99131-2403"
+  "contatoExibir": "(41) 99131-2403",
+  "codigoEtiqueta": "PC-17PM-256"
 }
