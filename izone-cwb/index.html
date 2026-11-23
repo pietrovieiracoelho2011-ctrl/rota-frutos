@@ -389,6 +389,31 @@ main > [data-page]{min-height:60vh}
 .search svg{width:20px;height:20px;color:var(--mute);flex-shrink:0}
 .search input{flex:1;min-width:0;border:0;background:none;font:inherit;font-size:16px;padding:14px 0;color:var(--ink);outline:none}
 .search:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.sim{display:grid;grid-template-columns:.9fr 1.1fr;gap:20px;align-items:start}
+.sim-form{display:grid;gap:16px}
+.sim-check{display:flex;gap:10px;align-items:center;font-weight:700;cursor:pointer}
+.sim-check input{width:18px;height:18px;accent-color:var(--accent)}
+.sim-res{display:grid;gap:16px}
+.sim-resumo{display:grid;gap:6px;font-size:14.5px}
+.sim-resumo div{display:flex;justify-content:space-between;gap:12px}
+.sim-resumo span{color:var(--mute)}
+.sim-resumo b{text-align:right}
+.sim-resto{border-top:1px dashed var(--line);padding-top:8px;font-size:16px}
+.sim-resto span{color:var(--ink);font-weight:700}
+.sim-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:8px}
+.sim-op{display:grid;gap:2px;text-align:left;border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:10px 12px;cursor:pointer;color:var(--ink)}
+.sim-op b{font-size:14px}
+.sim-op span{font-size:15px;font-weight:700}
+.sim-op small{font-size:11px;color:var(--mute)}
+.sim-op[aria-checked="true"]{border-color:var(--accent);background:var(--accent-soft);box-shadow:inset 0 0 0 1px var(--accent)}
+.sim-total{display:grid;gap:2px;background:var(--well);border-radius:14px;padding:14px 16px}
+.sim-total:empty{display:none}
+.sim-total > span{font-size:12px;color:var(--mute);font-family:var(--f-mono);letter-spacing:.08em;text-transform:uppercase}
+.sim-total b{font-family:var(--f-display);font-size:24px;line-height:1.2}
+.sim-total small{color:var(--mute);font-size:13px}
+.sim-nota{margin:0;font-size:12.5px;color:var(--mute)}
+.pv-sim{justify-self:start}
+@media (max-width:860px){.sim{grid-template-columns:1fr}}
 .inc{font-size:12.5px;font-weight:600;color:var(--ok);margin-top:4px}
 @media (max-width:760px){.trade.manut{grid-template-columns:1fr}}
 </style>
@@ -421,6 +446,7 @@ main > [data-page]{min-height:60vh}
       <a href="#loja-audio" data-go="audio">AirPods e som</a>
       <a href="#loja-acessorios" data-go="acessorios">Acessórios</a>
       <a href="#loja-casa" data-go="casa">Casa e games</a>
+      <a href="#parcelamento">Parcelamento</a>
       <a href="#troca">Troca</a>
       <a href="#manutencao">Manutenção</a>
       <a href="#depoimentos">Depoimentos</a>
@@ -513,6 +539,33 @@ main > [data-page]{min-height:60vh}
     <div class="tab-note" id="tabNote"></div>
     <div class="chips" id="chips" hidden></div>
     <div class="grid" id="grid" role="tabpanel" aria-labelledby="tab-novos"></div>
+  </div>
+</section>
+
+<section class="sec" id="parcelamento" data-page="parcelamento">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Simulador</span><h2 style="margin-top:10px">Simule o seu parcelamento</h2><p>Escolha o produto, informe uma entrada ou o seu usado na troca e veja quanto fica cada parcela.</p></div></div>
+    <div class="sim">
+      <div class="panel sim-form">
+        <div class="field"><label for="simProd">Produto</label><select id="simProd"></select></div>
+        <div class="field" id="simValorWrap" hidden><label for="simValor">Valor do produto (R$)</label><input id="simValor" type="number" inputmode="decimal" min="0" step="1" placeholder="Ex.: 5000"></div>
+        <div class="field" id="simEntradaWrap"><label for="simEntrada">Entrada no Pix ou dinheiro (R$)</label><input id="simEntrada" type="number" inputmode="decimal" min="0" step="1" placeholder="0"></div>
+        <div id="simTrocaWrap">
+          <label class="sim-check"><input type="checkbox" id="simTroca"> Vou dar meu usado na troca</label>
+          <div class="fields" id="simTrocaCampos" hidden style="margin-top:10px">
+            <div class="field"><label for="simTrocaModelo">Modelo</label><select id="simTrocaModelo"></select></div>
+            <div class="field"><label for="simTrocaEstado">Estado</label><select id="simTrocaEstado"><option value="1">Perfeito</option><option value="0.85" selected>Marcas leves</option><option value="0.65">Trincado</option></select></div>
+          </div>
+        </div>
+      </div>
+      <div class="panel sim-res" aria-live="polite">
+        <div class="sim-resumo" id="simResumo"></div>
+        <div class="sim-grid" id="simGrid" role="radiogroup" aria-label="Número de parcelas"></div>
+        <div class="sim-total" id="simTotal"></div>
+        <a class="btn btn-wa" id="simWa" href="#" target="_blank" rel="noopener" style="width:100%">Enviar esta simulação no WhatsApp</a>
+        <p class="sim-nota" id="simNota"></p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -748,7 +801,17 @@ const LOJA = {
   parcelas: [12,18,24],
   fator: {12:0.0958, 18:0.0687, 24:0.0559}, // usado quando a parcela não está informada
   inicioBlackFriday: "2026-11-27T00:00:00-03:00",
-  fimBlackFriday: "2026-11-30T23:59:59-03:00"
+  fimBlackFriday: "2026-11-30T23:59:59-03:00",
+  /* Simulador de parcelamento: ajuste conforme a maquininha da loja */
+  simulador: {
+    parcelasMax: 24,          // até quantas vezes
+    semJurosAte: 1,           // até quantas vezes sem juros (1 = só à vista)
+    jurosMes: 0.025,          // juros ao mês acima disso (0.025 = 2,5%)
+    opcoes: [1,2,3,4,5,6,8,10,12,15,18,21,24], // parcelas mostradas
+    entrada: true,            // permite entrada
+    troca: true,              // permite usado na troca
+    nota: "Simulação. O valor final é confirmado pela loja no fechamento do pedido."
+  }
 };
 
 /* Opção de produto: o(rótulo, preço à vista, preço "de" (0 = sem), parcelas [12x,18x,24x] (null = calcula, 0 = só à vista), status, observação, garantia) */
@@ -1265,6 +1328,48 @@ if(LOJA.instagram){$("#footIg").href="https://instagram.com/"+LOJA.instagram;$("
 setOrHide("#footMail",LOJA.email,true);setOrHide("#footAddr",LOJA.endereco);setOrHide("#footHours",LOJA.horario);setOrHide("#footCnpj",LOJA.cnpj?"CNPJ "+LOJA.cnpj:"",true);
 
 /* ---------- Início ---------- */
+/* ---------- Simulador de parcelamento ---------- */
+const SIM={n:12};
+function fatorN(n,op){
+  const c=LOJA.simulador; if(n<=c.semJurosAte) return 1/n;
+  if(op){const i=LOJA.parcelas.indexOf(n); if(i>=0&&op.x&&op.x[i]!=null) return op.x[i]/op.p;}
+  const j=c.jurosMes; return j/(1-Math.pow(1+j,-n));
+}
+function simFill(){
+  const sel=$("#simProd");
+  sel.innerHTML=CATS.map(([k,nome])=>`<optgroup label="${esc(nome)}">${PRODUTOS.filter(p=>p.cat===k).flatMap(p=>p.arm.map((o,a)=>o.x===0?"":`<option value="${p.id}|${a}">${esc(p.nome)}${o.l!=="Única"?" "+esc(o.l):""} · ${brl0(o.p)}</option>`)).join("")}</optgroup>`).join("")+`<optgroup label="Outro"><option value="outro">Outro valor</option></optgroup>`;
+  $("#simTrocaModelo").innerHTML=TROCA.map(([n],i)=>`<option value="${i}">${n}</option>`).join("");
+  $("#simEntradaWrap").hidden=!LOJA.simulador.entrada; $("#simTrocaWrap").hidden=!LOJA.simulador.troca;
+  $("#simNota").textContent=LOJA.simulador.nota||"";
+  ["simProd","simValor","simEntrada","simTroca","simTrocaModelo","simTrocaEstado"].forEach(id=>$("#"+id).addEventListener(id==="simValor"||id==="simEntrada"?"input":"change",simCalc));
+  $("#simGrid").addEventListener("click",e=>{const b=e.target.closest("[data-n]");if(b){SIM.n=+b.dataset.n;simCalc()}});
+}
+function simCalc(){
+  const v=$("#simProd").value, outro=v==="outro"; $("#simValorWrap").hidden=!outro;
+  let p=null,op=null,preco=0,nome="";
+  if(outro){preco=Math.max(0,+$("#simValor").value||0);nome="Produto de "+brl(preco)}
+  else{const [id,a]=v.split("|");p=byId(id);op=p.arm[+a];preco=op.p;nome=p.nome+(op.l!=="Única"?" "+op.l:"")}
+  const entrada=LOJA.simulador.entrada?Math.max(0,+$("#simEntrada").value||0):0;
+  $("#simTrocaCampos").hidden=!$("#simTroca").checked;
+  let troca=0,trocaNome="";
+  if(LOJA.simulador.troca&&$("#simTroca").checked){const [tn,tv]=TROCA[+$("#simTrocaModelo").value];troca=Math.round(tv*(+$("#simTrocaEstado").value)/50)*50;trocaNome=tn}
+  const resto=Math.max(0,preco-entrada-troca);
+  const ops=LOJA.simulador.opcoes.filter(n=>n<=LOJA.simulador.parcelasMax);
+  if(!ops.includes(SIM.n)) SIM.n=ops[ops.length-1];
+  const val=n=>resto*fatorN(n,op);
+  $("#simResumo").innerHTML=`<div><span>Produto</span><b>${esc(nome||"Escolha um produto")}</b></div><div><span>Preço à vista</span><b class="mono">${brl(preco)}</b></div>${entrada?`<div><span>Entrada</span><b class="mono">−${brl(entrada)}</b></div>`:""}${troca?`<div><span>Seu ${esc(trocaNome)} (estimativa)</span><b class="mono">−${brl(troca)}</b></div>`:""}<div class="sim-resto"><span>Valor a parcelar</span><b class="mono">${brl(resto)}</b></div>`;
+  $("#simGrid").innerHTML=resto>0?ops.map(n=>`<button type="button" class="sim-op" data-n="${n}" role="radio" aria-checked="${n===SIM.n}"><b>${n}x</b><span class="mono">${brl(val(n))}</span><small>${n<=LOJA.simulador.semJurosAte?(n===1?"à vista":"sem juros"):"total "+brl0(val(n)*n)}</small></button>`).join(""):`<p class="muted" style="grid-column:1/-1;margin:0">${preco?"A entrada e a troca já cobrem o valor do produto.":"Escolha um produto para simular."}</p>`;
+  const tot=val(SIM.n)*SIM.n;
+  $("#simTotal").innerHTML=resto>0?`<span>Sua escolha</span><b>${SIM.n}x de <span class="mono">${brl(val(SIM.n))}</span></b><small>Total no cartão ${brl(tot)}${entrada||troca?` + ${brl(entrada+troca)} de entrada e troca`:""}</small>`:"";
+  let msg=`Olá, ${LOJA_NOME}! Fiz uma simulação no site:\n\n• ${nome} — ${brl(preco)}`;
+  if(entrada) msg+=`\n• Entrada: ${brl(entrada)}`;
+  if(troca) msg+=`\n• Troca: ${trocaNome} (estimativa ${brl(troca)})`;
+  if(resto>0) msg+=`\n• Parcelamento: ${SIM.n}x de ${brl(val(SIM.n))}`;
+  msg+=`\n\nPodem confirmar os valores?`;
+  $("#simWa").href=wa(msg);
+}
+function simAbrir(id,a){const sel=$("#simProd");const v=id+"|"+(a||0);if([...sel.options].some(o=>o.value===v))sel.value=v;simCalc()}
+
 /* ---------- Página do produto ---------- */
 const pv={id:null,q:1,pushed:false};
 function pvRender(){
@@ -1284,6 +1389,7 @@ function pvRender(){
       ${p.cores.length>1?`<div class="dots" role="group" aria-label="Cores">${p.cores.map(([cn,h],i)=>`<button type="button" class="dot" data-pvc="${i}" style="background:${h}" aria-label="${esc(cn)}" title="${esc(cn)}" aria-pressed="${i===s.c}"></button>`).join("")}<span class="cname">${esc(p.cores[s.c][0])}</span></div>`:""}
       <div class="pv-price"><span class="price mono${op.de?" off":""}">${brl(op.p)}</span>${op.de?`<span class="old">${brl(op.de)}</span>`:""}</div>
       <div class="field"><label for="pvNote">Alguma observação?</label><textarea id="pvNote" rows="2" placeholder="Retirar ou modificar algum item..."></textarea></div>
+      <a class="btn btn-ghost pv-sim" href="#parcelamento" data-sim="${p.id}|${s.a}">Simular parcelamento deste produto</a>
       <a class="pv-wa" href="${wa(`Olá, ${LOJA_NOME}! Tenho uma dúvida sobre o ${p.nome}${op.l!=="Única"?" "+op.l:""}.`)}" target="_blank" rel="noopener">${waIcon} Tirar dúvida sobre este produto no WhatsApp</a>
     </div>`;
   $("#pvNote").value=note;
@@ -1312,6 +1418,7 @@ async function shareProduct(){
 }
 document.addEventListener("click",e=>{
   const op=e.target.closest("[data-open]"); if(op){e.preventDefault();openProduct(op.dataset.open,op.dataset.a);return}
+  const sm=e.target.closest("[data-sim]"); if(sm){const [i,a]=sm.dataset.sim.split("|");simAbrir(i,a);return}
   if(e.target.closest("[data-pv-close]")){closeProduct();return}
   if(e.target.closest("[data-pv-share]")){shareProduct();return}
   const a=e.target.closest("[data-pva]"); if(a){state.sel[pv.id].a=+a.dataset.pva;pvRender();return}
@@ -1325,7 +1432,7 @@ document.addEventListener("keydown",e=>{
 $("#pvAdd").onclick=()=>{const id=pv.id;addToCart(id,null,pv.q,($("#pvNote").value||"").trim());closeProduct();grid()};
 /* ---------- Páginas ---------- */
 function centerX(el){const box=el.parentElement;if(box&&box.scrollWidth>box.clientWidth)box.scrollLeft=el.offsetLeft-box.offsetLeft-box.clientWidth/2+el.offsetWidth/2}
-const PAGES=["inicio","promocoes","loja","troca","manutencao","depoimentos","pagamento","duvidas"];
+const PAGES=["inicio","promocoes","loja","parcelamento","troca","manutencao","depoimentos","pagamento","duvidas"];
 let curPage=null;
 function showPage(pg){
   if(pg===curPage) return;
@@ -1365,7 +1472,7 @@ $("#busca").addEventListener("input",e=>{state.q=e.target.value;if(state.q.trim(
 hero();
 $("#heroPhone").innerHTML='<img src="img/hero-17pm.png" alt="iPhone 17 Pro Max laranja-cósmico">';
 $("#heroSwatches").hidden=true;
-deals();tabs();setTab("novos");trade();renderCart();payUI();clock();setInterval(clock,1000);cats();route();
+deals();tabs();setTab("novos");trade();renderCart();payUI();clock();setInterval(clock,1000);cats();simFill();simAbrir("n17pm",0);route();
 </script>
 </body>
 </html>

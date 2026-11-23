@@ -40,7 +40,12 @@ def gerar(cfg_path):
     bloco += f'  demo: {"true" if c.get("demo") else "false"},\n'
     bloco += "  parcelas: [12,18,24],\n  fator: {12:0.0958, 18:0.0687, 24:0.0559},\n"
     bloco += f'  inicioBlackFriday: "{c.get("inicioBlackFriday", "2026-11-27T00:00:00-03:00")}",\n'
-    bloco += f'  fimBlackFriday: "{c.get("fimBlackFriday", "2026-11-30T23:59:59-03:00")}"\n}};'
+    bloco += f'  fimBlackFriday: "{c.get("fimBlackFriday", "2026-11-30T23:59:59-03:00")}",\n'
+    m = re.search(r"  /\* Simulador.*?\n  simulador: \{.*?\n  \}", s, flags=re.S)
+    if not m:
+        sys.exit("Configuração do simulador não encontrada no modelo")
+    bloco += ("  simulador: " + json.dumps(c["simulador"], ensure_ascii=False)) if c.get("simulador") else m.group(0)
+    bloco += "\n};"
     s, n = re.subn(r"const LOJA = \{.*?\n\};", lambda m: bloco, s, count=1, flags=re.S)
     if n != 1:
         sys.exit("Bloco LOJA não encontrado")
