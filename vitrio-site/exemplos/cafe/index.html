@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Café Araucária</title>
+<meta name="description" content="Cafeteria de esquina em Curitiba. Peça pelo site, escolha a hora e retire no balcão sem fila.">
+<meta name="theme-color" content="#1E4D3A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600;700&family=Courier+Prime:wght@400;700&display=swap">
+<style>
+/* Conceito: a comanda de papel do balcão numa manhã fria de Curitiba. Cores do papel, do grafite, da araucária, do pinhão e da torra. */
+:root{
+  --papel:#F4F2EC; --cartao:#FFFFFF; --poco:#E9E6DD; --grafite:#23201C; --suave:#6B655C; --linha:#DCD7CC;
+  --arauc:#1E4D3A; --arauc-2:#2C6A51; --mostarda:#D9A441; --mostarda-suave:#F6EAD0; --torra:#5A3A28; --wa:#1FAF5A;
+  --f-tit:"Bricolage Grotesque","Arial Black",system-ui,sans-serif; --f-txt:"Inter",system-ui,-apple-system,"Segoe UI",Arial,sans-serif; --f-com:"Courier Prime","Courier New",ui-monospace,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--papel:#15140F;--cartao:#1E1C17;--poco:#29261F;--grafite:#F1EDE4;--suave:#AFA796;--linha:#36322A;--arauc:#3E8C6A;--arauc-2:#4FA47E;--mostarda-suave:#3A2F18;--torra:#D5A27E;color-scheme:dark}}
+:root[data-theme="dark"]{--papel:#15140F;--cartao:#1E1C17;--poco:#29261F;--grafite:#F1EDE4;--suave:#AFA796;--linha:#36322A;--arauc:#3E8C6A;--arauc-2:#4FA47E;--mostarda-suave:#3A2F18;--torra:#D5A27E;color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:120px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--papel);color:var(--grafite);font-family:var(--f-txt);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden;padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--papel)}
+button,input,select{font:inherit;color:inherit}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--mostarda);outline-offset:2px;border-radius:6px}
+.wrap{max-width:1040px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-tit);margin:0;letter-spacing:-.02em;text-wrap:balance}
+
+.demo{background:#2D5BFF;color:#fff;font-size:13px}
+.demo .wrap{display:flex;flex-wrap:wrap;gap:6px 14px;justify-content:center;align-items:center;padding-block:8px;text-align:center}
+.demo a{color:#fff;font-weight:800;background:rgba(0,0,0,.2);padding:4px 12px;border-radius:999px;text-decoration:none}
+
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:var(--papel);border-bottom:1px solid var(--linha)}
+.bar{display:flex;align-items:center;gap:12px;padding-block:12px}
+.marca{display:flex;align-items:center;gap:10px;text-decoration:none}
+.marca svg{width:34px;height:34px;flex-shrink:0}
+.marca b{font-family:var(--f-tit);font-weight:800;font-size:21px;line-height:1}
+.marca small{display:block;font-size:11px;color:var(--suave);font-weight:600;letter-spacing:.06em;margin-top:3px}
+.aberto{margin-left:auto;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;white-space:nowrap}
+.aberto i{width:9px;height:9px;border-radius:50%;background:var(--suave)}
+.aberto.on{color:var(--arauc)}.aberto.on i{background:var(--arauc)}
+.momentos{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:10px}
+.momentos::-webkit-scrollbar{display:none}
+.momentos a{white-space:nowrap;text-decoration:none;font-weight:700;font-size:14px;padding:8px 14px;border-radius:8px;color:var(--suave);border:1px solid var(--linha)}
+.momentos a.on{background:var(--grafite);color:var(--papel);border-color:var(--grafite)}
+
+/* Agora */
+.agora{padding-block:22px 10px}
+.agora .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:22px;align-items:center}
+.agora .etiqueta{font-family:var(--f-com);font-size:14px;color:var(--torra)}
+.agora h1{font-size:clamp(2rem,6.2vw,3.6rem);line-height:1.02;font-weight:800;margin-top:8px}
+.agora h1 span{color:var(--arauc)}
+.agora p{color:var(--suave);font-size:17px;margin:12px 0 16px;max-width:40ch}
+.fatos{display:flex;flex-wrap:wrap;gap:8px}
+.fatos span{font-size:13.5px;font-weight:600;background:var(--cartao);border:1px solid var(--linha);border-radius:8px;padding:7px 11px}
+.fatos b{color:var(--torra)}
+.destaque{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:4/5;max-height:440px;width:100%;justify-self:center;background:var(--poco)}
+.destaque .preco{position:absolute;left:14px;bottom:14px;background:var(--cartao);border-radius:12px;padding:10px 14px;box-shadow:0 12px 30px -14px rgba(0,0,0,.5)}
+.destaque .preco small{display:block;font-family:var(--f-com);font-size:12px;color:var(--suave)}
+.destaque .preco b{font-family:var(--f-tit);font-size:20px}
+@media (max-width:720px){.agora .wrap{grid-template-columns:1fr}.destaque{max-height:300px;aspect-ratio:4/3}}
+
+/* Foto ou espaço reservado */
+.foto{position:relative;width:100%;height:100%;background:var(--poco);display:grid;place-items:center;overflow:hidden}
+.foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.foto .falta{font-family:var(--f-com);font-size:12px;color:var(--suave);text-align:center;padding:10px;border:1.5px dashed var(--linha);border-radius:10px;margin:10px;line-height:1.35}
+
+/* Cardápio */
+section.mom{padding-block:22px 6px}
+.mom-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.mom-h h2{font-size:clamp(1.5rem,4vw,2rem)}
+.mom-h span{font-size:13.5px;color:var(--suave)}
+.lista{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.item{display:grid;grid-template-columns:104px 1fr;gap:14px;background:var(--cartao);border:1px solid var(--linha);border-radius:14px;padding:10px;align-items:center}
+.item .foto{width:104px;height:104px;border-radius:10px}
+.item .foto .falta{font-size:10px;margin:4px;padding:4px}
+.item h3{font-family:var(--f-txt);font-weight:700;font-size:16.5px;letter-spacing:0}
+.item p{margin:2px 0 8px;color:var(--suave);font-size:13.5px;line-height:1.4}
+.item .linha{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.item .linha small{font-family:var(--f-com);font-size:12px;color:var(--suave)}
+.tam{display:inline-flex;border:1px solid var(--linha);border-radius:8px;overflow:hidden}
+.tam button{border:0;background:none;padding:6px 10px;font-weight:700;font-size:13px;cursor:pointer;color:var(--suave)}
+.tam button[aria-pressed="true"]{background:var(--grafite);color:var(--papel)}
+.preco-it{font-family:var(--f-tit);font-weight:800;font-size:17px;color:var(--torra);margin-left:auto}
+.add{border:0;border-radius:10px;background:var(--arauc);color:#fff;font-weight:700;padding:8px 12px;cursor:pointer;min-height:40px}
+.add:active{transform:scale(.97)}
+.leite{display:flex;gap:8px;align-items:center;font-size:13px;color:var(--suave);margin-top:4px;cursor:pointer}
+.leite input{accent-color:var(--arauc);width:16px;height:16px}
+
+.combo{margin-top:24px;background:var(--arauc);color:#fff;border-radius:18px;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;padding:20px 22px;overflow:hidden;position:relative}
+.combo .etq{font-family:var(--f-com);font-size:13px;color:var(--mostarda)}
+.combo h2{font-size:clamp(1.4rem,4vw,1.9rem);margin-top:4px}
+.combo p{margin:6px 0 0;opacity:.85;font-size:15px}
+.combo .val{text-align:right}
+.combo .val s{opacity:.7;font-size:14px}
+.combo .val b{display:block;font-family:var(--f-tit);font-size:30px}
+.combo .add{background:var(--mostarda);color:#23201C;margin-top:8px}
+@media (max-width:560px){.combo{grid-template-columns:1fr}.combo .val{text-align:left}}
+
+.info{margin-top:28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.info div{background:var(--cartao);border:1px solid var(--linha);border-radius:14px;padding:16px;font-size:14.5px}
+.info b{display:block;font-family:var(--f-tit);font-size:17px;margin-bottom:4px}
+.info p{margin:0;color:var(--suave)}
+footer{padding-block:30px;color:var(--suave);font-size:13.5px;text-align:center}
+
+/* A comanda */
+.comanda{position:fixed;left:50%;bottom:calc(12px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);width:min(480px,calc(100% - 24px));z-index:50;background:#FFFDF7;color:#23201C;font-family:var(--f-com);box-shadow:0 18px 40px -14px rgba(0,0,0,.45);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.comanda::before,.comanda::after{content:"";position:absolute;left:0;right:0;height:10px;background:radial-gradient(circle at 6px 0,transparent 6px,#FFFDF7 6.5px) repeat-x;background-size:12px 10px}
+.comanda::before{top:-9px;transform:rotate(180deg)}
+.comanda::after{bottom:-9px}
+.com-h{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 16px;cursor:pointer;border:0;background:none;width:100%;color:inherit;font:inherit;text-align:left}
+.com-h b{font-size:15px}
+.com-h span{font-size:15px;font-weight:700}
+.com-b{border-top:1px dashed #BDB6A6;padding:10px 16px 14px;max-height:min(62vh,520px);overflow:auto;display:grid;gap:8px}
+.com-l{display:grid;grid-template-columns:auto 1fr auto auto;gap:8px;align-items:baseline;font-size:14px}
+.com-l small{display:block;color:#7A7368;font-size:12px}
+.com-l button{border:0;background:none;color:#9A3A2A;cursor:pointer;font:inherit;font-size:12px;text-decoration:underline;padding:0}
+.com-t{border-top:1px dashed #BDB6A6;padding-top:8px;display:flex;justify-content:space-between;font-weight:700;font-size:16px}
+.com-b label{font-size:12.5px;color:#5E574C}
+.com-b select,.com-b input{width:100%;border:1px solid #CFC8B8;border-radius:6px;padding:9px 10px;background:#fff;font-family:var(--f-txt);font-size:15px;color:#23201C}
+.com-b .duo{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.enviar{display:block;text-align:center;text-decoration:none;background:var(--wa);color:#fff;font-family:var(--f-txt);font-weight:800;border-radius:10px;padding:13px;margin-top:4px}
+.vazia{font-size:13px;color:#7A7368}
+.comanda.pulo{animation:pulo .35s}
+@keyframes pulo{40%{transform:translateX(-50%) translateY(-6px)}}
+.nota{font-family:var(--f-txt);font-size:12px;color:#7A7368;margin:0}
+</style>
+</head>
+<body>
+<div class="demo" role="note"><div class="wrap"><span><b>Exemplo de site feito pela Vitrio.</b> Cafeteria e preços fictícios.</span><a href="https://wa.me/5541991312403?text=Ol%C3%A1!%20Vi%20o%20exemplo%20de%20cafeteria%20da%20Vitrio%20e%20quero%20um%20site%20assim." target="_blank" rel="noopener">Quero um site assim · (41) 99131-2403</a><a href="../../#exemplos" style="background:transparent;text-decoration:underline">Ver outros exemplos</a></div></div>
+
+<header><div class="wrap">
+  <div class="bar">
+    <a class="marca" href="#agora"><svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="9" fill="#1E4D3A"/><path d="M20 8v24M20 12l-7 5M20 12l7 5M20 18l-9 6M20 18l9 6M20 24l-10 6M20 24l10 6" stroke="#F4F2EC" stroke-width="2.2" stroke-linecap="round"/><circle cx="20" cy="7.5" r="2.2" fill="#D9A441"/></svg><span><b>Café Araucária</b><small>CAFÉ DE ESQUINA · CURITIBA</small></span></a>
+    <span class="aberto" id="aberto"><i></i><span>…</span></span>
+  </div>
+  <nav class="momentos" id="momentos" aria-label="Cardápio"></nav>
+</div></header>
+
+<main>
+  <section class="agora" id="agora"><div class="wrap">
+    <div>
+      <span class="etiqueta" id="saudacao">Bom dia. Tá frio lá fora.</span>
+      <h1>Seu café pronto no balcão, <span>sem pegar fila.</span></h1>
+      <p>Monte a comanda aqui, escolha a hora de passar e a gente já deixa separado. Coado na hora, grão do Sul de Minas.</p>
+      <div class="fatos"><span>Pronto em <b>~5 min</b></span><span>Leite vegetal <b>sem custo extra</b></span><span>Pão de queijo <b>saindo do forno</b></span></div>
+    </div>
+    <div class="destaque">
+      <div class="foto" data-foto="cappuccino.jpg" data-falta="FOTO: cappuccino na xícara branca, sobre o balcão de madeira"></div>
+      <div class="preco"><small>CARRO-CHEFE</small><b>Cappuccino da casa · R$ 12</b></div>
+    </div>
+  </div></section>
+
+  <div class="wrap" id="cardapio"></div>
+
+  <div class="wrap">
+    <div class="combo">
+      <div><span class="etq">COMBO DO BALCÃO</span><h2>Coado + 2 pães de queijo</h2><p>O pedido mais feito antes das 9h.</p></div>
+      <div class="val"><s>R$ 18</s><b>R$ 14</b><button class="add" type="button" data-combo>Pôr na comanda</button></div>
+    </div>
+    <div class="info">
+      <div><b>Retirada no balcão</b><p>Escolha a hora na comanda. Seu pedido fica separado com o seu nome.</p></div>
+      <div><b>Onde fica</b><p>Rua Exemplo, 400 · Curitiba - PR</p></div>
+      <div><b>Horário</b><p>Seg a sex, 7h às 19h · Sáb, 8h às 14h</p></div>
+    </div>
+  </div>
+</main>
+<footer>Café Araucária é uma cafeteria fictícia criada pela Vitrio como exemplo.</footer>
+
+<aside class="comanda" id="comanda" aria-label="Sua comanda">
+  <button class="com-h" type="button" id="comH" aria-expanded="false"><b>COMANDA · <span id="nItens">vazia</span></b><span id="tot">R$ 0,00</span></button>
+  <div class="com-b" id="comB" hidden></div>
+</aside>
+
+<script>
+const ITENS=[
+ {id:"esp",mom:"acordar",nome:"Espresso",desc:"Curto e encorpado. Torra média.",foto:"espresso.jpg",falta:"FOTO: espresso em xícara pequena",tam:[["P",7]],min:2},
+ {id:"coado",mom:"acordar",nome:"Coado na hora",desc:"Filtrado no V60, grão do Sul de Minas.",foto:"coado.jpg",falta:"FOTO: café sendo coado no V60",tam:[["P",8],["M",10]],min:5},
+ {id:"pingado",mom:"acordar",nome:"Pingado",desc:"Café coado com um pingo de leite quente.",foto:"pingado.jpg",falta:"FOTO: café com um pouco de leite em copo americano",tam:[["P",7],["M",9]],min:3,leite:true},
+ {id:"capu",mom:"leite",nome:"Cappuccino da casa",desc:"Espresso, leite vaporizado e canela.",foto:"cappuccino.jpg",falta:"FOTO: cappuccino na xícara branca",tam:[["P",12],["M",15]],min:4,leite:true},
+ {id:"latte",mom:"leite",nome:"Latte",desc:"Mais leite, espuma fina.",foto:"latte.jpg",falta:"FOTO: latte em copo de vidro",tam:[["P",13],["M",16]],min:4,leite:true},
+ {id:"choc",mom:"leite",nome:"Chocolate quente",desc:"Cacau 50%, cremoso. Pro dia de garoa.",foto:"chocolate.jpg",falta:"FOTO: chocolate quente na caneca",tam:[["P",14],["M",17]],min:4,leite:true},
+ {id:"gelado",mom:"gelados",nome:"Latte gelado",desc:"Espresso, leite e gelo.",foto:"latte-gelado.jpg",falta:"FOTO: latte gelado em copo alto",tam:[["M",16]],min:3,leite:true},
+ {id:"cold",mom:"gelados",nome:"Cold brew",desc:"Extraído a frio por 16 horas.",foto:"cold-brew.jpg",falta:"FOTO: cold brew com gelo",tam:[["M",15]],min:1},
+ {id:"pq",mom:"comer",nome:"Pão de queijo",desc:"Unidade, saindo do forno.",foto:"pao-de-queijo.jpg",falta:"FOTO: pães de queijo na cestinha",tam:[["un.",4]],min:0},
+ {id:"crois",mom:"comer",nome:"Croissant",desc:"Folhado na manteiga. Simples ou com queijo e presunto.",foto:"croissant.jpg",falta:"FOTO: croissant no pratinho",tam:[["simples",11],["recheado",16]],min:3},
+ {id:"bolo",mom:"comer",nome:"Bolo do dia",desc:"Fatia. Pergunte o sabor de hoje.",foto:"bolo.jpg",falta:"FOTO: fatia de bolo caseiro",tam:[["fatia",10]],min:0}
+];
+const MOM=[["acordar","Pra acordar","Café puro, como deve ser"],["leite","Com leite","Leite vegetal sem custo extra"],["gelados","Gelados","Pros dias que esquentam"],["comer","Pra acompanhar","Sai quentinho do forno"]];
+const $=s=>document.querySelector(s);
+const brl=v=>v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const sel={};ITENS.forEach(i=>sel[i.id]={t:0,veg:false});
+
+/* Fotos: usa img/<arquivo> quando existe; senão mostra o espaço reservado */
+function foto(el,arq,falta){el.innerHTML=`<span class="falta">${esc(falta)}</span>`;const im=new Image();im.alt="";im.onload=()=>{el.innerHTML="";im.alt=falta.replace(/^FOTO: /,"");el.appendChild(im)};im.src="img/"+arq}
+document.querySelectorAll("[data-foto]").forEach(el=>foto(el,el.dataset.foto,el.dataset.falta));
+
+/* Aberto agora e saudação */
+(function(){const d=new Date(),h=d.getHours()+d.getMinutes()/60,w=d.getDay();const ab=w>=1&&w<=5?h>=7&&h<19:w===6?h>=8&&h<14:false;
+ const el=$("#aberto");el.classList.toggle("on",ab);el.querySelector("span").textContent=ab?"Aberto agora":w===0?"Fechado hoje":"Fechado · abre às "+(w===6?"8h":"7h");
+ $("#saudacao").textContent=h<12?"Bom dia. Tá frio lá fora.":h<18?"Boa tarde. Hora do café.":"Boa noite. Ainda dá tempo.";})();
+
+/* Cardápio */
+$("#momentos").innerHTML=MOM.map(([k,n],i)=>`<a href="#m-${k}" class="${i?"":"on"}">${n}</a>`).join("");
+function linha(i){const s=sel[i.id],[t,v]=i.tam[s.t];return `<div class="item" id="it-${i.id}"><div class="foto" data-f="${i.id}"></div><div><h3>${esc(i.nome)}</h3><p>${esc(i.desc)}</p>
+ <div class="linha">${i.tam.length>1?`<span class="tam" role="group" aria-label="Tamanho">${i.tam.map(([n],k)=>`<button type="button" data-tam="${i.id}:${k}" aria-pressed="${k===s.t}">${n}</button>`).join("")}</span>`:`<small>${esc(t)}${i.min?" · ~"+i.min+" min":""}</small>`}<span class="preco-it">${brl(v)}</span><button class="add" type="button" data-add="${i.id}">+ Pôr</button></div>
+ ${i.leite?`<label class="leite"><input type="checkbox" data-veg="${i.id}" ${s.veg?"checked":""}> Leite vegetal (aveia), sem custo extra</label>`:""}</div></div>`}
+$("#cardapio").innerHTML=MOM.map(([k,n,sub])=>`<section class="mom" id="m-${k}"><div class="mom-h"><h2>${n}</h2><span>${sub}</span></div><div class="lista">${ITENS.filter(i=>i.mom===k).map(linha).join("")}</div></section>`).join("");
+ITENS.forEach(i=>{const el=document.querySelector(`[data-f="${i.id}"]`);if(el)foto(el,i.foto,i.falta)});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)document.querySelectorAll("#momentos a").forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+e.target.id))}),{rootMargin:"-40% 0px -55% 0px"});
+document.querySelectorAll("section.mom").forEach(s=>io.observe(s));
+
+/* Comanda */
+let com=[];try{com=JSON.parse(localStorage.getItem("cafe-comanda")||"[]")}catch(e){}
+const salva=()=>{try{localStorage.setItem("cafe-comanda",JSON.stringify(com))}catch(e){}};
+let aberta=false;
+function horas(){const out=["Assim que ficar pronto"],d=new Date();let m=Math.ceil((d.getHours()*60+d.getMinutes()+10)/15)*15;for(let k=0;k<8;k++,m+=15){const hh=Math.floor(m/60)%24,mm=m%60;out.push(`${String(hh).padStart(2,"0")}:${String(mm).padStart(2,"0")}`)}return out}
+function desenha(){
+  const n=com.reduce((t,c)=>t+c.q,0),tot=com.reduce((t,c)=>t+c.v*c.q,0);
+  $("#nItens").textContent=n?`${n} ${n>1?"itens":"item"}`:"vazia";$("#tot").textContent=brl(tot);
+  $("#comH").setAttribute("aria-expanded",aberta);$("#comB").hidden=!aberta;
+  if(!aberta)return;
+  if(!n){$("#comB").innerHTML=`<p class="vazia">Toque em “+ Pôr” para começar sua comanda.</p>`;return}
+  const nome=$("#cNome")?.value||"",hr=$("#cHora")?.value||"";
+  $("#comB").innerHTML=com.map((c,k)=>`<div class="com-l"><span>${c.q}x</span><span>${esc(c.nome)}<small>${esc(c.det)}</small></span><span>${brl(c.v*c.q)}</span><button type="button" data-tira="${k}">tirar</button></div>`).join("")+
+  `<div class="com-t"><span>TOTAL</span><span>${brl(tot)}</span></div>
+  <div class="duo"><div><label for="cNome">Nome no copo</label><input id="cNome" placeholder="Ex.: Ana" autocomplete="given-name"></div><div><label for="cHora">Passo no balcão</label><select id="cHora">${horas().map(h=>`<option>${h}</option>`).join("")}</select></div></div>
+  <a class="enviar" id="enviar" href="#" target="_blank" rel="noopener">Enviar comanda no WhatsApp</a>
+  <p class="nota">Neste exemplo, o WhatsApp abre para você escolher o contato. No site da sua cafeteria, a comanda vai direto para o número da loja.</p>`;
+  if(nome)$("#cNome").value=nome;if(hr)$("#cHora").value=hr;link();
+}
+function link(){const a=$("#enviar");if(!a)return;const tot=com.reduce((t,c)=>t+c.v*c.q,0);
+  let m=`Olá, Café Araucária! Minha comanda:\n\n${com.map(c=>`• ${c.q}x ${c.nome}${c.det?" ("+c.det+")":""} — ${brl(c.v*c.q)}`).join("\n")}\n\nTotal: ${brl(tot)}\nRetirada: ${$("#cHora").value}`;
+  const n=$("#cNome").value.trim();if(n)m+=`\nNome no copo: ${n}`;a.href="https://wa.me/?text="+encodeURIComponent(m)}
+function poe(nome,det,v){const c=com.find(x=>x.nome===nome&&x.det===det);c?c.q++:com.push({nome,det,v,q:1});salva();desenha();const el=$("#comanda");el.classList.remove("pulo");void el.offsetWidth;el.classList.add("pulo")}
+document.addEventListener("click",e=>{
+  const t=e.target.closest("[data-tam]");if(t){const [id,k]=t.dataset.tam.split(":");sel[id].t=+k;const i=ITENS.find(x=>x.id===id);document.getElementById("it-"+id).outerHTML=linha(i);foto(document.querySelector(`[data-f="${id}"]`),i.foto,i.falta);return}
+  const a=e.target.closest("[data-add]");if(a){const i=ITENS.find(x=>x.id===a.dataset.add),s=sel[i.id],[tn,v]=i.tam[s.t];poe(i.nome,[i.tam.length>1||!/un|fatia/.test(tn)?tn:"",s.veg?"leite vegetal":""].filter(Boolean).join(" · "),v);return}
+  if(e.target.closest("[data-combo]")){poe("Combo do balcão","coado P + 2 pães de queijo",14);return}
+  const r=e.target.closest("[data-tira]");if(r){const c=com[+r.dataset.tira];c.q>1?c.q--:com.splice(+r.dataset.tira,1);salva();desenha();return}
+  if(e.target.closest("#comH")){aberta=!aberta;desenha()}
+});
+document.addEventListener("change",e=>{const v=e.target.closest("[data-veg]");if(v)sel[v.dataset.veg].veg=v.checked;if(e.target.id==="cHora")link()});
+document.addEventListener("input",e=>{if(e.target.id==="cNome")link()});
+desenha();
+</script>
+</body>
+</html>
