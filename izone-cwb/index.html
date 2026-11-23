@@ -414,6 +414,64 @@ main > [data-page]{min-height:60vh}
 .sim-nota{margin:0;font-size:12.5px;color:var(--mute)}
 .pv-sim{justify-self:start}
 @media (max-width:860px){.sim{grid-template-columns:1fr}}
+/* Animações */
+@keyframes subir{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes flutuar{0%,100%{translate:0 0}50%{translate:0 -10px}}
+@keyframes balanco{0%{transform:rotate(-14deg) translateY(-30px);opacity:0}60%{transform:rotate(-3deg)}80%{transform:rotate(-8deg)}100%{transform:rotate(-6deg)}}
+@keyframes pulso{0%{transform:scale(1)}40%{transform:scale(1.18)}100%{transform:scale(1)}}
+@keyframes brilho{from{background-position:-200% 0}to{background-position:200% 0}}
+@keyframes girar{to{transform:rotate(360deg)}}
+.hero .eyebrow,.hero h1,.hero .lead,.hero .cta-row,.hero .trust{animation:subir .7s cubic-bezier(.2,.7,.2,1) both}
+.hero h1{animation-delay:.08s}.hero .lead{animation-delay:.18s}.hero .cta-row{animation-delay:.28s}.hero .trust{animation-delay:.38s}
+.hero-stage .phone{animation:flutuar 6s ease-in-out infinite;transition:transform .25s ease-out;will-change:transform}
+.hero-stage .ring{animation:girar 60s linear infinite}
+.hero-stage .tag{animation:balanco 1.1s .5s cubic-bezier(.3,1.4,.5,1) both;transform-origin:10px 50%}
+.hero h1 em{background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 40%,#ffb27a 50%,var(--accent) 60%,var(--accent) 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:brilho 4s linear infinite}
+.enter > .wrap > *, #grid.enter > *{animation:subir .5s cubic-bezier(.2,.7,.2,1) both}
+.enter > .wrap > :nth-child(2){animation-delay:.06s}.enter > .wrap > :nth-child(3){animation-delay:.12s}.enter > .wrap > :nth-child(4){animation-delay:.18s}
+#grid.enter > :nth-child(2){animation-delay:.05s}#grid.enter > :nth-child(3){animation-delay:.1s}#grid.enter > :nth-child(4){animation-delay:.15s}#grid.enter > :nth-child(5){animation-delay:.2s}#grid.enter > :nth-child(6){animation-delay:.25s}#grid.enter > :nth-child(n+7){animation-delay:.3s}
+.fly{position:fixed;z-index:120;pointer-events:none;object-fit:cover;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.cart-btn.bump{animation:pulso .45s ease}
+.cart-btn.bump .count{animation:pulso .45s .1s ease}
+.btn-accent{position:relative;overflow:hidden}
+.btn-accent::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.35) 50%,transparent 70%);transform:translateX(-120%);transition:transform .6s ease}
+.btn-accent:hover::after{transform:translateX(120%)}
+.clock b{display:inline-block}
+/* Teste do iPhone ideal */
+.qz{min-height:340px;display:grid;gap:14px;align-content:start}
+.qz.qz-in > *{animation:subir .45s cubic-bezier(.2,.7,.2,1) both}
+.qz-prog{display:flex;gap:6px}
+.qz-prog i{flex:1;height:6px;border-radius:9px;background:var(--well)}
+.qz-prog i.done{background:var(--accent)}
+.qz-prog i.now{background:linear-gradient(90deg,var(--accent) 50%,var(--well) 50%)}
+.qz-t{font-size:clamp(1.3rem,3.4vw,1.8rem)}
+.qz-s{margin:0;color:var(--mute)}
+.qz-ops{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.qz-op{text-align:left;border:1px solid var(--line);background:var(--bg);border-radius:14px;padding:16px 18px;font-weight:700;font-size:15.5px;cursor:pointer;color:var(--ink);transition:transform .15s,border-color .15s,background .15s}
+.qz-op:hover{border-color:var(--accent);background:var(--accent-soft);transform:translateY(-2px)}
+.qz-back{justify-self:start;border:0;background:none;color:var(--mute);font-weight:700;cursor:pointer;padding:4px 0}
+.qz-recs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.qz-rec{position:relative;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--bg);display:flex;flex-direction:column;animation:subir .5s var(--d,0ms) cubic-bezier(.2,.7,.2,1) both}
+.qz-rec:first-child{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.qz-best{position:absolute;top:10px;left:10px;z-index:2}
+.qz-pic{position:relative;height:200px;background:var(--well);display:grid;place-items:center;cursor:zoom-in}
+.qz-pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.qz-pic svg{height:85%;width:auto}
+.qz-body{padding:14px 16px 16px;display:grid;gap:8px;flex:1}
+.qz-body b{font-size:16.5px}
+.qz-body ul{margin:0;padding-left:18px;color:var(--mute);font-size:14px;display:grid;gap:2px}
+.qz-price{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.qz-price .mono{font-family:var(--f-display);font-weight:800;font-size:22px}
+.qz-price small{color:var(--mute);font-size:13px}
+.qz-acts{display:flex;gap:8px;margin-top:auto}
+.qz-acts .btn{flex:1;padding:11px 12px;font-size:14px}
+.qz-end{display:flex;flex-wrap:wrap;gap:10px}
+.qz-cta{display:flex;align-items:center;gap:16px;text-decoration:none;background:var(--ink);color:var(--bg);border-radius:20px;padding:18px 22px;transition:transform .2s}
+.qz-cta:hover{transform:translateY(-2px)}
+.qz-cta b{display:block;font-size:17px}
+.qz-cta small{opacity:.75;font-size:14px}
+.qz-cta-ic{flex:0 0 48px;height:48px;border-radius:14px;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:22px;animation:pulso 2.4s ease-in-out infinite}
+.qz-cta-go{margin-left:auto;font-size:22px;font-weight:800}
 .inc{font-size:12.5px;font-weight:600;color:var(--ok);margin-top:4px}
 @media (max-width:760px){.trade.manut{grid-template-columns:1fr}}
 </style>
@@ -446,6 +504,7 @@ main > [data-page]{min-height:60vh}
       <a href="#loja-audio" data-go="audio">AirPods e som</a>
       <a href="#loja-acessorios" data-go="acessorios">Acessórios</a>
       <a href="#loja-casa" data-go="casa">Casa e games</a>
+      <a href="#ideal" class="hot">iPhone ideal</a>
       <a href="#parcelamento">Parcelamento</a>
       <a href="#troca">Troca</a>
       <a href="#manutencao">Manutenção</a>
@@ -471,7 +530,7 @@ main > [data-page]{min-height:60vh}
       <p class="lead">iPhone novo lacrado e seminovo revisado com garantia, Apple Watch, MacBook, iPad, AirPods e acessórios. Pague à vista no Pix ou em até 24x no cartão, e use seu usado na troca.</p>
       <div class="cta-row">
         <a class="btn btn-accent" href="#promocoes">Ver ofertas da semana</a>
-        <a class="btn btn-ghost" href="#loja-seminovos" data-go="seminovos">Seminovos a partir de R$ 1.290</a>
+        <a class="btn btn-ghost" href="#ideal">Descubra seu iPhone ideal</a>
       </div>
       <ul class="trust">
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Lacrado com nota fiscal e 1 ano de garantia Apple</li>
@@ -497,11 +556,23 @@ main > [data-page]{min-height:60vh}
 
 <section class="sec atalhos">
   <div class="wrap">
+    <a class="qz-cta" href="#ideal"><span class="qz-cta-ic" aria-hidden="true">?</span><span><b>Não sabe qual iPhone escolher?</b><small>Faça o teste de 30 segundos e veja os ideais para você.</small></span><span class="qz-cta-go" aria-hidden="true">→</span></a>
+  </div>
+</section>
+<section class="sec atalhos">
+  <div class="wrap">
     <div class="sec-head"><div><span class="eyebrow">Categorias</span><h2 style="margin-top:10px">O que você procura?</h2></div></div>
     <div class="cats" id="cats"></div>
   </div>
 </section>
 </div>
+
+<section class="sec" id="ideal" data-page="ideal">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Teste de 30 segundos</span><h2 style="margin-top:10px">Descubra o seu iPhone ideal</h2><p>Responda 4 perguntas e a gente mostra os aparelhos do nosso estoque que mais combinam com você.</p></div></div>
+    <div class="panel qz" id="quizBox"></div>
+  </div>
+</section>
 
 <section class="bf sec" id="promocoes" data-page="promocoes">
   <div class="wrap">
@@ -1201,6 +1272,7 @@ function grid(){
   }
   const list=PRODUTOS.filter(p=>p.cat===state.tab&&(state.sub==="Todos"||p.sub===state.sub));
   $("#grid").innerHTML=list.map(cardHTML).join("");
+  animarEntrada($("#grid"));
 }
 $("#grid").addEventListener("click",e=>{
   if(e.target.closest("[data-open]")) return;
@@ -1370,6 +1442,93 @@ function simCalc(){
 }
 function simAbrir(id,a){const sel=$("#simProd");const v=id+"|"+(a||0);if([...sel.options].some(o=>o.value===v))sel.value=v;simCalc()}
 
+/* ---------- Descubra seu iPhone ideal ---------- */
+const QUIZ=[
+ {k:"orc",t:"Quanto você quer investir?",s:"Valor à vista. Dá para parcelar em até 24x.",o:[["2000","Até R$ 2.000"],["3500","Até R$ 3.500"],["5500","Até R$ 5.500"],["8000","Até R$ 8.000"],["99999","Quero o melhor"]]},
+ {k:"pri",t:"O que é mais importante para você?",s:"Escolha uma opção.",o:[["camera","Fotos e vídeos"],["bateria","Bateria que dura o dia todo"],["tela","Tela grande"],["preco","O melhor preço"],["jogos","Jogos e desempenho"]]},
+ {k:"tam",t:"Que tamanho você prefere?",s:"Pense em como você segura o celular.",o:[["compacto","Compacto, cabe em qualquer bolso"],["normal","Tamanho normal"],["grande","Grande, tela enorme"]]},
+ {k:"est",t:"Novo ou seminovo?",s:"Os seminovos são revisados e têm garantia.",o:[["novo","Novo e lacrado"],["semi","Seminovo, para economizar"],["tanto","Tanto faz, quero o melhor custo-benefício"]]}
+];
+const QZ={i:0,r:{}};
+function iphoneInfo(p){
+  const n=p.nome, g=/Air/.test(n)?17:+((n.match(/iPhone (\d+)/)||[])[1]||0);
+  return {g,pro:/Pro/.test(n),max:/Max/.test(n),plus:/Plus/.test(n),mini:/mini/.test(n),air:/Air/.test(n),e:/\de\b/.test(n)};
+}
+function quizRecs(){
+  const r=QZ.r, orc=+r.orc, cands=[];
+  PRODUTOS.filter(p=>(p.cat==="novos"||p.cat==="seminovos")&&p.id!=="nduo").forEach(p=>p.arm.forEach((op,a)=>{
+    if(op.st===E) return;
+    if(r.est==="novo"&&p.cat!=="novos") return;
+    if(r.est==="semi"&&p.cat!=="seminovos") return;
+    if(op.p>orc*1.06) return;
+    const f=iphoneInfo(p), why=[]; let sc=(f.g-11)*0.6+(orc<99999?3*op.p/orc:op.p/4000);
+    if(r.pri==="camera"){sc+=f.pro?4:0;if(f.pro)why.push("Câmera Pro com três lentes e zoom")}
+    if(r.pri==="bateria"){sc+=f.max?4:f.plus?3:f.air?-2:0;if(f.max||f.plus)why.push("Bateria das maiores da linha")}
+    if(r.pri==="tela"){sc+=f.max||f.plus?4:f.mini?-3:0;if(f.max||f.plus)why.push("Tela grande de 6,7 polegadas ou mais")}
+    if(r.pri==="preco"){sc+=4*(1-op.p/Math.min(orc,20000));why.push("Melhor preço na sua faixa")}
+    if(r.pri==="jogos"){sc+=f.g*0.5+(f.pro?2:0);if(f.g>=16)why.push(`Chip recente do iPhone ${f.g}`)}
+    if(r.tam==="compacto"){sc+=f.mini?5:(f.max||f.plus)?-4:f.e?1:0;if(f.mini)why.push("O mais compacto da loja")}
+    if(r.tam==="grande"){sc+=(f.max||f.plus)?3:f.mini?-4:0}
+    if(r.tam==="normal"){sc+=(f.max||f.plus||f.mini)?-1.5:1}
+    if(r.est==="tanto"&&p.cat==="seminovos")sc+=0.8;
+    if(p.cat==="novos")why.push("Novo, lacrado, 1 ano de garantia Apple");else why.push(op.nota?`Seminovo ${op.nota.toLowerCase()} com garantia`:"Seminovo revisado com garantia");
+    if(op.de)sc+=0.5;
+    cands.push({p,a,op,sc,why});
+  }));
+  cands.sort((x,y)=>y.sc-x.sc);
+  const seen=new Set(),out=[];for(const c of cands){if(seen.has(c.p.id))continue;seen.add(c.p.id);out.push(c);if(out.length===3)break}
+  return out;
+}
+function quizRender(){
+  const box=$("#quizBox");
+  if(QZ.i<QUIZ.length){
+    const q=QUIZ[QZ.i];
+    box.innerHTML=`<div class="qz-prog" aria-hidden="true">${QUIZ.map((_,i)=>`<i class="${i<QZ.i?"done":i===QZ.i?"now":""}"></i>`).join("")}</div>
+      <span class="eyebrow">Pergunta ${QZ.i+1} de ${QUIZ.length}</span><h3 class="qz-t">${q.t}</h3><p class="qz-s">${q.s}</p>
+      <div class="qz-ops">${q.o.map(([v,l])=>`<button type="button" class="qz-op" data-qv="${v}">${l}</button>`).join("")}</div>
+      ${QZ.i?`<button type="button" class="qz-back" data-qback>← Voltar</button>`:""}`;
+    box.classList.remove("qz-in");void box.offsetWidth;box.classList.add("qz-in");
+    return;
+  }
+  const recs=quizRecs();
+  box.innerHTML=`<span class="eyebrow">Resultado</span><h3 class="qz-t">${recs.length?"Os iPhones ideais para você":"Não achamos um iPhone nessa faixa"}</h3>
+    ${recs.length?`<div class="qz-recs">${recs.map((c,i)=>`<article class="qz-rec" style="--d:${i*120}ms">
+      ${i===0?`<span class="badge hot qz-best">Melhor escolha</span>`:""}
+      <div class="qz-pic" data-open="${c.p.id}" data-a="${c.a}" role="button" tabindex="0" aria-label="Ver ${esc(c.p.nome)}">${media(c.p,c.a,0)}</div>
+      <div class="qz-body"><b>${esc(c.p.nome)}${c.op.l!=="Única"?" "+esc(c.op.l):""}</b>
+      <ul>${c.why.slice(0,3).map(w=>`<li>${esc(w)}</li>`).join("")}</ul>
+      <div class="qz-price"><span class="mono">${brl0(c.op.p)}</span><small>${c.op.x===0?"à vista":"ou 24x de "+brl0(parc(c.op,24))}</small></div>
+      <div class="qz-acts"><button type="button" class="btn btn-accent" data-add="${c.p.id}" data-a="${c.a}">Adicionar</button><button type="button" class="btn btn-ghost" data-open="${c.p.id}" data-a="${c.a}">Ver detalhes</button></div></div>
+    </article>`).join("")}</div>`:`<p class="qz-s">Aumente o orçamento ou fale com a gente: às vezes chega um aparelho que ainda não está no site.</p>`}
+    <div class="qz-end"><button type="button" class="btn btn-ghost" data-qreset>Refazer o teste</button><a class="btn btn-wa" href="${wa(`Olá, ${LOJA_NOME}! Fiz o teste do iPhone ideal no site${recs[0]?` e deu ${recs[0].p.nome} ${recs[0].op.l}`:""}. Podem me ajudar?`)}" target="_blank" rel="noopener">Tirar dúvida no WhatsApp</a></div>`;
+  box.classList.remove("qz-in");void box.offsetWidth;box.classList.add("qz-in");
+}
+document.addEventListener("click",e=>{
+  const o=e.target.closest("[data-qv]"); if(o){QZ.r[QUIZ[QZ.i].k]=o.dataset.qv;QZ.i++;quizRender();return}
+  if(e.target.closest("[data-qback]")){QZ.i=Math.max(0,QZ.i-1);quizRender();return}
+  if(e.target.closest("[data-qreset]")){QZ.i=0;QZ.r={};quizRender();return}
+});
+/* ---------- Animações ---------- */
+const calmo=matchMedia("(prefers-reduced-motion: reduce)").matches;
+function animarEntrada(el){if(calmo||!el)return;el.classList.remove("enter");void el.offsetWidth;el.classList.add("enter")}
+function voarParaSacola(origem){
+  if(calmo||!origem)return;
+  const card=origem.closest(".card,.deal,.qz-rec,.pv"); const img=card&&card.querySelector(".pic img,.pic svg,.qz-pic img,.qz-pic svg,.pv-photo img,.pv-photo svg");
+  const alvo=$("#openCart"); if(!img||!alvo)return;
+  const a=img.getBoundingClientRect(), b=alvo.getBoundingClientRect();
+  const c=img.cloneNode(true); c.className="fly"; Object.assign(c.style,{left:a.left+"px",top:a.top+"px",width:a.width+"px",height:a.height+"px"});
+  document.body.appendChild(c);
+  const dx=b.left+b.width/2-(a.left+a.width/2), dy=b.top+b.height/2-(a.top+a.height/2);
+  c.animate([{transform:"translate(0,0) scale(1)",opacity:1},{transform:`translate(${dx*0.5}px,${dy*0.5-80}px) scale(.45)`,opacity:.9},{transform:`translate(${dx}px,${dy}px) scale(.08)`,opacity:.2}],{duration:750,easing:"cubic-bezier(.5,0,.3,1)"}).onfinish=()=>{c.remove();alvo.classList.remove("bump");void alvo.offsetWidth;alvo.classList.add("bump")};
+}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-add]");if(b)voarParaSacola(b)},true);
+(function tilt(){
+  const st=document.querySelector(".hero-stage"); if(calmo||!st||!matchMedia("(pointer:fine)").matches)return;
+  const ph=$("#heroPhone");
+  st.addEventListener("pointermove",e=>{const r=st.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;ph.style.transform=`perspective(900px) rotateY(${x*14}deg) rotateX(${-y*10}deg)`});
+  st.addEventListener("pointerleave",()=>{ph.style.transform=""});
+})();
+
 /* ---------- Página do produto ---------- */
 const pv={id:null,q:1,pushed:false};
 function pvRender(){
@@ -1432,13 +1591,14 @@ document.addEventListener("keydown",e=>{
 $("#pvAdd").onclick=()=>{const id=pv.id;addToCart(id,null,pv.q,($("#pvNote").value||"").trim());closeProduct();grid()};
 /* ---------- Páginas ---------- */
 function centerX(el){const box=el.parentElement;if(box&&box.scrollWidth>box.clientWidth)box.scrollLeft=el.offsetLeft-box.offsetLeft-box.clientWidth/2+el.offsetWidth/2}
-const PAGES=["inicio","promocoes","loja","parcelamento","troca","manutencao","depoimentos","pagamento","duvidas"];
+const PAGES=["inicio","ideal","promocoes","loja","parcelamento","troca","manutencao","depoimentos","pagamento","duvidas"];
 let curPage=null;
 function showPage(pg){
   if(pg===curPage) return;
   curPage=pg;
   document.querySelectorAll("main > [data-page]").forEach(el=>el.hidden=el.dataset.page!==pg);
   window.scrollTo(0,0);
+  animarEntrada(document.querySelector(`main > [data-page="${pg}"]`));
   markNav();
 }
 function markNav(){
@@ -1472,7 +1632,7 @@ $("#busca").addEventListener("input",e=>{state.q=e.target.value;if(state.q.trim(
 hero();
 $("#heroPhone").innerHTML='<img src="img/hero-17pm.png" alt="iPhone 17 Pro Max laranja-cósmico">';
 $("#heroSwatches").hidden=true;
-deals();tabs();setTab("novos");trade();renderCart();payUI();clock();setInterval(clock,1000);cats();simFill();simAbrir("n17pm",0);route();
+deals();tabs();setTab("novos");trade();renderCart();payUI();clock();setInterval(clock,1000);cats();simFill();quizRender();simAbrir("n17pm",0);route();
 </script>
 </body>
 </html>

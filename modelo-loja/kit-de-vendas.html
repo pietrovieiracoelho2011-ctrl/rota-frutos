@@ -95,6 +95,45 @@ summary{font-weight:800;cursor:pointer}
 .contract p b{font-family:var(--f-mono);font-size:12.5px;color:var(--accent)}
 code{font-family:var(--f-mono);font-size:13.5px;background:var(--well);padding:2px 6px;border-radius:6px}
 pre.cmd{background:var(--well);border-radius:12px;padding:12px 14px;overflow-x:auto;font-family:var(--f-mono);font-size:13px;margin:0}
+.pf{gap:16px}
+.pf-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.pf-field{display:grid;gap:6px;min-width:0}
+.pf-field label,.pf-sinais legend{font-size:13px;font-weight:700}
+.pf input:not([type=checkbox]),.pf select{font:inherit;font-size:15px;padding:11px 13px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--ink);width:100%}
+.pf input:focus,.pf select:focus{outline:2px solid var(--accent);outline-offset:0;border-color:transparent}
+.pf-nicho{background:var(--well);border-radius:14px;padding:14px 16px;display:grid;gap:6px;font-size:14.5px}
+.pf-nicho b{font-size:15.5px}
+.fit{display:inline-block;font-family:var(--f-mono);font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;margin-left:6px;vertical-align:2px}
+.fit.alta{background:var(--ok);color:#fff}.fit.media{background:var(--warn-soft);color:var(--warn)}
+.pf-links{display:flex;flex-wrap:wrap;gap:8px}
+.pf-links a{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-weight:700;font-size:13.5px;padding:9px 14px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
+.pf-links a:hover{background:var(--accent);color:#fff}
+.pf-sinais{border:0;padding:0;margin:0;display:grid;gap:8px}
+#pSinais{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px}
+#pSinais label{display:flex;gap:10px;align-items:flex-start;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:14px;cursor:pointer}
+#pSinais label:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+#pSinais input{width:18px;height:18px;margin:1px 0 0;accent-color:var(--accent);flex-shrink:0}
+#pSinais small{color:var(--mute);font-family:var(--f-mono);font-size:11px;margin-left:auto;padding-left:6px}
+.pf-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.btn-main{border:0;background:var(--accent);color:#fff;font:inherit;font-weight:800;font-size:15px;padding:12px 22px;border-radius:999px;cursor:pointer}
+.pf-err{margin:0;color:#C2361B;font-size:13px;font-weight:700;min-height:1em}
+.chip{font-family:var(--f-mono);font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.chip.alta{background:var(--ok);color:#fff}.chip.media{background:var(--warn-soft);color:var(--warn)}.chip.baixa{background:var(--well);color:var(--mute)}
+.pf-listhead{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:8px}
+.pf-filter{display:flex;gap:8px;align-items:center;font-size:14px;color:var(--mute);cursor:pointer}
+.pf-lista{display:grid;gap:10px}
+.leadc{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:grid;grid-template-columns:1fr auto;gap:10px 14px;align-items:center;min-width:0}
+.leadc.st-fechado{border-color:var(--ok);box-shadow:inset 4px 0 0 var(--ok)}
+.leadc.st-perdido{opacity:.6}
+.lead-main{display:grid;gap:3px;min-width:0}
+.lead-main b{font-size:16px;overflow-wrap:anywhere}
+.lead-main small{color:var(--mute);font-size:13px;overflow-wrap:anywhere}
+.lead-acts{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.lead-acts select{font:inherit;font-size:13.5px;padding:7px 10px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.lead-acts button,.lead-acts a{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:6px 12px;font:inherit;font-size:12.5px;font-weight:700;cursor:pointer;text-decoration:none}
+.lead-acts .del.armed{background:#C2361B;border-color:#C2361B;color:#fff}
+.empty-list{background:var(--surface);border:1px dashed var(--line);border-radius:16px;padding:22px;text-align:center;color:var(--mute)}
+.empty-list b{display:block;color:var(--ink);margin-bottom:4px}
 footer{padding-block:40px 60px;color:var(--mute);font-size:14px}
 </style>
 
@@ -113,6 +152,7 @@ footer{padding-block:40px 60px;color:var(--mute);font-size:14px}
 <nav class="toc" aria-label="Seções">
   <div class="wrap">
     <a href="#passos">1. Passo a passo</a>
+    <a href="#prospectar">Encontrar lojas</a>
     <a href="#precos">2. Planos e preços</a>
     <a href="#mensagens">3. Mensagens</a>
     <a href="#visita">4. Visita</a>
@@ -141,6 +181,41 @@ footer{padding-block:40px 60px;color:var(--mute);font-size:14px}
       <li><input type="checkbox" id="s10"><label for="s10"><b>Peça depoimento e 2 indicações</b><span>Lojistas se conhecem. Uma loja satisfeita indica outras.</span></label></li>
     </ol>
     <p class="note"><b>Formalização.</b> Para emitir nota de serviço, confira no Portal do Empreendedor (gov.br/mei) se a criação de sites entra como atividade de MEI. Se não entrar, um contador indica o formato mais barato. Para começar a vender, isso não é obrigatório.</p>
+  </div>
+</section>
+
+<section id="prospectar">
+  <div class="wrap">
+    <span class="sec-n">PROSPECÇÃO</span>
+    <h2>Encontrar lojas que vão comprar</h2>
+    <p class="muted">Escolha a cidade e o nicho. Os botões abrem as buscas certas. Para cada loja que achar, marque o que observou no perfil dela e salve na lista. A nota mostra quem tem mais chance de comprar.</p>
+
+    <div class="box pf">
+      <div class="pf-row">
+        <div class="pf-field"><label for="pCidade">Cidade ou região</label><input id="pCidade" value="Curitiba" placeholder="Ex.: Curitiba, São José dos Pinhais"></div>
+        <div class="pf-field"><label for="pBairro">Bairro (opcional)</label><input id="pBairro" placeholder="Ex.: Batel, Centro"></div>
+        <div class="pf-field"><label for="pNicho">Nicho</label><select id="pNicho"></select></div>
+      </div>
+      <div class="pf-nicho" id="pInfo"></div>
+      <div class="pf-links" id="pLinks"></div>
+    </div>
+
+    <form class="box pf" id="pForm" autocomplete="off">
+      <h3>Adicionar loja à lista</h3>
+      <div class="pf-row">
+        <div class="pf-field"><label for="pNome">Nome da loja</label><input id="pNome" required placeholder="Ex.: Cell Prime"></div>
+        <div class="pf-field"><label for="pContato">Instagram ou WhatsApp</label><input id="pContato" placeholder="@cellprime ou (41) 99999-0000"></div>
+      </div>
+      <fieldset class="pf-sinais"><legend>O que você viu no perfil</legend><div id="pSinais"></div></fieldset>
+      <div class="pf-foot"><span class="score-live" id="pScoreLive"></span><button class="btn-main" type="submit">Salvar na lista</button></div>
+      <p class="pf-err" id="pErr" role="alert"></p>
+    </form>
+
+    <div class="pf-listhead">
+      <h3>Minha lista <span class="muted" id="pCount"></span></h3>
+      <label class="pf-filter"><input type="checkbox" id="pSoAqui"> Só desta cidade e nicho</label>
+    </div>
+    <div id="pLista" class="pf-lista" aria-live="polite"><p class="muted">Carregando a lista…</p></div>
   </div>
 </section>
 
@@ -323,5 +398,134 @@ python3 publicar.py nome-da-loja</pre>
     const fallback=()=>{const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='Selecionado, copie com Ctrl+C'};
     try{navigator.clipboard.writeText(txt).then(done,fallback)}catch(e){fallback()}
   }));
+})();
+</script>
+<script>
+(function(){
+const $=s=>document.querySelector(s);
+const esc=t=>String(t??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const DEMO="https://loja-demo.frutosdagraciosa.workers.dev";
+/* Nichos em ordem de chance de compra */
+const NICHOS=[
+ {id:"celular",nome:"Lojas de celular e Apple",fit:"alta",termos:["loja de celular","iphone seminovo","loja apple"],tags:["iphone","iphoneseminovo","celular"],porque:"Ticket alto, preço muda toda semana e já vendem pelo WhatsApp.",beneficio:"o cliente vê o preço, as parcelas em até 24x, simula a troca do usado e o pedido chega pronto no WhatsApp",demo:true},
+ {id:"moda",nome:"Lojas de roupa e moda",fit:"alta",termos:["loja de roupas","moda feminina","boutique"],tags:["modafeminina","lojaderoupas","boutique"],porque:"Vendem muito pelo Instagram e respondem preço no direct um por um.",beneficio:"o cliente escolhe tamanho e cor, vê o preço e manda o pedido pronto no WhatsApp"},
+ {id:"lanche",nome:"Lanchonetes e hamburguerias",fit:"alta",termos:["hamburgueria","lanchonete delivery","hot dog"],tags:["hamburgueria","delivery","lanchonete"],porque:"Pagam até 27% de comissão em aplicativo. Um cardápio próprio economiza todo mês.",beneficio:"o cliente monta o pedido no cardápio com fotos e ele chega pronto no WhatsApp, sem comissão de aplicativo"},
+ {id:"pizza",nome:"Pizzarias",fit:"alta",termos:["pizzaria","pizzaria delivery"],tags:["pizzaria","pizza","delivery"],porque:"Pedido de valor alto e cliente que repete toda semana.",beneficio:"o cliente escolhe sabores e bordas e o pedido chega pronto no WhatsApp, sem comissão de aplicativo"},
+ {id:"beleza",nome:"Cosméticos e perfumaria",fit:"alta",termos:["perfumaria","loja de cosméticos","perfumes importados"],tags:["perfumesimportados","cosmeticos","maquiagem"],porque:"Catálogo grande, muita venda por direct e por indicação.",beneficio:"o cliente navega pelo catálogo, vê preço e parcelas e manda o pedido no WhatsApp"},
+ {id:"joias",nome:"Joias e semijoias",fit:"alta",termos:["semijoias","joalheria","acessórios femininos"],tags:["semijoias","joias","acessorios"],porque:"Produto visual que vende bem com foto boa e link para compartilhar.",beneficio:"cada peça tem foto grande, preço e link próprio para compartilhar, e o pedido chega no WhatsApp"},
+ {id:"calcados",nome:"Calçados e tênis",fit:"media",termos:["loja de tênis","calçados","sneakers"],tags:["tenis","sneakers","calcados"],porque:"Ticket médio alto e cliente que compara modelos antes de comprar.",beneficio:"o cliente filtra por numeração, vê as parcelas e manda o pedido pronto no WhatsApp"},
+ {id:"acai",nome:"Açaí e sorveterias",fit:"media",termos:["açaí","sorveteria","açaiteria"],tags:["acai","acaiteria","sorvete"],porque:"Muito pedido por delivery e montagem com adicionais.",beneficio:"o cliente monta o copo com os adicionais e o pedido chega pronto no WhatsApp"},
+ {id:"pet",nome:"Pet shops",fit:"media",termos:["pet shop","banho e tosa"],tags:["petshop","banhoetosa"],porque:"Compra recorrente de ração e agendamento de banho.",beneficio:"o cliente vê ração e acessórios com preço e manda o pedido ou agenda o banho pelo WhatsApp"},
+ {id:"otica",nome:"Óticas",fit:"media",termos:["ótica","óculos de sol"],tags:["otica","oculos","oculosdesol"],porque:"Ticket alto e produto que o cliente quer ver antes de ir à loja.",beneficio:"o cliente vê as armações com preço e parcelas e reserva pelo WhatsApp"},
+ {id:"suple",nome:"Suplementos",fit:"media",termos:["loja de suplementos","whey"],tags:["suplementos","whey"],porque:"Compra recorrente e cliente que pesquisa preço.",beneficio:"o cliente encontra o suplemento pela busca e manda o pedido pronto no WhatsApp"},
+ {id:"moveis",nome:"Móveis e decoração",fit:"media",termos:["loja de móveis","decoração","colchões"],tags:["moveis","decoracao"],porque:"Ticket muito alto e parcelamento decide a compra.",beneficio:"o cliente vê o produto, simula as parcelas e manda o pedido pelo WhatsApp"},
+ {id:"flores",nome:"Floriculturas e presentes",fit:"media",termos:["floricultura","cesta de café da manhã"],tags:["floricultura","cestadecafedamanha"],porque:"Muito pedido em datas comemorativas e por quem está longe.",beneficio:"o cliente escolhe o arranjo, a data de entrega e manda o pedido no WhatsApp"},
+ {id:"bike",nome:"Bicicletarias",fit:"media",termos:["bicicletaria","loja de bike"],tags:["bike","bicicleta","mtb"],porque:"Ticket alto e muitas peças e acessórios.",beneficio:"o cliente vê bikes e peças com preço e parcelas e manda o pedido no WhatsApp"}
+];
+const SINAIS=[
+ ["semSite","Não tem site próprio",3],
+ ["whats","Vende pelo Instagram ou WhatsApp",2],
+ ["catalogo","Usa catálogo simples (loja.menu, Linktree, PDF)",2],
+ ["posta","Posta produtos ou preços toda semana",2],
+ ["ticket","Vende produto de valor alto",1],
+ ["seguidores","Tem mais de 2 mil seguidores",1],
+ ["fisica","Tem loja física",1]
+];
+const pontos=s=>SINAIS.reduce((t,[k,,p])=>t+(s&&s[k]?p:0),0);
+const nivel=n=>n>=8?["alta","Chance alta"]:n>=5?["media","Chance média"]:["baixa","Chance baixa"];
+const STATUS=["Novo","Contatado","Respondeu","Visitar","Proposta enviada","Fechado","Perdido"];
+const slug=t=>String(t).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]/g,"");
+const nicho=()=>NICHOS.find(n=>n.id===$("#pNicho").value)||NICHOS[0];
+
+$("#pNicho").innerHTML=NICHOS.map(n=>`<option value="${n.id}">${esc(n.nome)}${n.fit==="alta"?" ★":""}</option>`).join("");
+$("#pSinais").innerHTML=SINAIS.map(([k,t,p])=>`<label><input type="checkbox" name="${k}"><span>${esc(t)}</span><small>+${p}</small></label>`).join("");
+try{const pref=JSON.parse(localStorage.getItem("kit-prosp")||"{}");if(pref.cidade)$("#pCidade").value=pref.cidade;if(pref.nicho)$("#pNicho").value=pref.nicho;}catch(e){}
+
+function links(){
+  const n=nicho(), cid=$("#pCidade").value.trim()||"Curitiba", bai=$("#pBairro").value.trim(), onde=(bai?bai+" ":"")+cid;
+  try{localStorage.setItem("kit-prosp",JSON.stringify({cidade:cid,nicho:n.id}))}catch(e){}
+  $("#pInfo").innerHTML=`<b>${esc(n.nome)}<span class="fit ${n.fit}">${n.fit==="alta"?"CHANCE ALTA":"CHANCE MÉDIA"}</span></b><span>${esc(n.porque)}</span><span class="muted">${n.demo?`Demonstração pronta: <a href="${DEMO}" target="_blank" rel="noopener">abrir</a>`:"Demonstração deste nicho ainda não existe. Peça ao Claude para montar antes de abordar."}</span>`;
+  const q=encodeURIComponent, L=[];
+  n.termos.forEach(t=>L.push([`Google Maps: ${t}`,`https://www.google.com/maps/search/${q(t+" "+onde)}`]));
+  L.push(["Perfis no Instagram (Google)",`https://www.google.com/search?q=${q(`site:instagram.com "${n.termos[0]}" "${cid}"`)}`]);
+  n.tags.forEach(t=>L.push([`#${t}${slug(cid)}`,`https://www.instagram.com/explore/tags/${q(t+slug(cid))}/`]));
+  L.push(["Quem usa loja.menu ou Linktree",`https://www.google.com/search?q=${q(`(site:loja.menu OR site:linktr.ee) "${n.termos[0]}" "${cid}"`)}`]);
+  $("#pLinks").innerHTML=L.map(([t,u])=>`<a href="${u}" target="_blank" rel="noopener">${esc(t)} ↗</a>`).join("");
+}
+["pCidade","pBairro"].forEach(id=>$("#"+id).addEventListener("input",()=>{links();render()}));
+$("#pNicho").addEventListener("change",()=>{links();render()});
+links();
+
+function sinaisForm(){const o={};SINAIS.forEach(([k])=>o[k]=$(`#pSinais input[name=${k}]`).checked);return o}
+function live(){const n=pontos(sinaisForm()),[c,t]=nivel(n);$("#pScoreLive").innerHTML=`<span class="chip ${c}">${t} · ${n} pts</span>`}
+$("#pSinais").addEventListener("change",live);live();
+
+/* ---- Armazenamento: banco do kit, com cópia local se ele não estiver disponível ---- */
+let leads=[], store=null, carregou=false;
+const local={
+  all(){try{return JSON.parse(localStorage.getItem("kit-leads")||"[]")}catch(e){return []}},
+  put(l){const a=local.all().filter(x=>x.id!==l.id);a.push(l);try{localStorage.setItem("kit-leads",JSON.stringify(a))}catch(e){}leads=a;render()},
+  del(id){const a=local.all().filter(x=>x.id!==id);try{localStorage.setItem("kit-leads",JSON.stringify(a))}catch(e){}leads=a;render()}
+};
+const timer=setTimeout(()=>{if(!carregou){carregou=true;leads=local.all();render(true)}},10000);
+(async()=>{
+  try{
+    const db=window.claude&&window.claude.use?await window.claude.use("db"):null;
+    if(!db){clearTimeout(timer);carregou=true;leads=local.all();render(true);return}
+    store=db.collection("leads");
+    store.onSnapshot(snap=>{clearTimeout(timer);carregou=true;leads=snap.docs.map(d=>({id:d.id,...d.data()}));render()},
+      ()=>{clearTimeout(timer);carregou=true;store=null;leads=local.all();render(true)});
+  }catch(e){clearTimeout(timer);carregou=true;leads=local.all();render(true)}
+})();
+async function salvar(l){if(store){try{await store.doc(l.id).set(l);return}catch(e){$("#pErr").textContent="Não foi possível salvar agora. Tente de novo em instantes."}}else local.put(l)}
+async function excluir(id){if(store){try{await store.doc(id).delete()}catch(e){}}else local.del(id)}
+
+$("#pForm").addEventListener("submit",async e=>{
+  e.preventDefault();$("#pErr").textContent="";
+  const nome=$("#pNome").value.trim(); if(!nome){$("#pErr").textContent="Informe o nome da loja.";$("#pNome").focus();return}
+  const s=sinaisForm(), n=nicho();
+  const l={id:"l"+Date.now().toString(36)+Math.random().toString(36).slice(2,6),nome,contato:$("#pContato").value.trim(),cidade:$("#pCidade").value.trim()||"Curitiba",bairro:$("#pBairro").value.trim(),nicho:n.id,sinais:s,pontos:pontos(s),status:"Novo",criadoEm:new Date().toISOString()};
+  await salvar(l);
+  $("#pNome").value="";$("#pContato").value="";$("#pSinais").querySelectorAll("input").forEach(i=>i.checked=false);live();$("#pNome").focus();
+});
+
+function linkContato(c){
+  if(!c) return "";
+  const d=c.replace(/\D/g,"");
+  if(c.trim().startsWith("@")) return `https://www.instagram.com/${encodeURIComponent(c.trim().slice(1))}/`;
+  if(d.length>=10) return `https://wa.me/${d.length<=11?"55"+d:d}`;
+  if(/^https?:\/\//.test(c)) return c;
+  return "";
+}
+function msgPara(l){
+  const n=NICHOS.find(x=>x.id===l.nicho)||NICHOS[0];
+  return `Oi, ${l.nome}! Tudo bem? Aqui é [seu nome], da Vitrio. Vi o perfil de vocês e gostei muito.\n\nEu monto sites de vendas para ${n.nome.toLowerCase()}: ${n.beneficio}.\n\nPosso te mandar um vídeo de 30 segundos mostrando como fica?`;
+}
+function render(offline){
+  if(!carregou) return;
+  const soAqui=$("#pSoAqui").checked, cid=($("#pCidade").value.trim()||"").toLowerCase(), nid=$("#pNicho").value;
+  const lista=leads.filter(l=>!soAqui||(l.nicho===nid&&(l.cidade||"").toLowerCase()===cid))
+    .sort((a,b)=>(a.status==="Perdido")-(b.status==="Perdido")||(b.pontos||0)-(a.pontos||0)||String(b.criadoEm).localeCompare(String(a.criadoEm)));
+  $("#pCount").textContent=leads.length?`(${lista.length}${soAqui?" de "+leads.length:""})`:"";
+  const aviso=offline?`<p class="muted" style="margin:0 0 6px;font-size:13px">A lista está salva só neste aparelho porque o banco do kit não está disponível nesta visualização.</p>`:"";
+  if(!lista.length){$("#pLista").innerHTML=aviso+`<div class="empty-list"><b>${leads.length?"Nenhuma loja com esse filtro":"Sua lista está vazia"}</b>Use os botões de busca acima, abra o perfil de uma loja e adicione aqui o que você viu. As lojas com mais pontos aparecem primeiro.</div>`;return}
+  $("#pLista").innerHTML=aviso+lista.map(l=>{const [c,t]=nivel(l.pontos||0),n=NICHOS.find(x=>x.id===l.nicho),lk=linkContato(l.contato);
+    return `<article class="leadc st-${slug(l.status)}" data-id="${esc(l.id)}">
+      <div class="lead-main"><b>${esc(l.nome)}</b><small>${esc(n?n.nome:"")} · ${esc([l.bairro,l.cidade].filter(Boolean).join(", "))}${l.contato?" · "+esc(l.contato):""}</small></div>
+      <span class="chip ${c}">${t} · ${l.pontos||0} pts</span>
+      <div class="lead-acts">
+        <select data-act="status" aria-label="Situação de ${esc(l.nome)}">${STATUS.map(s=>`<option${s===l.status?" selected":""}>${s}</option>`).join("")}</select>
+        <button type="button" data-act="msg">Copiar mensagem</button>
+        ${lk?`<a href="${esc(lk)}" target="_blank" rel="noopener">Abrir contato ↗</a>`:""}
+        <button type="button" class="del" data-act="del">Excluir</button>
+      </div></article>`}).join("");
+}
+$("#pSoAqui").addEventListener("change",()=>render());
+$("#pLista").addEventListener("change",async e=>{const sel=e.target.closest('[data-act="status"]');if(!sel)return;const l=leads.find(x=>x.id===sel.closest(".leadc").dataset.id);if(l){l.status=sel.value;await salvar({...l});render()}});
+$("#pLista").addEventListener("click",async e=>{
+  const b=e.target.closest("button[data-act]");if(!b)return;const l=leads.find(x=>x.id===b.closest(".leadc").dataset.id);if(!l)return;
+  if(b.dataset.act==="msg"){const txt=msgPara(l);try{await navigator.clipboard.writeText(txt);b.textContent="Copiada";setTimeout(()=>b.textContent="Copiar mensagem",1800)}catch(err){b.textContent="Não deu para copiar";}}
+  if(b.dataset.act==="del"){if(!b.classList.contains("armed")){b.classList.add("armed");b.textContent="Confirmar exclusão";setTimeout(()=>{b.classList.remove("armed");b.textContent="Excluir"},3000);return}await excluir(l.id)}
+});
 })();
 </script>
